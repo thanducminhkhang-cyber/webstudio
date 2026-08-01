@@ -1450,7 +1450,10 @@ export default function SkincareShop() {
 
         <div className="max-w-7xl mx-auto border-t border-white/10 pt-8 flex flex-col sm:flex-row justify-between items-center text-xs text-white/70 gap-4">
           <p>© 2026 LUMIÈRE LABS Dewy Glass Garden. All rights reserved.</p>
-          <p className="text-[#FFBE98] font-mono">WSOS Studio Showcase</p>
+          <div className="flex items-center gap-6">
+            <a href="/admin" className="hover:text-[#FFBE98] font-mono transition-colors">🔒 Đăng nhập quản trị</a>
+            <p className="text-[#FFBE98] font-mono">WSOS Studio Showcase</p>
+          </div>
         </div>
       </footer>
     </div>

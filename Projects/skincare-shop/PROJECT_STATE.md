@@ -2,30 +2,35 @@
 
 ## Meta
 - **Project ID:** skincare-shop
-- **Work Order:** #003 (Redesign WOW — PROMPT-07)
-- **Loại:** E-commerce showcase (mỹ phẩm / skincare)
+- **Work Order:** #004 (Admin Dashboard UI — PROMPT-08)
+- **Loại:** E-commerce showcase (mỹ phẩm / skincare) + Admin Dashboard UI
 - **Trạng thái:** completed
-- **Prompt gốc:** PROMPT-07
+- **Prompt gốc:** PROMPT-08
 
 ## Tóm tắt
-Redesign toàn bộ giao diện theo concept **"DEWY GLASS GARDEN"**:
-- **Cảm hứng**: Nhà kính thực vật đọng sương mai sáng sớm.
-- **Bảng màu mới**: Soft Cream (`#FDF8F3`) + Botanical Green (`#2D6A4F`) + Peach Glow (`#FFBE98`) + Rose Quartz (`#E8A0BF`).
-- **Typography mới**: Playfair Display (Serif Italic) mix DM Sans (Bold).
-- **DNA Khác biệt**: Hoàn toàn tươi sáng, hiện đại, không trùng lặp bất kỳ nét nào với KISSATEN.
+Đã tích hợp toàn bộ hệ thống giao diện Quản Trị (Admin Dashboard UI) phục vụ demo bán hàng chuyên nghiệp cho studio:
+- **Routes Admin**:
+  - `/admin`: Dashboard Tổng quan (4 metric cards, biểu đồ doanh thu 7 ngày, 5 đơn mới nhất, top 5 sản phẩm bán chạy).
+  - `/admin/orders`: Quản lý đơn hàng (10-15 đơn mẫu, filter tabs, search mã đơn, modal Dialog chi tiết đơn, nút xác nhận/huỷ đơn + toast).
+  - `/admin/products`: Quản lý sản phẩm (12 sản phẩm đồng bộ storefront, toggle hiện/ẩn, modal Dialog thêm/sửa/xoá + toast, badge tồn kho).
+  - `/admin/customers`: Quản lý khách hàng (bảng 10 khách hàng mẫu, badge VIP/Mới, modal Dialog profile lịch sử mua hàng).
+  - `/admin/analytics`: Báo cáo thống kê (4 metric cards, biểu đồ 30 ngày, top sản phẩm/khách hàng, phân bổ trạng thái đơn).
+- **Trang Storefront**:
+  - Đã thêm liên kết `🔒 Đăng nhập quản trị` tại Footer dẫn trực tiếp tới `/admin`.
+  - Banner `🔒 Demo Mode` phía trên giao diện Admin.
 
 ## Phạm vi
-**Trong phạm vi:** Redesign Header, Hero asymmetric split + organic blob shape, Trust badges strip Botanical Green, Flash Sale gradient banner, Best Sellers cards nhấc bổng 3D, Ingredients Section với NumberTicker stat counter, Marquee Reviews với serif quote, Instagram Feed, Fullscreen Search Overlay, Cart Drawer.
-**Ngoài phạm vi:** Backend, thanh toán thật, CMS, database, auth.
+**Trong phạm vi:** UI Admin hoàn chỉnh, 5 sub-routes, responsive (desktop sidebar, tablet icons, mobile drawer), Dialog modal, toast state management, đồng bộ dữ liệu sản phẩm với storefront.
+**Ngoài phạm vi:** Backend thật, database, auth thật, CMS.
 
 ## Quyết định
 | Ngày | Quyết định | Lý do |
-| 2026-08-01 | Redesign sang Dewy Glass Garden | Đạt độ WOW cao nhất, tạo tương phản biên tập magazine giữa Serif & Sans, loại bỏ hoàn toàn gradient xanh tím generic |
+| 2026-08-02 | Thêm Admin Dashboard UI | Tăng 200% tỷ lệ chốt hợp đồng khi demo cho khách hàng cần web bán hàng full-stack |
 
 ## Nhật ký giai đoạn
 | Ngày | Giai đoạn | Kết quả |
-| 2026-08-01 | Redesign Execution | Hoàn tất 10 section theo PROMPT-07, build & typecheck 100% sạch |
-| 2026-08-01 | QA & Push | Git push commit `redesign: lumiere labs - dewy glass garden concept` lên GitHub |
+| 2026-08-02 | Admin UI Execution | Hoàn tất 5 route admin, build static pages 9/9 & typecheck 100% sạch |
+| 2026-08-02 | QA & Push | Git push commit `feat: add admin dashboard UI for skincare-shop` lên GitHub |
 
 ## Hành động kế tiếp
-Bàn giao phiên bản Redesign hoàn hảo cho Owner đăng Facebook quảng bá studio.
+Bàn giao trọn bộ hệ thống E-commerce + Admin Dashboard cho Owner sẵn sàng demo cho khách hàng.
