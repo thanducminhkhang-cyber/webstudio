@@ -4,7 +4,6 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import {
   Coffee,
-  Calendar,
   Clock,
   Users,
   MapPin,
@@ -13,14 +12,10 @@ import {
   Menu as MenuIcon,
   Star,
   CheckCircle2,
-  Sparkles,
   ChevronRight,
-  Sun,
-  Moon,
   Flame,
   Award,
   Heart,
-  Compass,
 } from "lucide-react";
 
 // Imports from @wsos/ui workspace package
@@ -39,7 +34,6 @@ import { BlurFade } from "@wsos/ui/blocks/blur-fade";
 import { NumberTicker } from "@wsos/ui/blocks/number-ticker";
 import { BorderBeam } from "@wsos/ui/blocks/border-beam";
 import { ShimmerButton } from "@wsos/ui/blocks/shimmer-button";
-import { BentoGrid, BentoCard } from "@wsos/ui/blocks/bento-grid";
 import { Marquee } from "@wsos/ui/blocks/marquee";
 
 // Types
@@ -209,7 +203,7 @@ export default function CafeShowcase() {
   };
 
   return (
-    <div className="relative min-h-screen bg-background text-foreground transition-colors duration-300">
+    <div className="relative min-h-screen bg-background text-foreground">
       {/* Toast notification */}
       {toastMessage && (
         <div className="fixed bottom-6 right-6 z-50 flex items-center gap-3 rounded-xl bg-amber-500 text-slate-950 px-5 py-4 font-semibold shadow-2xl animate-in slide-in-from-bottom-5">
@@ -222,7 +216,7 @@ export default function CafeShowcase() {
       <nav
         className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
           scrolled
-            ? "bg-background/90 backdrop-blur-md border-b border-border shadow-2xl py-3.5"
+            ? "bg-background/95 backdrop-blur-md border-b border-border shadow-2xl py-3.5"
             : "bg-transparent py-5"
         }`}
       >
@@ -379,7 +373,7 @@ export default function CafeShowcase() {
                     className="object-cover group-hover:scale-105 transition-transform duration-700"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
-                  <div className="absolute bottom-6 left-6 right-6 p-4 rounded-xl bg-background/80 backdrop-blur-md border border-border">
+                  <div className="absolute bottom-6 left-6 right-6 p-4 rounded-xl bg-background/90 backdrop-blur-md border border-border">
                     <p className="text-xs text-amber-400 font-mono">CÀ PHÊ NGHỆ THUẬT THỦ CÔNG</p>
                     <h4 className="font-heading font-bold text-sm text-foreground mt-1">Máy Rang Probat 1978 Nguyên Bản</h4>
                   </div>
@@ -403,7 +397,7 @@ export default function CafeShowcase() {
 
                 {/* 4 Rich Stats Grid */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
-                  <Card className="bg-background/80 border-border p-5 hover:border-amber-500/40 transition-colors">
+                  <Card className="bg-background/90 border-border p-5 hover:border-amber-500/40 transition-colors">
                     <div className="flex items-center gap-3">
                       <div className="h-10 w-10 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 shrink-0">
                         <Flame className="h-5 w-5" />
@@ -418,7 +412,7 @@ export default function CafeShowcase() {
                     <p className="text-[11px] text-muted-foreground mt-2">Máy rang Probat từ Đức giữ trọn hương mầm trái cây.</p>
                   </Card>
 
-                  <Card className="bg-background/80 border-border p-5 hover:border-amber-500/40 transition-colors">
+                  <Card className="bg-background/90 border-border p-5 hover:border-amber-500/40 transition-colors">
                     <div className="flex items-center gap-3">
                       <div className="h-10 w-10 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 shrink-0">
                         <Coffee className="h-5 w-5" />
@@ -433,7 +427,7 @@ export default function CafeShowcase() {
                     <p className="text-[11px] text-muted-foreground mt-2">Hơn 45 ngàn trải nghiệm độc bản được trao gửi.</p>
                   </Card>
 
-                  <Card className="bg-background/80 border-border p-5 hover:border-amber-500/40 transition-colors">
+                  <Card className="bg-background/90 border-border p-5 hover:border-amber-500/40 transition-colors">
                     <div className="flex items-center gap-3">
                       <div className="h-10 w-10 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 shrink-0">
                         <Award className="h-5 w-5" />
@@ -448,7 +442,7 @@ export default function CafeShowcase() {
                     <p className="text-[11px] text-muted-foreground mt-2">Nhập nguyên mẻ trực tiếp từ Cầu Đất & Ethiopia.</p>
                   </Card>
 
-                  <Card className="bg-background/80 border-border p-5 hover:border-amber-500/40 transition-colors">
+                  <Card className="bg-background/90 border-border p-5 hover:border-amber-500/40 transition-colors">
                     <div className="flex items-center gap-3">
                       <div className="h-10 w-10 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 shrink-0">
                         <Heart className="h-5 w-5" />
@@ -553,104 +547,72 @@ export default function CafeShowcase() {
         </BlurFade>
       </section>
 
-      {/* SECTION 4: GALLERY */}
-      <section id="gallery" className="py-24 px-6 border-t border-border/60 bg-card/30">
-        <div className="max-w-6xl mx-auto space-y-12">
-          <BlurFade delay={0.1}>
-            <div className="text-center space-y-4">
-              <Badge variant="outline" className="border-amber-500/40 text-amber-400 font-mono text-xs">
-                ATMOSPHERE GALLERY
-              </Badge>
-              <h2 className="font-heading text-3xl sm:text-4xl font-bold text-foreground">Không Gian Trải Nghiệm</h2>
-              <p className="text-muted-foreground max-w-xl mx-auto text-sm sm:text-base">
-                Góc phố riêng tư nơi thiết kế ánh sáng, mùi hương và âm nhạc hòa làm một.
-              </p>
-            </div>
+      {/* SECTION 4: GALLERY (EXACT REQUESTED LAYOUT & IMAGES) */}
+      <section id="gallery" className="py-20 px-4 md:px-8 border-t border-border/60 bg-card/30">
+        <div className="max-w-6xl mx-auto">
+          <BlurFade delay={0.2}>
+            <p className="text-amber-400 text-sm tracking-widest uppercase text-center mb-2 font-mono">Không Gian</p>
+            <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-foreground font-heading">
+              Không Gian Trải Nghiệm
+            </h2>
+            <p className="text-muted-foreground text-center mb-12 max-w-xl mx-auto text-sm md:text-base">
+              Góc phố vắng tư một thiết kế ánh sáng, mùi hương và âm nhạc hoà làm một.
+            </p>
           </BlurFade>
-
-          <BlurFade delay={0.3}>
-            <BentoGrid className="max-w-5xl mx-auto">
-              <BentoCard
-                name="Khu Vực Rang Xay Cà Phê"
-                className="col-span-3 lg:col-span-2 group overflow-hidden"
-                background={
-                  <div className="relative h-full w-full">
-                    <Image
-                      src="https://images.unsplash.com/photo-1447933601403-0c6688de566e?q=80&w=800&auto=format&fit=crop"
-                      alt="Roasting area"
-                      fill
-                      className="object-cover opacity-70 group-hover:scale-105 transition-transform duration-700"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
-                  </div>
-                }
-                Icon={Coffee}
-                description="Hệ thống máy rang Probat thủ công giữ nguyên vẹn tầng hương phức hợp của từng mẻ hạt."
-                href="#booking"
-                cta="Đặt Lịch Tham Quan"
-              />
-
-              <BentoCard
-                name="Quầy Bar Pour-Over"
-                className="col-span-3 lg:col-span-1 group overflow-hidden"
-                background={
-                  <div className="relative h-full w-full">
-                    <Image
-                      src="https://images.unsplash.com/photo-1511920170033-f8396924c348?q=80&w=800&auto=format&fit=crop"
-                      alt="Pour over bar"
-                      fill
-                      className="object-cover opacity-70 group-hover:scale-105 transition-transform duration-700"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
-                  </div>
-                }
-                Icon={Sparkles}
-                description="Nơi các Barista trình diễn nghệ thuật chiết xuất thủ công."
-                href="#booking"
-                cta="Đặt Bàn Bar"
-              />
-
-              <BentoCard
-                name="Góc Đọc Sách Đêm"
-                className="col-span-3 lg:col-span-1 group overflow-hidden"
-                background={
-                  <div className="relative h-full w-full">
-                    <Image
-                      src="https://images.unsplash.com/photo-1521017432531-fbd92d768814?q=80&w=800&auto=format&fit=crop"
-                      alt="Reading lounge"
-                      fill
-                      className="object-cover opacity-70 group-hover:scale-105 transition-transform duration-700"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
-                  </div>
-                }
-                Icon={Clock}
-                description="Góc tĩnh lặng tối sáng nhẹ dịu dành riêng cho sự tập trung và sáng tạo."
-                href="#booking"
-                cta="Khám Phá"
-              />
-
-              <BentoCard
-                name="Sân Thượng Hoàng Hôn"
-                className="col-span-3 lg:col-span-2 group overflow-hidden"
-                background={
-                  <div className="relative h-full w-full">
-                    <Image
-                      src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=800&auto=format&fit=crop"
-                      alt="Rooftop sunset"
-                      fill
-                      className="object-cover opacity-70 group-hover:scale-105 transition-transform duration-700"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
-                  </div>
-                }
-                Icon={Users}
-                description="Ngắm nhìn toàn cảnh thành phố rực rỡ ánh đèn đêm bên ly Specialty Mocktail mát lạnh."
-                href="#booking"
-                cta="Đặt Bàn Ngoại Cảnh"
-              />
-            </BentoGrid>
-          </BlurFade>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <BlurFade delay={0.3}>
+              <div className="col-span-2 row-span-2 relative overflow-hidden rounded-xl group h-full min-h-[300px] sm:min-h-[400px]">
+                <Image
+                  src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=800&q=80"
+                  alt="Khu Vực Rang Xay"
+                  width={800}
+                  height={600}
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                <p className="absolute bottom-4 left-4 text-white font-semibold text-lg font-heading">Khu Vực Rang Xay Cà Phê</p>
+              </div>
+            </BlurFade>
+            <BlurFade delay={0.4}>
+              <div className="relative overflow-hidden rounded-xl group aspect-square">
+                <Image
+                  src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=400&q=80"
+                  alt="Quầy Bar Pour-Over"
+                  width={400}
+                  height={400}
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                <p className="absolute bottom-3 left-3 text-white font-medium text-sm sm:text-base font-heading">Quầy Bar Pour-Over</p>
+              </div>
+            </BlurFade>
+            <BlurFade delay={0.5}>
+              <div className="relative overflow-hidden rounded-xl group aspect-square">
+                <Image
+                  src="https://images.unsplash.com/photo-1521017432531-fbd92d768814?w=400&q=80"
+                  alt="Góc Đọc Sách Đêm"
+                  width={400}
+                  height={400}
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                <p className="absolute bottom-3 left-3 text-white font-medium text-sm sm:text-base font-heading">Góc Đọc Sách Đêm</p>
+              </div>
+            </BlurFade>
+            <BlurFade delay={0.6}>
+              <div className="col-span-2 relative overflow-hidden rounded-xl group aspect-[2/1]">
+                <Image
+                  src="https://images.unsplash.com/photo-1470337458703-46ad1756a187?w=800&q=80"
+                  alt="Sân Thượng Hoàng Hôn"
+                  width={800}
+                  height={400}
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                <p className="absolute bottom-4 left-4 text-white font-semibold text-lg font-heading">Sân Thượng Hoàng Hôn</p>
+              </div>
+            </BlurFade>
+          </div>
         </div>
       </section>
 
@@ -669,7 +631,7 @@ export default function CafeShowcase() {
         </BlurFade>
 
         <BlurFade delay={0.3}>
-          <Card className="relative bg-card border-border p-6 sm:p-10 shadow-[0_20px_50px_rgba(0,0,0,0.8)] overflow-hidden">
+          <Card className="relative bg-card border border-border p-6 sm:p-10 shadow-[0_20px_50px_rgba(0,0,0,0.8)] overflow-hidden">
             <BorderBeam size={300} duration={15} delay={0} />
             <form onSubmit={handleBookSubmit} className="space-y-6">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -680,7 +642,7 @@ export default function CafeShowcase() {
                     placeholder="Ví dụ: Kenji Sato"
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="bg-background border-border text-foreground focus:border-amber-500 text-sm"
+                    className="bg-muted border-border text-foreground placeholder:text-muted-foreground focus:border-amber-500 text-sm"
                     required
                   />
                 </div>
@@ -693,7 +655,7 @@ export default function CafeShowcase() {
                     placeholder="090 123 4567"
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                    className="bg-background border-border text-foreground focus:border-amber-500 text-sm"
+                    className="bg-muted border-border text-foreground placeholder:text-muted-foreground focus:border-amber-500 text-sm"
                     required
                   />
                 </div>
@@ -705,7 +667,7 @@ export default function CafeShowcase() {
                     type="date"
                     value={formData.date}
                     onChange={(e) => setFormData({ ...formData, date: e.target.value })}
-                    className="bg-background border-border text-foreground focus:border-amber-500 text-sm"
+                    className="bg-muted border-border text-foreground placeholder:text-muted-foreground focus:border-amber-500 text-sm"
                   />
                 </div>
 
@@ -716,7 +678,7 @@ export default function CafeShowcase() {
                     type="time"
                     value={formData.time}
                     onChange={(e) => setFormData({ ...formData, time: e.target.value })}
-                    className="bg-background border-border text-foreground focus:border-amber-500 text-sm"
+                    className="bg-muted border-border text-foreground placeholder:text-muted-foreground focus:border-amber-500 text-sm"
                   />
                 </div>
               </div>
@@ -727,7 +689,7 @@ export default function CafeShowcase() {
                   id="guests"
                   value={formData.guests}
                   onChange={(e) => setFormData({ ...formData, guests: e.target.value })}
-                  className="w-full h-10 px-3 rounded-md bg-background border border-border text-foreground text-sm focus:outline-none focus:border-amber-500"
+                  className="w-full h-10 px-3 rounded-md bg-muted border border-border text-foreground text-sm focus:outline-none focus:border-amber-500"
                 >
                   <option value="1">1 Người (Góc cá nhân)</option>
                   <option value="2">2 Người (Hẹn hò)</option>
@@ -743,7 +705,7 @@ export default function CafeShowcase() {
                   placeholder="Yêu cầu chỗ ngồi gần cửa sổ, tiệc sinh nhật..."
                   value={formData.note}
                   onChange={(e) => setFormData({ ...formData, note: e.target.value })}
-                  className="bg-background border-border text-foreground focus:border-amber-500 text-sm"
+                  className="bg-muted border-border text-foreground placeholder:text-muted-foreground focus:border-amber-500 text-sm"
                 />
               </div>
 
@@ -773,7 +735,7 @@ export default function CafeShowcase() {
           <BlurFade delay={0.3}>
             <Marquee pauseOnHover className="[--duration:30s]">
               {REVIEWS.map((rev, idx) => (
-                <Card key={idx} className="w-80 sm:w-96 bg-card border-border p-6 mx-3 flex flex-col justify-between shrink-0 hover:border-amber-500/50 transition-colors shadow-lg">
+                <Card key={idx} className="w-80 sm:w-96 bg-card border border-border p-6 mx-3 flex flex-col justify-between shrink-0 hover:border-amber-500/50 transition-colors shadow-lg">
                   <div className="space-y-4">
                     <div className="flex items-center gap-1 text-amber-400">
                       {[...Array(rev.rating)].map((_, i) => (
@@ -846,7 +808,7 @@ export default function CafeShowcase() {
               Nhận ngay ưu đãi 20% cho lần ghé thăm đầu tiên và ưu tiên đặt bàn đêm.
             </p>
             <div className="flex gap-2">
-              <Input placeholder="Email của bạn..." className="bg-card border-border text-xs text-foreground" />
+              <Input placeholder="Email của bạn..." className="bg-muted border-border text-xs text-foreground placeholder:text-muted-foreground" />
               <Button className="bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold text-xs shrink-0">
                 Đăng Ký
               </Button>

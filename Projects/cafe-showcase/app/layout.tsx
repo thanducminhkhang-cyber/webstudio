@@ -16,33 +16,12 @@ const plusJakartaSans = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "KISSATEN — Tokyo Midnight Specialty Coffee",
-  description: "Nghệ thuật cà phê thủ công phong cách Kissaten Nhật Bản giữa lòng đêm thành phố.",
+  title: "KISSATEN — Tokyo Midnight Coffee",
+  description: "Nghệ thuật cà phê thủ công phong cách Kissaten Nhật Bản. Không gian đêm Tokyo giữa lòng Sài Gòn.",
   openGraph: {
-    title: "KISSATEN — Tokyo Midnight Specialty Coffee",
-    description: "Nghệ thuật cà phê thủ công phong cách Kissaten Nhật Bản. Thưởng thức từng giọt Espresso nguyên bản.",
-    url: "https://cafe-showcase.vercel.app",
-    siteName: "KISSATEN Tokyo",
-    images: [
-      {
-        url: "https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?q=80&w=1200&h=630&auto=format&fit=crop",
-        width: 1200,
-        height: 630,
-        alt: "KISSATEN Tokyo Midnight Specialty Coffee",
-      },
-    ],
-    locale: "vi_VN",
+    title: "KISSATEN — Tokyo Midnight Coffee",
+    description: "Nghệ thuật cà phê thủ công phong cách Kissaten Nhật Bản",
     type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "KISSATEN — Tokyo Midnight Specialty Coffee",
-    description: "Nghệ thuật cà phê thủ công phong cách Kissaten Nhật Bản.",
-    images: ["https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?q=80&w=1200&h=630&auto=format&fit=crop"],
-  },
-  icons: {
-    icon: "/favicon.ico",
-    shortcut: "/favicon.ico",
   },
 };
 
