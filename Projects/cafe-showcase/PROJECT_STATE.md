@@ -37,17 +37,19 @@ dod:
 Website Cafe mẫu (KISSATEN Tokyo Midnight Specialty Coffee) để đăng Facebook tìm khách hàng. Các trang/section: Hero, Câu chuyện (About), Menu (Tabs), Gallery (BentoGrid), Đặt bàn (Form + Toast), Review (Marquee), Liên hệ & Footer. Mobile-first.
 
 ## Phạm vi
-**Trong phạm vi:** UI hoàn chỉnh, responsive 375px/768px/1440px, animation BlurFade & TypingAnimation & BorderBeam & ShimmerButton, dark mode toggle.
+**Trong phạm vi:** UI hoàn chỉnh, responsive 375px/768px/1440px, animation BlurFade & TypingAnimation & BorderBeam & ShimmerButton, dark theme xuyên suốt, OpenGraph metadata.
 **Ngoài phạm vi:** Backend, gửi form thật, CMS, database, auth.
 
 ## Quyết định
 | Ngày | Quyết định | Lý do |
 | 2026-08-01 | Chọn Hướng 1: Tokyo Midnight Espresso | Phong cách thiết kế ấn tượng, độc đáo, tạo giá trị bán hàng cao nhất trên Facebook |
+| 2026-08-01 | Cải tiến Dark Theme + OG Tags + Hero Neon Glow | Đảm bảo mood tối xuyên suốt, tối ưu hoá xem và chia sẻ trên Facebook |
 
 ## Nhật ký giai đoạn
 | Ngày | Giai đoạn | Kết quả |
 | 2026-08-01 | Creative Direction | Đề xuất 3 hướng, Owner chọn Hướng 1 |
 | 2026-08-01 | Code & QA | Xây dựng hoàn chỉnh single-page, build & typecheck 100% sạch |
+| 2026-08-01 | Polish & Push | Override dark tokens xuyên suốt, thêm OG tags & Favicon SVG, push GitHub |
 
 ## Hành động kế tiếp
-Bàn giao website mẫu cho Owner đăng Facebook tìm khách hàng.
+Bàn giao website mẫu hoàn thiện cho Owner đăng Facebook quảng bá studio.
