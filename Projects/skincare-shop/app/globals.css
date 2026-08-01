@@ -1,26 +1,26 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f8fafc;
-  --foreground: #0f172a;
+  --background: #fdf8f3;
+  --foreground: #1b1b1b;
   --card: #ffffff;
-  --card-foreground: #0f172a;
+  --card-foreground: #1b1b1b;
   --popover: #ffffff;
-  --popover-foreground: #0f172a;
-  --primary: #06b6d4;
+  --popover-foreground: #1b1b1b;
+  --primary: #2d6a4f;
   --primary-foreground: #ffffff;
-  --secondary: #f1f5f9;
-  --secondary-foreground: #0f172a;
-  --muted: #f8fafc;
-  --muted-foreground: #64748b;
-  --accent: #ec4899;
-  --accent-foreground: #ffffff;
-  --destructive: #ef4444;
+  --secondary: #ffbe98;
+  --secondary-foreground: #1b1b1b;
+  --muted: #f4eee6;
+  --muted-foreground: #6b705c;
+  --accent: #e8a0bf;
+  --accent-foreground: #1b1b1b;
+  --destructive: #d90429;
   --destructive-foreground: #ffffff;
-  --border: #e2e8f0;
-  --input: #e2e8f0;
-  --ring: #06b6d4;
-  --radius: 1rem;
+  --border: #eae3d9;
+  --input: #eae3d9;
+  --ring: #2d6a4f;
+  --radius: 1.25rem;
 }
 
 @theme inline {
@@ -43,6 +43,9 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
+
+  --font-serif: var(--font-playfair), Georgia, serif;
+  --font-sans: var(--font-dm-sans), system-ui, sans-serif;
 }
 
 @layer base {
@@ -52,5 +55,10 @@
   body {
     background-color: var(--background);
     color: var(--foreground);
+    font-family: var(--font-sans);
+  }
+  .font-serif-italic {
+    font-family: var(--font-serif);
+    font-style: italic;
   }
 }

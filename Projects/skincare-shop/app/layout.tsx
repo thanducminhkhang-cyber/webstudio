@@ -1,34 +1,35 @@
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans, Inter } from "next/font/google";
+import { Playfair_Display, DM_Sans } from "next/font/google";
 import "@wsos/ui/globals.css";
 import "./globals.css";
 
-const plusJakartaSans = Plus_Jakarta_Sans({
+const playfairDisplay = Playfair_Display({
   subsets: ["latin", "vietnamese"],
-  variable: "--font-plus-jakarta",
+  variable: "--font-playfair",
+  style: ["normal", "italic"],
   weight: ["400", "600", "700", "800"],
 });
 
-const inter = Inter({
-  subsets: ["latin", "vietnamese"],
-  variable: "--font-inter",
-  weight: ["300", "400", "500", "600", "700"],
+const dmSans = DM_Sans({
+  subsets: ["latin", "latin-ext"],
+  variable: "--font-dm-sans",
+  weight: ["400", "500", "600", "700", "800"],
 });
 
 export const metadata: Metadata = {
-  title: "LUMIÈRE LABS — K-Beauty Glass Skin Science",
-  description: "Dược mỹ phẩm thuần chay dưỡng da căng bóng Glass Skin chuẩn Hàn Quốc. Chiết xuất sinh học thuần khiết.",
+  title: "LUMIÈRE LABS — Dewy Glass Garden Skincare",
+  description: "Dược mỹ phẩm thuần chay sinh học dưỡng da căng bóng Glass Skin. Cảm hứng từ khu vườn kính đọng sương mai.",
   openGraph: {
-    title: "LUMIÈRE LABS — K-Beauty Glass Skin Science",
-    description: "Dược mỹ phẩm thuần chay dưỡng da căng bóng Glass Skin chuẩn Hàn Quốc.",
+    title: "LUMIÈRE LABS — Dewy Glass Garden Skincare",
+    description: "Dược mỹ phẩm thuần chay sinh học dưỡng da căng bóng Glass Skin.",
     url: "https://skincare-shop.vercel.app",
     siteName: "LUMIÈRE LABS",
     images: [
       {
-        url: "https://images.unsplash.com/photo-1608248597359-99434863375c?q=80&w=1200&h=630&auto=format&fit=crop",
+        url: "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?q=80&w=1200&h=630&auto=format&fit=crop",
         width: 1200,
         height: 630,
-        alt: "LUMIÈRE LABS Glass Skin Science",
+        alt: "LUMIÈRE LABS Dewy Glass Garden",
       },
     ],
     locale: "vi_VN",
@@ -42,8 +43,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="vi" className={`${plusJakartaSans.variable} ${inter.variable}`}>
-      <body className="font-sans bg-background text-foreground antialiased selection:bg-cyan-500/20 selection:text-cyan-800 min-h-screen">
+    <html lang="vi" className={`${playfairDisplay.variable} ${dmSans.variable}`}>
+      <body className="font-sans bg-background text-foreground antialiased selection:bg-[#2D6A4F]/20 selection:text-[#2D6A4F] min-h-screen">
         {children}
       </body>
     </html>
