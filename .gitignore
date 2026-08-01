@@ -1,0 +1,6 @@
+node_modules/
+.next/
+.turbo/
+AI/repositories/
+.env
+.env.local
