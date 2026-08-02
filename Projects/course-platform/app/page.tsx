@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -24,6 +24,9 @@ import {
   Zap,
   Flame,
   Check,
+  ChevronDown,
+  Calendar,
+  HeartHandshake,
 } from "lucide-react";
 
 // Imports from @wsos/ui workspace package
@@ -56,6 +59,7 @@ export interface Course {
   sessions: string;
   rating: number;
   reviewsCount: number;
+  studentCount: number;
   badge?: string;
   badgeType?: "orange" | "cyan" | "violet";
   image: string;
@@ -80,6 +84,7 @@ export const COURSES_DATA: Course[] = [
     sessions: "40 buổi",
     rating: 4.9,
     reviewsCount: 184,
+    studentCount: 1284,
     badge: "Best Seller",
     badgeType: "orange",
     image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=800&auto=format&fit=crop",
@@ -106,6 +111,7 @@ export const COURSES_DATA: Course[] = [
     sessions: "30 buổi",
     rating: 4.8,
     reviewsCount: 142,
+    studentCount: 890,
     badge: "Mới",
     badgeType: "cyan",
     image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?q=80&w=800&auto=format&fit=crop",
@@ -131,6 +137,7 @@ export const COURSES_DATA: Course[] = [
     sessions: "24 buổi",
     rating: 4.9,
     reviewsCount: 230,
+    studentCount: 1450,
     badge: "Hot",
     badgeType: "violet",
     image: "https://images.unsplash.com/photo-1571260899304-425eee4c7efc?q=80&w=800&auto=format&fit=crop",
@@ -156,6 +163,7 @@ export const COURSES_DATA: Course[] = [
     sessions: "28 buổi",
     rating: 4.8,
     reviewsCount: 115,
+    studentCount: 620,
     badge: "Phổ biến",
     badgeType: "violet",
     image: "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=800&auto=format&fit=crop",
@@ -181,6 +189,7 @@ export const COURSES_DATA: Course[] = [
     sessions: "16 buổi",
     rating: 4.9,
     reviewsCount: 98,
+    studentCount: 540,
     image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=800&auto=format&fit=crop",
     videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
     shortDesc: "Chuẩn hóa 44 âm IPA, nắm vững quy tắc nối âm, nuốt âm và ngữ điệu tự nhiên chuẩn Mỹ.",
@@ -204,6 +213,7 @@ export const COURSES_DATA: Course[] = [
     sessions: "20 buổi",
     rating: 5.0,
     reviewsCount: 160,
+    studentCount: 780,
     image: "https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=800&auto=format&fit=crop",
     videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
     shortDesc: "Phương pháp học qua trò chơi và bài hát vui nhộn giúp trẻ phát triển phản xạ tự nhiên từ sớm.",
@@ -297,14 +307,38 @@ const INSTRUCTORS_LIST = [
   },
 ];
 
+const TIMELINE_MILESTONES = [
+  { year: "2020", title: "Thành Lập Studio EdTech", desc: "Khởi đầu với 2 giảng viên bản ngữ tâm huyết tại TP.HCM." },
+  { year: "2021", title: "Ra Mắt IELTS Intensive", desc: "Tiên phong lộ trình cá nhân hoá cam kết đầu ra 7.0+." },
+  { year: "2022", title: "1.000 Học Viên Đầu Tiên", desc: "Mở rộng mảng TOEIC 800+ và Business English công sở." },
+  { year: "2023", title: "Đối Tác British Council & IDP", desc: "Chính thức trở thành điểm đăng ký thi IELTS uy tín." },
+  { year: "2024", title: "3.000 Học Viên & App Online", desc: "Số hoá bài giảng tương tác 24/7 trên đa nền tảng." },
+  { year: "2025", title: "Top 1 Trung Tâm EdTech HCM", desc: "Đạt giải thưởng Đổi mới sáng tạo trong giáo dục ngoại ngữ." },
+  { year: "2026", title: "5.000+ Học Viên & 50+ Giảng Viên", desc: "Khẳng định vị thế hàng đầu với tỷ lệ 98% hài lòng." },
+];
+
 export default function ElectricCampusHome() {
   const [activeTab, setActiveTab] = useState<"home" | "courses" | "detail" | "about">("home");
   const [selectedCourse, setSelectedCourse] = useState<Course>(COURSES_DATA[0]);
   const [categoryFilter, setCategoryFilter] = useState<string>("all");
+  const [sortOption, setSortOption] = useState<string>("popular");
   const [activeVideoModal, setActiveVideoModal] = useState<string | null>(null);
 
   const [toastMessage, setToastMessage] = useState<string | null>(null);
   const [emailInput, setEmailInput] = useState("");
+  const [scrollProgress, setScrollProgress] = useState(0);
+
+  // Top Scroll Progress Bar Listener
+  useEffect(() => {
+    const handleScroll = () => {
+      const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+      if (totalHeight > 0) {
+        setScrollProgress((window.scrollY / totalHeight) * 100);
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const showToast = (msg: string) => {
     setToastMessage(msg);
@@ -328,13 +362,25 @@ export default function ElectricCampusHome() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  const filteredCourses =
+  let filteredCourses =
     categoryFilter === "all"
       ? COURSES_DATA
       : COURSES_DATA.filter((c) => c.category === categoryFilter);
 
+  if (sortOption === "price_asc") {
+    filteredCourses = [...filteredCourses].sort((a, b) => a.price - b.price);
+  } else if (sortOption === "newest") {
+    filteredCourses = [...filteredCourses].sort((a, b) => (b.badge === "Mới" ? 1 : -1));
+  }
+
   return (
     <div className="relative min-h-screen bg-[#FAFAFA] text-[#0F172A] font-sans selection:bg-[#7C3AED]/20 selection:text-[#7C3AED]">
+      {/* 10. Top Scroll Progress Bar (3px gradient violet to orange) */}
+      <div
+        style={{ width: `${scrollProgress}%` }}
+        className="fixed top-0 left-0 h-1 bg-gradient-to-r from-[#7C3AED] via-[#9333EA] to-[#F97316] z-50 transition-all duration-150 pointer-events-none"
+      />
+
       {/* Toast Banner */}
       {toastMessage && (
         <div className="fixed bottom-6 right-6 z-50 flex items-center gap-3 rounded-2xl bg-[#7C3AED] text-white px-6 py-4 font-semibold shadow-2xl animate-in slide-in-from-bottom-5 text-sm">
@@ -364,7 +410,7 @@ export default function ElectricCampusHome() {
         </div>
       )}
 
-      {/* HEADER & NAV */}
+      {/* 1. HEADER & NAV — NO ADMIN LINK ON HEADER! */}
       <header className="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-[#E2E8F0] shadow-xs">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 h-20 flex items-center justify-between gap-4">
           {/* Logo */}
@@ -404,14 +450,8 @@ export default function ElectricCampusHome() {
             </button>
           </nav>
 
-          {/* Actions & Admin Portal Link */}
+          {/* Header Action: NO ADMIN LINK, ONLY LOGO | MENU | REGISTER */}
           <div className="flex items-center gap-3">
-            <Link href="/admin">
-              <Button variant="outline" size="sm" className="rounded-2xl border-[#E2E8F0] text-xs font-bold text-[#7C3AED] hover:bg-[#7C3AED] hover:text-white transition-all">
-                🔒 Đăng nhập quản trị
-              </Button>
-            </Link>
-
             <Button
               onClick={() => setActiveTab("courses")}
               className="bg-[#7C3AED] hover:bg-[#7C3AED]/90 text-white font-bold rounded-2xl text-xs px-5 py-2.5 shadow-lg shadow-[#7C3AED]/25"
@@ -437,7 +477,6 @@ export default function ElectricCampusHome() {
                     <button onClick={() => setActiveTab("home")} className="text-left hover:text-[#7C3AED]">Trang Chủ</button>
                     <button onClick={() => setActiveTab("courses")} className="text-left hover:text-[#7C3AED]">Khoá Học</button>
                     <button onClick={() => setActiveTab("about")} className="text-left hover:text-[#7C3AED]">Về Chúng Tôi</button>
-                    <Link href="/admin" className="text-left text-[#7C3AED] pt-4 border-t border-[#E2E8F0]">🔒 Trang Quản Trị Admin</Link>
                   </div>
                 </SheetContent>
               </Sheet>
@@ -446,15 +485,24 @@ export default function ElectricCampusHome() {
         </div>
       </header>
 
-      {/* VIEW 1: HOME (ELECTRIC CAMPUS CONCEPT) */}
+      {/* VIEW 1: HOME */}
       {activeTab === "home" && (
         <main>
-          {/* SECTION 1: HERO — BRIGHT SNOW WHITE + GEOMETRIC SHAPES */}
+          {/* 2. HERO SECTION — GEOMETRIC SHAPES, AMBIENT GRADIENT BLOB & FLOATING BADGES */}
           <section className="relative pt-12 pb-24 px-4 sm:px-6 bg-[#FAFAFA] overflow-hidden">
-            {/* Background Geometric Accent Shapes */}
-            <div className="absolute top-12 left-10 h-72 w-72 rounded-full bg-[#7C3AED]/10 blur-3xl pointer-events-none" />
-            <div className="absolute top-36 right-10 h-80 w-80 rounded-full bg-[#F97316]/10 blur-3xl pointer-events-none" />
-            <div className="absolute bottom-10 left-1/3 h-64 w-64 rounded-full bg-[#06B6D4]/10 blur-3xl pointer-events-none" />
+            {/* Ambient Radial Gradient Blob behind hero */}
+            <div
+              style={{
+                background: "radial-gradient(ellipse at 70% 50%, rgba(124,58,237,0.18) 0%, transparent 70%)",
+              }}
+              className="absolute inset-0 pointer-events-none blur-3xl"
+            />
+
+            {/* 3-5 Rotating Geometric Accent Shapes */}
+            <div className="absolute top-10 left-12 h-8 w-8 border-2 border-[#7C3AED]/30 rounded-full animate-[spin_20s_linear_infinite] pointer-events-none" />
+            <div className="absolute top-36 left-1/4 w-0 h-0 border-l-[12px] border-l-transparent border-b-[20px] border-b-[#F97316]/30 border-r-[12px] border-r-transparent animate-[spin_15s_linear_infinite] pointer-events-none" />
+            <div className="absolute bottom-16 left-16 h-6 w-6 bg-[#06B6D4]/20 rounded-md animate-[spin_25s_linear_infinite] pointer-events-none" />
+            <div className="absolute top-16 right-1/3 h-5 w-5 border-2 border-[#F97316]/30 rotate-45 animate-[spin_18s_linear_infinite] pointer-events-none" />
 
             <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
               {/* Left Column (55%) */}
@@ -468,7 +516,7 @@ export default function ElectricCampusHome() {
                 <BlurFade delay={0.2}>
                   <h1 className="font-heading text-4xl sm:text-6xl font-extrabold tracking-tight text-[#0F172A] leading-[1.08] uppercase">
                     CHINH PHỤC TIẾNG ANH. <br />
-                    <span className="text-[#7C3AED] block mt-1">
+                    <span className="bg-gradient-to-r from-[#7C3AED] to-[#F97316] bg-clip-text text-transparent block mt-1">
                       THAY ĐỔI TƯƠNG LAI.
                     </span>
                   </h1>
@@ -523,7 +571,7 @@ export default function ElectricCampusHome() {
                 </BlurFade>
               </div>
 
-              {/* Right Column (45%) Hero Geometric Blob Mashup */}
+              {/* Right Column (45%) Hero Visual + 3 Floating Badges */}
               <div className="lg:col-span-5 relative">
                 <BlurFade delay={0.3}>
                   <div className="relative mx-auto max-w-md">
@@ -549,24 +597,34 @@ export default function ElectricCampusHome() {
                       </button>
                     </div>
 
-                    {/* Floating Badges */}
-                    <div className="absolute -top-4 -left-4 bg-white border border-[#E2E8F0] p-3 rounded-2xl shadow-xl flex items-center gap-2 animate-bounce duration-[3500ms]">
+                    {/* 3 Floating Badges (Float Up-Down Animation) */}
+                    <div className="absolute -top-4 -left-4 bg-white border-2 border-[#7C3AED] p-3 rounded-2xl shadow-xl flex items-center gap-2 animate-[bounce_3.5s_infinite]">
                       <div className="h-8 w-8 rounded-xl bg-[#F97316]/20 flex items-center justify-center text-[#F97316] font-bold text-xs">
                         ⭐
                       </div>
                       <div>
-                        <p className="text-[10px] text-[#64748B] font-mono font-bold">BAND HIGHLIGHT</p>
-                        <p className="text-xs font-extrabold text-[#0F172A]">IELTS 8.0</p>
+                        <p className="text-[10px] text-[#64748B] font-mono font-bold">EXCELLENCE</p>
+                        <p className="text-xs font-extrabold text-[#0F172A]">IELTS 8.5</p>
                       </div>
                     </div>
 
-                    <div className="absolute -bottom-4 -right-4 bg-white border border-[#E2E8F0] p-3 rounded-2xl shadow-xl flex items-center gap-2">
-                      <div className="h-8 w-8 rounded-xl bg-[#7C3AED]/20 flex items-center justify-center text-[#7C3AED]">
-                        <Zap className="h-4 w-4" />
+                    <div className="absolute top-1/2 -right-6 bg-[#F97316]/10 border border-[#F97316]/40 backdrop-blur-md p-3 rounded-2xl shadow-xl flex items-center gap-2 animate-[bounce_4s_infinite]">
+                      <div className="h-8 w-8 rounded-xl bg-[#F97316] text-white flex items-center justify-center">
+                        <Award className="h-4 w-4" />
                       </div>
                       <div>
-                        <p className="text-[10px] text-[#64748B] font-mono font-bold">TOP RATING</p>
-                        <p className="text-xs font-extrabold text-[#0F172A]">Top 1 HCM EdTech</p>
+                        <p className="text-[10px] text-[#F97316] font-mono font-bold">AWARD</p>
+                        <p className="text-xs font-extrabold text-[#0F172A]">Top 1 HCM</p>
+                      </div>
+                    </div>
+
+                    <div className="absolute -bottom-4 left-6 bg-[#7C3AED]/10 border border-[#7C3AED]/40 backdrop-blur-md p-3 rounded-2xl shadow-xl flex items-center gap-2 animate-[bounce_3s_infinite]">
+                      <div className="h-8 w-8 rounded-xl bg-[#7C3AED] text-white flex items-center justify-center">
+                        <Check className="h-4 w-4" />
+                      </div>
+                      <div>
+                        <p className="text-[10px] text-[#7C3AED] font-mono font-bold">ALUMNI</p>
+                        <p className="text-xs font-extrabold text-[#0F172A]">5.420+ Học Viên</p>
                       </div>
                     </div>
                   </div>
@@ -575,7 +633,7 @@ export default function ElectricCampusHome() {
             </div>
           </section>
 
-          {/* SECTION 2: TRUST BAR — MARQUEE ON COOL GRAY */}
+          {/* TRUST BAR — MARQUEE ON COOL GRAY */}
           <section className="bg-[#F1F5F9] text-[#0F172A] py-6 border-y border-[#E2E8F0] overflow-hidden">
             <div className="max-w-7xl mx-auto space-y-2">
               <p className="text-center text-[11px] text-[#64748B] font-mono uppercase tracking-widest font-bold">
@@ -591,7 +649,7 @@ export default function ElectricCampusHome() {
             </div>
           </section>
 
-          {/* SECTION 3: FEATURED COURSES — ASYMMETRIC HIERARCHY */}
+          {/* 3. FEATURED COURSES — BORDER BEAM ON BEST SELLER + STARS & STUDENT COUNT */}
           <section className="py-20 px-4 sm:px-6 max-w-7xl mx-auto space-y-12">
             <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
               <div>
@@ -611,10 +669,11 @@ export default function ElectricCampusHome() {
               </Button>
             </div>
 
-            {/* Asymmetric Grid: Card 1 (Best Seller) 2-columns + Cards 2 & 3 */}
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-              {/* Card 1: Best Seller Double-Sized Focal Point (8 cols) */}
-              <Card className="lg:col-span-8 bg-white border-2 border-[#7C3AED]/40 hover:border-[#7C3AED] hover:-translate-y-1.5 transition-all duration-300 overflow-hidden shadow-xl rounded-3xl group flex flex-col md:flex-row">
+              {/* Card 1: Best Seller Double-Sized Focal Point + BorderBeam Effect */}
+              <Card className="lg:col-span-8 bg-white border-2 border-[#7C3AED]/40 hover:border-[#7C3AED] hover:-translate-y-1.5 transition-all duration-300 overflow-hidden shadow-xl rounded-3xl group flex flex-col md:flex-row relative">
+                <BorderBeam size={220} duration={8} delay={0} colorFrom="#7C3AED" colorTo="#F97316" />
+
                 <div className="relative md:w-1/2 aspect-video md:aspect-auto overflow-hidden bg-[#F1F5F9] cursor-pointer" onClick={() => openCourseDetail(COURSES_DATA[0])}>
                   <Image
                     src={COURSES_DATA[0].image}
@@ -622,7 +681,7 @@ export default function ElectricCampusHome() {
                     fill
                     className="object-cover group-hover:scale-105 transition-transform duration-500"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                   <Badge className="absolute top-4 left-4 bg-[#F97316] text-white border-none font-extrabold text-xs px-3 py-1 rounded-full shadow-md">
                     🔥 BEST SELLER
                   </Badge>
@@ -643,7 +702,11 @@ export default function ElectricCampusHome() {
                       <Badge className="bg-[#7C3AED]/10 text-[#7C3AED] font-bold">
                         {COURSES_DATA[0].level}
                       </Badge>
-                      <span className="text-[#64748B] font-semibold">{COURSES_DATA[0].sessions}</span>
+                      <div className="flex items-center gap-1 text-[#F97316] font-bold">
+                        <Star className="h-3.5 w-3.5 fill-[#F97316]" />
+                        <span>{COURSES_DATA[0].rating}</span>
+                        <span className="text-[#64748B]">({COURSES_DATA[0].reviewsCount})</span>
+                      </div>
                     </div>
 
                     <h3
@@ -654,6 +717,10 @@ export default function ElectricCampusHome() {
                     </h3>
                     <p className="text-xs text-[#64748B] line-clamp-3 leading-relaxed">
                       {COURSES_DATA[0].shortDesc}
+                    </p>
+
+                    <p className="text-[11px] text-[#7C3AED] font-bold">
+                      👨‍🎓 1.284 học viên đã đăng ký
                     </p>
 
                     <div className="flex items-center gap-2 pt-2 border-t border-[#E2E8F0]">
@@ -685,16 +752,19 @@ export default function ElectricCampusHome() {
                 </CardContent>
               </Card>
 
-              {/* Cards 2 & 3 Stacked Right (4 cols) */}
+              {/* Cards 2 & 3 Stacked Right */}
               <div className="lg:col-span-4 space-y-6">
                 {COURSES_DATA.slice(1, 3).map((course) => (
-                  <Card key={course.id} className="bg-white border border-[#E2E8F0] hover:border-[#7C3AED]/50 hover:-translate-y-1 transition-all duration-300 overflow-hidden shadow-sm rounded-3xl group">
+                  <Card key={course.id} className="bg-white border border-[#E2E8F0] hover:border-[#7C3AED]/50 hover:-translate-y-1 transition-all duration-300 overflow-hidden shadow-sm hover:shadow-lg rounded-3xl group">
                     <CardContent className="p-5 space-y-3">
                       <div className="flex items-center justify-between text-xs">
                         <Badge className={`font-bold border-none ${course.badgeType === "cyan" ? "bg-[#06B6D4] text-white" : "bg-[#7C3AED] text-white"}`}>
                           {course.badge}
                         </Badge>
-                        <span className="text-xs font-bold text-[#7C3AED]">{course.price.toLocaleString("vi-VN")}đ</span>
+                        <div className="flex items-center gap-1 text-[#F97316] font-bold">
+                          <Star className="h-3 w-3 fill-[#F97316]" />
+                          <span>{course.rating}</span>
+                        </div>
                       </div>
 
                       <h4
@@ -707,8 +777,10 @@ export default function ElectricCampusHome() {
                         {course.shortDesc}
                       </p>
 
+                      <p className="text-[11px] text-[#64748B]">👨‍🎓 {course.studentCount} học viên</p>
+
                       <div className="pt-3 border-t border-[#E2E8F0] flex items-center justify-between">
-                        <span className="text-[11px] text-[#64748B] font-semibold">{course.instructor}</span>
+                        <span className="font-heading font-extrabold text-base text-[#7C3AED]">{course.price.toLocaleString("vi-VN")}đ</span>
                         <Button
                           size="sm"
                           onClick={() => handleEnroll(course.title)}
@@ -724,7 +796,7 @@ export default function ElectricCampusHome() {
             </div>
           </section>
 
-          {/* SECTION 4: WHY CHOOSE US — BENTO GRID LAYOUT */}
+          {/* 4. "WHY CHOOSE US" — BENTO GRID WITH WATERMARK STAMP & CORNER IMAGE */}
           <section className="py-20 px-4 sm:px-6 bg-[#F1F5F9] border-y border-[#E2E8F0]">
             <div className="max-w-7xl mx-auto space-y-12">
               <div className="text-center space-y-3">
@@ -738,21 +810,28 @@ export default function ElectricCampusHome() {
 
               {/* Bento Grid */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                {/* Bento Item 1 (Large 2 Col) */}
-                <Card className="md:col-span-2 bg-white border border-[#E2E8F0] p-8 space-y-4 rounded-3xl shadow-sm hover:shadow-md transition-shadow">
-                  <div className="h-12 w-12 rounded-2xl bg-[#7C3AED]/10 text-[#7C3AED] flex items-center justify-center">
-                    <Target className="h-6 w-6" />
+                {/* Bento Item 1 (Large 2 Col with Corner Image) */}
+                <Card className="md:col-span-2 bg-white border border-[#E2E8F0] p-8 space-y-4 rounded-3xl shadow-sm hover:shadow-md transition-shadow relative overflow-hidden">
+                  <div className="flex justify-between items-start">
+                    <div className="space-y-3 max-w-md">
+                      <div className="h-12 w-12 rounded-2xl bg-[#7C3AED]/10 text-[#7C3AED] flex items-center justify-center">
+                        <Target className="h-8 w-8 text-[#7C3AED]" />
+                      </div>
+                      <h3 className="font-heading font-extrabold text-xl text-[#0F172A]">🎯 Lộ Trình Cá Nhân Hoá Chuẩn Đỉnh Cao</h3>
+                      <p className="text-xs sm:text-sm text-[#64748B] leading-relaxed">
+                        Thiết kế lộ trình học riêng biệt bám sát năng lực thực tế. Mỗi học viên có cố vấn học tập theo sát 1-1 để điều chỉnh chiến thuật làm bài hàng tuần.
+                      </p>
+                    </div>
+                    <div className="hidden sm:block relative h-36 w-36 rounded-2xl overflow-hidden shrink-0 border border-[#E2E8F0] shadow-md">
+                      <Image src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=300&auto=format&fit=crop" alt="Student" fill className="object-cover" />
+                    </div>
                   </div>
-                  <h3 className="font-heading font-extrabold text-xl text-[#0F172A]">🎯 Lộ Trình Cá Nhân Hoá Chuẩn Đỉnh Cao</h3>
-                  <p className="text-xs sm:text-sm text-[#64748B] leading-relaxed">
-                    Thiết kế lộ trình học riêng biệt bám sát năng lực thực tế. Mỗi học viên có cố vấn học tập theo sát 1-1 để điều chỉnh chiến thuật làm bài hàng tuần.
-                  </p>
                 </Card>
 
                 {/* Bento Item 2 */}
                 <Card className="bg-white border border-[#E2E8F0] p-8 space-y-4 rounded-3xl shadow-sm hover:shadow-md transition-shadow">
                   <div className="h-12 w-12 rounded-2xl bg-[#F97316]/10 text-[#F97316] flex items-center justify-center">
-                    <Globe className="h-6 w-6" />
+                    <Globe className="h-8 w-8 text-[#F97316]" />
                   </div>
                   <h3 className="font-heading font-extrabold text-xl text-[#0F172A]">👨‍🏫 50+ Giảng Viên Quốc Tế</h3>
                   <p className="text-xs text-[#64748B] leading-relaxed">
@@ -763,7 +842,7 @@ export default function ElectricCampusHome() {
                 {/* Bento Item 3 */}
                 <Card className="bg-white border border-[#E2E8F0] p-8 space-y-4 rounded-3xl shadow-sm hover:shadow-md transition-shadow">
                   <div className="h-12 w-12 rounded-2xl bg-[#06B6D4]/10 text-[#06B6D4] flex items-center justify-center">
-                    <Clock className="h-6 w-6" />
+                    <Clock className="h-8 w-8 text-[#06B6D4]" />
                   </div>
                   <h3 className="font-heading font-extrabold text-xl text-[#0F172A]">📱 Học Mọi Lúc Mọi Nơi</h3>
                   <p className="text-xs text-[#64748B] leading-relaxed">
@@ -771,21 +850,28 @@ export default function ElectricCampusHome() {
                   </p>
                 </Card>
 
-                {/* Bento Item 4 (Focal Point Electric Violet Background) */}
-                <Card className="md:col-span-2 bg-[#7C3AED] text-white p-8 space-y-4 rounded-3xl shadow-xl">
-                  <div className="h-12 w-12 rounded-2xl bg-white/20 text-white flex items-center justify-center">
-                    <ShieldCheck className="h-6 w-6" />
+                {/* Bento Item 4 (Focal Point Electric Violet Background + Watermark Stamp) */}
+                <Card className="md:col-span-2 bg-[#7C3AED] text-white p-8 space-y-4 rounded-3xl shadow-xl relative overflow-hidden">
+                  {/* Watermark Stamp Behind */}
+                  <div className="absolute -right-10 -bottom-10 text-white/10 font-heading font-extrabold text-7xl select-none -rotate-12 pointer-events-none">
+                    HOÀN TIỀN 100%
                   </div>
-                  <h3 className="font-heading font-extrabold text-xl text-white">🏆 Cam Kết Đầu Ra IELTS 7.0+ / TOEIC 800+</h3>
-                  <p className="text-xs sm:text-sm text-white/90 leading-relaxed">
-                    Ký hợp đồng cam kết bằng văn bản có giá trị pháp lý. Học viên không đạt điểm mục tiêu được học lại 100% hoàn toàn miễn phí cho tới khi đạt.
-                  </p>
+
+                  <div className="relative z-10 space-y-3">
+                    <div className="h-12 w-12 rounded-2xl bg-white/20 text-white flex items-center justify-center">
+                      <ShieldCheck className="h-8 w-8 text-white" />
+                    </div>
+                    <h3 className="font-heading font-extrabold text-xl text-white">🏆 Cam Kết Đầu Ra IELTS 7.0+ / TOEIC 800+</h3>
+                    <p className="text-xs sm:text-sm text-white/90 leading-relaxed">
+                      Ký hợp đồng cam kết bằng văn bản có giá trị pháp lý. Học viên không đạt điểm mục tiêu được học lại 100% hoàn toàn miễn phí cho tới khi đạt.
+                    </p>
+                  </div>
                 </Card>
               </div>
             </div>
           </section>
 
-          {/* SECTION 5: INSTRUCTORS WITH ASYMMETRIC PERSONALITY */}
+          {/* 5. INSTRUCTORS WITH LARGER PHOTO & ACCENT BORDERS */}
           <section className="py-20 px-4 sm:px-6 max-w-7xl mx-auto space-y-12">
             <div className="text-center space-y-3">
               <Badge className="bg-[#7C3AED]/10 text-[#7C3AED] border border-[#7C3AED]/20 font-extrabold text-xs uppercase px-3 py-1">
@@ -798,15 +884,15 @@ export default function ElectricCampusHome() {
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {INSTRUCTORS_LIST.map((ins, idx) => (
-                <Card key={idx} className={`bg-white border-2 ${ins.accentColor} p-6 rounded-3xl shadow-sm hover:shadow-xl transition-all duration-300 space-y-4`}>
-                  <div className="relative h-64 w-full rounded-2xl overflow-hidden bg-[#F1F5F9]">
-                    <Image src={ins.image} alt={ins.name} fill className="object-cover" />
+                <Card key={idx} className={`bg-white border-l-4 ${ins.accentColor} border-y border-r border-[#E2E8F0] p-6 rounded-3xl shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 space-y-4`}>
+                  <div className="relative h-72 w-full rounded-2xl overflow-hidden bg-[#F1F5F9]">
+                    <Image src={ins.image} alt={ins.name} fill className="object-cover group-hover:scale-105 transition-transform" />
                   </div>
 
                   <div className="space-y-2">
                     <div className="flex items-center justify-between">
                       <h3 className="font-heading font-extrabold text-xl text-[#0F172A]">{ins.name}</h3>
-                      <span className="text-xl">{ins.flag}</span>
+                      <span className="text-2xl">{ins.flag}</span>
                     </div>
                     <p className="text-xs font-bold text-[#7C3AED]">{ins.role}</p>
                     <p className="text-xs text-[#64748B] font-medium">{ins.expertise}</p>
@@ -820,7 +906,7 @@ export default function ElectricCampusHome() {
             </div>
           </section>
 
-          {/* SECTION 6: TESTIMONIALS — 2-ROW OPPOSITE MARQUEE */}
+          {/* 6. TESTIMONIALS — 2-ROW OPPOSITE MARQUEE WITH LARGE GRADIENT BADGES */}
           <section className="py-20 px-4 sm:px-6 overflow-hidden bg-[#F1F5F9] border-y border-[#E2E8F0]">
             <div className="max-w-7xl mx-auto space-y-10">
               <div className="text-center space-y-3">
@@ -844,7 +930,7 @@ export default function ElectricCampusHome() {
                           ))}
                         </div>
                         {rev.scoreBadge && (
-                          <Badge className="bg-[#F97316] text-white font-extrabold text-xs">
+                          <Badge className="bg-gradient-to-r from-[#7C3AED] to-[#F97316] text-white font-extrabold text-xs px-3 py-1 shadow-md">
                             {rev.scoreBadge}
                           </Badge>
                         )}
@@ -877,7 +963,7 @@ export default function ElectricCampusHome() {
                           ))}
                         </div>
                         {rev.scoreBadge && (
-                          <Badge className="bg-[#7C3AED] text-white font-extrabold text-xs">
+                          <Badge className="bg-gradient-to-r from-[#7C3AED] to-[#F97316] text-white font-extrabold text-xs px-3 py-1 shadow-md">
                             {rev.scoreBadge}
                           </Badge>
                         )}
@@ -900,11 +986,11 @@ export default function ElectricCampusHome() {
             </div>
           </section>
 
-          {/* SECTION 7: FINAL CTA — 135deg VIOLET TO ORANGE GRADIENT */}
+          {/* 7. FINAL CTA SECTION — LARGER WHITE BUTTON + SOCIAL PROOF NUMBERTICKER */}
           <section className="py-20 px-4 sm:px-6 bg-gradient-to-br from-[#7C3AED] via-[#9333EA] to-[#F97316] text-white relative overflow-hidden shadow-2xl">
             <div className="max-w-4xl mx-auto text-center space-y-6 relative z-10">
               <Badge className="bg-white/20 text-white border-none text-xs font-extrabold uppercase px-4 py-1.5 rounded-full">
-                🔥 247 NGƯỜI ĐÃ ĐĂNG KÝ TUẦN NÀY
+                ⚡ CAM KẾT ĐẦU RA BẰNG HỢP ĐỒNG VĂN BẢN
               </Badge>
 
               <h2 className="font-heading text-3xl sm:text-5xl font-extrabold uppercase leading-tight">
@@ -921,10 +1007,14 @@ export default function ElectricCampusHome() {
                   onChange={(e) => setEmailInput(e.target.value)}
                   className="bg-white text-[#0F172A] placeholder:text-[#64748B] rounded-full h-12 text-sm font-medium border-none px-6"
                 />
-                <Button type="submit" className="bg-white text-[#7C3AED] hover:bg-slate-100 font-extrabold rounded-full h-12 px-7 text-sm shrink-0 shadow-lg">
+                <Button type="submit" className="bg-white text-[#7C3AED] hover:bg-slate-100 font-extrabold rounded-full h-12 px-8 text-sm shrink-0 shadow-xl transition-all">
                   NHẬN TƯ VẤN MIỄN PHÍ
                 </Button>
               </form>
+
+              <p className="text-xs font-bold text-white/80 pt-2 flex items-center justify-center gap-1">
+                <span>🔥</span> <NumberTicker value={247} /> <span>người đã đăng ký trong tuần này</span>
+              </p>
             </div>
           </section>
         </main>
@@ -933,16 +1023,29 @@ export default function ElectricCampusHome() {
       {/* VIEW 2: COURSES CATALOG PAGE */}
       {activeTab === "courses" && (
         <main className="py-12 px-4 sm:px-6 max-w-7xl mx-auto space-y-8">
-          <div className="text-center space-y-4">
-            <Badge className="bg-[#7C3AED]/10 text-[#7C3AED] font-bold text-xs uppercase px-3 py-1">
-              ALL COURSES
-            </Badge>
-            <h1 className="font-heading text-3xl sm:text-5xl font-extrabold text-[#0F172A] uppercase">
-              Danh Sách Khoá Học Dành Cho Bạn
-            </h1>
-            <p className="text-[#64748B] max-w-xl mx-auto text-sm">
-              Lựa chọn khoá học phù hợp với mục tiêu bứt phá điểm số và sự nghiệp của bạn.
-            </p>
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+            <div className="space-y-2">
+              <Badge className="bg-[#7C3AED]/10 text-[#7C3AED] font-bold text-xs uppercase px-3 py-1">
+                ALL COURSES
+              </Badge>
+              <h1 className="font-heading text-3xl sm:text-4xl font-extrabold text-[#0F172A] uppercase">
+                Danh Sách Khoá Học Dành Cho Bạn (6+ Khoá)
+              </h1>
+            </div>
+
+            {/* Sort Dropdown */}
+            <div className="flex items-center gap-2">
+              <span className="text-xs font-bold text-[#64748B]">Sắp xếp:</span>
+              <select
+                value={sortOption}
+                onChange={(e) => setSortOption(e.target.value)}
+                className="h-10 px-3 bg-white border border-[#E2E8F0] rounded-xl text-xs font-bold text-[#0F172A] focus:outline-none focus:border-[#7C3AED]"
+              >
+                <option value="popular">Phổ biến nhất</option>
+                <option value="newest">Mới nhất</option>
+                <option value="price_asc">Giá thấp → cao</option>
+              </select>
+            </div>
           </div>
 
           {/* Filter Pills */}
@@ -1003,7 +1106,10 @@ export default function ElectricCampusHome() {
                       <Badge className="bg-[#7C3AED]/10 text-[#7C3AED] font-bold">
                         {course.level}
                       </Badge>
-                      <span className="text-[#64748B] font-medium">{course.sessions}</span>
+                      <div className="flex items-center gap-1 text-[#F97316] font-bold">
+                        <Star className="h-3.5 w-3.5 fill-[#F97316]" />
+                        <span>{course.rating}</span>
+                      </div>
                     </div>
 
                     <h3
@@ -1015,6 +1121,7 @@ export default function ElectricCampusHome() {
                     <p className="text-xs text-[#64748B] line-clamp-2 mt-2 leading-relaxed">
                       {course.shortDesc}
                     </p>
+                    <p className="text-[11px] text-[#64748B] mt-2">👨‍🎓 {course.studentCount} học viên</p>
                   </div>
 
                   <div className="pt-4 border-t border-[#E2E8F0] flex items-center justify-between">
@@ -1164,48 +1271,145 @@ export default function ElectricCampusHome() {
         </main>
       )}
 
-      {/* VIEW 4: ABOUT PAGE */}
+      {/* 8. VIEW 4: ABOUT PAGE REDESIGNED FULLY */}
       {activeTab === "about" && (
-        <main className="py-16 px-4 sm:px-6 max-w-5xl mx-auto space-y-16">
-          <div className="text-center space-y-4">
-            <Badge className="bg-[#7C3AED] text-white font-bold px-3 py-1">ABOUT VANGUARD</Badge>
-            <h1 className="font-heading text-4xl sm:text-5xl font-extrabold text-[#0F172A] uppercase">
-              Sứ Mệnh Nâng Tầm Tiếng Anh Người Việt
-            </h1>
-            <p className="text-[#64748B] max-w-2xl mx-auto text-sm sm:text-base leading-relaxed">
-              Vanguard English Academy được thành lập với mục tiêu mang lại giải pháp đào tạo ngoại ngữ thực chiến chuẩn quốc tế, giúp người Việt tự tin chinh phục giấc mơ học tập và sự nghiệp toàn cầu.
-            </p>
+        <main className="py-12 px-4 sm:px-6 max-w-6xl mx-auto space-y-20">
+          {/* Section 1: Hero About + Full-Width Campus Photo */}
+          <div className="space-y-8 text-center">
+            <div className="space-y-3">
+              <Badge className="bg-[#7C3AED] text-white font-extrabold px-4 py-1 text-xs">ABOUT VANGUARD</Badge>
+              <h1 className="font-heading text-4xl sm:text-5xl font-extrabold text-[#0F172A] uppercase">
+                Sứ Mệnh Nâng Tầm Tiếng Anh Người Việt
+              </h1>
+              <p className="text-[#64748B] max-w-2xl mx-auto text-sm sm:text-base leading-relaxed">
+                Hệ sinh thái đào tạo ngôn ngữ thực chiến thế hệ mới — Nơi biến ước mơ du học và sự nghiệp toàn cầu thành hiện thực.
+              </p>
+            </div>
+
+            <div className="relative h-72 sm:h-96 w-full rounded-3xl overflow-hidden shadow-2xl border border-[#E2E8F0]">
+              <Image
+                src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=1200&auto=format&fit=crop"
+                alt="Vanguard Campus Life"
+                fill
+                className="object-cover"
+              />
+            </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <Card className="p-6 bg-white border border-[#E2E8F0] rounded-3xl text-center space-y-3 shadow-xs">
-              <div className="h-12 w-12 rounded-2xl bg-[#7C3AED]/10 text-[#7C3AED] flex items-center justify-center mx-auto">
-                <Target className="h-6 w-6" />
-              </div>
-              <h3 className="font-heading font-bold text-lg text-[#0F172A]">Tự Tin Giao Tiếp</h3>
-              <p className="text-xs text-[#64748B]">Phản xạ tự nhiên 100% tiếng Anh không cần dịch nhẩm.</p>
-            </Card>
+          {/* Section 2: Brand Story (2 Columns) */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+            <div className="lg:col-span-7 space-y-4 text-sm text-[#0F172A] leading-relaxed font-medium">
+              <Badge className="bg-[#F97316]/10 text-[#F97316] font-bold text-xs">CÂU CHUYỆN THƯƠNG HIỆU</Badge>
+              <h2 className="font-heading text-2xl sm:text-3xl font-extrabold text-[#0F172A]">
+                Từ Lớp Học Nhỏ Đến Hệ Thống Đào Tạo Đỉnh Cao
+              </h2>
+              <p>
+                Được thành lập vào năm 2020 bởi đội ngũ giảng viên bản ngữ và cựu giám khảo IELTS, Vanguard English bắt đầu với sứ mệnh đơn giản: <b>Chữa dứt điểm sự rụt rè khi nói tiếng Anh của người Việt.</b>
+              </p>
+              <p>
+                Qua 6 năm phát triển, chúng tôi tiên phong áp dụng phương pháp phản xạ tương tác 100% bằng tiếng Anh và hợp tác chiến lược cùng các tổ chức khảo thí quốc tế lớn như British Council & IDP.
+              </p>
+            </div>
 
-            <Card className="p-6 bg-white border border-[#E2E8F0] rounded-3xl text-center space-y-3 shadow-xs">
-              <div className="h-12 w-12 rounded-2xl bg-[#F97316]/10 text-[#F97316] flex items-center justify-center mx-auto">
-                <Award className="h-6 w-6" />
-              </div>
-              <h3 className="font-heading font-bold text-lg text-[#0F172A]">Bứt Phá Điểm Số</h3>
-              <p className="text-xs text-[#64748B]">Cam kết đầu ra bằng hợp đồng văn bản IELTS 7.0+ & TOEIC 800+.</p>
-            </Card>
+            <div className="lg:col-span-5 relative h-80 rounded-3xl overflow-hidden border border-[#E2E8F0] shadow-xl">
+              <Image
+                src="https://images.unsplash.com/photo-1531482615713-2afd69097998?q=80&w=800&auto=format&fit=crop"
+                alt="Founder Team"
+                fill
+                className="object-cover"
+              />
+            </div>
+          </div>
 
-            <Card className="p-6 bg-white border border-[#E2E8F0] rounded-3xl text-center space-y-3 shadow-xs">
-              <div className="h-12 w-12 rounded-2xl bg-[#06B6D4]/10 text-[#06B6D4] flex items-center justify-center mx-auto">
-                <Globe className="h-6 w-6" />
-              </div>
-              <h3 className="font-heading font-bold text-lg text-[#0F172A]">Hội Nhập Toàn Cầu</h3>
-              <p className="text-xs text-[#64748B]">Tự tin phỏng vấn công ty tập đoàn lớn và du học quốc tế.</p>
-            </Card>
+          {/* Section 3: Key Stats NumberTicker */}
+          <div className="bg-[#F1F5F9] p-8 rounded-3xl border border-[#E2E8F0] grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+            <div>
+              <h3 className="font-heading text-3xl sm:text-4xl font-extrabold text-[#7C3AED]">
+                <NumberTicker value={5420} />+
+              </h3>
+              <p className="text-xs text-[#64748B] font-bold mt-1">Học Viên Đạt Mục Tiêu</p>
+            </div>
+            <div>
+              <h3 className="font-heading text-3xl sm:text-4xl font-extrabold text-[#F97316]">
+                <NumberTicker value={50} />+
+              </h3>
+              <p className="text-xs text-[#64748B] font-bold mt-1">Giảng Viên Bản Ngữ</p>
+            </div>
+            <div>
+              <h3 className="font-heading text-3xl sm:text-4xl font-extrabold text-[#06B6D4]">
+                <NumberTicker value={15} />+
+              </h3>
+              <p className="text-xs text-[#64748B] font-bold mt-1">Khoá Học Chuyên Sâu</p>
+            </div>
+            <div>
+              <h3 className="font-heading text-3xl sm:text-4xl font-extrabold text-[#0F172A]">
+                <NumberTicker value={98} />%
+              </h3>
+              <p className="text-xs text-[#64748B] font-bold mt-1">Hài Lòng Tuyệt Đối</p>
+            </div>
+          </div>
+
+          {/* Section 4: Development Timeline */}
+          <div className="space-y-8">
+            <div className="text-center space-y-2">
+              <Badge className="bg-[#7C3AED]/10 text-[#7C3AED] font-bold text-xs">HÀNH TRÌNH PHÁT TRIỂN</Badge>
+              <h2 className="font-heading text-3xl font-extrabold text-[#0F172A]">Các Cột Mốc Đáng Tự Hào</h2>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {TIMELINE_MILESTONES.map((item, idx) => (
+                <Card key={idx} className="p-6 bg-white border border-[#E2E8F0] rounded-3xl space-y-2 shadow-xs hover:border-[#7C3AED] transition-colors">
+                  <span className="font-heading font-extrabold text-2xl text-[#7C3AED] block">{item.year}</span>
+                  <h4 className="font-heading font-bold text-base text-[#0F172A]">{item.title}</h4>
+                  <p className="text-xs text-[#64748B] leading-relaxed">{item.desc}</p>
+                </Card>
+              ))}
+            </div>
+          </div>
+
+          {/* Section 5: Core Values */}
+          <div className="space-y-8">
+            <div className="text-center space-y-2">
+              <Badge className="bg-[#7C3AED]/10 text-[#7C3AED] font-bold text-xs">CORE VALUES</Badge>
+              <h2 className="font-heading text-3xl font-extrabold text-[#0F172A]">3 Giá Trị Cốt Lõi</h2>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <Card className="p-8 bg-white border-l-4 border-l-[#7C3AED] border-y border-r border-[#E2E8F0] rounded-3xl space-y-3 shadow-sm">
+                <Target className="h-10 w-10 text-[#7C3AED]" />
+                <h3 className="font-heading font-extrabold text-lg text-[#0F172A]">100% Thực Chiến</h3>
+                <p className="text-xs text-[#64748B] leading-relaxed">Học để ứng dụng trong công việc và kỳ thi thật, không lý thuyết suông.</p>
+              </Card>
+
+              <Card className="p-8 bg-white border-l-4 border-l-[#F97316] border-y border-r border-[#E2E8F0] rounded-3xl space-y-3 shadow-sm">
+                <Award className="h-10 w-10 text-[#F97316]" />
+                <h3 className="font-heading font-extrabold text-lg text-[#0F172A]">Cam Kết Văn Bản</h3>
+                <p className="text-xs text-[#64748B] leading-relaxed">Đảm bảo điểm số mục tiêu hoặc học lại miễn phí 100%.</p>
+              </Card>
+
+              <Card className="p-8 bg-white border-l-4 border-l-[#06B6D4] border-y border-r border-[#E2E8F0] rounded-3xl space-y-3 shadow-sm">
+                <HeartHandshake className="h-10 w-10 text-[#06B6D4]" />
+                <h3 className="font-heading font-extrabold text-lg text-[#0F172A]">Đồng Hành 1-1</h3>
+                <p className="text-xs text-[#64748B] leading-relaxed">Cố vấn học tập theo sát giải đáp thắc mắc 24/7 trong suốt khoá học.</p>
+              </Card>
+            </div>
+          </div>
+
+          {/* Section 6: About CTA */}
+          <div className="py-12 px-6 bg-gradient-to-br from-[#7C3AED] to-[#F97316] text-white rounded-3xl text-center space-y-4 shadow-xl">
+            <h2 className="font-heading text-3xl font-extrabold uppercase">Sẵn Sàng Bắt Đầu Chinh Phục Tiếng Anh?</h2>
+            <p className="text-xs sm:text-sm text-white/90">Đăng ký tư vấn lộ trình học miễn phí ngay hôm nay!</p>
+            <Button
+              onClick={() => setActiveTab("courses")}
+              className="bg-white text-[#7C3AED] hover:bg-slate-100 font-extrabold rounded-full px-8 py-3 text-sm shadow-md"
+            >
+              KHAM PHÁ KHOÁ HỌC NGAY 🚀
+            </Button>
           </div>
         </main>
       )}
 
-      {/* SECTION 8: FOOTER — DARK CLOSURE (#0F172A) */}
+      {/* FOOTER — CLEAN DARK CLOSURE WITH SMALL MUTED 12px ADMIN LINK */}
       <footer className="bg-[#0F172A] text-white py-16 px-4 sm:px-6 border-t border-slate-800">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
           <div className="space-y-4">
@@ -1231,22 +1435,23 @@ export default function ElectricCampusHome() {
             <p className="hover:text-[#7C3AED] cursor-pointer">Địa chỉ: 108 Nguyễn Trãi, Q.5, TP.HCM</p>
           </div>
 
-          <div className="space-y-3 text-xs">
-            <h4 className="font-heading font-bold text-white text-sm">Đăng Nhập Quản Trị</h4>
-            <p className="text-slate-400">Dành cho Quản trị viên trung tâm demo hệ thống.</p>
-            <Link href="/admin">
-              <Button size="sm" className="bg-[#7C3AED] hover:bg-[#7C3AED]/90 text-white font-bold text-xs rounded-xl w-full">
-                🔒 Trang Quản Trị Admin
-              </Button>
-            </Link>
+          <div className="space-y-3 text-xs text-slate-300">
+            <h4 className="font-heading font-bold text-white text-sm">Mạng Xã Hội</h4>
+            <p className="hover:text-[#7C3AED] cursor-pointer">Facebook Fanpage</p>
+            <p className="hover:text-[#7C3AED] cursor-pointer">YouTube Channel</p>
+            <p className="hover:text-[#7C3AED] cursor-pointer">TikTok Community</p>
           </div>
         </div>
 
+        {/* 1. FOOTER BOTTOM: VERY SMALL 12px MUTED SLATE LINK "Quản trị viên" */}
         <div className="max-w-7xl mx-auto border-t border-slate-800 pt-8 flex flex-col sm:flex-row justify-between items-center text-xs text-slate-500 gap-4">
           <p>© 2026 VANGUARD ENGLISH Electric Campus. All rights reserved.</p>
-          <div className="flex items-center gap-6">
-            <Link href="/admin" className="hover:text-[#7C3AED] font-mono">🔒 Đăng nhập quản trị</Link>
-            <p className="text-[#7C3AED] font-mono font-bold">WSOS Studio Showcase</p>
+          <div className="flex items-center gap-4 text-[12px] text-slate-500">
+            <Link href="/admin" className="hover:underline hover:text-slate-300 transition-colors">
+              Quản trị viên
+            </Link>
+            <span>•</span>
+            <span className="text-slate-400 font-mono">WSOS Studio Showcase</span>
           </div>
         </div>
       </footer>
