@@ -16,7 +16,6 @@ import {
   ExternalLink,
   Menu,
   CheckCircle2,
-  Sparkles,
   ChevronRight,
 } from "lucide-react";
 
@@ -55,10 +54,10 @@ export default function AdminLayout({
   };
 
   return (
-    <div className="min-h-screen bg-[#F8FAFC] text-slate-900 font-sans flex flex-col selection:bg-blue-500/20 selection:text-blue-700">
+    <div className="min-h-screen bg-[#FAFAFA] text-slate-900 font-sans flex flex-col selection:bg-[#7C3AED]/20 selection:text-[#7C3AED]">
       {/* Toast Notification */}
       {toastMessage && (
-        <div className="fixed bottom-6 right-6 z-50 flex items-center gap-3 rounded-2xl bg-blue-600 text-white px-5 py-3.5 font-medium shadow-2xl animate-in slide-in-from-bottom-5 text-sm">
+        <div className="fixed bottom-6 right-6 z-50 flex items-center gap-3 rounded-2xl bg-[#7C3AED] text-white px-5 py-3.5 font-medium shadow-2xl animate-in slide-in-from-bottom-5 text-sm">
           <CheckCircle2 className="h-4 w-4 shrink-0 text-amber-400" />
           <span>{toastMessage}</span>
         </div>
@@ -75,14 +74,14 @@ export default function AdminLayout({
           <div className="p-5 space-y-6">
             {/* Logo */}
             <div className="flex items-center gap-2.5">
-              <div className="h-9 w-9 rounded-xl bg-blue-600 text-white flex items-center justify-center font-extrabold shadow-md">
+              <div className="h-9 w-9 rounded-xl bg-[#7C3AED] text-white flex items-center justify-center font-extrabold shadow-md">
                 V
               </div>
               <div>
                 <span className="font-heading font-extrabold text-lg text-slate-900 leading-none block">
-                  VANGUARD <span className="text-blue-600">ADMIN</span>
+                  VANGUARD <span className="text-[#7C3AED]">ADMIN</span>
                 </span>
-                <span className="text-[10px] text-slate-400 font-mono tracking-widest uppercase">Course Platform</span>
+                <span className="text-[10px] text-slate-400 font-mono tracking-widest uppercase">Electric Campus</span>
               </div>
             </div>
 
@@ -97,7 +96,7 @@ export default function AdminLayout({
                     href={item.href}
                     className={`flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-bold transition-all ${
                       isActive
-                        ? "bg-blue-600 text-white shadow-md shadow-blue-500/20"
+                        ? "bg-[#7C3AED] text-white shadow-md shadow-[#7C3AED]/20"
                         : "text-slate-600 hover:bg-slate-100 hover:text-slate-900"
                     }`}
                   >
@@ -123,7 +122,7 @@ export default function AdminLayout({
           {/* Admin User Footer */}
           <div className="p-4 border-t border-slate-100 bg-slate-50/50 flex items-center justify-between">
             <div className="flex items-center gap-2.5">
-              <div className="h-9 w-9 rounded-full bg-blue-600 text-white font-bold text-xs flex items-center justify-center shadow-sm">
+              <div className="h-9 w-9 rounded-full bg-[#7C3AED] text-white font-bold text-xs flex items-center justify-center shadow-sm">
                 AD
               </div>
               <div className="text-left">
@@ -155,7 +154,7 @@ export default function AdminLayout({
                   </SheetTrigger>
                   <SheetContent side="left" className="w-64 bg-white p-0">
                     <SheetHeader className="p-5 border-b border-slate-100 text-left">
-                      <SheetTitle className="font-heading font-extrabold text-base text-blue-600">
+                      <SheetTitle className="font-heading font-extrabold text-base text-[#7C3AED]">
                         VANGUARD ADMIN
                       </SheetTitle>
                     </SheetHeader>
@@ -169,7 +168,7 @@ export default function AdminLayout({
                             href={item.href}
                             onClick={() => setIsMobileOpen(false)}
                             className={`flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-bold transition-all ${
-                              isActive ? "bg-blue-600 text-white" : "text-slate-600 hover:bg-slate-100"
+                              isActive ? "bg-[#7C3AED] text-white" : "text-slate-600 hover:bg-slate-100"
                             }`}
                           >
                             <Icon className="h-4 w-4" />
@@ -206,7 +205,7 @@ export default function AdminLayout({
                 <Button
                   variant="outline"
                   size="sm"
-                  className="rounded-xl border-slate-200 text-xs font-bold text-blue-600 hover:bg-blue-600 hover:text-white"
+                  className="rounded-xl border-slate-200 text-xs font-bold text-[#7C3AED] hover:bg-[#7C3AED] hover:text-white"
                 >
                   <ExternalLink className="mr-1.5 h-3.5 w-3.5" /> Xem Trang Học Viên
                 </Button>

@@ -102,14 +102,12 @@ export default function AdminCoursesPage() {
     if (!formState.title) return;
 
     if (editCourse) {
-      // Edit existing
       setCourses((prev) =>
         prev.map((c) => (c.id === editCourse.id ? ({ ...c, ...formState } as Course) : c))
       );
       setEditCourse(null);
       showToast(`✅ Đã lưu cập nhật khoá học "${formState.title}" thành công!`);
     } else {
-      // Add new
       const newC: Course = {
         id: `c-${Date.now()}`,
         slug: (formState.title || "khoa-hoc-moi").toLowerCase().replace(/\s+/g, "-"),
@@ -125,6 +123,7 @@ export default function AdminCoursesPage() {
         rating: 5.0,
         reviewsCount: 1,
         badge: "Mới",
+        badgeType: "cyan",
         image: formState.image || "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=800&auto=format&fit=crop",
         videoUrl: formState.videoUrl || "https://www.youtube.com/embed/dQw4w9WgXcQ",
         shortDesc: formState.shortDesc || "Mô tả ngắn khoá học.",
@@ -157,8 +156,8 @@ export default function AdminCoursesPage() {
     <div className="space-y-6">
       {/* Toast Notification */}
       {toastMessage && (
-        <div className="fixed bottom-6 right-6 z-50 flex items-center gap-3 rounded-2xl bg-blue-600 text-white px-5 py-3.5 font-medium shadow-2xl animate-in slide-in-from-bottom-5 text-sm">
-          <CheckCircle2 className="h-4 w-4 shrink-0 text-amber-400" />
+        <div className="fixed bottom-6 right-6 z-50 flex items-center gap-3 rounded-2xl bg-[#7C3AED] text-white px-5 py-3.5 font-medium shadow-2xl animate-in slide-in-from-bottom-5 text-sm">
+          <CheckCircle2 className="h-4 w-4 shrink-0 text-[#F97316]" />
           <span>{toastMessage}</span>
         </div>
       )}
@@ -179,7 +178,7 @@ export default function AdminCoursesPage() {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <h1 className="font-heading font-extrabold text-2xl sm:text-3xl text-slate-900 flex items-center gap-2">
-            Quản Lý Khoá Học <Badge className="bg-amber-500 text-slate-950 font-bold">DEMO CRUD ⭐</Badge>
+            Quản Lý Khoá Học <Badge className="bg-[#F97316] text-white font-bold">DEMO CRUD ⭐</Badge>
           </h1>
           <p className="text-xs sm:text-sm text-slate-500 mt-1">
             Chủ trung tâm tự chỉnh sửa tiêu đề, hình ảnh, video giới thiệu và giáo trình dễ dàng.
@@ -215,7 +214,7 @@ export default function AdminCoursesPage() {
               });
               setIsAddOpen(true);
             }}
-            className="bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl text-xs px-4 py-2.5 shrink-0 shadow-md"
+            className="bg-[#7C3AED] hover:bg-[#7C3AED]/90 text-white font-bold rounded-xl text-xs px-4 py-2.5 shrink-0 shadow-md"
           >
             <Plus className="mr-1.5 h-4 w-4" /> Thêm Khoá Học Mới
           </Button>
@@ -252,19 +251,19 @@ export default function AdminCoursesPage() {
                     <Badge
                       className={`font-bold border-none px-2.5 py-0.5 text-[11px] ${
                         c.level === "Beginner"
-                          ? "bg-emerald-100 text-emerald-800"
+                          ? "bg-[#06B6D4]/15 text-[#06B6D4]"
                           : c.level === "Intermediate"
                           ? "bg-blue-100 text-blue-800"
-                          : "bg-purple-100 text-purple-800"
+                          : "bg-[#7C3AED]/15 text-[#7C3AED]"
                       }`}
                     >
                       {c.level}
                     </Badge>
                   </td>
-                  <td className="py-3.5 px-6 font-bold text-blue-600">{c.price.toLocaleString("vi-VN")}đ</td>
+                  <td className="py-3.5 px-6 font-bold text-[#7C3AED]">{c.price.toLocaleString("vi-VN")}đ</td>
                   <td className="py-3.5 px-6 font-bold text-slate-900">{c.reviewsCount} HV</td>
                   <td className="py-3.5 px-6">
-                    <button onClick={() => handleToggleStatus(c.id)} className="flex items-center gap-1 text-[#2D6A4F] font-bold">
+                    <button onClick={() => handleToggleStatus(c.id)} className="flex items-center gap-1 text-emerald-700 font-bold">
                       <Eye className="h-3.5 w-3.5" /> Đang Mở
                     </button>
                   </td>
@@ -274,7 +273,7 @@ export default function AdminCoursesPage() {
                         size="sm"
                         variant="outline"
                         onClick={() => openEditModal(c)}
-                        className="text-xs font-bold rounded-xl border-slate-200 text-blue-600 hover:bg-blue-600 hover:text-white"
+                        className="text-xs font-bold rounded-xl border-slate-200 text-[#7C3AED] hover:bg-[#7C3AED] hover:text-white"
                       >
                         <Edit2 className="mr-1 h-3.5 w-3.5" /> Sửa
                       </Button>
@@ -368,16 +367,16 @@ export default function AdminCoursesPage() {
                           variant="outline"
                           onClick={handleSimulateUpload}
                           disabled={isUploading}
-                          className="rounded-xl border-slate-200 text-xs font-bold text-blue-600"
+                          className="rounded-xl border-slate-200 text-xs font-bold text-[#7C3AED]"
                         >
                           <UploadCloud className="mr-1.5 h-4 w-4" /> Đổi Ảnh Thumbnail (Chọn File)
                         </Button>
                         {isUploading && (
                           <div className="space-y-1">
                             <div className="h-1.5 w-full bg-slate-200 rounded-full overflow-hidden">
-                              <div style={{ width: `${uploadProgress}%` }} className="h-full bg-blue-600 transition-all" />
+                              <div style={{ width: `${uploadProgress}%` }} className="h-full bg-[#7C3AED] transition-all" />
                             </div>
-                            <span className="text-[10px] text-blue-600 font-bold">Đang tải ảnh lên... {uploadProgress}%</span>
+                            <span className="text-[10px] text-[#7C3AED] font-bold">Đang tải ảnh lên... {uploadProgress}%</span>
                           </div>
                         )}
                       </div>
@@ -398,9 +397,9 @@ export default function AdminCoursesPage() {
                         type="button"
                         variant="outline"
                         onClick={() => setPreviewVideoUrl(formState.videoUrl || null)}
-                        className="rounded-xl border-slate-200 text-xs font-bold text-blue-600 shrink-0"
+                        className="rounded-xl border-slate-200 text-xs font-bold text-[#7C3AED] shrink-0"
                       >
-                        <Play className="mr-1 h-3.5 w-3.5 fill-blue-600" /> Xem Preview
+                        <Play className="mr-1 h-3.5 w-3.5 fill-[#7C3AED]" /> Xem Preview
                       </Button>
                     </div>
 
@@ -437,7 +436,7 @@ export default function AdminCoursesPage() {
                         type="number"
                         value={formState.price}
                         onChange={(e) => setFormState({ ...formState, price: Number(e.target.value) })}
-                        className="text-xs bg-slate-50 border-slate-200 rounded-xl font-bold text-blue-600"
+                        className="text-xs bg-slate-50 border-slate-200 rounded-xl font-bold text-[#7C3AED]"
                       />
                     </div>
                     <div className="space-y-1.5">
@@ -456,7 +455,7 @@ export default function AdminCoursesPage() {
                       rows={2}
                       value={formState.shortDesc}
                       onChange={(e) => setFormState({ ...formState, shortDesc: e.target.value })}
-                      className="w-full p-3 rounded-xl bg-slate-50 border border-slate-200 text-xs text-slate-900 focus:outline-none focus:border-blue-600"
+                      className="w-full p-3 rounded-xl bg-slate-50 border border-slate-200 text-xs text-slate-900 focus:outline-none focus:border-[#7C3AED]"
                     />
                   </div>
                 </TabsContent>
@@ -478,7 +477,7 @@ export default function AdminCoursesPage() {
                           ],
                         })
                       }
-                      className="rounded-xl border-slate-200 text-xs font-bold text-blue-600"
+                      className="rounded-xl border-slate-200 text-xs font-bold text-[#7C3AED]"
                     >
                       <PlusCircle className="mr-1 h-3.5 w-3.5" /> Thêm Module Mới
                     </Button>
@@ -498,7 +497,7 @@ export default function AdminCoursesPage() {
                             className="text-xs font-bold bg-white border-slate-200 rounded-xl"
                           />
                         </div>
-                        <div className="pl-4 space-y-1 border-l-2 border-blue-500">
+                        <div className="pl-4 space-y-1 border-l-2 border-[#7C3AED]">
                           {mod.lessons.map((lesson, lIdx) => (
                             <p key={lIdx} className="text-xs text-slate-600 font-medium">
                               • {lesson}
@@ -522,7 +521,7 @@ export default function AdminCoursesPage() {
                 </Button>
                 <Button
                   type="submit"
-                  className="rounded-xl bg-blue-600 text-white hover:bg-blue-700 text-xs font-bold shadow-md"
+                  className="rounded-xl bg-[#7C3AED] text-white hover:bg-[#7C3AED]/90 text-xs font-bold shadow-md"
                 >
                   Lưu Khoá Học (Cập Nhật State)
                 </Button>
