@@ -36,6 +36,12 @@ import HeaderGlass from "../components/HeaderGlass";
 import HeroCinematic from "../components/HeroCinematic";
 import LuxuryProductCard from "../components/LuxuryProductCard";
 
+// New Architectural Editorial Magazine Components (CTO Redesign)
+import EditorialManifesto from "../components/EditorialManifesto";
+import FlagshipSlabSpotlight from "../components/FlagshipSlabSpotlight";
+import ArchitecturalHotspots from "../components/ArchitecturalHotspots";
+import MagazineProjectStories from "../components/MagazineProjectStories";
+
 export interface TileProduct {
   id: string;
   code: string;
@@ -258,15 +264,6 @@ export const TILE_PRODUCTS: TileProduct[] = [
   },
 ];
 
-const ROOM_INSPIRATIONS = [
-  { id: "r1", title: "Phòng Khách Biệt Thự Thảo Điền", category: "LIVING ROOM", tileCode: "ST-901", tileName: "Calacatta Gold Big Slab 120x240", image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800&auto=format&fit=crop" },
-  { id: "r2", title: "Phòng Tắm Master Villa Heritage", category: "BATHROOM", tileCode: "ST-902", tileName: "Statuario Pure White 80x160", image: "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?q=80&w=800&auto=format&fit=crop" },
-  { id: "r3", title: "Không Gian Bếp Penthouse Quận 1", category: "KITCHEN", tileCode: "ST-903", tileName: "Nero Marquina Black Slab", image: "https://images.unsplash.com/photo-1600585152220-90363fe7e115?q=80&w=800&auto=format&fit=crop" },
-  { id: "r4", title: "Mặt Tiền Showroom Porsche HCM", category: "EXTERIOR", tileCode: "ST-909", tileName: "Urban Ash Concrete Slab", image: "https://images.unsplash.com/photo-1565008447742-97f6f38c985c?q=80&w=800&auto=format&fit=crop" },
-  { id: "r5", title: "Sảnh Khách Sạn 5 Sao Hyatt", category: "HOTEL LOBBY", tileCode: "ST-901", tileName: "Calacatta Gold Italian Slab", image: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=800&auto=format&fit=crop" },
-  { id: "r6", title: "Sân Vườn Villa Phú Mỹ Hưng", category: "EXTERIOR", tileCode: "ST-905", tileName: "Basalt Grey 20mm Outdoor", image: "https://images.unsplash.com/photo-1600573472550-8090b5e0745e?q=80&w=800&auto=format&fit=crop" },
-];
-
 export default function StoneGalleryHome() {
   const [activeTab, setActiveTab] = useState<"home" | "collections" | "detail" | "projects" | "about">("home");
   const [selectedProduct, setSelectedProduct] = useState<TileProduct>(TILE_PRODUCTS[0]);
@@ -316,7 +313,7 @@ export default function StoneGalleryHome() {
 
   return (
     <div className="relative min-h-screen bg-[#F4F1EC] text-[#1C1A17] font-sans selection:bg-[#9A7B4F]/20 selection:text-[#9A7B4F]">
-      {/* Desktop Custom Circle Cursor with Spring Physics */}
+      {/* Desktop Custom Circle Cursor */}
       <CustomCursor />
 
       {/* Top Scroll Progress Bar */}
@@ -330,7 +327,7 @@ export default function StoneGalleryHome() {
         </div>
       )}
 
-      {/* Lightbox Modal with Keyboard Support */}
+      {/* Lightbox Modal */}
       {lightboxImage && (
         <div className="fixed inset-0 z-50 bg-[#2A2724]/95 backdrop-blur-md flex items-center justify-center p-4">
           <div className="relative w-full max-w-5xl h-[80vh] rounded-3xl overflow-hidden shadow-2xl border border-[#9A7B4F]/30">
@@ -345,23 +342,23 @@ export default function StoneGalleryHome() {
         </div>
       )}
 
-      {/* GLASSMORPHISM HEADER */}
+      {/* LUXURY EDITORIAL FULLSCREEN OVERLAY HEADER */}
       <HeaderGlass
         activeTab={activeTab}
         setActiveTab={setActiveTab}
         onBookShowroom={() => setIsShowroomModalOpen(true)}
       />
 
-      {/* VIEW 1: HOME */}
+      {/* VIEW 1: HOME (CTO REDESIGN ARCHITECTURAL MAGAZINE RHYTHM) */}
       {activeTab === "home" && (
         <main>
-          {/* CINEMATIC HERO SECTION */}
+          {/* WOW 1: HERO CINEMATIC (KEN BURNS ZOOM & OVERLAPPING SERIF TYPOGRAPHY) */}
           <HeroCinematic
             onExplore={() => setActiveTab("collections")}
             onBookShowroom={() => setIsShowroomModalOpen(true)}
           />
 
-          {/* TRUST BAR — SILENT WARM STONE BACKGROUND */}
+          {/* TRUST MARQUEE — SILENT WARM STONE */}
           <section className="bg-[#F4F1EC] text-[#1C1A17] py-6 border-y border-[#E2DDD5] overflow-hidden">
             <div className="max-w-7xl mx-auto space-y-2">
               <p className="text-center text-[10px] text-[#8B8378] font-sans uppercase tracking-[0.25em] font-bold">
@@ -377,160 +374,24 @@ export default function StoneGalleryHome() {
             </div>
           </section>
 
-          {/* FEATURED COLLECTIONS — EDITORIAL MAGAZINE GRID */}
-          <section className="py-24 px-4 sm:px-6 max-w-7xl mx-auto space-y-12">
-            <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-[#E2DDD5] pb-6">
-              <div className="space-y-1">
-                <span className="text-[11px] text-[#9A7B4F] uppercase font-bold tracking-[0.2em]">
-                  CƠ BẢN VÀ TINH TẾ
-                </span>
-                <h2 className="font-heading text-3xl sm:text-5xl font-normal text-[#1C1A17]">
-                  Bộ Sưu Tập Vật Liệu Nổi Bật
-                </h2>
-              </div>
-              <button
-                onClick={() => setActiveTab("collections")}
-                data-cursor="hover"
-                className="text-xs font-bold text-[#9A7B4F] hover:underline tracking-[0.15em] uppercase flex items-center gap-1"
-              >
-                <span>Xem Tất Cả Mẫu Gạch</span>
-                <ChevronRight className="h-4 w-4" />
-              </button>
-            </div>
+          {/* WOW 2: EDITORIAL MANIFESTO (FLOATING QUOTE & OVERSIZED WATERMARK) */}
+          <EditorialManifesto />
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
-              {TILE_PRODUCTS.slice(0, 6).map((product) => (
-                <LuxuryProductCard
-                  key={product.id}
-                  product={product}
-                  onClick={() => openProductDetail(product)}
-                />
-              ))}
-            </div>
-          </section>
+          {/* WOW 3: FLAGSHIP SLAB SPOTLIGHT (ASYMMETRIC UNCOVER & IMAGE BREAKING OUT OF GRID) */}
+          <FlagshipSlabSpotlight
+            products={TILE_PRODUCTS}
+            onSelectProduct={openProductDetail}
+            onOpenLightbox={(img) => setLightboxImage(img)}
+          />
 
-          {/* INSPIRATION ROOM GALLERY — CHARCOAL STONE BACKGROUND */}
-          <section className="py-24 px-4 sm:px-6 bg-[#2A2724] text-white">
-            <div className="max-w-7xl mx-auto space-y-12">
-              <div className="text-center space-y-2">
-                <span className="text-[11px] text-[#E8D0AA] uppercase tracking-[0.2em] font-bold">
-                  ARCHITECTURAL SPACES
-                </span>
-                <h2 className="font-heading text-3xl sm:text-5xl font-normal text-white">
-                  Không Gian Kiến Trúc Ứng Dụng
-                </h2>
-                <p className="text-slate-400 max-w-md mx-auto text-xs sm:text-sm font-normal">
-                  Sự kết hợp hoàn hảo giữa vật liệu đá cao cấp và ánh sáng tự nhiên trong không gian sống thực tế.
-                </p>
-              </div>
+          {/* WOW 4: ARCHITECTURAL PRECISION & BLUEPRINT HOTSPOTS */}
+          <ArchitecturalHotspots />
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                {ROOM_INSPIRATIONS.map((room, idx) => (
-                  <motion.div
-                    key={room.id}
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-40px" }}
-                    transition={{ duration: 0.7, delay: idx * 0.1, ease: "easeOut" }}
-                    className="relative aspect-[4/3] rounded-2xl overflow-hidden group cursor-pointer border border-[#9A7B4F]/20 shadow-xl"
-                    onClick={() => setLightboxImage(room.image)}
-                    data-cursor="hover"
-                    data-cursor-text="ZOOM"
-                  >
-                    <Image src={room.image} alt={room.title} fill className="object-cover group-hover:scale-105 transition-transform duration-700" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#2A2724]/90 via-[#2A2724]/20 to-transparent p-6 flex flex-col justify-end">
-                      <span className="text-[10px] text-[#E8D0AA] font-bold tracking-[0.15em] uppercase mb-1">
-                        {room.category}
-                      </span>
-                      <h4 className="font-heading font-normal text-xl text-white">{room.title}</h4>
-                      <p className="text-xs text-slate-300 mt-1">Gạch sử dụng: <span className="font-bold text-[#E8D0AA]">{room.tileName}</span></p>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-          </section>
+          {/* WOW 5: MAGAZINE PROJECT STORIES (OVERSIZED NUMBERS OVERLAPPING VILLA PHOTOS) */}
+          <MagazineProjectStories />
 
-          {/* STANDARDS & ADVANTAGES — EDITORIAL HORIZONTAL LIST WITH THIN LINES */}
-          <section className="py-24 px-4 sm:px-6 max-w-7xl mx-auto space-y-16">
-            <div className="text-center space-y-2">
-              <span className="text-[11px] text-[#9A7B4F] uppercase font-bold tracking-[0.2em]">
-                CRAFTSMANSHIP
-              </span>
-              <h2 className="font-heading text-3xl sm:text-5xl font-normal text-[#1C1A17]">
-                Tiêu Chuẩn Đẳng Cấp Cho Công Trình
-              </h2>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-              <motion.div
-                initial={{ opacity: 0, x: -30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, ease: "easeOut" }}
-                className="space-y-4 border-b border-[#9A7B4F]/30 pb-8"
-              >
-                <div className="flex items-center gap-3 text-[#9A7B4F]">
-                  <Building2 className="h-6 w-6 stroke-[1.5]" />
-                  <h3 className="font-heading font-normal text-2xl text-[#1C1A17]">Nhập Khẩu Trực Tiếp Ý & Tây Ban Nha</h3>
-                </div>
-                <p className="text-xs sm:text-sm text-[#8B8378] leading-relaxed font-normal">
-                  100% Sản phẩm được nhập khẩu chính ngạch đầy đủ chứng chỉ CO/CQ chuẩn Châu Âu. Đảm bảo bề mặt chống xước, không rạn nứt và độ bền trên 30 năm.
-                </p>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, ease: "easeOut" }}
-                className="space-y-4 border-b border-[#9A7B4F]/30 pb-8"
-              >
-                <div className="flex items-center gap-3 text-[#9A7B4F]">
-                  <Layers className="h-6 w-6 stroke-[1.5]" />
-                  <h3 className="font-heading font-normal text-2xl text-[#1C1A17]">Cắt Laser Không Đường Ron</h3>
-                </div>
-                <p className="text-xs sm:text-sm text-[#8B8378] leading-relaxed font-normal">
-                  Công nghệ mài cạnh chuẩn vi sai 0.1mm cho phép thi công đường mạch siêu mảnh, tạo cảm giác như một tấm đá tự nhiên nguyên khối.
-                </p>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, x: -30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-                className="space-y-4 border-b border-[#9A7B4F]/30 pb-8"
-              >
-                <div className="flex items-center gap-3 text-[#9A7B4F]">
-                  <ShieldCheck className="h-6 w-6 stroke-[1.5]" />
-                  <h3 className="font-heading font-normal text-2xl text-[#1C1A17]">Bảo Hành Bề Mặt 20 Năm</h3>
-                </div>
-                <p className="text-xs sm:text-sm text-[#8B8378] leading-relaxed font-normal">
-                  Cam kết bảo hành chính hãng độ bóng, khả năng chống thấm nước và chống bay màu trong suốt 20 năm sử dụng.
-                </p>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-                className="space-y-4 border-b border-[#9A7B4F]/30 pb-8"
-              >
-                <div className="flex items-center gap-3 text-[#9A7B4F]">
-                  <Compass className="h-6 w-6 stroke-[1.5]" />
-                  <h3 className="font-heading font-normal text-2xl text-[#1C1A17]">Tư Vấn Phối Cảnh 3D Miễn Phí</h3>
-                </div>
-                <p className="text-xs sm:text-sm text-[#8B8378] leading-relaxed font-normal">
-                  Đội ngũ kiến trúc sư tại Showroom sẽ dựng phối cảnh 3D không gian thực tế của ngôi nhà bạn giúp lựa chọn mẫu gạch chuẩn màu và tỉ lệ hoàn hảo nhất.
-                </p>
-              </motion.div>
-            </div>
-          </section>
-
-          {/* NUMBERS & CREDIBILITY — SERIF NUMBERS ON WARM STONE */}
-          <section className="py-16 px-4 sm:px-6 bg-[#F4F1EC] border-y border-[#E2DDD5]">
+          {/* NUMBERS CREDIBILITY BAR */}
+          <section className="py-20 px-4 sm:px-6 bg-[#F4F1EC] border-y border-[#E2DDD5]">
             <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-center divide-x divide-[#E2DDD5]/60">
               <div className="space-y-1 px-4">
                 <h3 className="font-heading text-4xl sm:text-5xl font-normal text-[#9A7B4F]">
@@ -562,58 +423,14 @@ export default function StoneGalleryHome() {
             </div>
           </section>
 
-          {/* FEATURED PROJECTS — EDITORIAL MAGAZINE LAYOUT */}
-          <section className="py-24 px-4 sm:px-6 max-w-7xl mx-auto space-y-16">
-            <div className="text-center space-y-2">
-              <span className="text-[11px] text-[#9A7B4F] uppercase font-bold tracking-[0.2em]">
-                PORTFOLIO
-              </span>
-              <h2 className="font-heading text-3xl sm:text-5xl font-normal text-[#1C1A17]">
-                Dự Án Đã Cung Cấp Gạch
-              </h2>
-            </div>
-
-            <div className="space-y-16">
-              {/* Project 1 */}
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-                <div className="lg:col-span-7 relative aspect-[16/10] rounded-2xl overflow-hidden bg-[#FBFAF8] border border-[#E2DDD5]">
-                  <Image src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800&auto=format&fit=crop" alt="Villa Thao Dien" fill className="object-cover" />
-                </div>
-                <div className="lg:col-span-5 space-y-4">
-                  <span className="text-[11px] text-[#9A7B4F] font-bold tracking-[0.15em] uppercase">BIỆT THỰ CAO CẤP • TP.HCM</span>
-                  <h3 className="font-heading text-3xl font-normal text-[#1C1A17]">Biệt Thự Thảo Điền Quận 2</h3>
-                  <p className="text-xs sm:text-sm text-[#8B8378] leading-relaxed">
-                    Công trình sử dụng 100% dòng gạch Big Slab Calacatta Gold 120x240cm cho toàn bộ đại sảnh và vách tivi tầng trệt.
-                  </p>
-                  <p className="text-xs font-bold text-[#1C1A17]">Mẫu gạch: <span className="text-[#9A7B4F]">ST-901 Calacatta Gold Slab</span></p>
-                </div>
-              </div>
-
-              {/* Project 2 (Flipped) */}
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-                <div className="lg:col-span-5 space-y-4 lg:order-1 order-2">
-                  <span className="text-[11px] text-[#9A7B4F] font-bold tracking-[0.15em] uppercase">SHOWROOM THƯƠNG MẠI</span>
-                  <h3 className="font-heading text-3xl font-normal text-[#1C1A17]">Showroom Porsche HCM</h3>
-                  <p className="text-xs sm:text-sm text-[#8B8378] leading-relaxed">
-                    Mặt tiền công trình được ốp tấm gạch xi măng mờ Urban Ash Big Slab 120x240cm đem lại vẻ đẹp hiện đại và sắc sảo.
-                  </p>
-                  <p className="text-xs font-bold text-[#1C1A17]">Mẫu gạch: <span className="text-[#9A7B4F]">ST-909 Urban Ash Concrete Slab</span></p>
-                </div>
-                <div className="lg:col-span-7 relative aspect-[16/10] rounded-2xl overflow-hidden bg-[#FBFAF8] border border-[#E2DDD5] lg:order-2 order-1">
-                  <Image src="https://images.unsplash.com/photo-1565008447742-97f6f38c985c?q=80&w=800&auto=format&fit=crop" alt="Showroom Porsche" fill className="object-cover" />
-                </div>
-              </div>
-            </div>
-          </section>
-
-          {/* FINAL CTA SECTION — CHARCOAL STONE ELEGANT INVITATION */}
-          <section className="py-24 px-4 sm:px-6 bg-[#2A2724] text-white text-center relative overflow-hidden">
+          {/* WOW 6: FINAL ELEGANT INVITATION (CHARCOAL STONE BACKGROUND) */}
+          <section className="py-28 px-4 sm:px-6 bg-[#2A2724] text-white text-center relative overflow-hidden">
             <div className="max-w-3xl mx-auto space-y-6 relative z-10">
-              <span className="text-[11px] text-[#E8D0AA] font-bold tracking-[0.2em] uppercase">
+              <span className="text-[11px] text-[#E8D0AA] font-bold tracking-[0.25em] uppercase">
                 EXCLUSIVITY & CONSULTATION
               </span>
 
-              <h2 className="font-heading text-3xl sm:text-5xl font-normal leading-tight text-white">
+              <h2 className="font-heading text-3xl sm:text-6xl font-normal leading-tight text-white">
                 Trải Nghiệm Trực Tiếp Tại Showroom Stona
               </h2>
               <p className="text-slate-300 text-xs sm:text-sm max-w-xl mx-auto font-normal leading-relaxed">
@@ -643,7 +460,7 @@ export default function StoneGalleryHome() {
         </main>
       )}
 
-      {/* VIEW 2: COLLECTIONS CATALOG PAGE */}
+      {/* VIEW 2: FULL CATALOG PAGE */}
       {activeTab === "collections" && (
         <main className="py-16 px-4 sm:px-6 max-w-7xl mx-auto space-y-12">
           <div className="text-center space-y-3">
@@ -827,20 +644,7 @@ export default function StoneGalleryHome() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {ROOM_INSPIRATIONS.map((p) => (
-              <div key={p.id} className="space-y-3 group cursor-pointer" onClick={() => setLightboxImage(p.image)}>
-                <div className="relative aspect-[16/10] rounded-2xl overflow-hidden bg-slate-900 border border-[#E2DDD5]">
-                  <Image src={p.image} alt={p.title} fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
-                </div>
-                <div className="space-y-1">
-                  <span className="text-[10px] text-[#9A7B4F] font-bold tracking-[0.15em] uppercase">{p.category}</span>
-                  <h3 className="font-heading font-normal text-2xl text-[#1C1A17] group-hover:text-[#9A7B4F] transition-colors">{p.title}</h3>
-                  <p className="text-xs text-[#8B8378]">Mẫu gạch sử dụng: <b className="text-[#9A7B4F]">{p.tileName}</b></p>
-                </div>
-              </div>
-            ))}
-          </div>
+          <MagazineProjectStories />
         </main>
       )}
 
