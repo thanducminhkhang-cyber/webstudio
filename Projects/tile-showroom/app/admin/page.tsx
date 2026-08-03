@@ -15,7 +15,7 @@ import {
   ChevronRight,
 } from "lucide-react";
 
-import { Card, CardContent } from "@wsos/ui/components/card";
+import { Card } from "@wsos/ui/components/card";
 import { Badge } from "@wsos/ui/components/badge";
 import { Button } from "@wsos/ui/components/button";
 import { TILE_PRODUCTS } from "../page";
@@ -43,15 +43,15 @@ export default function AdminDashboardPage() {
     { id: "inq-2", name: "Trần Thị Mai", phone: "0912345678", product: "ST-903 Nero Marquina", area: "85 m²", time: "1 giờ trước", status: "Đang tư vấn" },
     { id: "inq-3", name: "Lê Hoàng Nam", phone: "0988776655", product: "ST-908 Cement Grey", area: "220 m²", time: "3 giờ trước", status: "Đã báo giá" },
     { id: "inq-4", name: "Phạm Hà Phương", phone: "0933445566", product: "ST-906 Oak Natural Wood", area: "120 m²", time: "Hôm qua", status: "Hoàn thành" },
-    { id: "inq-5", name: "Vũ Hải Đăng", phone: "0977889900", product: "ST-909 Urban Ash Big Slab", area: "310 m²", time: "Hôm qua", status: "Đang tư vấn" },
+    { id: "inq-5", name: "Vũ Hải Đăng", phone: "0977889900", product: "ST-909 Urban Ash Concrete", area: "310 m²", time: "Hôm qua", status: "Đang tư vấn" },
   ];
 
   return (
     <div className="space-y-8">
       {/* Toast Notification */}
       {toastMessage && (
-        <div className="fixed bottom-6 right-6 z-50 flex items-center gap-3 rounded-2xl bg-[#0F172A] text-white px-5 py-3.5 font-medium shadow-2xl animate-in slide-in-from-bottom-5 text-sm border border-[#2563EB]">
-          <CheckCircle2 className="h-4 w-4 shrink-0 text-[#2563EB]" />
+        <div className="fixed bottom-6 right-6 z-50 flex items-center gap-3 rounded-2xl bg-[#2A2724] text-white px-5 py-3.5 font-medium shadow-2xl animate-in slide-in-from-bottom-5 text-sm border border-[#9A7B4F]">
+          <CheckCircle2 className="h-4 w-4 shrink-0 text-[#9A7B4F]" />
           <span>{toastMessage}</span>
         </div>
       )}
@@ -59,8 +59,8 @@ export default function AdminDashboardPage() {
       {/* Header Info */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="font-heading font-extrabold text-2xl sm:text-3xl text-slate-900 flex items-center gap-2">
-            Tổng Quan Showroom Stona <Badge className="bg-[#2563EB] text-white font-bold">DEMO ADMIN</Badge>
+          <h1 className="font-heading font-bold text-2xl sm:text-3xl text-slate-900 flex items-center gap-2">
+            Tổng Quan Showroom Stona <Badge className="bg-[#9A7B4F] text-white font-bold">STONE GALLERY</Badge>
           </h1>
           <p className="text-xs sm:text-sm text-slate-500 mt-1">
             Thống kê lượt yêu cầu báo giá, lượt xem catalog gạch và công trình đang tư vấn.
@@ -68,7 +68,7 @@ export default function AdminDashboardPage() {
         </div>
 
         <Link href="/admin/products">
-          <Button className="bg-[#2563EB] hover:bg-[#2563EB]/90 text-white font-bold rounded-xl text-xs px-4 py-2.5 shadow-md">
+          <Button className="bg-[#9A7B4F] hover:bg-[#85683F] text-white font-bold rounded-xl text-xs px-4 py-2.5 shadow-md">
             <Plus className="mr-1.5 h-4 w-4" /> Thêm Mẫu Gạch Mới
           </Button>
         </Link>
@@ -79,12 +79,12 @@ export default function AdminDashboardPage() {
         <Card className="bg-white border-slate-200 p-5 rounded-2xl shadow-xs">
           <div className="flex items-center justify-between">
             <span className="text-xs font-bold text-slate-500">TỔNG MẪU GẠCH</span>
-            <div className="h-9 w-9 rounded-xl bg-blue-50 text-[#2563EB] flex items-center justify-center">
+            <div className="h-9 w-9 rounded-xl bg-amber-50 text-[#9A7B4F] flex items-center justify-center">
               <Layers className="h-5 w-5" />
             </div>
           </div>
           <div className="mt-3">
-            <span className="font-heading font-extrabold text-2xl text-slate-900">512</span>
+            <span className="font-heading font-bold text-2xl text-slate-900">512</span>
             <span className="text-xs text-emerald-600 font-bold ml-2">Active catalog</span>
           </div>
         </Card>
@@ -92,12 +92,12 @@ export default function AdminDashboardPage() {
         <Card className="bg-white border-slate-200 p-5 rounded-2xl shadow-xs">
           <div className="flex items-center justify-between">
             <span className="text-xs font-bold text-slate-500">YÊU CẦU BÁO GIÁ THÁNG</span>
-            <div className="h-9 w-9 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center">
+            <div className="h-9 w-9 rounded-xl bg-amber-50 text-[#9A7B4F] flex items-center justify-center">
               <FileText className="h-5 w-5" />
             </div>
           </div>
           <div className="mt-3">
-            <span className="font-heading font-extrabold text-2xl text-slate-900">87</span>
+            <span className="font-heading font-bold text-2xl text-slate-900">87</span>
             <span className="text-xs text-emerald-600 font-bold ml-2">+15% tháng này</span>
           </div>
         </Card>
@@ -110,7 +110,7 @@ export default function AdminDashboardPage() {
             </div>
           </div>
           <div className="mt-3">
-            <span className="font-heading font-extrabold text-2xl text-slate-900">12.4K</span>
+            <span className="font-heading font-bold text-2xl text-slate-900">12.4K</span>
             <span className="text-xs text-emerald-600 font-bold ml-2">+22% lượt xem</span>
           </div>
         </Card>
@@ -123,7 +123,7 @@ export default function AdminDashboardPage() {
             </div>
           </div>
           <div className="mt-3">
-            <span className="font-heading font-extrabold text-2xl text-slate-900">14</span>
+            <span className="font-heading font-bold text-2xl text-slate-900">14</span>
             <span className="text-xs text-slate-500 font-bold ml-2">Biệt thự & Penhouse</span>
           </div>
         </Card>
@@ -135,18 +135,18 @@ export default function AdminDashboardPage() {
         <Card className="lg:col-span-7 bg-white border-slate-200 p-6 rounded-3xl space-y-4 shadow-xs">
           <div className="flex items-center justify-between border-b border-slate-100 pb-3">
             <h3 className="font-heading font-bold text-base text-slate-900 flex items-center gap-2">
-              <TrendingUp className="h-4 w-4 text-[#2563EB]" /> Biểu Đồ Yêu Cầu Báo Giá (7 Ngày Gần Nhất)
+              <TrendingUp className="h-4 w-4 text-[#9A7B4F]" /> Biểu Đồ Yêu Cầu Báo Giá (7 Ngày Gần Nhất)
             </h3>
-            <span className="text-xs font-bold text-[#2563EB]">Tổng: 136 yêu cầu</span>
+            <span className="text-xs font-bold text-[#9A7B4F]">Tổng: 136 yêu cầu</span>
           </div>
 
           <div className="h-48 flex items-end justify-between gap-3 pt-6 px-2">
             {chartData.map((d, i) => (
               <div key={i} className="flex-1 flex flex-col items-center gap-2 h-full justify-end">
-                <span className="text-[10px] font-bold text-[#2563EB]">{d.requests}</span>
+                <span className="text-[10px] font-bold text-[#9A7B4F]">{d.requests}</span>
                 <div
                   style={{ height: `${(d.requests / 35) * 100}%` }}
-                  className="w-full max-w-[36px] bg-[#2563EB] hover:bg-[#2563EB]/80 rounded-t-xl transition-all"
+                  className="w-full max-w-[36px] bg-[#9A7B4F] hover:bg-[#85683F] rounded-t-xl transition-all"
                 />
                 <span className="text-[11px] text-slate-500 font-bold">{d.day}</span>
               </div>
@@ -160,7 +160,7 @@ export default function AdminDashboardPage() {
             <h3 className="font-heading font-bold text-base text-slate-900">
               Top Mẫu Gạch Được Xem Nhiều
             </h3>
-            <Link href="/admin/products" className="text-xs font-bold text-[#2563EB] hover:underline">
+            <Link href="/admin/products" className="text-xs font-bold text-[#9A7B4F] hover:underline">
               Xem tất cả
             </Link>
           </div>
@@ -188,10 +188,10 @@ export default function AdminDashboardPage() {
       <Card className="bg-white border-slate-200 rounded-3xl overflow-hidden shadow-xs">
         <div className="p-5 border-b border-slate-100 flex items-center justify-between">
           <h3 className="font-heading font-bold text-base text-slate-900 flex items-center gap-2">
-            <Clock className="h-4 w-4 text-[#2563EB]" /> Yêu Cầu Báo Giá Mới Nhất
+            <Clock className="h-4 w-4 text-[#9A7B4F]" /> Yêu Cầu Báo Giá Mới Nhất
           </h3>
           <Link href="/admin/inquiries">
-            <Button size="sm" variant="outline" className="text-xs font-bold text-[#2563EB]">
+            <Button size="sm" variant="outline" className="text-xs font-bold text-[#9A7B4F]">
               Quản Lý Yêu Cầu <ChevronRight className="ml-1 h-3.5 w-3.5" />
             </Button>
           </Link>
@@ -213,7 +213,7 @@ export default function AdminDashboardPage() {
               {recentInquiries.map((inq) => (
                 <tr key={inq.id} className="hover:bg-slate-50/80">
                   <td className="py-3.5 px-6 font-bold text-slate-900">{inq.name}</td>
-                  <td className="py-3.5 px-6 font-mono text-[#2563EB] font-bold">{inq.phone}</td>
+                  <td className="py-3.5 px-6 font-mono text-[#9A7B4F] font-bold">{inq.phone}</td>
                   <td className="py-3.5 px-6 text-slate-800">{inq.product}</td>
                   <td className="py-3.5 px-6 font-bold text-slate-900">{inq.area}</td>
                   <td className="py-3.5 px-6 text-slate-400">{inq.time}</td>

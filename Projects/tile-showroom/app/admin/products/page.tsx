@@ -133,8 +133,8 @@ export default function AdminProductsPage() {
     <div className="space-y-6">
       {/* Toast Notification */}
       {toastMessage && (
-        <div className="fixed bottom-6 right-6 z-50 flex items-center gap-3 rounded-2xl bg-[#0F172A] text-white px-5 py-3.5 font-medium shadow-2xl animate-in slide-in-from-bottom-5 text-sm border border-[#2563EB]">
-          <CheckCircle2 className="h-4 w-4 shrink-0 text-[#2563EB]" />
+        <div className="fixed bottom-6 right-6 z-50 flex items-center gap-3 rounded-2xl bg-[#2A2724] text-white px-5 py-3.5 font-medium shadow-2xl animate-in slide-in-from-bottom-5 text-sm border border-[#9A7B4F]">
+          <CheckCircle2 className="h-4 w-4 shrink-0 text-[#9A7B4F]" />
           <span>{toastMessage}</span>
         </div>
       )}
@@ -143,7 +143,7 @@ export default function AdminProductsPage() {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <h1 className="font-heading font-extrabold text-2xl sm:text-3xl text-slate-900 flex items-center gap-2">
-            Quản Lý Sản Phẩm Gạch <Badge className="bg-[#2563EB] text-white font-bold">DEMO CRUD ⭐</Badge>
+            Quản Lý Sản Phẩm Gạch <Badge className="bg-[#9A7B4F] text-white font-bold">DEMO CRUD ⭐</Badge>
           </h1>
           <p className="text-xs sm:text-sm text-slate-500 mt-1">
             Chủ showroom tự thêm/sửa mẫu gạch, upload ảnh texture 4K và điều chỉnh thông số kỹ thuật.
@@ -178,7 +178,7 @@ export default function AdminProductsPage() {
               });
               setIsAddOpen(true);
             }}
-            className="bg-[#2563EB] hover:bg-[#2563EB]/90 text-white font-bold rounded-xl text-xs px-4 py-2.5 shrink-0 shadow-md"
+            className="bg-[#9A7B4F] hover:bg-[#85683F] text-white font-bold rounded-xl text-xs px-4 py-2.5 shrink-0 shadow-md"
           >
             <Plus className="mr-1.5 h-4 w-4" /> Thêm Mẫu Gạch Mới
           </Button>
@@ -210,7 +210,7 @@ export default function AdminProductsPage() {
                       <Image src={p.textureImage} alt={p.title} fill className="object-cover" />
                     </div>
                   </td>
-                  <td className="py-3.5 px-6 font-mono font-bold text-[#2563EB]">{p.code}</td>
+                  <td className="py-3.5 px-6 font-mono font-bold text-[#9A7B4F]">{p.code}</td>
                   <td className="py-3.5 px-6 font-bold text-slate-900 max-w-xs">{p.title}</td>
                   <td className="py-3.5 px-6">
                     <Badge variant="secondary" className="font-bold bg-slate-100 text-slate-800">
@@ -219,7 +219,7 @@ export default function AdminProductsPage() {
                   </td>
                   <td className="py-3.5 px-6 font-mono text-slate-800 font-bold">{p.size}</td>
                   <td className="py-3.5 px-6 text-slate-700">{p.finish}</td>
-                  <td className="py-3.5 px-6 text-[#2563EB] font-bold">{p.origin}</td>
+                  <td className="py-3.5 px-6 text-[#9A7B4F] font-bold">{p.origin}</td>
                   <td className="py-3.5 px-6">
                     <button onClick={() => showToast("Đã cập nhật hiển thị mẫu gạch!")} className="flex items-center gap-1 text-emerald-700 font-bold">
                       <Eye className="h-3.5 w-3.5" /> Đang Hiện
@@ -231,7 +231,7 @@ export default function AdminProductsPage() {
                         size="sm"
                         variant="outline"
                         onClick={() => openEditModal(p)}
-                        className="text-xs font-bold rounded-xl border-slate-200 text-[#2563EB] hover:bg-[#2563EB] hover:text-white"
+                        className="text-xs font-bold rounded-xl border-slate-200 text-[#9A7B4F] hover:bg-[#9A7B4F] hover:text-white"
                       >
                         <Edit2 className="mr-1 h-3.5 w-3.5" /> Sửa
                       </Button>
@@ -348,16 +348,16 @@ export default function AdminProductsPage() {
                       variant="outline"
                       onClick={handleSimulateUpload}
                       disabled={isUploading}
-                      className="rounded-xl border-slate-200 text-xs font-bold text-[#2563EB]"
+                      className="rounded-xl border-slate-200 text-xs font-bold text-[#9A7B4F]"
                     >
                       <UploadCloud className="mr-1.5 h-4 w-4" /> Đổi Ảnh Texture 4K (Chọn File)
                     </Button>
                     {isUploading && (
                       <div className="space-y-1">
                         <div className="h-1.5 w-full bg-slate-200 rounded-full overflow-hidden">
-                          <div style={{ width: `${uploadProgress}%` }} className="h-full bg-[#2563EB] transition-all" />
+                          <div style={{ width: `${uploadProgress}%` }} className="h-full bg-[#9A7B4F] transition-all" />
                         </div>
-                        <span className="text-[10px] text-[#2563EB] font-bold">Đang tải ảnh texture... {uploadProgress}%</span>
+                        <span className="text-[10px] text-[#9A7B4F] font-bold">Đang tải ảnh texture... {uploadProgress}%</span>
                       </div>
                     )}
                   </div>
@@ -389,7 +389,7 @@ export default function AdminProductsPage() {
                   rows={2}
                   value={formState.application}
                   onChange={(e) => setFormState({ ...formState, application: e.target.value })}
-                  className="w-full p-3 rounded-xl bg-slate-50 border border-slate-200 text-xs text-slate-900 focus:outline-none focus:border-[#2563EB]"
+                  className="w-full p-3 rounded-xl bg-slate-50 border border-slate-200 text-xs text-slate-900 focus:outline-none focus:border-[#9A7B4F]"
                 />
               </div>
 
@@ -397,7 +397,7 @@ export default function AdminProductsPage() {
                 <Button type="button" variant="outline" onClick={() => { setIsAddOpen(false); setEditProduct(null); }} className="rounded-xl text-xs font-bold">
                   Hủy
                 </Button>
-                <Button type="submit" className="rounded-xl bg-[#2563EB] text-white hover:bg-[#2563EB]/90 text-xs font-bold shadow-md">
+                <Button type="submit" className="rounded-xl bg-[#9A7B4F] text-white hover:bg-[#85683F] text-xs font-bold shadow-md">
                   Lưu Sản Phẩm Gạch (Cập Nhật State)
                 </Button>
               </DialogFooter>

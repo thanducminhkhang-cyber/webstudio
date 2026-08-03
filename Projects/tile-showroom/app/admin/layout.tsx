@@ -54,11 +54,11 @@ export default function AdminLayout({
   };
 
   return (
-    <div className="min-h-screen bg-[#F8FAFC] text-slate-900 font-sans flex flex-col selection:bg-[#2563EB]/20 selection:text-[#2563EB]">
+    <div className="min-h-screen bg-[#F4F1EC] text-slate-900 font-sans flex flex-col selection:bg-[#9A7B4F]/20 selection:text-[#9A7B4F]">
       {/* Toast Notification */}
       {toastMessage && (
-        <div className="fixed bottom-6 right-6 z-50 flex items-center gap-3 rounded-2xl bg-[#0F172A] text-white px-5 py-3.5 font-medium shadow-2xl animate-in slide-in-from-bottom-5 text-sm border border-[#2563EB]">
-          <CheckCircle2 className="h-4 w-4 shrink-0 text-[#2563EB]" />
+        <div className="fixed bottom-6 right-6 z-50 flex items-center gap-3 rounded-2xl bg-[#2A2724] text-white px-5 py-3.5 font-medium shadow-2xl animate-in slide-in-from-bottom-5 text-sm border border-[#9A7B4F]">
+          <CheckCircle2 className="h-4 w-4 shrink-0 text-[#9A7B4F]" />
           <span>{toastMessage}</span>
         </div>
       )}
@@ -70,18 +70,18 @@ export default function AdminLayout({
 
       <div className="flex flex-1 relative">
         {/* Desktop Sidebar */}
-        <aside className="hidden lg:flex flex-col w-64 bg-white border-r border-slate-200 shrink-0 sticky top-0 h-[calc(100vh-33px)] justify-between">
+        <aside className="hidden lg:flex flex-col w-64 bg-white border-r border-[#E2DDD5] shrink-0 sticky top-0 h-[calc(100vh-33px)] justify-between">
           <div className="p-5 space-y-6">
             {/* Logo */}
             <div className="flex items-center gap-2.5">
-              <div className="h-9 w-9 rounded-xl bg-[#0F172A] text-white flex items-center justify-center font-extrabold shadow-md border border-[#2563EB]">
+              <div className="h-9 w-9 rounded-full bg-[#2A2724] text-[#9A7B4F] flex items-center justify-center font-bold text-lg border border-[#9A7B4F]">
                 S
               </div>
               <div>
-                <span className="font-heading font-extrabold text-lg text-slate-900 leading-none block">
-                  STONA <span className="text-[#2563EB]">ADMIN</span>
+                <span className="font-heading font-bold text-lg text-slate-900 leading-none block">
+                  STONA <span className="text-[#9A7B4F]">ADMIN</span>
                 </span>
-                <span className="text-[10px] text-slate-400 font-mono tracking-widest uppercase">Tile Showroom</span>
+                <span className="text-[10px] text-slate-400 font-mono tracking-widest uppercase">Stone Gallery</span>
               </div>
             </div>
 
@@ -96,7 +96,7 @@ export default function AdminLayout({
                     href={item.href}
                     className={`flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-bold transition-all ${
                       isActive
-                        ? "bg-[#2563EB] text-white shadow-md shadow-[#2563EB]/20"
+                        ? "bg-[#9A7B4F] text-white shadow-md shadow-[#9A7B4F]/20"
                         : "text-slate-600 hover:bg-slate-100 hover:text-slate-900"
                     }`}
                   >
@@ -122,7 +122,7 @@ export default function AdminLayout({
           {/* User Footer */}
           <div className="p-4 border-t border-slate-100 bg-slate-50/50 flex items-center justify-between">
             <div className="flex items-center gap-2.5">
-              <div className="h-9 w-9 rounded-full bg-[#2563EB] text-white font-bold text-xs flex items-center justify-center shadow-sm">
+              <div className="h-9 w-9 rounded-full bg-[#9A7B4F] text-white font-bold text-xs flex items-center justify-center shadow-sm">
                 AD
               </div>
               <div className="text-left">
@@ -143,7 +143,7 @@ export default function AdminLayout({
         {/* Main Content Area */}
         <div className="flex-1 flex flex-col min-w-0">
           {/* Header Bar */}
-          <header className="h-16 bg-white border-b border-slate-200 px-4 sm:px-6 flex items-center justify-between gap-4 sticky top-0 z-30 shadow-xs">
+          <header className="h-16 bg-white border-b border-[#E2DDD5] px-4 sm:px-6 flex items-center justify-between gap-4 sticky top-0 z-30 shadow-xs">
             <div className="flex items-center gap-3">
               <div className="lg:hidden">
                 <Sheet open={isMobileOpen} onOpenChange={setIsMobileOpen}>
@@ -154,7 +154,7 @@ export default function AdminLayout({
                   </SheetTrigger>
                   <SheetContent side="left" className="w-64 bg-white p-0">
                     <SheetHeader className="p-5 border-b border-slate-100 text-left">
-                      <SheetTitle className="font-heading font-extrabold text-base text-[#2563EB]">
+                      <SheetTitle className="font-heading font-extrabold text-base text-[#9A7B4F]">
                         STONA ADMIN
                       </SheetTitle>
                     </SheetHeader>
@@ -168,7 +168,7 @@ export default function AdminLayout({
                             href={item.href}
                             onClick={() => setIsMobileOpen(false)}
                             className={`flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-bold transition-all ${
-                              isActive ? "bg-[#2563EB] text-white" : "text-slate-600 hover:bg-slate-100"
+                              isActive ? "bg-[#9A7B4F] text-white" : "text-slate-600 hover:bg-slate-100"
                             }`}
                           >
                             <Icon className="h-4 w-4" />
@@ -205,7 +205,7 @@ export default function AdminLayout({
                 <Button
                   variant="outline"
                   size="sm"
-                  className="rounded-xl border-slate-200 text-xs font-bold text-[#2563EB] hover:bg-[#2563EB] hover:text-white"
+                  className="rounded-xl border-[#E2DDD5] text-xs font-bold text-[#9A7B4F] hover:bg-[#9A7B4F] hover:text-white"
                 >
                   <ExternalLink className="mr-1.5 h-3.5 w-3.5" /> Xem Website →
                 </Button>

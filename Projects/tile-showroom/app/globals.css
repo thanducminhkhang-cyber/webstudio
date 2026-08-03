@@ -1,26 +1,26 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f8fafc;
-  --foreground: #0f172a;
-  --card: #ffffff;
-  --card-foreground: #0f172a;
-  --popover: #ffffff;
-  --popover-foreground: #0f172a;
-  --primary: #2563eb;
+  --background: #f4f1ec;
+  --foreground: #1c1a17;
+  --card: #fbfaf8;
+  --card-foreground: #1c1a17;
+  --popover: #fbfaf8;
+  --popover-foreground: #1c1a17;
+  --primary: #9a7b4f;
   --primary-foreground: #ffffff;
-  --secondary: #78716c;
+  --secondary: #b5654a;
   --secondary-foreground: #ffffff;
-  --muted: #f1f5f9;
-  --muted-foreground: #64748b;
-  --accent: #0d9488;
+  --muted: #e8e3dc;
+  --muted-foreground: #8b8378;
+  --accent: #9a7b4f;
   --accent-foreground: #ffffff;
   --destructive: #ef4444;
   --destructive-foreground: #ffffff;
-  --border: #e2e8f0;
-  --input: #e2e8f0;
-  --ring: #2563eb;
-  --radius: 1rem;
+  --border: #e2ddd5;
+  --input: #e2ddd5;
+  --ring: #9a7b4f;
+  --radius: 0.75rem;
 }
 
 @theme inline {
@@ -44,8 +44,8 @@
   --color-input: var(--input);
   --color-ring: var(--ring);
 
-  --font-heading: var(--font-sora), system-ui, sans-serif;
-  --font-sans: var(--font-inter), system-ui, sans-serif;
+  --font-heading: var(--font-cormorant), Georgia, serif;
+  --font-sans: var(--font-jakarta), system-ui, sans-serif;
 }
 
 @layer base {
