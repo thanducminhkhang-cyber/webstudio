@@ -312,10 +312,7 @@ export default function StoneGalleryHome() {
       : TILE_PRODUCTS.filter((p) => p.series === seriesFilter);
 
   return (
-    <div className="relative min-h-screen bg-[#F4F1EC] text-[#1C1A17] font-sans selection:bg-[#9A7B4F]/20 selection:text-[#9A7B4F]">
-      {/* Desktop Custom Circle Cursor */}
-      <CustomCursor />
-
+    <div className="relative min-h-screen bg-[#F6F5F2] text-[#121110] font-sans selection:bg-[#C5A880]/20 selection:text-[#C5A880]">
       {/* Top Scroll Progress Bar */}
       <ScrollProgress />
 
