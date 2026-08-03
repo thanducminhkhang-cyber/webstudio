@@ -1,26 +1,50 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f7f8fa;
-  --foreground: #111111;
-  --card: #ffffff;
-  --card-foreground: #111111;
-  --popover: #ffffff;
-  --popover-foreground: #111111;
-  --primary: #f4b942;
-  --primary-foreground: #0b0f19;
-  --secondary: #151c28;
+  --background: #0d1321;
+  --foreground: #ffffff;
+  --card: #121a2d;
+  --card-foreground: #ffffff;
+  --popover: #121a2d;
+  --popover-foreground: #ffffff;
+  --primary: #c9a227;
+  --primary-bright: #e8c766;
+  --primary-foreground: #0d1321;
+  --secondary: #121a2d;
   --secondary-foreground: #ffffff;
-  --muted: #e9ecef;
-  --muted-foreground: #555555;
-  --accent: #f4b942;
-  --accent-foreground: #0b0f19;
+  --muted: #1a233a;
+  --muted-foreground: #b8bcc8;
+  --accent: #c9a227;
+  --accent-foreground: #0d1321;
   --destructive: #ef4444;
   --destructive-foreground: #ffffff;
-  --border: #e2e8f0;
-  --input: #e2e8f0;
-  --ring: #f4b942;
-  --radius: 0.5rem;
+  --border: rgba(201, 162, 39, 0.25);
+  --input: rgba(201, 162, 39, 0.25);
+  --ring: #c9a227;
+  --radius: 0.875rem;
+}
+
+.light {
+  --background: #f8f6f1;
+  --foreground: #0d1321;
+  --card: #ffffff;
+  --card-foreground: #0d1321;
+  --popover: #ffffff;
+  --popover-foreground: #0d1321;
+  --primary: #b8901f;
+  --primary-bright: #c9a227;
+  --primary-foreground: #ffffff;
+  --secondary: #ffffff;
+  --secondary-foreground: #0d1321;
+  --muted: #ebe8e1;
+  --muted-foreground: #4a5264;
+  --accent: #b8901f;
+  --accent-foreground: #ffffff;
+  --destructive: #ef4444;
+  --destructive-foreground: #ffffff;
+  --border: rgba(13, 19, 33, 0.08);
+  --input: rgba(13, 19, 33, 0.08);
+  --ring: #b8901f;
 }
 
 @theme inline {
@@ -44,17 +68,56 @@
   --color-input: var(--input);
   --color-ring: var(--ring);
 
-  --font-heading: var(--font-syne), var(--font-grotesk), system-ui, sans-serif;
-  --font-sans: var(--font-jakarta), system-ui, sans-serif;
+  --font-heading: var(--font-grotesk), system-ui, sans-serif;
+  --font-sans: var(--font-inter), system-ui, sans-serif;
 }
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+  }
   * {
     border-color: var(--border);
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
   }
   body {
     background-color: var(--background);
     color: var(--foreground);
     font-family: var(--font-sans);
+    line-height: 1.6;
   }
+  h1, .h1 {
+    font-family: var(--font-heading);
+    line-height: 1.15;
+    font-weight: 800;
+  }
+  h2, .h2 {
+    font-family: var(--font-heading);
+    line-height: 1.25;
+    font-weight: 800;
+  }
+  h3, .h3, h4, .h4 {
+    font-family: var(--font-heading);
+    line-height: 1.35;
+    font-weight: 700;
+  }
+}
+
+/* Gold Gradient Utilities */
+.gold-gradient-bg {
+  background: linear-gradient(90deg, #c9a227 0%, #e8c766 50%, #c9a227 100%);
+}
+
+.gold-gradient-text {
+  background: linear-gradient(90deg, #c9a227 0%, #e8c766 50%, #c9a227 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gold-gradient-border {
+  border-image: linear-gradient(90deg, #c9a227 0%, #e8c766 50%, #c9a227 100%) 1;
+}
+
+.light .gold-gradient-bg {
+  background: linear-gradient(90deg, #b8901f 0%, #d4b044 50%, #b8901f 100%);
 }

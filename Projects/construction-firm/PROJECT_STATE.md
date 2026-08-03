@@ -2,45 +2,48 @@
 
 ## Meta
 - **Project ID:** construction-firm
-- **Work Order:** #005 (World-Class Construction & General Contractor Empire)
+- **Work Order:** #006 (CTO UI/UX Upgrade Brief & Technical Bug Fixes)
 - **Loại:** General Contracting, Civil Infrastructure & Architectural Mega Projects
 - **Trạng thái:** completed
-- **Prompt gốc:** PROMPT-14 (We Build Tomorrow - Construction Company Website)
+- **Prompt gốc:** CTO BRIEF (Modern Luxury Upgrade & Technical Bug Fixes)
 
 ## Tóm tắt
-Đã xây dựng hoàn chỉnh website **TẬP ĐOÀN TỔNG THẦU XÂY DỰNG & KỸ THUẬT SIÊU TRỌNG HÀNG ĐẦU VANGUARD CONSTRUCT** (Đỉnh cao thương hiệu quốc tế quy mô tỷ đô tương đương Foster + Partners, BIG, Gensler, SOM, AECOM, Turner Construction):
-- **Bảng Màu Kỹ Thuật Siêu Trọng & Titan Amber (Modern Industrial Luxury)**:
-  - Primary Dark: `Obsidian Navy` (`#0B0F19`)
-  - Secondary Dark: `Charcoal Steel Surface` (`#151C28`)
-  - Primary Accent: `Industrial Amber Gold` (`#F4B942`)
-  - Light Surface: `Satin Concrete Light` (`#F7F8FA`)
-  - Text Primary: `#111111`, Text Secondary: `#555555`
-- **Typography Mạnh Mẽ**: `Syne` (Headline 72~100px) + `Space_Grotesk` (Technical Mono Specs) + `Plus_Jakarta_Sans` (Body).
-- **Hệ Thống 15+ Section Đẳng Cấp**:
-  1. **Sticky Header Navbar**: Ẩn khi cuộn xuống, hiện khi cuộn lên, hiệu ứng kính mờ `backdrop-blur-xl`.
-  2. **Hero Section (72-100px Headline)**: `"We Build Tomorrow"` / `"Engineering Excellence Since 1998"`, background ảnh công trình siêu trọng, dải thông số nổi (26+ Years, 450+ Projects, 3,200+ Engineers, 18+ Nations).
-  3. **Company Introduction**: Bố cục bất đối xứng, hình ảnh kỹ thuật thiết kế, watermark chìm `ENGINEERING`.
-  4. **Why Choose Us**: 6 Thẻ nghiêng 3D tilt cards (BIM 5D, Zero-Accident HSE, Tiến độ 100%, Kết cấu siêu trọng, FIDIC, Kỹ sư hạng I).
-  5. **Featured Iconic Mega Projects**: Bộ lọc danh mục (Infrastructure, Industrial, Skyscraper, Clean Energy), modal chi tiết siêu dự án.
-  6. **Services Section**: 6 Lĩnh vực hoạt động (General Construction EPC, BIM Design, Interior Architectural, MEP High-Tech, Engineering Consulting, Project Management).
-  7. **Process Timeline**: Quy trình thi công chuẩn EPC 5 bước.
-  8. **Numbers & Counter Bar**: $4.8B Portfolio Value, 450+ Mega Projects, 3,200+ Staff, 100% Safety Record.
-  9. **Client Logos Marquee**: Fortune 500 partners (Samsung, GE, Boeing, VinGroup, Hyundai E&C, Bechtel).
-  10. **Testimonials**: Đánh giá từ đại diện Samsung Corp, Apex Financial Group, Vanguard Renewable Energy.
-  11. **Awards & Certifications**: ISO 9001:2015, ISO 14001, LEED Gold, Top 10 EPC General Contractor.
-  12. **Executive Team**: Chủ tịch & Hội đồng Kỹ sư trưởng.
-  13. **Latest News**: Tin tức & công nghệ xây dựng số.
-  14. **Interactive Contact Modal**: Form đăng ký tư vấn dự án EPC ($10M - $200M+ USD).
-  15. **Premium Footer**: Nền `#0B0F19` với link mờ `Quản trị` 12px.
-- **Admin Dashboard**: Trang quản trị dự án, hồ sơ đấu thầu EPC & yêu cầu tư vấn (`/admin` & `/admin/projects`).
+Đã nâng cấp 100% toàn bộ giao diện và hoàn tất sửa lỗi kỹ thuật theo đúng chỉ đạo CTO:
+1. **Sửa Lỗi Font Heading (High Priority Bug Fix)**:
+   - Thay thế font bị scale/dẹt bằng font hình khối chính xịn `Space_Grotesk` (Headings) và `Inter` (Body).
+   - Thiết lập `line-height` chuẩn: `h1` (1.15), `h2` (1.25), `h3-h4` (1.35), `body text` (1.6).
+   - Loại bỏ chữ in hoa `text-transform: uppercase` ở các đoạn văn bản mô tả dài.
+2. **Bảng Màu Modern Luxury Mới**:
+   - Background Navy sâu có sắc xanh: `#0D1321` (Light mode: `#F8F6F1` satin ivory).
+   - Gold ánh kim metallic: `#C9A227` (chính) & `#E8C766` (accent) kèm `linear-gradient(90deg, #C9A227, #E8C766, #C9A227)`.
+   - Text mô tả nền tối: `#B8BCC8` (slate blue-gray) đảm bảo contrast ratio ≥ 4.5:1.
+3. **Spacing & Layout Đạt Chuẩn Luxury**:
+   - Section padding: `py-28 sm:py-36` (`120px` desktop / `64px` mobile).
+   - Card Gap: `gap-8` (`32px`), Card Padding: `p-8 sm:p-10` (`32px - 40px`).
+   - Card Border: `1px solid rgba(201,162,39,0.25)` viền mỏng vàng gold.
+4. **Sửa Lỗi Ảnh Dự Án (Fix Missing Image Bug)**:
+   - Sửa thẻ `METRO LINE 3 SKYSCRAPER TRANSIT HUB` hiển thị ảnh 4K Unsplash tỷ lệ `16:10` chuẩn sắc nét.
+   - Thêm hiệu ứng hover `scale(1.05)` + dark gradient overlay transition `0.4s easeOut`.
+5. **Animation & Smooth Scroll Anchors**:
+   - Smooth scroll anchor navigation: `#about`, `#why-us`, `#projects`, `#services`, `#timeline`, `#clients`, `#contact`.
+   - Counter animation đếm số tự động cho các chỉ số nổi bật.
+6. **Mobile Menu Slide-in & Hamburger X-Morph**:
+   - Hamburger icon biến thành dấu `X` khi mở (0.3s transform).
+   - Slide-in fullscreen overlay với backdrop blur 16px, khóa scroll body khi menu mở.
+7. **Lặp Lại Nút Bấm Call to Action (Repeated CTAs)**:
+   - Nút bấm chính Hero lớn `px-[40px] py-[18px]` text-base gold gradient `brightness(1.1)`.
+   - Bổ sung 3 nút CTA dạng outline viền gold sau Năng lực, sau Dự án và trước Footer.
+8. **Chế Độ Dark / Light Mode Toggle**:
+   - Nút công tắc Sun/Moon chuyển theme trực tiếp ở Header và Mobile menu.
+   - Lưu lựa chọn theme vào `localStorage`, chuyển nền mượt `0.3s ease`.
 
 ## Phạm vi
-**Trong phạm vi:** Storefront + Admin Dashboard, 15+ sections, BIM 5D showcase, interactive project modals, responsive, 0 lỗi TypeScript.
-**Ngoài phạm vi:** Backend thật, database thật.
+**Trong phạm vi:** UI/UX Upgrade, Bug Fixes, Dark/Light Mode, Mobile Drawer Morph, 0 lỗi TypeScript.
+**Ngoài phạm vi:** Backend thật.
 
 ## Nhật ký giai đoạn
-| 2026-08-03 | Build Construction Project | Khởi tạo dự án `Projects/construction-firm`, xây dựng 15+ section & Admin |
-| 2026-08-03 | QA & Push | Static build 5/5 pages sạch, tsc 0 lỗi, git commit `feat: add vanguard construct mega infrastructure website` |
+| 2026-08-04 | CTO UI/UX Refactor | Sửa lỗi font dẹt, cập nhật palette Modern Luxury, nâng cấp spacing & responsive |
+| 2026-08-04 | QA & Push | Static build 5/5 pages sạch, tsc 0 lỗi, git commit `refactor: upgrade vanguard construct UI to modern luxury with dark-light mode` |
 
 ## Hành động kế tiếp
-Đã bổ sung dự án thứ 5 vào hệ sinh thái WSOS Studio Portfolio. 5/5 Website đều hoàn thành xuất sắc 100% với 5 DNA hoàn toàn riêng biệt.
+Trọn bộ dự án đã được tối ưu đạt chuẩn Awwwards / FWA. Sẵn sàng giao dịch khách hàng!

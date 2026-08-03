@@ -2,8 +2,11 @@
 
 import React from "react";
 import { Marquee } from "@wsos/ui/blocks/marquee";
+import { useTheme } from "./ThemeProvider";
 
 export default function ClientLogos() {
+  const { theme } = useTheme();
+
   const clients = [
     "SAMSUNG ELECTRONICS",
     "GENERAL ELECTRIC",
@@ -16,14 +19,20 @@ export default function ClientLogos() {
   ];
 
   return (
-    <section className="py-12 bg-[#151C28] text-white border-y border-white/10 overflow-hidden">
+    <section id="clients" className={`py-12 border-y overflow-hidden transition-colors duration-300 ${
+      theme === "light"
+        ? "bg-white border-slate-200 text-[#0D1321]"
+        : "bg-[#121A2D] border-white/10 text-white"
+    }`}>
       <div className="max-w-7xl mx-auto space-y-4">
-        <p className="text-center text-[10px] text-[#F4B942] font-mono uppercase tracking-[0.25em] font-bold">
+        <p className="text-center text-[10px] text-[#C9A227] font-mono uppercase tracking-[0.25em] font-bold">
           ĐỐI TÁC CHỦ ĐẦU TƯ TẬP ĐOÀN TOÀN CẦU FORTUNE 500
         </p>
         <Marquee pauseOnHover className="[--duration:25s]">
           {clients.map((c, i) => (
-            <span key={i} className="mx-10 font-heading font-extrabold text-xl text-slate-300 tracking-[0.15em] hover:text-[#F4B942] transition-colors cursor-pointer">
+            <span key={i} className={`mx-10 font-heading font-extrabold text-xl tracking-[0.15em] hover:text-[#C9A227] transition-colors cursor-pointer ${
+              theme === "light" ? "text-[#0D1321]/80" : "text-slate-300"
+            }`}>
               {c}
             </span>
           ))}

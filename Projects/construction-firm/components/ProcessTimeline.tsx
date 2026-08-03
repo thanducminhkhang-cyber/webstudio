@@ -3,8 +3,11 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Compass, Cpu, ShoppingBag, HardHat, CheckCircle } from "lucide-react";
+import { useTheme } from "./ThemeProvider";
 
 export default function ProcessTimeline() {
+  const { theme } = useTheme();
+
   const steps = [
     {
       step: "01",
@@ -39,16 +42,18 @@ export default function ProcessTimeline() {
   ];
 
   return (
-    <section id="timeline" className="py-28 sm:py-36 px-4 sm:px-6 bg-[#F7F8FA] space-y-16">
+    <section id="timeline" className={`py-28 sm:py-36 px-4 sm:px-6 relative overflow-hidden transition-colors duration-300 ${
+      theme === "light" ? "bg-[#F8F6F1] text-[#0D1321]" : "bg-[#0D1321] text-white"
+    }`}>
       <div className="max-w-7xl mx-auto space-y-16">
         <div className="text-center space-y-3">
-          <span className="text-[11px] font-extrabold text-[#F4B942] uppercase tracking-[0.25em] font-mono">
+          <span className="text-[11px] font-extrabold text-[#C9A227] uppercase tracking-[0.25em] font-mono">
             EPC WORKFLOW STANDARDS
           </span>
-          <h2 className="font-heading text-3xl sm:text-5xl font-extrabold uppercase tracking-tight text-[#0B0F19]">
+          <h2 className="font-heading text-3xl sm:text-5xl font-extrabold uppercase tracking-tight leading-[1.25]">
             Quy Trình Thi Công Chuẩn EPC Quốc Tế
           </h2>
-          <p className="text-slate-600 max-w-xl mx-auto text-xs sm:text-sm font-normal">
+          <p className={`max-w-xl mx-auto text-sm font-normal ${theme === 'light' ? 'text-[#4A5264]' : 'text-[#B8BCC8]'}`}>
             5 Bước quản trị dự án nghiêm ngặt đảm bảo tiến độ và chất lượng cho các công trình cấp đặc biệt.
           </p>
         </div>
@@ -60,25 +65,29 @@ export default function ProcessTimeline() {
             return (
               <motion.div
                 key={idx}
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: idx * 0.1, ease: "easeOut" }}
-                className="bg-white p-6 rounded-2xl border border-slate-200 hover:border-[#F4B942] shadow-md hover:shadow-xl transition-all space-y-4 relative group"
+                transition={{ duration: 0.6, delay: idx * 0.08, ease: [0.16, 1, 0.3, 1] }}
+                className={`p-6 rounded-3xl space-y-4 relative group border ${
+                  theme === "light"
+                    ? "bg-white border-[#0D1321]/10 hover:border-[#C9A227] shadow-[0_4px_24px_rgba(0,0,0,0.06)]"
+                    : "bg-[#121A2D] border-[rgba(201,162,39,0.25)] hover:border-[#C9A227]"
+                }`}
               >
-                <span className="font-mono text-2xl font-extrabold text-[#F4B942] block">
+                <span className="font-mono text-2xl font-extrabold text-[#C9A227] block">
                   STEP {st.step}
                 </span>
 
-                <div className="h-10 w-10 rounded-xl bg-[#0B0F19] text-[#F4B942] flex items-center justify-center">
+                <div className="h-10 w-10 rounded-xl bg-[#0D1321] text-[#C9A227] flex items-center justify-center border border-[#C9A227]/30">
                   <Icon className="h-5 w-5" />
                 </div>
 
-                <h3 className="font-heading font-extrabold text-base uppercase text-[#0B0F19]">
+                <h3 className="font-heading font-extrabold text-base uppercase leading-[1.35]">
                   {st.title}
                 </h3>
 
-                <p className="text-xs text-[#555555] leading-relaxed">
+                <p className={`text-xs leading-[1.6] ${theme === 'light' ? 'text-[#4A5264]' : 'text-[#B8BCC8]'}`}>
                   {st.desc}
                 </p>
               </motion.div>

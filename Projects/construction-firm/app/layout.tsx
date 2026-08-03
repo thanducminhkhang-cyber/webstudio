@@ -1,13 +1,7 @@
 import type { Metadata } from "next";
-import { Syne, Space_Grotesk, Plus_Jakarta_Sans } from "next/font/google";
+import { Space_Grotesk, Inter } from "next/font/google";
 import "@wsos/ui/globals.css";
 import "./globals.css";
-
-const syne = Syne({
-  subsets: ["latin"],
-  variable: "--font-syne",
-  weight: ["600", "700", "800"],
-});
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -15,9 +9,9 @@ const spaceGrotesk = Space_Grotesk({
   weight: ["400", "500", "600", "700"],
 });
 
-const jakarta = Plus_Jakarta_Sans({
+const inter = Inter({
   subsets: ["latin"],
-  variable: "--font-jakarta",
+  variable: "--font-inter",
   weight: ["400", "500", "600", "700", "800"],
 });
 
@@ -48,8 +42,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="vi" className={`${syne.variable} ${spaceGrotesk.variable} ${jakarta.variable}`}>
-      <body className="font-sans bg-[#F7F8FA] text-[#111111] antialiased selection:bg-[#F4B942]/30 selection:text-[#0B0F19] min-h-screen">
+    <html lang="vi" className={`${spaceGrotesk.variable} ${inter.variable}`}>
+      <body className="font-sans bg-[#0D1321] text-white antialiased selection:bg-[#C9A227]/30 selection:text-white min-h-screen">
         {children}
       </body>
     </html>
