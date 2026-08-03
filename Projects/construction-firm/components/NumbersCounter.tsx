@@ -15,8 +15,8 @@ export default function NumbersCounter() {
     }`}>
       <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-center divide-x divide-white/10">
         <div className="space-y-2 px-4">
-          <h3 className="font-heading text-4xl sm:text-6xl font-extrabold text-[#C9A227]">
-            $<NumberTicker value={48} />B+
+          <h3 className="font-heading text-4xl sm:text-6xl font-extrabold text-[#C9A227] flex items-center justify-center">
+            $<NumberTicker value={48} className="text-[#C9A227] font-extrabold inline-block" />B+
           </h3>
           <p className={`text-xs font-mono font-bold uppercase tracking-[0.15em] ${
             theme === "light" ? "text-[#4A5264]" : "text-[#B8BCC8]"
@@ -26,8 +26,8 @@ export default function NumbersCounter() {
         </div>
 
         <div className="space-y-2 px-4">
-          <h3 className="font-heading text-4xl sm:text-6xl font-extrabold text-[#C9A227]">
-            <NumberTicker value={450} />+
+          <h3 className="font-heading text-4xl sm:text-6xl font-extrabold text-[#C9A227] flex items-center justify-center">
+            <NumberTicker value={450} className="text-[#C9A227] font-extrabold inline-block" />+
           </h3>
           <p className={`text-xs font-mono font-bold uppercase tracking-[0.15em] ${
             theme === "light" ? "text-[#4A5264]" : "text-[#B8BCC8]"
@@ -37,8 +37,8 @@ export default function NumbersCounter() {
         </div>
 
         <div className="space-y-2 px-4">
-          <h3 className="font-heading text-4xl sm:text-6xl font-extrabold text-[#C9A227]">
-            <NumberTicker value={3200} />+
+          <h3 className="font-heading text-4xl sm:text-6xl font-extrabold text-[#C9A227] flex items-center justify-center">
+            <NumberTicker value={3200} className="text-[#C9A227] font-extrabold inline-block" />+
           </h3>
           <p className={`text-xs font-mono font-bold uppercase tracking-[0.15em] ${
             theme === "light" ? "text-[#4A5264]" : "text-[#B8BCC8]"
@@ -48,8 +48,8 @@ export default function NumbersCounter() {
         </div>
 
         <div className="space-y-2 px-4">
-          <h3 className="font-heading text-4xl sm:text-6xl font-extrabold text-[#C9A227]">
-            <NumberTicker value={100} />%
+          <h3 className="font-heading text-4xl sm:text-6xl font-extrabold text-[#C9A227] flex items-center justify-center">
+            <NumberTicker value={100} className="text-[#C9A227] font-extrabold inline-block" />%
           </h3>
           <p className={`text-xs font-mono font-bold uppercase tracking-[0.15em] ${
             theme === "light" ? "text-[#4A5264]" : "text-[#B8BCC8]"

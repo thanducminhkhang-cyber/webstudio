@@ -24,7 +24,7 @@ export default function ProcessTimeline() {
     {
       step: "03",
       icon: ShoppingBag,
-      title: "Mua Sắm Bán Vật Tư (Procurement)",
+      title: "Mua Sắm Vật Tư (Procurement)",
       desc: "Cung ứng vật tư kết cấu thép, bê tông mác cao và thiết bị siêu trọng từ các tập đoàn hàng đầu thế giới.",
     },
     {
@@ -58,8 +58,8 @@ export default function ProcessTimeline() {
           </p>
         </div>
 
-        {/* Timeline Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-6">
+        {/* Timeline Grid (Responsive: grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6, no overflow!) */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
           {steps.map((st, idx) => {
             const Icon = st.icon;
             return (
@@ -69,21 +69,22 @@ export default function ProcessTimeline() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: idx * 0.08, ease: [0.16, 1, 0.3, 1] }}
-                className={`p-6 rounded-3xl space-y-4 relative group border ${
+                className={`p-6 sm:p-7 rounded-3xl space-y-4 relative group border overflow-hidden flex flex-col justify-start min-w-0 ${
                   theme === "light"
                     ? "bg-white border-[#0D1321]/10 hover:border-[#C9A227] shadow-[0_4px_24px_rgba(0,0,0,0.06)]"
                     : "bg-[#121A2D] border-[rgba(201,162,39,0.25)] hover:border-[#C9A227]"
                 }`}
               >
-                <span className="font-mono text-2xl font-extrabold text-[#C9A227] block">
-                  STEP {st.step}
-                </span>
-
-                <div className="h-10 w-10 rounded-xl bg-[#0D1321] text-[#C9A227] flex items-center justify-center border border-[#C9A227]/30">
-                  <Icon className="h-5 w-5" />
+                <div className="flex items-center justify-between">
+                  <span className="font-mono text-2xl font-extrabold text-[#C9A227] block">
+                    STEP {st.step}
+                  </span>
+                  <div className="h-10 w-10 rounded-xl bg-[#0D1321] text-[#C9A227] flex items-center justify-center border border-[#C9A227]/30 shrink-0">
+                    <Icon className="h-5 w-5" />
+                  </div>
                 </div>
 
-                <h3 className="font-heading font-extrabold text-base uppercase leading-[1.35]">
+                <h3 className="font-heading font-extrabold text-sm sm:text-base uppercase leading-[1.3] text-balance">
                   {st.title}
                 </h3>
 
