@@ -30,24 +30,24 @@ export default function HeaderGlass({ activeTab, setActiveTab, onBookShowroom }:
   };
 
   const menuItems = [
-    { number: "01", label: "Trang Chủ", tab: "home" as const },
-    { number: "02", label: "Bộ Sưu Tập Gạch", tab: "collections" as const },
-    { number: "03", label: "Dự Án Đã Thực Hiện", tab: "projects" as const },
-    { number: "04", label: "Về Chúng Tôi", tab: "about" as const },
+    { number: "01", label: "TRANG CHỦ", tab: "home" as const },
+    { number: "02", label: "BỘ SƯU TẬP GẠCH", tab: "collections" as const },
+    { number: "03", label: "DỰ ÁN ĐÃ THỰC HIỆN", tab: "projects" as const },
+    { number: "04", label: "VỀ CHÚNG TÔI", tab: "about" as const },
   ];
 
   return (
     <>
-      {/* LUXURY EDITORIAL HEADER BAR (~70px Height) */}
+      {/* LUXURY MODERN ARCHITECTURAL HEADER BAR (~70px Height) */}
       <header
         className={`sticky top-0 z-40 transition-all duration-500 ${
           isScrolled
-            ? "bg-[#F4F1EC]/90 backdrop-blur-md border-b border-[#E2DDD5] py-3.5 shadow-xs"
+            ? "bg-[#F6F5F2]/90 backdrop-blur-md border-b border-[#E2DED6] py-3.5 shadow-xs"
             : "bg-transparent border-b border-transparent py-5"
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 h-12 flex items-center justify-between gap-4">
-          {/* Top Left: Large Elegant Logo */}
+          {/* Top Left: Modern Sleek Logo */}
           <button
             onClick={() => setActiveTab("home")}
             data-cursor="hover"
@@ -56,26 +56,26 @@ export default function HeaderGlass({ activeTab, setActiveTab, onBookShowroom }:
             <motion.div
               animate={{ scale: isScrolled ? 0.92 : 1 }}
               transition={{ duration: 0.3 }}
-              className="h-10 w-10 rounded-full border border-[#9A7B4F] flex items-center justify-center text-[#9A7B4F] font-heading font-normal text-xl group-hover:border-[#9A7B4F] group-hover:bg-[#9A7B4F]/10 transition-colors"
+              className="h-10 w-10 rounded-full border border-[#C5A880] flex items-center justify-center text-[#C5A880] font-heading font-extrabold text-xl group-hover:border-[#C5A880] group-hover:bg-[#C5A880]/10 transition-colors"
             >
               S
             </motion.div>
             <div>
-              <span className="font-heading font-semibold text-2xl tracking-wider text-[#1C1A17] block leading-none">
-                STONA <span className="text-[#9A7B4F] font-normal italic">SLAB</span>
+              <span className="font-heading font-extrabold text-2xl tracking-wider text-[#121110] block leading-none uppercase">
+                STONA <span className="text-[#C5A880] font-normal">SLAB</span>
               </span>
-              <span className="text-[9px] text-[#8B8378] font-sans tracking-[0.25em] uppercase font-bold">
-                Stone Gallery & Surfaces
+              <span className="text-[9px] text-[#78736A] font-mono tracking-[0.25em] uppercase font-bold">
+                SURFACES & ARCHITECTURE
               </span>
             </div>
           </button>
 
-          {/* Top Right: Primary CTA + Minimal Menu Icon (NO HORIZONTAL NAV LINKS!) */}
+          {/* Top Right: Primary CTA + Minimal Menu Icon */}
           <div className="flex items-center gap-4">
             <Button
               onClick={onBookShowroom}
               data-cursor="hover"
-              className="bg-transparent hover:bg-[#9A7B4F] text-[#9A7B4F] hover:text-white border border-[#9A7B4F] font-bold rounded-full text-[11px] tracking-[0.15em] uppercase px-5 py-2.5 transition-all shadow-none"
+              className="bg-transparent hover:bg-[#C5A880] text-[#C5A880] hover:text-[#121110] border border-[#C5A880] font-extrabold rounded-full text-[11px] tracking-[0.15em] uppercase px-5 py-2.5 transition-all shadow-none"
             >
               Đặt Lịch Showroom
             </Button>
@@ -85,7 +85,7 @@ export default function HeaderGlass({ activeTab, setActiveTab, onBookShowroom }:
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               data-cursor="hover"
               data-cursor-text={isMenuOpen ? "CLOSE" : "MENU"}
-              className="h-11 w-11 rounded-full border border-[#9A7B4F]/40 hover:border-[#9A7B4F] flex items-center justify-center text-[#1C1A17] hover:text-[#9A7B4F] transition-all hover:scale-105"
+              className="h-11 w-11 rounded-full border border-[#C5A880]/40 hover:border-[#C5A880] flex items-center justify-center text-[#121110] hover:text-[#C5A880] transition-all hover:scale-105"
               aria-label="Toggle Menu"
             >
               <motion.div
@@ -93,11 +93,11 @@ export default function HeaderGlass({ activeTab, setActiveTab, onBookShowroom }:
                 transition={{ duration: 0.3 }}
               >
                 {isMenuOpen ? (
-                  <X className="h-5 w-5 text-[#9A7B4F]" />
+                  <X className="h-5 w-5 text-[#C5A880]" />
                 ) : (
                   <div className="space-y-1.5 w-5">
-                    <span className="block h-0.5 w-5 bg-[#1C1A17] hover:bg-[#9A7B4F] transition-colors" />
-                    <span className="block h-0.5 w-3.5 ml-auto bg-[#9A7B4F] transition-colors" />
+                    <span className="block h-0.5 w-5 bg-[#121110] hover:bg-[#C5A880] transition-colors" />
+                    <span className="block h-0.5 w-3.5 ml-auto bg-[#C5A880] transition-colors" />
                   </div>
                 )}
               </motion.div>
@@ -113,39 +113,39 @@ export default function HeaderGlass({ activeTab, setActiveTab, onBookShowroom }:
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed inset-0 z-50 bg-[#111111] text-white flex flex-col justify-between p-6 sm:p-12 overflow-y-auto"
+            transition={{ duration: 0.4, ease: "easeOut" }}
+            className="fixed inset-0 z-50 bg-[#0D0D0C] text-white flex flex-col justify-between p-6 sm:p-12 overflow-y-auto"
           >
             {/* Background Texture & Gradient */}
-            <div className="absolute inset-0 bg-radial-at-c from-[#2A2724] via-[#111111] to-[#111111] opacity-70 pointer-events-none" />
+            <div className="absolute inset-0 bg-radial-at-c from-[#1D1B18] via-[#0D0D0C] to-[#0D0D0C] opacity-80 pointer-events-none" />
 
             {/* Overlay Header Bar */}
             <div className="relative z-10 max-w-7xl mx-auto w-full flex items-center justify-between">
-              <span className="font-heading font-normal text-2xl tracking-wider text-white">
-                STONA <span className="text-[#9A7B4F] italic">SLAB</span>
+              <span className="font-heading font-extrabold text-2xl tracking-wider text-white uppercase">
+                STONA <span className="text-[#C5A880]">SLAB</span>
               </span>
 
               <button
                 onClick={() => setIsMenuOpen(false)}
                 data-cursor="hover"
-                className="h-12 w-12 rounded-full border border-[#9A7B4F]/40 flex items-center justify-center text-white hover:text-[#9A7B4F] hover:border-[#9A7B4F] transition-all"
+                className="h-12 w-12 rounded-full border border-[#C5A880]/40 flex items-center justify-center text-white hover:text-[#C5A880] hover:border-[#C5A880] transition-all"
               >
                 <X className="h-6 w-6" />
               </button>
             </div>
 
-            {/* Fullscreen Menu Main Links */}
+            {/* Fullscreen Menu Main Links (Modern High-Tech Sans) */}
             <div className="relative z-10 max-w-5xl mx-auto w-full py-12 flex flex-col items-start justify-center space-y-6 sm:space-y-8">
               {menuItems.map((item, idx) => (
                 <motion.div
                   key={item.tab}
-                  initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
+                  initial={{ opacity: 0, y: 30, filter: "blur(6px)" }}
                   animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                   exit={{ opacity: 0, y: 20 }}
                   transition={{
-                    duration: 0.8,
-                    delay: 0.1 + idx * 0.06,
-                    ease: [0.16, 1, 0.3, 1],
+                    duration: 0.6,
+                    delay: 0.08 + idx * 0.05,
+                    ease: "easeOut",
                   }}
                   className="group w-full"
                 >
@@ -155,12 +155,12 @@ export default function HeaderGlass({ activeTab, setActiveTab, onBookShowroom }:
                     data-cursor-text="OPEN"
                     className="flex items-baseline gap-4 sm:gap-8 text-left w-full"
                   >
-                    <span className="font-mono text-xs sm:text-sm font-bold text-[#9A7B4F] tracking-widest">
+                    <span className="font-mono text-xs sm:text-sm font-bold text-[#C5A880] tracking-widest">
                       {item.number}
                     </span>
-                    <span className="font-heading text-4xl sm:text-7xl lg:text-8xl font-normal text-slate-200 group-hover:text-white group-hover:translate-x-3 transition-all duration-500 relative">
+                    <span className="font-heading text-4xl sm:text-7xl lg:text-8xl font-bold uppercase text-slate-200 group-hover:text-[#C5A880] group-hover:translate-x-4 transition-all duration-400 relative">
                       {item.label}
-                      <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#9A7B4F] group-hover:w-full transition-all duration-500" />
+                      <span className="absolute bottom-0 left-0 w-0 h-1 bg-[#C5A880] group-hover:w-full transition-all duration-400" />
                     </span>
                   </button>
                 </motion.div>
@@ -168,13 +168,13 @@ export default function HeaderGlass({ activeTab, setActiveTab, onBookShowroom }:
 
               {/* 5th CTA Item in Fullscreen Overlay */}
               <motion.div
-                initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
+                initial={{ opacity: 0, y: 30, filter: "blur(6px)" }}
                 animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                 exit={{ opacity: 0, y: 20 }}
                 transition={{
-                  duration: 0.8,
-                  delay: 0.1 + menuItems.length * 0.06,
-                  ease: [0.16, 1, 0.3, 1],
+                  duration: 0.6,
+                  delay: 0.08 + menuItems.length * 0.05,
+                  ease: "easeOut",
                 }}
                 className="pt-6 border-t border-slate-800 w-full"
               >
@@ -184,19 +184,19 @@ export default function HeaderGlass({ activeTab, setActiveTab, onBookShowroom }:
                     onBookShowroom();
                   }}
                   data-cursor="hover"
-                  className="flex items-center gap-3 text-sm font-bold text-[#9A7B4F] hover:text-white uppercase tracking-[0.2em] transition-colors"
+                  className="flex items-center gap-3 text-xs sm:text-sm font-extrabold text-[#C5A880] hover:text-white uppercase tracking-[0.2em] transition-colors"
                 >
                   <Calendar className="h-4 w-4" />
-                  <span>Đặt lịch tham quan Showroom trực tiếp</span>
+                  <span>ĐẶT LỊCH THAM QUAN SHOWROOM TRỰC TIẾP</span>
                   <ArrowUpRight className="h-4 w-4" />
                 </button>
               </motion.div>
             </div>
 
             {/* Overlay Footer Info */}
-            <div className="relative z-10 max-w-7xl mx-auto w-full flex flex-col sm:flex-row justify-between items-center text-xs text-slate-500 border-t border-slate-900 pt-6 gap-4">
+            <div className="relative z-10 max-w-7xl mx-auto w-full flex flex-col sm:flex-row justify-between items-center text-xs text-slate-400 border-t border-slate-900 pt-6 gap-4">
               <p>Showroom TP.HCM: 204 Nguyễn Văn Trỗi, Q. Phú Nhuận</p>
-              <p className="font-mono text-[#9A7B4F]">Hotline: 1800 6868</p>
+              <p className="font-mono text-[#C5A880] font-bold">Hotline: 1800 6868</p>
             </div>
           </motion.div>
         )}

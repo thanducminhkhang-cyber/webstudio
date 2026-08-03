@@ -321,8 +321,8 @@ export default function StoneGalleryHome() {
 
       {/* Toast Banner */}
       {toastMessage && (
-        <div className="fixed bottom-6 right-6 z-50 flex items-center gap-3 rounded-2xl bg-[#2A2724] text-white px-6 py-4 font-medium shadow-2xl animate-in slide-in-from-bottom-5 text-sm border border-[#9A7B4F]/40">
-          <CheckCircle2 className="h-5 w-5 shrink-0 text-[#9A7B4F]" />
+        <div className="fixed bottom-6 right-6 z-50 flex items-center gap-3 rounded-2xl bg-[#0D0D0C] text-white px-6 py-4 font-medium shadow-2xl animate-in slide-in-from-bottom-5 text-sm border border-[#C5A880]/40">
+          <CheckCircle2 className="h-5 w-5 shrink-0 text-[#C5A880]" />
           <span>{toastMessage}</span>
         </div>
       )}
@@ -358,18 +358,18 @@ export default function StoneGalleryHome() {
             onBookShowroom={() => setIsShowroomModalOpen(true)}
           />
 
-          {/* TRUST MARQUEE — SILENT WARM STONE */}
-          <section className="bg-[#F4F1EC] text-[#1C1A17] py-6 border-y border-[#E2DDD5] overflow-hidden">
+          {/* TRUST MARQUEE — SILENT SATIN ALABASTER */}
+          <section className="bg-[#F6F5F2] text-[#121110] py-6 border-y border-[#E2DED6] overflow-hidden">
             <div className="max-w-7xl mx-auto space-y-2">
-              <p className="text-center text-[10px] text-[#8B8378] font-sans uppercase tracking-[0.25em] font-bold">
+              <p className="text-center text-[10px] text-[#78736A] font-mono uppercase tracking-[0.25em] font-bold">
                 TẬP ĐOÀN ĐỐI TÁC GẠCH QUỐC TẾ NHẬP KHẨU CHÍNH NGẠCH
               </p>
               <Marquee pauseOnHover className="[--duration:30s]">
-                <span className="mx-10 font-heading font-medium text-lg text-[#8B8378] tracking-[0.15em]">MARAZZI ITALY</span>
-                <span className="mx-10 font-heading font-medium text-lg text-[#9A7B4F] tracking-[0.15em]">PORCELANOSA SPAIN</span>
-                <span className="mx-10 font-heading font-medium text-lg text-[#8B8378] tracking-[0.15em]">FLORIM CERAMICHE</span>
-                <span className="mx-10 font-heading font-medium text-lg text-[#9A7B4F] tracking-[0.15em]">MIRAGE SURFACES</span>
-                <span className="mx-10 font-heading font-medium text-lg text-[#8B8378] tracking-[0.15em]">LEA CERAMICHE</span>
+                <span className="mx-10 font-heading font-bold text-lg text-[#78736A] tracking-[0.15em]">MARAZZI ITALY</span>
+                <span className="mx-10 font-heading font-bold text-lg text-[#C5A880] tracking-[0.15em]">PORCELANOSA SPAIN</span>
+                <span className="mx-10 font-heading font-medium text-lg text-[#78736A] tracking-[0.15em]">FLORIM CERAMICHE</span>
+                <span className="mx-10 font-heading font-bold text-lg text-[#C5A880] tracking-[0.15em]">MIRAGE SURFACES</span>
+                <span className="mx-10 font-heading font-medium text-lg text-[#78736A] tracking-[0.15em]">LEA CERAMICHE</span>
               </Marquee>
             </div>
           </section>
@@ -391,46 +391,46 @@ export default function StoneGalleryHome() {
           <MagazineProjectStories />
 
           {/* NUMBERS CREDIBILITY BAR */}
-          <section className="py-20 px-4 sm:px-6 bg-[#F4F1EC] border-y border-[#E2DDD5]">
-            <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-center divide-x divide-[#E2DDD5]/60">
+          <section className="py-20 px-4 sm:px-6 bg-[#F6F5F2] border-y border-[#E2DED6]">
+            <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-center divide-x divide-[#E2DED6]/60">
               <div className="space-y-1 px-4">
-                <h3 className="font-heading text-4xl sm:text-5xl font-normal text-[#9A7B4F]">
+                <h3 className="font-heading text-4xl sm:text-5xl font-bold text-[#C5A880]">
                   <NumberTicker value={512} />+
                 </h3>
-                <p className="text-[11px] text-[#8B8378] font-bold uppercase tracking-[0.15em]">Mẫu Gạch Nhập Khẩu</p>
+                <p className="text-[11px] text-[#78736A] font-mono font-bold uppercase tracking-[0.15em]">Mẫu Gạch Nhập Khẩu</p>
               </div>
 
               <div className="space-y-1 px-4">
-                <h3 className="font-heading text-4xl sm:text-5xl font-normal text-[#9A7B4F]">
+                <h3 className="font-heading text-4xl sm:text-5xl font-bold text-[#C5A880]">
                   <NumberTicker value={1000} />+
                 </h3>
-                <p className="text-[11px] text-[#8B8378] font-bold uppercase tracking-[0.15em]">Công Trình Đã Phủ</p>
+                <p className="text-[11px] text-[#78736A] font-mono font-bold uppercase tracking-[0.15em]">Công Trình Đã Phủ</p>
               </div>
 
               <div className="space-y-1 px-4">
-                <h3 className="font-heading text-4xl sm:text-5xl font-normal text-[#9A7B4F]">
+                <h3 className="font-heading text-4xl sm:text-5xl font-bold text-[#C5A880]">
                   <NumberTicker value={15} />+
                 </h3>
-                <p className="text-[11px] text-[#8B8378] font-bold uppercase tracking-[0.15em]">Năm Uy Tín Ngành Gạch</p>
+                <p className="text-[11px] text-[#78736A] font-mono font-bold uppercase tracking-[0.15em]">Năm Uy Tín Ngành Gạch</p>
               </div>
 
               <div className="space-y-1 px-4">
-                <h3 className="font-heading text-4xl sm:text-5xl font-normal text-[#9A7B4F]">
+                <h3 className="font-heading text-4xl sm:text-5xl font-bold text-[#C5A880]">
                   <NumberTicker value={98} />%
                 </h3>
-                <p className="text-[11px] text-[#8B8378] font-bold uppercase tracking-[0.15em]">Hài Lòng Tuyệt Đối</p>
+                <p className="text-[11px] text-[#78736A] font-mono font-bold uppercase tracking-[0.15em]">Hài Lòng Tuyệt Đối</p>
               </div>
             </div>
           </section>
 
-          {/* WOW 6: FINAL ELEGANT INVITATION (CHARCOAL STONE BACKGROUND) */}
-          <section className="py-28 px-4 sm:px-6 bg-[#2A2724] text-white text-center relative overflow-hidden">
+          {/* WOW 6: FINAL ELEGANT INVITATION (OBSIDIAN DARK BACKGROUND) */}
+          <section className="py-28 px-4 sm:px-6 bg-[#0D0D0C] text-white text-center relative overflow-hidden">
             <div className="max-w-3xl mx-auto space-y-6 relative z-10">
-              <span className="text-[11px] text-[#E8D0AA] font-bold tracking-[0.25em] uppercase">
+              <span className="text-[11px] text-[#C5A880] font-mono font-bold tracking-[0.25em] uppercase">
                 EXCLUSIVITY & CONSULTATION
               </span>
 
-              <h2 className="font-heading text-3xl sm:text-6xl font-normal leading-tight text-white">
+              <h2 className="font-heading text-3xl sm:text-6xl font-bold uppercase leading-tight text-white">
                 Trải Nghiệm Trực Tiếp Tại Showroom Stona
               </h2>
               <p className="text-slate-300 text-xs sm:text-sm max-w-xl mx-auto font-normal leading-relaxed">
@@ -441,7 +441,7 @@ export default function StoneGalleryHome() {
                 <Button
                   onClick={() => setIsShowroomModalOpen(true)}
                   data-cursor="hover"
-                  className="bg-[#9A7B4F] hover:bg-[#85683F] text-white font-bold rounded-full h-12 px-8 text-xs tracking-[0.15em] uppercase border-none shadow-xl transition-transform hover:scale-105"
+                  className="bg-[#C5A880] hover:bg-[#b0926a] text-[#0D0D0C] font-extrabold rounded-full h-12 px-8 text-xs tracking-[0.15em] uppercase border-none shadow-[0_0_25px_rgba(197,168,128,0.4)] transition-transform hover:scale-105"
                 >
                   ĐẶT LỊCH HẸN SHOWROOM
                 </Button>
@@ -450,7 +450,7 @@ export default function StoneGalleryHome() {
                   onClick={() => setIsQuoteModalOpen(true)}
                   data-cursor="hover"
                   variant="outline"
-                  className="border border-[#E8D0AA] text-[#E8D0AA] hover:bg-[#E8D0AA] hover:text-[#2A2724] font-bold rounded-full h-12 px-8 text-xs tracking-[0.15em] uppercase transition-all"
+                  className="border border-[#C5A880] text-[#C5A880] hover:bg-[#C5A880] hover:text-[#0D0D0C] font-extrabold rounded-full h-12 px-8 text-xs tracking-[0.15em] uppercase transition-all"
                 >
                   NHẬN BÁO GIÁ M²
                 </Button>
