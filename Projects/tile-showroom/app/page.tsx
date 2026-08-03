@@ -3,39 +3,38 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { motion } from "framer-motion";
 import {
   Layers,
-  Sparkles,
   CheckCircle2,
   ChevronRight,
   Maximize2,
-  PhoneCall,
   Calendar,
   Building2,
   ShieldCheck,
   Award,
-  Search,
-  Menu as MenuIcon,
   X,
   FileText,
   Compass,
   ArrowRight,
-  Sparkle,
 } from "lucide-react";
 
 // Imports from @wsos/ui workspace package
 import { Button } from "@wsos/ui/components/button";
-import { Card, CardContent } from "@wsos/ui/components/card";
 import { Badge } from "@wsos/ui/components/badge";
 import { Input } from "@wsos/ui/components/input";
 import { Label } from "@wsos/ui/components/label";
-import { Sheet, SheetContent, SheetTrigger, SheetHeader, SheetTitle } from "@wsos/ui/components/sheet";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@wsos/ui/components/dialog";
 
-// Imports from @wsos/ui blocks (Magic UI)
-import { BlurFade } from "@wsos/ui/blocks/blur-fade";
+// Imports from @wsos/ui blocks & Custom Components
 import { NumberTicker } from "@wsos/ui/blocks/number-ticker";
 import { Marquee } from "@wsos/ui/blocks/marquee";
+
+import CustomCursor from "../components/CustomCursor";
+import ScrollProgress from "../components/ScrollProgress";
+import HeaderGlass from "../components/HeaderGlass";
+import HeroCinematic from "../components/HeroCinematic";
+import LuxuryProductCard from "../components/LuxuryProductCard";
 
 export interface TileProduct {
   id: string;
@@ -317,6 +316,12 @@ export default function StoneGalleryHome() {
 
   return (
     <div className="relative min-h-screen bg-[#F4F1EC] text-[#1C1A17] font-sans selection:bg-[#9A7B4F]/20 selection:text-[#9A7B4F]">
+      {/* Desktop Custom Circle Cursor with Spring Physics */}
+      <CustomCursor />
+
+      {/* Top Scroll Progress Bar */}
+      <ScrollProgress />
+
       {/* Toast Banner */}
       {toastMessage && (
         <div className="fixed bottom-6 right-6 z-50 flex items-center gap-3 rounded-2xl bg-[#2A2724] text-white px-6 py-4 font-medium shadow-2xl animate-in slide-in-from-bottom-5 text-sm border border-[#9A7B4F]/40">
@@ -325,7 +330,7 @@ export default function StoneGalleryHome() {
         </div>
       )}
 
-      {/* Lightbox Modal */}
+      {/* Lightbox Modal with Keyboard Support */}
       {lightboxImage && (
         <div className="fixed inset-0 z-50 bg-[#2A2724]/95 backdrop-blur-md flex items-center justify-center p-4">
           <div className="relative w-full max-w-5xl h-[80vh] rounded-3xl overflow-hidden shadow-2xl border border-[#9A7B4F]/30">
@@ -340,143 +345,23 @@ export default function StoneGalleryHome() {
         </div>
       )}
 
-      {/* 1. HEADER & NAV — SILENT ELEGANT SERIF & THIN BRONZE CTA (NO ADMIN LINK) */}
-      <header className="sticky top-0 z-40 bg-[#F4F1EC]/90 backdrop-blur-md border-b border-[#E2DDD5]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 h-20 flex items-center justify-between gap-4">
-          {/* Logo */}
-          <button onClick={() => setActiveTab("home")} className="flex items-center gap-3 text-left">
-            <div className="h-10 w-10 rounded-full border border-[#9A7B4F] flex items-center justify-center text-[#9A7B4F] font-heading font-normal text-xl">
-              S
-            </div>
-            <div>
-              <span className="font-heading font-semibold text-2xl tracking-wider text-[#1C1A17] block leading-none">
-                STONA <span className="text-[#9A7B4F] font-normal italic">SLAB</span>
-              </span>
-              <span className="text-[10px] text-[#8B8378] font-sans tracking-[0.2em] uppercase font-semibold">
-                Stone Gallery & Surfaces
-              </span>
-            </div>
-          </button>
-
-          {/* Desktop Nav */}
-          <nav className="hidden md:flex items-center gap-8 text-[11px] font-bold tracking-[0.15em] uppercase text-[#1C1A17]">
-            <button
-              onClick={() => setActiveTab("home")}
-              className={`hover:text-[#9A7B4F] transition-colors ${activeTab === "home" ? "text-[#9A7B4F]" : ""}`}
-            >
-              Trang Chủ
-            </button>
-            <button
-              onClick={() => setActiveTab("collections")}
-              className={`hover:text-[#9A7B4F] transition-colors ${activeTab === "collections" ? "text-[#9A7B4F]" : ""}`}
-            >
-              Bộ Sưu Tập (12+)
-            </button>
-            <button
-              onClick={() => setActiveTab("projects")}
-              className={`hover:text-[#9A7B4F] transition-colors ${activeTab === "projects" ? "text-[#9A7B4F]" : ""}`}
-            >
-              Dự Án Đã Thực Hiện
-            </button>
-            <button
-              onClick={() => setActiveTab("about")}
-              className={`hover:text-[#9A7B4F] transition-colors ${activeTab === "about" ? "text-[#9A7B4F]" : ""}`}
-            >
-              Về Chúng Tôi
-            </button>
-          </nav>
-
-          {/* Header Action: THIN BRONZE BORDER BUTTON (NO ADMIN LINK) */}
-          <div className="flex items-center gap-3">
-            <Button
-              onClick={() => setIsShowroomModalOpen(true)}
-              className="bg-transparent hover:bg-[#9A7B4F] text-[#9A7B4F] hover:text-white border border-[#9A7B4F] font-bold rounded-full text-[11px] tracking-[0.15em] uppercase px-5 py-2.5 transition-all shadow-none"
-            >
-              Đặt Lịch Showroom
-            </Button>
-
-            {/* Mobile Sheet */}
-            <div className="md:hidden">
-              <Sheet>
-                <SheetTrigger asChild>
-                  <Button variant="ghost" size="icon" className="text-[#1C1A17]">
-                    <MenuIcon className="h-6 w-6" />
-                  </Button>
-                </SheetTrigger>
-                <SheetContent side="right" className="bg-[#F4F1EC]">
-                  <SheetHeader>
-                    <SheetTitle className="text-left font-heading text-xl text-[#9A7B4F] italic">
-                      STONA SLAB GALLERY
-                    </SheetTitle>
-                  </SheetHeader>
-                  <div className="flex flex-col gap-6 mt-8 font-bold text-[#1C1A17] text-xs tracking-[0.15em] uppercase">
-                    <button onClick={() => setActiveTab("home")} className="text-left hover:text-[#9A7B4F]">Trang Chủ</button>
-                    <button onClick={() => setActiveTab("collections")} className="text-left hover:text-[#9A7B4F]">Bộ Sưu Tập</button>
-                    <button onClick={() => setActiveTab("projects")} className="text-left hover:text-[#9A7B4F]">Dự Án</button>
-                    <button onClick={() => setActiveTab("about")} className="text-left hover:text-[#9A7B4F]">Về Chúng Tôi</button>
-                  </div>
-                </SheetContent>
-              </Sheet>
-            </div>
-          </div>
-        </div>
-      </header>
+      {/* GLASSMORPHISM HEADER */}
+      <HeaderGlass
+        activeTab={activeTab}
+        setActiveTab={setActiveTab}
+        onBookShowroom={() => setIsShowroomModalOpen(true)}
+      />
 
       {/* VIEW 1: HOME */}
       {activeTab === "home" && (
         <main>
-          {/* 2. HERO SECTION — FULL-BLEED MAGAZINE COVER VISUAL */}
-          <section className="relative h-[85vh] sm:h-[90vh] w-full bg-[#2A2724] overflow-hidden flex items-end">
-            <Image
-              src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1600&auto=format&fit=crop"
-              alt="Stona Stone Gallery Architectural Surface"
-              fill
-              priority
-              className="object-cover opacity-85"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#2A2724] via-[#2A2724]/30 to-transparent" />
+          {/* CINEMATIC HERO SECTION */}
+          <HeroCinematic
+            onExplore={() => setActiveTab("collections")}
+            onBookShowroom={() => setIsShowroomModalOpen(true)}
+          />
 
-            <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 pb-16 w-full space-y-6">
-              <BlurFade delay={0.1}>
-                <span className="text-[11px] font-bold text-[#E8D0AA] uppercase tracking-[0.2em]">
-                  STONE GALLERY & ARCHITECTURAL SURFACES
-                </span>
-              </BlurFade>
-
-              <BlurFade delay={0.2}>
-                <h1 className="font-heading text-4xl sm:text-6xl font-normal leading-[1.12] text-white max-w-3xl">
-                  Vẻ Đẹp Vượt Thời Gian <br />
-                  <span className="italic text-[#E8D0AA]">Cho Không Gian Sống Thượng Hạng</span>
-                </h1>
-              </BlurFade>
-
-              <BlurFade delay={0.3}>
-                <p className="text-slate-300 text-sm sm:text-base max-w-lg leading-relaxed font-normal">
-                  Bộ sưu tập đá tự nhiên & gạch khổ lớn Big Slab 120x240cm nhập khẩu chính ngạch từ Ý & Tây Ban Nha. Tối giản, kiêu sa và đắt giá.
-                </p>
-              </BlurFade>
-
-              <BlurFade delay={0.4}>
-                <div className="flex flex-col sm:flex-row items-center gap-4 pt-2">
-                  <Button
-                    onClick={() => setActiveTab("collections")}
-                    className="bg-[#9A7B4F] hover:bg-[#85683F] text-white font-bold rounded-full text-xs tracking-[0.15em] uppercase px-8 py-3.5 shadow-lg border-none"
-                  >
-                    KHÁM PHÁ BỘ SƯU TẬP
-                  </Button>
-                  <button
-                    onClick={() => setIsShowroomModalOpen(true)}
-                    className="text-xs font-bold text-white hover:text-[#E8D0AA] tracking-[0.15em] uppercase flex items-center gap-2 transition-colors py-2"
-                  >
-                    <span>Đặt lịch tư vấn trực tiếp</span>
-                    <ArrowRight className="h-4 w-4 text-[#E8D0AA]" />
-                  </button>
-                </div>
-              </BlurFade>
-            </div>
-          </section>
-
-          {/* 3. TRUST BAR — SILENT WARM STONE BACKGROUND */}
+          {/* TRUST BAR — SILENT WARM STONE BACKGROUND */}
           <section className="bg-[#F4F1EC] text-[#1C1A17] py-6 border-y border-[#E2DDD5] overflow-hidden">
             <div className="max-w-7xl mx-auto space-y-2">
               <p className="text-center text-[10px] text-[#8B8378] font-sans uppercase tracking-[0.25em] font-bold">
@@ -492,7 +377,7 @@ export default function StoneGalleryHome() {
             </div>
           </section>
 
-          {/* 4. FEATURED COLLECTIONS — EDITORIAL MAGAZINE GRID */}
+          {/* FEATURED COLLECTIONS — EDITORIAL MAGAZINE GRID */}
           <section className="py-24 px-4 sm:px-6 max-w-7xl mx-auto space-y-12">
             <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-[#E2DDD5] pb-6">
               <div className="space-y-1">
@@ -505,6 +390,7 @@ export default function StoneGalleryHome() {
               </div>
               <button
                 onClick={() => setActiveTab("collections")}
+                data-cursor="hover"
                 className="text-xs font-bold text-[#9A7B4F] hover:underline tracking-[0.15em] uppercase flex items-center gap-1"
               >
                 <span>Xem Tất Cả Mẫu Gạch</span>
@@ -514,46 +400,16 @@ export default function StoneGalleryHome() {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
               {TILE_PRODUCTS.slice(0, 6).map((product) => (
-                <div
+                <LuxuryProductCard
                   key={product.id}
+                  product={product}
                   onClick={() => openProductDetail(product)}
-                  className="group cursor-pointer space-y-4"
-                >
-                  <div className="relative aspect-[4/5] rounded-2xl overflow-hidden bg-[#FBFAF8] border border-[#E2DDD5]">
-                    <Image
-                      src={product.textureImage}
-                      alt={product.title}
-                      fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-700"
-                    />
-                    <div className="absolute inset-0 bg-[#9A7B4F]/0 group-hover:bg-[#9A7B4F]/10 transition-colors duration-500" />
-                    {product.badge && (
-                      <span className="absolute top-4 left-4 bg-[#2A2724] text-white text-[10px] uppercase font-bold tracking-[0.15em] px-3 py-1 rounded-full">
-                        {product.badge}
-                      </span>
-                    )}
-                  </div>
-
-                  <div className="space-y-1">
-                    <span className="text-[11px] text-[#9A7B4F] font-bold tracking-[0.15em] uppercase block">
-                      {product.series} • {product.size}
-                    </span>
-                    <h3 className="font-heading font-normal text-2xl text-[#1C1A17] group-hover:text-[#9A7B4F] transition-colors">
-                      {product.title}
-                    </h3>
-                    <p className="text-xs text-[#8B8378] font-medium">
-                      Xuất xứ: <b>{product.origin}</b> • Bề mặt: <b>{product.finish}</b>
-                    </p>
-                    <span className="text-xs font-bold text-[#9A7B4F] group-hover:underline mt-2 inline-block">
-                      Khám phá bộ sưu tập →
-                    </span>
-                  </div>
-                </div>
+                />
               ))}
             </div>
           </section>
 
-          {/* 5. INSPIRATION ROOM GALLERY — CHARCOAL STONE BACKGROUND */}
+          {/* INSPIRATION ROOM GALLERY — CHARCOAL STONE BACKGROUND */}
           <section className="py-24 px-4 sm:px-6 bg-[#2A2724] text-white">
             <div className="max-w-7xl mx-auto space-y-12">
               <div className="text-center space-y-2">
@@ -569,11 +425,17 @@ export default function StoneGalleryHome() {
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                {ROOM_INSPIRATIONS.map((room) => (
-                  <div
+                {ROOM_INSPIRATIONS.map((room, idx) => (
+                  <motion.div
                     key={room.id}
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-40px" }}
+                    transition={{ duration: 0.7, delay: idx * 0.1, ease: "easeOut" }}
                     className="relative aspect-[4/3] rounded-2xl overflow-hidden group cursor-pointer border border-[#9A7B4F]/20 shadow-xl"
                     onClick={() => setLightboxImage(room.image)}
+                    data-cursor="hover"
+                    data-cursor-text="ZOOM"
                   >
                     <Image src={room.image} alt={room.title} fill className="object-cover group-hover:scale-105 transition-transform duration-700" />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#2A2724]/90 via-[#2A2724]/20 to-transparent p-6 flex flex-col justify-end">
@@ -583,13 +445,13 @@ export default function StoneGalleryHome() {
                       <h4 className="font-heading font-normal text-xl text-white">{room.title}</h4>
                       <p className="text-xs text-slate-300 mt-1">Gạch sử dụng: <span className="font-bold text-[#E8D0AA]">{room.tileName}</span></p>
                     </div>
-                  </div>
+                  </motion.div>
                 ))}
               </div>
             </div>
           </section>
 
-          {/* 6. STANDARDS & ADVANTAGES — EDITORIAL HORIZONTAL LIST WITH THIN LINES */}
+          {/* STANDARDS & ADVANTAGES — EDITORIAL HORIZONTAL LIST WITH THIN LINES */}
           <section className="py-24 px-4 sm:px-6 max-w-7xl mx-auto space-y-16">
             <div className="text-center space-y-2">
               <span className="text-[11px] text-[#9A7B4F] uppercase font-bold tracking-[0.2em]">
@@ -601,7 +463,13 @@ export default function StoneGalleryHome() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-              <div className="space-y-4 border-b border-[#9A7B4F]/30 pb-8">
+              <motion.div
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
+                className="space-y-4 border-b border-[#9A7B4F]/30 pb-8"
+              >
                 <div className="flex items-center gap-3 text-[#9A7B4F]">
                   <Building2 className="h-6 w-6 stroke-[1.5]" />
                   <h3 className="font-heading font-normal text-2xl text-[#1C1A17]">Nhập Khẩu Trực Tiếp Ý & Tây Ban Nha</h3>
@@ -609,9 +477,15 @@ export default function StoneGalleryHome() {
                 <p className="text-xs sm:text-sm text-[#8B8378] leading-relaxed font-normal">
                   100% Sản phẩm được nhập khẩu chính ngạch đầy đủ chứng chỉ CO/CQ chuẩn Châu Âu. Đảm bảo bề mặt chống xước, không rạn nứt và độ bền trên 30 năm.
                 </p>
-              </div>
+              </motion.div>
 
-              <div className="space-y-4 border-b border-[#9A7B4F]/30 pb-8">
+              <motion.div
+                initial={{ opacity: 0, x: 30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
+                className="space-y-4 border-b border-[#9A7B4F]/30 pb-8"
+              >
                 <div className="flex items-center gap-3 text-[#9A7B4F]">
                   <Layers className="h-6 w-6 stroke-[1.5]" />
                   <h3 className="font-heading font-normal text-2xl text-[#1C1A17]">Cắt Laser Không Đường Ron</h3>
@@ -619,9 +493,15 @@ export default function StoneGalleryHome() {
                 <p className="text-xs sm:text-sm text-[#8B8378] leading-relaxed font-normal">
                   Công nghệ mài cạnh chuẩn vi sai 0.1mm cho phép thi công đường mạch siêu mảnh, tạo cảm giác như một tấm đá tự nhiên nguyên khối.
                 </p>
-              </div>
+              </motion.div>
 
-              <div className="space-y-4 border-b border-[#9A7B4F]/30 pb-8">
+              <motion.div
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+                className="space-y-4 border-b border-[#9A7B4F]/30 pb-8"
+              >
                 <div className="flex items-center gap-3 text-[#9A7B4F]">
                   <ShieldCheck className="h-6 w-6 stroke-[1.5]" />
                   <h3 className="font-heading font-normal text-2xl text-[#1C1A17]">Bảo Hành Bề Mặt 20 Năm</h3>
@@ -629,9 +509,15 @@ export default function StoneGalleryHome() {
                 <p className="text-xs sm:text-sm text-[#8B8378] leading-relaxed font-normal">
                   Cam kết bảo hành chính hãng độ bóng, khả năng chống thấm nước và chống bay màu trong suốt 20 năm sử dụng.
                 </p>
-              </div>
+              </motion.div>
 
-              <div className="space-y-4 border-b border-[#9A7B4F]/30 pb-8">
+              <motion.div
+                initial={{ opacity: 0, x: 30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+                className="space-y-4 border-b border-[#9A7B4F]/30 pb-8"
+              >
                 <div className="flex items-center gap-3 text-[#9A7B4F]">
                   <Compass className="h-6 w-6 stroke-[1.5]" />
                   <h3 className="font-heading font-normal text-2xl text-[#1C1A17]">Tư Vấn Phối Cảnh 3D Miễn Phí</h3>
@@ -639,11 +525,11 @@ export default function StoneGalleryHome() {
                 <p className="text-xs sm:text-sm text-[#8B8378] leading-relaxed font-normal">
                   Đội ngũ kiến trúc sư tại Showroom sẽ dựng phối cảnh 3D không gian thực tế của ngôi nhà bạn giúp lựa chọn mẫu gạch chuẩn màu và tỉ lệ hoàn hảo nhất.
                 </p>
-              </div>
+              </motion.div>
             </div>
           </section>
 
-          {/* 7. NUMBERS & CREDIBILITY — SERIF NUMBERS ON WARM STONE */}
+          {/* NUMBERS & CREDIBILITY — SERIF NUMBERS ON WARM STONE */}
           <section className="py-16 px-4 sm:px-6 bg-[#F4F1EC] border-y border-[#E2DDD5]">
             <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-center divide-x divide-[#E2DDD5]/60">
               <div className="space-y-1 px-4">
@@ -676,7 +562,7 @@ export default function StoneGalleryHome() {
             </div>
           </section>
 
-          {/* 8. FEATURED PROJECTS — EDITORIAL MAGAZINE LAYOUT */}
+          {/* FEATURED PROJECTS — EDITORIAL MAGAZINE LAYOUT */}
           <section className="py-24 px-4 sm:px-6 max-w-7xl mx-auto space-y-16">
             <div className="text-center space-y-2">
               <span className="text-[11px] text-[#9A7B4F] uppercase font-bold tracking-[0.2em]">
@@ -720,7 +606,7 @@ export default function StoneGalleryHome() {
             </div>
           </section>
 
-          {/* 9. FINAL CTA SECTION — CHARCOAL STONE ELEGANT INVITATION */}
+          {/* FINAL CTA SECTION — CHARCOAL STONE ELEGANT INVITATION */}
           <section className="py-24 px-4 sm:px-6 bg-[#2A2724] text-white text-center relative overflow-hidden">
             <div className="max-w-3xl mx-auto space-y-6 relative z-10">
               <span className="text-[11px] text-[#E8D0AA] font-bold tracking-[0.2em] uppercase">
@@ -737,13 +623,15 @@ export default function StoneGalleryHome() {
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
                 <Button
                   onClick={() => setIsShowroomModalOpen(true)}
-                  className="bg-[#9A7B4F] hover:bg-[#85683F] text-white font-bold rounded-full h-12 px-8 text-xs tracking-[0.15em] uppercase border-none shadow-xl"
+                  data-cursor="hover"
+                  className="bg-[#9A7B4F] hover:bg-[#85683F] text-white font-bold rounded-full h-12 px-8 text-xs tracking-[0.15em] uppercase border-none shadow-xl transition-transform hover:scale-105"
                 >
                   ĐẶT LỊCH HẸN SHOWROOM
                 </Button>
 
                 <Button
                   onClick={() => setIsQuoteModalOpen(true)}
+                  data-cursor="hover"
                   variant="outline"
                   className="border border-[#E8D0AA] text-[#E8D0AA] hover:bg-[#E8D0AA] hover:text-[#2A2724] font-bold rounded-full h-12 px-8 text-xs tracking-[0.15em] uppercase transition-all"
                 >
@@ -813,31 +701,11 @@ export default function StoneGalleryHome() {
           {/* Products Editorial Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 pt-4">
             {filteredProducts.map((product) => (
-              <div key={product.id} onClick={() => openProductDetail(product)} className="group cursor-pointer space-y-4">
-                <div className="relative aspect-[4/5] rounded-2xl overflow-hidden bg-[#FBFAF8] border border-[#E2DDD5]">
-                  <Image src={product.textureImage} alt={product.title} fill className="object-cover group-hover:scale-105 transition-transform duration-700" />
-                  {product.badge && (
-                    <span className="absolute top-4 left-4 bg-[#2A2724] text-white text-[10px] uppercase font-bold tracking-[0.15em] px-3 py-1 rounded-full">
-                      {product.badge}
-                    </span>
-                  )}
-                </div>
-
-                <div className="space-y-1">
-                  <span className="text-[11px] text-[#9A7B4F] font-bold tracking-[0.15em] uppercase block">
-                    {product.series} • {product.size}
-                  </span>
-                  <h3 className="font-heading font-normal text-2xl text-[#1C1A17] group-hover:text-[#9A7B4F] transition-colors">
-                    {product.title}
-                  </h3>
-                  <p className="text-xs text-[#8B8378] font-medium">
-                    Xuất xứ: <b>{product.origin}</b> • Bề mặt: <b>{product.finish}</b>
-                  </p>
-                  <span className="text-xs font-bold text-[#9A7B4F] group-hover:underline mt-2 inline-block">
-                    Khám phá chi tiết →
-                  </span>
-                </div>
-              </div>
+              <LuxuryProductCard
+                key={product.id}
+                product={product}
+                onClick={() => openProductDetail(product)}
+              />
             ))}
           </div>
         </main>
@@ -925,12 +793,14 @@ export default function StoneGalleryHome() {
               <div className="flex flex-col sm:flex-row gap-3 pt-2">
                 <Button
                   onClick={() => setIsQuoteModalOpen(true)}
+                  data-cursor="hover"
                   className="flex-1 py-3.5 text-xs font-bold tracking-[0.15em] uppercase bg-[#9A7B4F] text-white rounded-full shadow-md hover:bg-[#85683F]"
                 >
                   <FileText className="mr-2 h-4 w-4 inline" /> YÊU CẦU BÁO GIÁ M²
                 </Button>
                 <Button
                   onClick={() => setIsShowroomModalOpen(true)}
+                  data-cursor="hover"
                   variant="outline"
                   className="px-6 py-3.5 border border-[#1C1A17] text-[#1C1A17] font-bold text-xs tracking-[0.15em] uppercase rounded-full hover:bg-[#1C1A17] hover:text-white"
                 >
@@ -1142,7 +1012,7 @@ export default function StoneGalleryHome() {
         </Dialog>
       )}
 
-      {/* 10. FOOTER — CHARCOAL STONE BACKGROUND WITH SMALL MUTED 12px ADMIN LINK */}
+      {/* FOOTER */}
       <footer className="bg-[#2A2724] text-[#8B8378] py-16 px-4 sm:px-6 border-t border-slate-800">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
           <div className="space-y-4">
