@@ -355,22 +355,6 @@ export default function StoneGalleryHome() {
             onBookShowroom={() => setIsShowroomModalOpen(true)}
           />
 
-          {/* TRUST MARQUEE — SILENT SATIN ALABASTER */}
-          <section className="bg-[#F6F5F2] text-[#121110] py-6 border-y border-[#E2DED6] overflow-hidden">
-            <div className="max-w-7xl mx-auto space-y-2">
-              <p className="text-center text-[10px] text-[#78736A] font-mono uppercase tracking-[0.25em] font-bold">
-                TẬP ĐOÀN ĐỐI TÁC GẠCH QUỐC TẾ NHẬP KHẨU CHÍNH NGẠCH
-              </p>
-              <Marquee pauseOnHover className="[--duration:30s]">
-                <span className="mx-10 font-heading font-bold text-lg text-[#78736A] tracking-[0.15em]">MARAZZI ITALY</span>
-                <span className="mx-10 font-heading font-bold text-lg text-[#C5A880] tracking-[0.15em]">PORCELANOSA SPAIN</span>
-                <span className="mx-10 font-heading font-medium text-lg text-[#78736A] tracking-[0.15em]">FLORIM CERAMICHE</span>
-                <span className="mx-10 font-heading font-bold text-lg text-[#C5A880] tracking-[0.15em]">MIRAGE SURFACES</span>
-                <span className="mx-10 font-heading font-medium text-lg text-[#78736A] tracking-[0.15em]">LEA CERAMICHE</span>
-              </Marquee>
-            </div>
-          </section>
-
           {/* WOW 2: EDITORIAL MANIFESTO (FLOATING QUOTE & OVERSIZED WATERMARK) */}
           <EditorialManifesto />
 
@@ -386,39 +370,6 @@ export default function StoneGalleryHome() {
 
           {/* WOW 5: MAGAZINE PROJECT STORIES (OVERSIZED NUMBERS OVERLAPPING VILLA PHOTOS) */}
           <MagazineProjectStories />
-
-          {/* NUMBERS CREDIBILITY BAR */}
-          <section className="py-20 px-4 sm:px-6 bg-[#F6F5F2] border-y border-[#E2DED6]">
-            <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-center divide-x divide-[#E2DED6]/60">
-              <div className="space-y-1 px-4">
-                <h3 className="font-heading text-4xl sm:text-5xl font-bold text-[#C5A880]">
-                  <NumberTicker value={512} />+
-                </h3>
-                <p className="text-[11px] text-[#78736A] font-mono font-bold uppercase tracking-[0.15em]">Mẫu Gạch Nhập Khẩu</p>
-              </div>
-
-              <div className="space-y-1 px-4">
-                <h3 className="font-heading text-4xl sm:text-5xl font-bold text-[#C5A880]">
-                  <NumberTicker value={1000} />+
-                </h3>
-                <p className="text-[11px] text-[#78736A] font-mono font-bold uppercase tracking-[0.15em]">Công Trình Đã Phủ</p>
-              </div>
-
-              <div className="space-y-1 px-4">
-                <h3 className="font-heading text-4xl sm:text-5xl font-bold text-[#C5A880]">
-                  <NumberTicker value={15} />+
-                </h3>
-                <p className="text-[11px] text-[#78736A] font-mono font-bold uppercase tracking-[0.15em]">Năm Uy Tín Ngành Gạch</p>
-              </div>
-
-              <div className="space-y-1 px-4">
-                <h3 className="font-heading text-4xl sm:text-5xl font-bold text-[#C5A880]">
-                  <NumberTicker value={98} />%
-                </h3>
-                <p className="text-[11px] text-[#78736A] font-mono font-bold uppercase tracking-[0.15em]">Hài Lòng Tuyệt Đối</p>
-              </div>
-            </div>
-          </section>
 
           {/* WOW 6: FINAL ELEGANT INVITATION (OBSIDIAN DARK BACKGROUND) */}
           <section className="py-28 px-4 sm:px-6 bg-[#0D0D0C] text-white text-center relative overflow-hidden">
