@@ -12,7 +12,7 @@ interface FooterProps {
 export default function Footer({ onOpenConsultation }: FooterProps) {
   return (
     <footer id="contact" className="py-16 px-4 sm:px-6 border-t border-[#334155] relative overflow-hidden bg-[#0F172A] text-white">
-      {/* Section 7: CTA Cuối Màn Hình (Single Button) */}
+      {/* Section 8: CTA Cuối Màn Hình */}
       <div className="max-w-7xl mx-auto pb-16 border-b border-[#334155] text-center space-y-6">
         <span className="text-[11px] font-extrabold text-[#3B82F6] uppercase tracking-[0.25em] font-mono block">
           START YOUR MEGA INFRASTRUCTURE PROJECT
@@ -33,9 +33,17 @@ export default function Footer({ onOpenConsultation }: FooterProps) {
       {/* Footer Navigation & Columns */}
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10 my-12 relative z-10">
         <div className="space-y-4">
-          <span className="font-heading font-extrabold text-2xl tracking-wider block leading-none text-white">
-            VANGUARD <span className="text-[#D4A017]">CONSTRUCT</span>
-          </span>
+          <div className="flex items-center gap-3">
+            <div className="h-9 w-9 rounded-lg bg-[#D4A017] text-[#0F172A] flex items-center justify-center shrink-0 shadow-md border border-[#B8890F]">
+              <svg className="h-5 w-5 text-[#0F172A]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M4 4l8 16L20 4" />
+                <path d="M8 4l4 8 4-8" strokeWidth="2" />
+              </svg>
+            </div>
+            <span className="font-heading font-extrabold text-2xl tracking-wider block leading-none text-white">
+              VANGUARD <span className="text-[#D4A017]">CONSTRUCT</span>
+            </span>
+          </div>
           <p className="text-xs leading-relaxed max-w-xs font-normal text-[#94A3B8]">
             Tập đoàn tổng thầu xây dựng EPC & hạ tầng công nghiệp quy mô toàn cầu. Đột phá kỷ nguyên thi công số.
           </p>
@@ -65,7 +73,6 @@ export default function Footer({ onOpenConsultation }: FooterProps) {
               placeholder="Email công ty..."
               className="bg-[#1E293B] border border-[#334155] rounded-xl px-3 py-2 text-xs focus:outline-none focus:border-[#3B82F6] flex-1 text-white placeholder:text-[#64748B]"
             />
-            {/* Footer Newsletter Submit Button in Gold #D4A017, text #0F172A, hover #B8890F */}
             <button className="bg-[#D4A017] text-[#0F172A] font-extrabold text-xs px-4 py-2 rounded-xl hover:bg-[#B8890F] transition-colors">
               Đăng Ký
             </button>

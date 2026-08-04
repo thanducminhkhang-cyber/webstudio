@@ -97,10 +97,13 @@ export default function Navbar({ onOpenConsultation }: NavbarProps) {
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between gap-4">
-        {/* Brand Logo */}
+        {/* Brand Logo with Custom Geometric SVG Mark */}
         <Link href="/" className="flex items-center gap-3 group mr-4 lg:mr-8 shrink-0">
-          <div className="h-10 w-10 rounded-xl bg-[#D4A017] text-[#0F172A] flex items-center justify-center font-heading font-extrabold text-2xl shadow-md group-hover:bg-[#B8890F] transition-colors">
-            V
+          <div className="h-10 w-10 rounded-lg bg-[#D4A017] text-[#0F172A] flex items-center justify-center shrink-0 shadow-md group-hover:bg-[#B8890F] transition-colors border border-[#B8890F]">
+            <svg className="h-6 w-6 text-[#0F172A]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M4 4l8 16L20 4" />
+              <path d="M8 4l4 8 4-8" strokeWidth="2" />
+            </svg>
           </div>
           <div>
             <span className="font-heading font-extrabold text-xl sm:text-2xl tracking-wider block leading-none text-white">
@@ -225,7 +228,7 @@ export default function Navbar({ onOpenConsultation }: NavbarProps) {
           </a>
 
           <a href="#stats-partners" className="py-1.5 text-[#94A3B8] hover:text-white transition-colors">
-            Số Liệu & Bản Đồ
+            Số Liệu & Quốc Gia
           </a>
 
           <a href="#testimonials-awards" className="py-1.5 text-[#94A3B8] hover:text-white transition-colors">
@@ -280,7 +283,7 @@ export default function Navbar({ onOpenConsultation }: NavbarProps) {
               <a href="#projects" onClick={() => setIsMobileOpen(false)} className="font-heading font-bold text-lg uppercase tracking-wider text-white">Dự Án Biểu Tượng</a>
               <a href="#services" onClick={() => setIsMobileOpen(false)} className="font-heading font-bold text-lg uppercase tracking-wider text-white">Dịch Vụ Thi Công</a>
               <a href="#timeline" onClick={() => setIsMobileOpen(false)} className="font-heading font-bold text-lg uppercase tracking-wider text-white">Quy Trình Thi Công</a>
-              <a href="#stats-partners" onClick={() => setIsMobileOpen(false)} className="font-heading font-bold text-lg uppercase tracking-wider text-white">Số Liệu & Bản Đồ</a>
+              <a href="#stats-partners" onClick={() => setIsMobileOpen(false)} className="font-heading font-bold text-lg uppercase tracking-wider text-white">Số Liệu & Quốc Gia</a>
               <a href="#testimonials-awards" onClick={() => setIsMobileOpen(false)} className="font-heading font-bold text-lg uppercase tracking-wider text-white">Đánh Giá & Giải Thưởng</a>
             </nav>
 

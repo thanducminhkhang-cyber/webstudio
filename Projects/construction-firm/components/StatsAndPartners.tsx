@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { DollarSign, Building, Users, Globe } from "lucide-react";
+import { DollarSign, Building, Users, Globe, ShieldCheck, CheckCircle2 } from "lucide-react";
 
 interface CountryPartner {
   id: string;
@@ -107,13 +107,13 @@ export default function StatsAndPartners() {
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto space-y-3">
           <span className="text-[11px] font-extrabold text-[#3B82F6] uppercase tracking-[0.25em] font-mono">
-            TRACK RECORD & GLOBAL PARTNERS
+            TRACK RECORD & PERFORMANCE BARS
           </span>
           <h2 className="font-heading text-3xl sm:text-5xl font-extrabold uppercase tracking-tight leading-tight text-white">
-            Số Liệu Năng Lực & Quốc Gia Đối Tác
+            Số Liệu Năng Lực & Thanh Chỉ Số Dự Án
           </h2>
           <p className="text-sm sm:text-base text-[#94A3B8] leading-relaxed">
-            Minh chứng năng lực thực tế qua mạng lưới hợp tác chiến lược với các tập đoàn hàng đầu thế giới.
+            Minh chứng năng lực thực tế qua chỉ số tiến độ bàn giao chuẩn xác và cam kết an toàn lao động tuyệt đối.
           </p>
         </div>
 
@@ -152,8 +152,71 @@ export default function StatsAndPartners() {
           })}
         </div>
 
-        {/* 2. DẢI QUỐC KỲ ĐỐI TÁC CHIẾN LƯỢC (FLAG-ICONS LIBRARY) */}
-        <div className="pt-6 space-y-8">
+        {/* 2. THANH SO SÁNH NĂNG LỰC (PART 3 PROGRESS BARS BLOCK) */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="bg-[#0F172A] border border-[#334155] rounded-2xl p-6 sm:p-8 space-y-6 max-w-4xl mx-auto shadow-xl"
+        >
+          <div className="flex items-center justify-between border-b border-[#334155] pb-4">
+            <div className="flex items-center gap-2">
+              <ShieldCheck className="h-5 w-5 text-[#D4A017]" />
+              <h3 className="font-heading font-extrabold text-lg uppercase text-white tracking-wider">
+                Chỉ Số Thi Công & Cam Kết Kỹ Thuật
+              </h3>
+            </div>
+            <span className="text-[10px] font-mono font-bold text-[#3B82F6] uppercase bg-[#1E293B] px-3 py-1 rounded-full border border-[#334155]">
+              Audited 2026
+            </span>
+          </div>
+
+          <div className="space-y-6">
+            {/* Progress Bar 1: Tiến độ hoàn thành trung bình */}
+            <div className="space-y-2">
+              <div className="flex justify-between items-center text-xs font-bold">
+                <span className="text-white flex items-center gap-2">
+                  <CheckCircle2 className="h-4 w-4 text-[#D4A017]" />
+                  Tiến độ hoàn thành trung bình dự án: 96% đúng hạn hoặc sớm hơn
+                </span>
+                <span className="font-mono text-sm text-[#D4A017] font-extrabold">96%</span>
+              </div>
+              <div className="w-full bg-[#334155] h-3 rounded-full overflow-hidden p-0.5">
+                <motion.div
+                  initial={{ width: "0%" }}
+                  whileInView={{ width: "96%" }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 1.5, ease: "easeOut" }}
+                  className="bg-[#D4A017] h-full rounded-full shadow-md"
+                />
+              </div>
+            </div>
+
+            {/* Progress Bar 2: Tỷ lệ an toàn lao động */}
+            <div className="space-y-2">
+              <div className="flex justify-between items-center text-xs font-bold">
+                <span className="text-white flex items-center gap-2">
+                  <ShieldCheck className="h-4 w-4 text-[#3B82F6]" />
+                  Tỷ lệ an toàn lao động: 99.9% Zero-Accident
+                </span>
+                <span className="font-mono text-sm text-[#3B82F6] font-extrabold">99.9%</span>
+              </div>
+              <div className="w-full bg-[#334155] h-3 rounded-full overflow-hidden p-0.5">
+                <motion.div
+                  initial={{ width: "0%" }}
+                  whileInView={{ width: "99.9%" }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 1.5, ease: "easeOut" }}
+                  className="bg-[#3B82F6] h-full rounded-full shadow-md"
+                />
+              </div>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* 3. DẢI QUỐC KỲ ĐỐI TÁC CHIẾN LƯỢC (FLAG-ICONS LIBRARY) */}
+        <div className="pt-4 space-y-8">
           <div className="text-center space-y-1">
             <h3 className="font-heading font-extrabold text-xl uppercase tracking-wider text-white">
               Quốc Gia & Đối Tác Chiến Lược Toàn Cầu
@@ -163,7 +226,7 @@ export default function StatsAndPartners() {
             </p>
           </div>
 
-          {/* Flexbox Row of Country Flag Pills using flag-icons library */}
+          {/* Flexbox Row of Country Flag Pills */}
           <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 max-w-4xl mx-auto relative">
             {countryPartners.map((item, idx) => (
               <motion.div
@@ -179,7 +242,7 @@ export default function StatsAndPartners() {
                   activeCountry?.id === item.id ? "border-[#D4A017] bg-[#0F172A]" : "border-[#334155]"
                 } hover:border-[#D4A017] rounded-full px-5 py-2.5 transition-all duration-200 shadow-md group`}
               >
-                {/* Flag Icon from flag-icons library (width: 24px, height: 18px, border-radius: 3px) */}
+                {/* Flag Icon */}
                 <span className={`${item.flagClass} fi-custom shadow-xs group-hover:scale-110 transition-transform`} />
 
                 {/* Country Name */}
@@ -226,7 +289,7 @@ export default function StatsAndPartners() {
           </div>
         </div>
 
-        {/* 3. Strategic Partners Logos Grid */}
+        {/* 4. Strategic Partners Logos Grid */}
         <div className="pt-8 border-t border-[#334155] space-y-6">
           <p className="text-center text-[10px] text-[#94A3B8] font-mono uppercase tracking-[0.25em] font-bold">
             ĐỐI TÁC CHỦ ĐẦU TƯ TẬP ĐOÀN TOÀN CẦU FORTUNE 500
