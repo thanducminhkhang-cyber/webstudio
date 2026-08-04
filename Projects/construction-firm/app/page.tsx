@@ -3,20 +3,13 @@
 import React, { useState } from "react";
 import { CheckCircle2 } from "lucide-react";
 
-import { ThemeProvider } from "../components/ThemeProvider";
 import Navbar from "../components/Navbar";
 import HeroSection from "../components/HeroSection";
 import CompanyIntro from "../components/CompanyIntro";
-import WhyChooseUs from "../components/WhyChooseUs";
 import ProjectShowcase from "../components/ProjectShowcase";
 import ServicesSection from "../components/ServicesSection";
-import ProcessTimeline from "../components/ProcessTimeline";
-import NumbersCounter from "../components/NumbersCounter";
-import ClientLogos from "../components/ClientLogos";
-import Testimonials from "../components/Testimonials";
-import AwardsCertifications from "../components/AwardsCertifications";
-import TeamSection from "../components/TeamSection";
-import LatestNews from "../components/LatestNews";
+import StatsAndPartners from "../components/StatsAndPartners";
+import TestimonialsAndAwards from "../components/TestimonialsAndAwards";
 import ContactModal from "../components/ContactModal";
 import Footer from "../components/Footer";
 
@@ -35,71 +28,51 @@ export default function ConstructionHomePage() {
   };
 
   return (
-    <ThemeProvider>
-      <div className="relative min-h-screen font-sans selection:bg-[#C9A227]/30 selection:text-[#0D1321]">
-        {/* Toast Banner */}
-        {toastMessage && (
-          <div className="fixed bottom-6 right-6 z-50 flex items-center gap-3 rounded-2xl bg-[#0D1321] text-white px-6 py-4 font-medium shadow-2xl animate-in slide-in-from-bottom-5 text-sm border border-[#C9A227]">
-            <CheckCircle2 className="h-5 w-5 shrink-0 text-[#C9A227]" />
-            <span>{toastMessage}</span>
-          </div>
-        )}
+    <div className="relative min-h-screen bg-[#0F172A] font-sans text-white selection:bg-[#D4A017]/30 selection:text-white">
+      {/* Toast Notification */}
+      {toastMessage && (
+        <div className="fixed bottom-6 right-6 z-50 flex items-center gap-3 rounded-xl bg-[#1E293B] text-white px-6 py-4 font-medium shadow-2xl text-sm border border-[#3B82F6]">
+          <CheckCircle2 className="h-5 w-5 shrink-0 text-[#3B82F6]" />
+          <span>{toastMessage}</span>
+        </div>
+      )}
 
-        {/* Sticky Header Navbar */}
-        <Navbar onOpenConsultation={() => setIsContactOpen(true)} />
+      {/* Header Navigation */}
+      <Navbar onOpenConsultation={() => setIsContactOpen(true)} />
 
-        {/* Main Sections */}
-        <main>
-          {/* 1. HERO SECTION */}
-          <HeroSection
-            onStartProject={() => setIsContactOpen(true)}
-            onWatchPortfolio={handleScrollToProjects}
-          />
-
-          {/* 2. COMPANY INTRO (#about) */}
-          <CompanyIntro />
-
-          {/* 3. WHY CHOOSE US (#why-us + CTA 1) */}
-          <WhyChooseUs onOpenConsultation={() => setIsContactOpen(true)} />
-
-          {/* 4. FEATURED ICONIC MEGA PROJECTS (#projects + CTA 2) */}
-          <ProjectShowcase onOpenConsultation={() => setIsContactOpen(true)} />
-
-          {/* 5. SERVICES (#services) */}
-          <ServicesSection />
-
-          {/* 6. PROCESS TIMELINE (#timeline) */}
-          <ProcessTimeline />
-
-          {/* 7. NUMBERS COUNTER */}
-          <NumbersCounter />
-
-          {/* 8. CLIENT LOGOS (#clients) */}
-          <ClientLogos />
-
-          {/* 9. TESTIMONIALS */}
-          <Testimonials />
-
-          {/* 10. AWARDS & CERTIFICATIONS (#awards) */}
-          <AwardsCertifications />
-
-          {/* 11. EXECUTIVE TEAM */}
-          <TeamSection />
-
-          {/* 12. LATEST NEWS */}
-          <LatestNews />
-        </main>
-
-        {/* 13. PROJECT CONSULTATION MODAL */}
-        <ContactModal
-          isOpen={isContactOpen}
-          onClose={() => setIsContactOpen(false)}
-          onSubmitSuccess={(msg) => showToast(msg)}
+      {/* Main 7 Sections */}
+      <main>
+        {/* SECTION 1: HERO */}
+        <HeroSection
+          onStartProject={() => setIsContactOpen(true)}
+          onWatchPortfolio={handleScrollToProjects}
         />
 
-        {/* 14. FOOTER (#contact + CTA 3) */}
-        <Footer onOpenConsultation={() => setIsContactOpen(true)} />
-      </div>
-    </ThemeProvider>
+        {/* SECTION 2: GIỚI THIỆU NĂNG LỰC */}
+        <CompanyIntro />
+
+        {/* SECTION 3: DỰ ÁN TIÊU BIỂU */}
+        <ProjectShowcase onOpenConsultation={() => setIsContactOpen(true)} />
+
+        {/* SECTION 4: DỊCH VỤ CHÍNH (Nền sáng #F8F9FA để nghỉ mắt) */}
+        <ServicesSection />
+
+        {/* SECTION 5: SỐ LIỆU + ĐỐI TÁC (Tĩnh, gộp 1 section) */}
+        <StatsAndPartners />
+
+        {/* SECTION 6: ĐÁNH GIÁ ĐỐI TÁC + GIẢI THƯỞNG (Gộp 1 section) */}
+        <TestimonialsAndAwards />
+      </main>
+
+      {/* Project Consultation Modal */}
+      <ContactModal
+        isOpen={isContactOpen}
+        onClose={() => setIsContactOpen(false)}
+        onSubmitSuccess={(msg) => showToast(msg)}
+      />
+
+      {/* SECTION 7: CTA CUỐI + FOOTER */}
+      <Footer onOpenConsultation={() => setIsContactOpen(true)} />
+    </div>
   );
 }

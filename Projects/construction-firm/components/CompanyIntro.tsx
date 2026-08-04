@@ -3,94 +3,92 @@
 import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { CheckCircle2 } from "lucide-react";
-import { useTheme } from "./ThemeProvider";
+import { CheckCircle2, ShieldAlert, Cpu } from "lucide-react";
 
 export default function CompanyIntro() {
-  const { theme } = useTheme();
-
   return (
-    <section id="about" className={`py-28 sm:py-36 px-4 sm:px-6 relative overflow-hidden transition-colors duration-300 ${
-      theme === "light" ? "bg-[#F8F6F1] text-[#0D1321]" : "bg-[#0D1321] text-white"
-    }`}>
+    <section id="about" className="py-24 px-4 sm:px-6 relative overflow-hidden bg-[#0F172A] text-white border-t border-[#334155]">
       {/* Background Watermark */}
-      <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-heading font-extrabold text-[120px] sm:text-[220px] select-none pointer-events-none uppercase tracking-tighter whitespace-nowrap ${
-        theme === "light" ? "text-[#0D1321]/5" : "text-white/5"
-      }`}>
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-heading font-extrabold text-[120px] sm:text-[200px] select-none pointer-events-none uppercase tracking-tighter whitespace-nowrap text-[#334155]/20">
         ENGINEERING
       </div>
 
       <div className="max-w-7xl mx-auto space-y-16 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          {/* Left Column: Asymmetrical Image Stack */}
+          {/* Left Column: Construction Site & Steel Structure Imagery */}
           <motion.div
-            initial={{ opacity: 0, y: 24 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:col-span-6 relative aspect-[4/3] sm:aspect-[16/11] rounded-3xl overflow-hidden shadow-2xl border border-[#C9A227]/30 group"
+            transition={{ duration: 0.5 }}
+            className="lg:col-span-6 relative aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl border border-[#334155] group"
           >
             <Image
-              src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=1200&auto=format&fit=crop"
-              alt="Engineering Design & Blueprint Planning"
+              src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=1200&auto=format&fit=crop"
+              alt="Engineers Inspecting High-Tech Steel Construction Site"
               fill
-              className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+              className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out filter contrast-110"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0D1321]/80 via-transparent to-transparent opacity-80" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#0F172A] via-transparent to-transparent opacity-90" />
 
-            <div className="absolute bottom-6 left-6 right-6 p-6 rounded-2xl bg-[#0D1321]/90 border border-[#C9A227]/30 backdrop-blur-md text-white space-y-1">
-              <span className="text-[10px] text-[#E8C766] font-mono uppercase font-bold tracking-widest block">
+            <div className="absolute bottom-6 left-6 right-6 p-5 rounded-xl bg-[#1E293B]/90 border border-[#334155] backdrop-blur-md text-white space-y-1">
+              <span className="text-[10px] text-[#D4A017] font-mono uppercase font-bold tracking-widest block">
                 TẬP ĐOÀN TỔNG THẦU EPC CHUYÊN NGHIỆP
               </span>
-              <p className="font-heading font-bold text-xl uppercase">Vanguard Engineering & Construction Empire</p>
+              <p className="font-heading font-bold text-lg uppercase">Vanguard Engineering & Infrastructure</p>
             </div>
           </motion.div>
 
-          {/* Right Column: Massive Typography Intro */}
+          {/* Right Column: Content */}
           <motion.div
-            initial={{ opacity: 0, y: 24 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.5, delay: 0.1 }}
             className="lg:col-span-6 space-y-6"
           >
-            <span className="text-[11px] font-extrabold text-[#C9A227] uppercase tracking-[0.25em] font-mono">
-              ABOUT VANGUARD CONSTRUCT
+            <span className="text-[11px] font-extrabold text-[#3B82F6] uppercase tracking-[0.25em] font-mono">
+              NĂNG LỰC CỐT LÕI
             </span>
 
-            <h2 className="font-heading text-3xl sm:text-5xl font-extrabold uppercase tracking-tight leading-[1.25]">
+            <h2 className="font-heading text-3xl sm:text-4xl font-extrabold uppercase tracking-tight leading-snug text-white">
               Đơn Vị Tiên Phong Trong Kỷ Nguyên Xây Dựng Số & Kỹ Thuật Siêu Trọng
             </h2>
 
-            {/* Paragraph with normal case (no uppercase) and contrast ratio >= 4.5:1 */}
-            <p className={`text-sm sm:text-base leading-[1.6] font-normal ${
-              theme === "light" ? "text-[#4A5264]" : "text-[#B8BCC8]"
-            }`}>
-              Được thành lập từ năm 1998, Vanguard Construct đã khẳng định vị thế tập đoàn xây dựng hạ tầng, khu công nghiệp và cao ốc biểu tượng hàng đầu Châu Á. Chúng tôi ứng dụng mô hình BIM 5D, trí tuệ nhân tạo AI quản trị tiến độ và quy chuẩn thi công an toàn tuyệt đối.
+            <p className="text-sm sm:text-base leading-relaxed font-normal text-[#94A3B8]">
+              Thành lập từ năm 1998, Vanguard Construct khẳng định vị thế tập đoàn xây dựng hạ tầng, công nghiệp và cao ốc biểu tượng hàng đầu Châu Á. Chúng tôi ứng dụng mô hình BIM 5D, kiểm soát tiến độ thời gian thực và thực thi tiêu chuẩn an toàn lao động nghiêm ngặt trên mọi công trường.
             </p>
 
-            {/* 3 Core Highlights */}
-            <div className={`grid grid-cols-1 sm:grid-cols-2 gap-6 pt-4 border-t ${
-              theme === "light" ? "border-[#0D1321]/10" : "border-white/10"
-            }`}>
-              <div className="flex items-start gap-3">
-                <CheckCircle2 className="h-5 w-5 text-[#C9A227] shrink-0 mt-0.5" />
-                <div>
-                  <h4 className="font-bold text-xs uppercase tracking-wider">Tổng Thầu EPC Trọn Gói</h4>
-                  <p className={`text-[12px] leading-snug mt-0.5 ${theme === 'light' ? 'text-[#4A5264]' : 'text-[#B8BCC8]'}`}>
-                    Tối ưu chi phí & đảm bảo tiến độ chính xác từng ngày.
-                  </p>
+            {/* Core Highlights */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4 border-t border-[#334155]">
+              <div className="space-y-1">
+                <div className="flex items-center gap-2 text-[#D4A017]">
+                  <CheckCircle2 className="h-4 w-4 shrink-0" />
+                  <h4 className="font-bold text-xs uppercase tracking-wider text-white">Tổng Thầu EPC</h4>
                 </div>
+                <p className="text-[12px] text-[#94A3B8] leading-snug">
+                  Tối ưu chi phí & kiểm soát tiến độ chuẩn xác.
+                </p>
               </div>
 
-              <div className="flex items-start gap-3">
-                <CheckCircle2 className="h-5 w-5 text-[#C9A227] shrink-0 mt-0.5" />
-                <div>
-                  <h4 className="font-bold text-xs uppercase tracking-wider">Tiêu Chuẩn Xanh LEED Gold</h4>
-                  <p className={`text-[12px] leading-snug mt-0.5 ${theme === 'light' ? 'text-[#4A5264]' : 'text-[#B8BCC8]'}`}>
-                    Công nghệ vật liệu bền vững giảm 40% carbon.
-                  </p>
+              <div className="space-y-1">
+                <div className="flex items-center gap-2 text-[#3B82F6]">
+                  <Cpu className="h-4 w-4 shrink-0" />
+                  <h4 className="font-bold text-xs uppercase tracking-wider text-white">BIM 5D & AI</h4>
                 </div>
+                <p className="text-[12px] text-[#94A3B8] leading-snug">
+                  Mô phỏng 3D kết cấu và dự báo rủi ro tự động.
+                </p>
+              </div>
+
+              <div className="space-y-1">
+                <div className="flex items-center gap-2 text-[#F97316]">
+                  <ShieldAlert className="h-4 w-4 shrink-0" />
+                  <h4 className="font-bold text-xs uppercase tracking-wider text-white">Zero Accident</h4>
+                </div>
+                <p className="text-[12px] text-[#94A3B8] leading-snug">
+                  Quy trình HSE chuẩn hóa quốc tế 100%.
+                </p>
               </div>
             </div>
           </motion.div>

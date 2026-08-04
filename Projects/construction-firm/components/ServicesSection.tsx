@@ -2,98 +2,120 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { HardHat, Compass, Layers, Cpu, FileText, Building2 } from "lucide-react";
-import { useTheme } from "./ThemeProvider";
+import { HardHat, Compass, Layers, Cpu, FileText, Building2, CheckCircle } from "lucide-react";
 
 export default function ServicesSection() {
-  const { theme } = useTheme();
-
   const services = [
     {
       icon: HardHat,
-      code: "SVC-01",
-      title: "General Construction (Tổng Thầu Thi Công)",
-      desc: "Tổng thầu thi công hạ tầng giao thông, công trình công nghiệp quy mô lớn và cao ốc văn phòng hạng A với mô hình EPC trọn gói.",
+      accentColor: "#3B82F6", // steel blue
+      title: "General Construction EPC",
+      subtitle: "Tổng Thầu Thi Công Hạ Tầng & Cao ốc",
+      description: "Quản lý trọn gói từ san lấp mặt bằng, móng cọc siêu sâu đến cất nóc công trình cao tầng. Đảm bảo tiến độ bàn giao chính xác từng ngày.",
+      points: ["Hạ tầng khu công nghiệp", "Tháp cao ốc biểu tượng", "Hầm ngầm & Cầu vượt"],
     },
     {
       icon: Compass,
-      code: "SVC-02",
-      title: "Architecture & BIM 5D Design",
-      desc: "Thiết kế kiến trúc biểu tượng tích hợp mô hình số BIM 5D, tính toán tải trọng động và tối ưu 40% năng lượng vận hành.",
+      accentColor: "#D4A017", // gold
+      title: "Architecture & BIM 5D",
+      subtitle: "Thiết Kế Số Hóa & Mô Phỏng Kết Cấu",
+      description: "Ứng dụng mô hình BIM 5D lập tiến độ và ngân sách thời gian thực. Phát hiện xung đột kết cấu trước khi thi công thực địa.",
+      points: ["Mô phỏng 3D/4D/5D BIM", "Tính toán kết cấu chịu lực", "Thiết kế chuẩn LEED/LOTUS"],
     },
     {
       icon: Layers,
-      code: "SVC-03",
+      accentColor: "#F97316", // safety orange
       title: "Interior Architectural Finishing",
-      desc: "Thi công hoàn thiện nội thất đại sảnh khách sạn 5 sao, penthouse và trụ sở tập đoàn với vật liệu cao cấp nhập khẩu Châu Âu.",
+      subtitle: "Hoàn Thiện Nội Thất & Đô Thị",
+      description: "Thi công hoàn thiện nội ngoại thất cao cấp cho các khách sạn 5 sao, trung tâm thương mại và trụ sở tập đoàn đa quốc gia.",
+      points: ["Nội thất chuẩn 5 sao", "Mặt dựng kính Low-E", "Cảnh quan đô thị thông minh"],
     },
     {
       icon: Cpu,
-      code: "SVC-04",
+      accentColor: "#3B82F6",
       title: "MEP & High-Tech Engineering",
-      desc: "Hệ thống cơ điện lạnh trung tâm HVAC, phòng sạch bán dẫn Class 100, hạ tầng tự động hóa tòa nhà BMS thông minh.",
+      subtitle: "Hệ Thống Cơ Điện Lạnh & BMS Trung Tâm",
+      description: "Thi công giải pháp MEP phức hợp: HVAC trung tâm, hệ thống PCCC tự động, điện nhẹ thông minh và quản lý tòa nhà BMS.",
+      points: ["Phòng sạch Class 100", "Hệ thống HVAC trung tâm", "BMS & PCCC tự động"],
     },
     {
       icon: FileText,
-      code: "SVC-05",
-      title: "Engineering & Technical Consulting",
-      desc: "Tư vấn thẩm tra kết cấu siêu trọng, khảo sát địa chất hầm sâu, đánh giá tác động môi trường và tối ưu hóa chi phí đầu tư.",
+      accentColor: "#F97316",
+      title: "Engineering Consulting",
+      subtitle: "Tư Vấn Thẩm Tra Kết Cấu Siêu Trọng",
+      description: "Cung cấp dịch vụ kiểm định chất lượng công trình, thẩm tra thiết kế kỹ thuật móng sâu và tư vấn giải pháp gia cường kết cấu.",
+      points: ["Thẩm tra móng sâu ngầm", "Kiểm định chịu tải trọng", "Gia cường kết cấu thép"],
     },
     {
       icon: Building2,
-      code: "SVC-06",
-      title: "Project Management & Commissioning",
-      desc: "Quản lý dự án chuyên nghiệp theo tiêu chuẩn PMI, điều phối nhà thầu phụ và nghiệm thu bàn giao đưa vào vận hành thương mại.",
+      accentColor: "#D4A017",
+      title: "Project Management",
+      subtitle: "Quản Lý Dự Án Theo Chuẩn PMI",
+      description: "Đội ngũ Giám đốc Dự án đạt chứng chỉ PMI quốc tế, trực tiếp điều phối nguồn lực, quản trị rủi ro HSE và kiểm soát chi phí tối ưu.",
+      points: ["Quản trị rủi ro HSE", "Kiểm soát chi phí chuỗi cung ứng", "Báo cáo tiến độ thời gian thực"],
     },
   ];
 
   return (
-    <section id="services" className={`py-28 sm:py-36 px-4 sm:px-6 relative overflow-hidden transition-colors duration-300 ${
-      theme === "light" ? "bg-[#F8F6F1] text-[#0D1321]" : "bg-[#0D1321] text-white"
-    }`}>
-      <div className="max-w-7xl mx-auto space-y-16 relative z-10">
-        <div className="text-center space-y-3">
-          <span className="text-[11px] font-extrabold text-[#C9A227] uppercase tracking-[0.25em] font-mono">
-            OUR CORE CAPABILITIES
+    <section id="services" className="py-24 px-4 sm:px-6 bg-[#F8F9FA] text-[#1E293B]">
+      <div className="max-w-7xl mx-auto space-y-16">
+        {/* Section Header */}
+        <div className="text-center max-w-3xl mx-auto space-y-3">
+          <span className="text-[11px] font-extrabold text-[#3B82F6] uppercase tracking-[0.25em] font-mono">
+            CORE ENGINEERING SERVICES
           </span>
-          <h2 className="font-heading text-3xl sm:text-5xl font-extrabold uppercase tracking-tight leading-[1.25]">
-            Lĩnh Vực Hoạt Động & Dịch Vụ Chuyên NGHỆP
+          <h2 className="font-heading text-3xl sm:text-5xl font-extrabold uppercase tracking-tight leading-tight text-[#1E293B]">
+            Lĩnh Vực Dịch Vụ & Năng Lực Kỹ Thuật
           </h2>
-          <p className={`max-w-xl mx-auto text-sm font-normal ${theme === 'light' ? 'text-[#4A5264]' : 'text-[#B8BCC8]'}`}>
-            Giải pháp xây dựng và kỹ thuật toàn diện cho các siêu dự án thương mại & hạ tầng quốc gia.
+          <p className="text-sm sm:text-base text-[#475569] leading-relaxed">
+            Cung cấp giải pháp tổng thể trọn gói từ tư vấn thiết kế số hóa BIM đến trực tiếp thi công hạ tầng siêu trọng theo chuẩn an toàn quốc tế.
           </p>
         </div>
 
+        {/* Services Grid (White cards on #F8F9FA light bg for rest/contrast) */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((svc, idx) => {
             const Icon = svc.icon;
             return (
               <motion.div
                 key={idx}
-                initial={{ opacity: 0, y: 24 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: idx * 0.08, ease: [0.16, 1, 0.3, 1] }}
-                className={`p-8 sm:p-10 rounded-3xl space-y-4 hover:-translate-y-2 transition-all duration-400 group border ${
-                  theme === "light"
-                    ? "bg-white border-[#0D1321]/10 hover:border-[#C9A227] shadow-[0_4px_24px_rgba(0,0,0,0.06)]"
-                    : "bg-[#121A2D] border-[rgba(201,162,39,0.25)] hover:border-[#C9A227]"
-                }`}
+                transition={{ duration: 0.5, delay: idx * 0.08 }}
+                className="bg-white rounded-2xl p-8 border border-[#E2E8F0] shadow-sm hover:shadow-md hover:border-[#CBD5E1] transition-all duration-300 flex flex-col justify-between group"
               >
-                <div className="flex justify-between items-center">
-                  <div className="h-12 w-12 rounded-2xl bg-white/5 border border-[#C9A227]/40 flex items-center justify-center text-[#C9A227] group-hover:bg-[#C9A227] group-hover:text-[#0D1321] transition-colors">
-                    <Icon className="h-6 w-6 stroke-[1.75]" />
+                <div className="space-y-4">
+                  {/* Icon Box */}
+                  <div
+                    className="h-12 w-12 rounded-xl flex items-center justify-center transition-transform group-hover:scale-105"
+                    style={{ backgroundColor: `${svc.accentColor}15`, color: svc.accentColor }}
+                  >
+                    <Icon className="h-6 w-6" />
                   </div>
-                  <span className="font-mono text-xs font-bold text-[#C9A227]">{svc.code}</span>
+
+                  <div>
+                    <h3 className="font-heading font-extrabold text-xl uppercase tracking-tight text-[#1E293B]">
+                      {svc.title}
+                    </h3>
+                    <p className="text-xs font-semibold text-[#64748B] mt-0.5">
+                      {svc.subtitle}
+                    </p>
+                  </div>
+
+                  <p className="text-xs sm:text-sm text-[#475569] leading-relaxed">
+                    {svc.description}
+                  </p>
+
+                  <ul className="space-y-2 pt-2 border-t border-[#F1F5F9]">
+                    {svc.points.map((pt, i) => (
+                      <li key={i} className="flex items-center gap-2 text-xs font-medium text-[#334155]">
+                        <CheckCircle className="h-3.5 w-3.5 text-[#3B82F6] shrink-0" />
+                        <span>{pt}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
-                <h3 className="font-heading font-extrabold text-xl uppercase group-hover:text-[#C9A227] transition-colors leading-[1.35]">
-                  {svc.title}
-                </h3>
-                <p className={`text-xs sm:text-sm leading-[1.6] font-normal ${
-                  theme === "light" ? "text-[#4A5264]" : "text-[#B8BCC8]"
-                }`}>
-                  {svc.desc}
-                </p>
               </motion.div>
             );
           })}

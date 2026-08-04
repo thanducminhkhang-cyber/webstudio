@@ -1,12 +1,8 @@
 "use client";
 
 import React from "react";
-import { Marquee } from "@wsos/ui/blocks/marquee";
-import { useTheme } from "./ThemeProvider";
 
 export default function ClientLogos() {
-  const { theme } = useTheme();
-
   const clients = [
     "SAMSUNG ELECTRONICS",
     "GENERAL ELECTRIC",
@@ -19,24 +15,25 @@ export default function ClientLogos() {
   ];
 
   return (
-    <section id="clients" className={`py-12 border-y overflow-hidden transition-colors duration-300 ${
-      theme === "light"
-        ? "bg-white border-slate-200 text-[#0D1321]"
-        : "bg-[#121A2D] border-white/10 text-white"
-    }`}>
-      <div className="max-w-7xl mx-auto space-y-4">
-        <p className="text-center text-[10px] text-[#C9A227] font-mono uppercase tracking-[0.25em] font-bold">
+    <section id="clients" className="py-12 border-y border-[#334155] bg-[#0F172A] text-white">
+      <div className="max-w-7xl mx-auto space-y-6 px-4 sm:px-6">
+        <p className="text-center text-[10px] text-[#94A3B8] font-mono uppercase tracking-[0.25em] font-bold">
           ĐỐI TÁC CHỦ ĐẦU TƯ TẬP ĐOÀN TOÀN CẦU FORTUNE 500
         </p>
-        <Marquee pauseOnHover className="[--duration:25s]">
+
+        {/* Static Grid (No Marquee, No scrolling animation) */}
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
           {clients.map((c, i) => (
-            <span key={i} className={`mx-10 font-heading font-extrabold text-xl tracking-[0.15em] hover:text-[#C9A227] transition-colors cursor-pointer ${
-              theme === "light" ? "text-[#0D1321]/80" : "text-slate-300"
-            }`}>
-              {c}
-            </span>
+            <div
+              key={i}
+              className="bg-[#1E293B] border border-[#334155] rounded-xl p-4 flex items-center justify-center text-center hover:border-[#3B82F6] transition-colors"
+            >
+              <span className="font-heading font-extrabold text-xs tracking-wider text-[#94A3B8] hover:text-white transition-colors">
+                {c}
+              </span>
+            </div>
           ))}
-        </Marquee>
+        </div>
       </div>
     </section>
   );

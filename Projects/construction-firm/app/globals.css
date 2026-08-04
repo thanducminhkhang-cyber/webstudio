@@ -1,50 +1,29 @@
 @import "tailwindcss";
 
 :root {
-  --background: #0d1321;
-  --foreground: #ffffff;
-  --card: #121a2d;
-  --card-foreground: #ffffff;
-  --popover: #121a2d;
-  --popover-foreground: #ffffff;
-  --primary: #c9a227;
-  --primary-bright: #e8c766;
-  --primary-foreground: #0d1321;
-  --secondary: #121a2d;
-  --secondary-foreground: #ffffff;
-  --muted: #1a233a;
-  --muted-foreground: #b8bcc8;
-  --accent: #c9a227;
-  --accent-foreground: #0d1321;
-  --destructive: #ef4444;
-  --destructive-foreground: #ffffff;
-  --border: rgba(201, 162, 39, 0.25);
-  --input: rgba(201, 162, 39, 0.25);
-  --ring: #c9a227;
+  --background: #0F172A;
+  --foreground: #FFFFFF;
+  --card: #1E293B;
+  --card-foreground: #FFFFFF;
+  --popover: #1E293B;
+  --popover-foreground: #FFFFFF;
+  --primary: #D4A017;
+  --primary-hover: #B8890F;
+  --primary-foreground: #0F172A;
+  --secondary: #1E293B;
+  --secondary-foreground: #FFFFFF;
+  --muted: #1E293B;
+  --muted-foreground: #94A3B8;
+  --accent: #D4A017;
+  --accent-blue: #3B82F6;
+  --accent-orange: #F97316;
+  --accent-foreground: #0F172A;
+  --destructive: #EF4444;
+  --destructive-foreground: #FFFFFF;
+  --border: #334155;
+  --input: #334155;
+  --ring: #D4A017;
   --radius: 0.875rem;
-}
-
-.light {
-  --background: #f8f6f1;
-  --foreground: #0d1321;
-  --card: #ffffff;
-  --card-foreground: #0d1321;
-  --popover: #ffffff;
-  --popover-foreground: #0d1321;
-  --primary: #b8901f;
-  --primary-bright: #c9a227;
-  --primary-foreground: #ffffff;
-  --secondary: #ffffff;
-  --secondary-foreground: #0d1321;
-  --muted: #ebe8e1;
-  --muted-foreground: #4a5264;
-  --accent: #b8901f;
-  --accent-foreground: #ffffff;
-  --destructive: #ef4444;
-  --destructive-foreground: #ffffff;
-  --border: rgba(13, 19, 33, 0.08);
-  --input: rgba(13, 19, 33, 0.08);
-  --ring: #b8901f;
 }
 
 @theme inline {
@@ -68,7 +47,7 @@
   --color-input: var(--input);
   --color-ring: var(--ring);
 
-  --font-heading: var(--font-grotesk), system-ui, sans-serif;
+  --font-heading: var(--font-inter), system-ui, sans-serif;
   --font-sans: var(--font-inter), system-ui, sans-serif;
 }
 
@@ -81,8 +60,8 @@
     transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
   }
   body {
-    background-color: var(--background);
-    color: var(--foreground);
+    background-color: #0F172A;
+    color: #FFFFFF;
     font-family: var(--font-sans);
     line-height: 1.6;
   }
@@ -103,21 +82,18 @@
   }
 }
 
-/* Gold Gradient Utilities */
-.gold-gradient-bg {
-  background: linear-gradient(90deg, #c9a227 0%, #e8c766 50%, #c9a227 100%);
+/* Accent Underline Utility */
+.accent-underline {
+  position: relative;
+  display: inline-block;
 }
-
-.gold-gradient-text {
-  background: linear-gradient(90deg, #c9a227 0%, #e8c766 50%, #c9a227 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.gold-gradient-border {
-  border-image: linear-gradient(90deg, #c9a227 0%, #e8c766 50%, #c9a227 100%) 1;
-}
-
-.light .gold-gradient-bg {
-  background: linear-gradient(90deg, #b8901f 0%, #d4b044 50%, #b8901f 100%);
+.accent-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: #D4A017;
+  border-radius: 2px;
 }
