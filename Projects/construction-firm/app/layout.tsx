@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Space_Grotesk, Inter } from "next/font/google";
+import "flag-icons/css/flag-icons.min.css";
 import "@wsos/ui/globals.css";
 import "./globals.css";
 
@@ -43,7 +44,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="vi" className={`${spaceGrotesk.variable} ${inter.variable}`}>
-      <body className="font-sans bg-[#0D1321] text-white antialiased selection:bg-[#C9A227]/30 selection:text-white min-h-screen">
+      <body className="font-sans bg-[#0F172A] text-white antialiased selection:bg-[#D4A017]/30 selection:text-white min-h-screen">
         {children}
       </body>
     </html>

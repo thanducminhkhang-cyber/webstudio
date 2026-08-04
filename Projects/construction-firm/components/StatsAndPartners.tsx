@@ -6,7 +6,7 @@ import { DollarSign, Building, Users, Globe } from "lucide-react";
 
 interface CountryPartner {
   id: string;
-  flag: string;
+  flagClass: string;
   country: string;
   role: string;
   partners: string;
@@ -50,7 +50,7 @@ export default function StatsAndPartners() {
   const countryPartners: CountryPartner[] = [
     {
       id: "vn",
-      flag: "🇻🇳",
+      flagClass: "fi fi-vn",
       country: "Việt Nam",
       role: "Trụ sở chính Vanguard",
       partners: "Vanguard Headquarter & 180+ Siêu dự án EPC",
@@ -58,7 +58,7 @@ export default function StatsAndPartners() {
     },
     {
       id: "kr",
-      flag: "🇰🇷",
+      flagClass: "fi fi-kr",
       country: "Hàn Quốc",
       role: "Đối tác Tập đoàn",
       partners: "Samsung Electronics, Hyundai E&C",
@@ -66,7 +66,7 @@ export default function StatsAndPartners() {
     },
     {
       id: "us",
-      flag: "🇺🇸",
+      flagClass: "fi fi-us",
       country: "Mỹ (USA)",
       role: "Đối tác Tập đoàn",
       partners: "General Electric, Boeing, Bechtel Global",
@@ -74,7 +74,7 @@ export default function StatsAndPartners() {
     },
     {
       id: "jp",
-      flag: "🇯🇵",
+      flagClass: "fi fi-jp",
       country: "Nhật Bản",
       role: "Đối tác Tập đoàn",
       partners: "Mitsubishi Heavy Industries",
@@ -82,7 +82,7 @@ export default function StatsAndPartners() {
     },
     {
       id: "se",
-      flag: "🇸🇪",
+      flagClass: "fi fi-se",
       country: "Thụy Điển",
       role: "Đối tác Tập đoàn",
       partners: "Skanska Group",
@@ -152,7 +152,7 @@ export default function StatsAndPartners() {
           })}
         </div>
 
-        {/* 2. DẢI QUỐC KỲ ĐỐI TÁC CHIẾN LƯỢC (PILL / BADGE LAYOUT) */}
+        {/* 2. DẢI QUỐC KỲ ĐỐI TÁC CHIẾN LƯỢC (FLAG-ICONS LIBRARY) */}
         <div className="pt-6 space-y-8">
           <div className="text-center space-y-1">
             <h3 className="font-heading font-extrabold text-xl uppercase tracking-wider text-white">
@@ -163,7 +163,7 @@ export default function StatsAndPartners() {
             </p>
           </div>
 
-          {/* Flexbox Row of Country Flag Pills */}
+          {/* Flexbox Row of Country Flag Pills using flag-icons library */}
           <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 max-w-4xl mx-auto relative">
             {countryPartners.map((item, idx) => (
               <motion.div
@@ -179,10 +179,8 @@ export default function StatsAndPartners() {
                   activeCountry?.id === item.id ? "border-[#D4A017] bg-[#0F172A]" : "border-[#334155]"
                 } hover:border-[#D4A017] rounded-full px-5 py-2.5 transition-all duration-200 shadow-md group`}
               >
-                {/* Flag Emoji Icon (24px size) */}
-                <span className="text-2xl leading-none shrink-0 group-hover:scale-110 transition-transform">
-                  {item.flag}
-                </span>
+                {/* Flag Icon from flag-icons library (width: 24px, height: 18px, border-radius: 3px) */}
+                <span className={`${item.flagClass} fi-custom shadow-xs group-hover:scale-110 transition-transform`} />
 
                 {/* Country Name */}
                 <span className="font-heading font-semibold text-sm text-white group-hover:text-[#D4A017] transition-colors">
@@ -205,8 +203,8 @@ export default function StatsAndPartners() {
                       className="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 w-72 p-3.5 rounded-xl bg-[#0F172A] border border-[#D4A017] shadow-2xl z-40 text-white space-y-1 text-left pointer-events-none"
                     >
                       <div className="flex items-center justify-between border-b border-[#334155] pb-1.5">
-                        <span className="font-heading font-extrabold text-xs text-[#D4A017] uppercase tracking-wider">
-                          {item.flag} {item.country}
+                        <span className="font-heading font-extrabold text-xs text-[#D4A017] uppercase tracking-wider flex items-center gap-2">
+                          <span className={`${item.flagClass} fi-custom`} /> {item.country}
                         </span>
                         <span className="text-[9px] font-mono font-bold text-[#3B82F6] uppercase">
                           Đối Tác Chính
