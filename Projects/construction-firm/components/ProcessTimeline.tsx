@@ -2,98 +2,147 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Compass, Cpu, ShoppingBag, HardHat, CheckCircle } from "lucide-react";
-import { useTheme } from "./ThemeProvider";
 
 export default function ProcessTimeline() {
-  const { theme } = useTheme();
-
   const steps = [
     {
       step: "01",
-      icon: Compass,
-      title: "Khảo Sát & Khả Thi (Feasibility)",
-      desc: "Khảo sát địa chất hầm sâu, đánh giá tác động môi trường và lập quy hoạch tổng mặt bằng thi công.",
+      title: "Khảo Sát & Khả Thi",
+      subtitle: "Feasibility Study",
+      desc: "Khảo sát địa chất hầm sâu, đánh giá tác động môi trường và quy hoạch mặt bằng thi công.",
     },
     {
       step: "02",
-      icon: Cpu,
-      title: "Số Hóa BIM 5D & Thiết Kế (Design)",
-      desc: "Lập mô hình 3D kết cấu, mô phỏng xung đột MEP và lập tiến độ thi công chính xác từng ngày.",
+      title: "Số Hóa BIM 5D",
+      subtitle: "Engineering Design",
+      desc: "Lập mô hình 3D kết cấu, mô phỏng xung đột MEP và lập tiến độ thi công thời gian thực.",
     },
     {
       step: "03",
-      icon: ShoppingBag,
-      title: "Mua Sắm Vật Tư (Procurement)",
-      desc: "Cung ứng vật tư kết cấu thép, bê tông mác cao và thiết bị siêu trọng từ các tập đoàn hàng đầu thế giới.",
+      title: "Mua Sắm Vật Tư",
+      subtitle: "Procurement EPC",
+      desc: "Cung ứng vật tư kết cấu thép, bê tông mác cao và thiết bị siêu trọng từ các tập đoàn hàng đầu.",
     },
     {
       step: "04",
-      icon: HardHat,
-      title: "Thi Công & Giám Sát HSE (Construction)",
-      desc: "Triển khai thi công thực địa với kỷ luật an toàn lao động tuyệt đối và kiểm soát chất lượng nghiêm ngặt.",
+      title: "Thi Công & HSE",
+      subtitle: "Construction Execution",
+      desc: "Triển khai thi công thực địa với kỷ luật an toàn lao động tuyệt đối và kiểm soát chất lượng.",
     },
     {
       step: "05",
-      icon: CheckCircle,
-      title: "Nghiệm Thu & Bàn Giao (Commissioning)",
-      desc: "Chạy thử tải toàn hệ thống, nghiệm thu PCCC và bàn giao công trình đưa vào vận hành thương mại.",
+      title: "Nghiệm Thu & Bàn Giao",
+      subtitle: "Commissioning",
+      desc: "Chạy thử tải toàn hệ thống, nghiệm thu PCCC và bàn giao công trình đưa vào vận hành.",
     },
   ];
 
   return (
-    <section id="timeline" className={`py-28 sm:py-36 px-4 sm:px-6 relative overflow-hidden transition-colors duration-300 ${
-      theme === "light" ? "bg-[#F8F6F1] text-[#0D1321]" : "bg-[#0D1321] text-white"
-    }`}>
+    <section id="timeline" className="py-24 px-4 sm:px-6 bg-[#0F172A] text-white border-t border-[#334155]">
       <div className="max-w-7xl mx-auto space-y-16">
-        <div className="text-center space-y-3">
-          <span className="text-[11px] font-extrabold text-[#C9A227] uppercase tracking-[0.25em] font-mono">
-            EPC WORKFLOW STANDARDS
+        {/* Section Header */}
+        <div className="text-center max-w-3xl mx-auto space-y-3">
+          <span className="text-[11px] font-extrabold text-[#3B82F6] uppercase tracking-[0.25em] font-mono">
+            WORKFLOW STANDARDS
           </span>
-          <h2 className="font-heading text-3xl sm:text-5xl font-extrabold uppercase tracking-tight leading-[1.25]">
+          <h2 className="font-heading text-3xl sm:text-5xl font-extrabold uppercase tracking-tight leading-tight text-white">
             Quy Trình Thi Công Chuẩn EPC Quốc Tế
           </h2>
-          <p className={`max-w-xl mx-auto text-sm font-normal ${theme === 'light' ? 'text-[#4A5264]' : 'text-[#B8BCC8]'}`}>
+          <p className="text-sm sm:text-base text-[#94A3B8] leading-relaxed">
             5 Bước quản trị dự án nghiêm ngặt đảm bảo tiến độ và chất lượng cho các công trình cấp đặc biệt.
           </p>
         </div>
 
-        {/* Timeline Grid (Responsive: grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6, no overflow!) */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
-          {steps.map((st, idx) => {
-            const Icon = st.icon;
-            return (
+        {/* Timeline Graphic Container */}
+        <div className="relative pt-8 pb-4">
+          {/* DESKTOP TIMELINE (≥1024px): Horizontal layout */}
+          <div className="hidden lg:block relative min-h-[380px]">
+            {/* Horizontal Line across center */}
+            <motion.div
+              initial={{ scaleX: 0 }}
+              whileInView={{ scaleX: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1.2, ease: "easeInOut" }}
+              className="absolute top-1/2 left-[5%] right-[5%] h-[2px] bg-[#334155] -translate-y-1/2 origin-left z-0"
+            />
+
+            {/* 5 Step Circles & Text Items Dàn Đều */}
+            <div className="relative z-10 flex items-center justify-between px-4 h-full">
+              {steps.map((st, idx) => {
+                const isAbove = idx % 2 === 0; // Steps 0, 2, 4 (01, 03, 05) text ABOVE; Steps 1, 3 (02, 04) text BELOW
+                return (
+                  <motion.div
+                    key={idx}
+                    initial={{ opacity: 0, scale: 0.5 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.4, delay: 0.2 + idx * 0.2 }}
+                    className={`flex ${isAbove ? "flex-col" : "flex-col-reverse"} items-center text-center max-w-[170px] group`}
+                  >
+                    {/* Text Container (Above or Below) */}
+                    <div className={isAbove ? "mb-6 space-y-1.5" : "mt-6 space-y-1.5"}>
+                      <h3 className="font-heading font-extrabold text-base uppercase text-white group-hover:text-[#D4A017] transition-colors leading-tight">
+                        {st.title}
+                      </h3>
+                      <p className="text-[10px] font-mono font-semibold text-[#D4A017] uppercase tracking-wider">
+                        {st.subtitle}
+                      </p>
+                      <p className="text-xs text-[#94A3B8] leading-relaxed line-clamp-3">
+                        {st.desc}
+                      </p>
+                    </div>
+
+                    {/* Circle 56px x 56px with Number 01-05 */}
+                    <div className="h-[56px] w-[56px] rounded-full bg-[#D4A017] text-[#0F172A] flex items-center justify-center font-heading font-extrabold text-xl shadow-xl shrink-0 group-hover:scale-110 group-hover:bg-[#B8890F] transition-all border-4 border-[#0F172A]">
+                      {st.step}
+                    </div>
+                  </motion.div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* MOBILE TIMELINE (<1024px): Vertical layout */}
+          <div className="lg:hidden relative pl-6 space-y-10">
+            {/* Vertical Line on left side */}
+            <motion.div
+              initial={{ scaleY: 0 }}
+              whileInView={{ scaleY: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1.2, ease: "easeInOut" }}
+              className="absolute top-0 bottom-0 left-[27px] w-[2px] bg-[#334155] origin-top z-0"
+            />
+
+            {/* 5 Vertical Items */}
+            {steps.map((st, idx) => (
               <motion.div
                 key={idx}
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: idx * 0.08, ease: [0.16, 1, 0.3, 1] }}
-                className={`p-6 sm:p-7 rounded-3xl space-y-4 relative group border overflow-hidden flex flex-col justify-start min-w-0 ${
-                  theme === "light"
-                    ? "bg-white border-[#0D1321]/10 hover:border-[#C9A227] shadow-[0_4px_24px_rgba(0,0,0,0.06)]"
-                    : "bg-[#121A2D] border-[rgba(201,162,39,0.25)] hover:border-[#C9A227]"
-                }`}
+                transition={{ duration: 0.4, delay: 0.2 + idx * 0.15 }}
+                className="relative z-10 flex items-start gap-5 group"
               >
-                <div className="flex items-center justify-between">
-                  <span className="font-mono text-2xl font-extrabold text-[#C9A227] block">
-                    STEP {st.step}
-                  </span>
-                  <div className="h-10 w-10 rounded-xl bg-[#0D1321] text-[#C9A227] flex items-center justify-center border border-[#C9A227]/30 shrink-0">
-                    <Icon className="h-5 w-5" />
-                  </div>
+                {/* Circle 56px x 56px */}
+                <div className="h-[56px] w-[56px] rounded-full bg-[#D4A017] text-[#0F172A] flex items-center justify-center font-heading font-extrabold text-xl shadow-xl shrink-0 border-4 border-[#0F172A]">
+                  {st.step}
                 </div>
 
-                <h3 className="font-heading font-extrabold text-sm sm:text-base uppercase leading-[1.3] text-balance">
-                  {st.title}
-                </h3>
-
-                <p className={`text-xs leading-[1.6] ${theme === 'light' ? 'text-[#4A5264]' : 'text-[#B8BCC8]'}`}>
-                  {st.desc}
-                </p>
+                {/* Text Content to the right */}
+                <div className="space-y-1 pt-1.5 flex-1">
+                  <span className="text-[10px] font-mono font-semibold text-[#D4A017] uppercase tracking-wider block">
+                    {st.subtitle}
+                  </span>
+                  <h3 className="font-heading font-extrabold text-lg uppercase text-white leading-snug">
+                    {st.title}
+                  </h3>
+                  <p className="text-xs text-[#94A3B8] leading-relaxed">
+                    {st.desc}
+                  </p>
+                </div>
               </motion.div>
-            );
-          })}
+            ))}
+          </div>
         </div>
       </div>
     </section>

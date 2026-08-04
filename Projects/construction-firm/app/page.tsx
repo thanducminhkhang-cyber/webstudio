@@ -9,6 +9,7 @@ import HeroSection from "../components/HeroSection";
 import CompanyIntro from "../components/CompanyIntro";
 import ProjectShowcase from "../components/ProjectShowcase";
 import ServicesSection from "../components/ServicesSection";
+import ProcessTimeline from "../components/ProcessTimeline";
 import StatsAndPartners from "../components/StatsAndPartners";
 import TestimonialsAndAwards from "../components/TestimonialsAndAwards";
 import ContactModal from "../components/ContactModal";
@@ -41,7 +42,7 @@ export default function ConstructionHomePage() {
       {/* Header Navigation */}
       <Navbar onOpenConsultation={() => setIsContactOpen(true)} />
 
-      {/* Main 7 Sections */}
+      {/* Main Sections */}
       <main>
         {/* SECTION 1: HERO */}
         <HeroSection
@@ -55,13 +56,16 @@ export default function ConstructionHomePage() {
         {/* SECTION 3: DỰ ÁN TIÊU BIỂU */}
         <ProjectShowcase onOpenConsultation={() => setIsContactOpen(true)} />
 
-        {/* SECTION 4: DỊCH VỤ CHÍNH (Nền navy nhạt #1E293B đồng bộ) */}
+        {/* SECTION 4: DỊCH VỤ CHÍNH */}
         <ServicesSection />
 
-        {/* SECTION 5: SỐ LIỆU + ĐỐI TÁC (Nền #0F172A) */}
+        {/* SECTION 5: QUY TRÌNH THI CÔNG 5 BƯỚC ĐỒ HỌA */}
+        <ProcessTimeline />
+
+        {/* SECTION 6: SỐ LIỆU + BẢN ĐỒ DỰ ÁN TOÀN CẦU + ĐỐI TÁC */}
         <StatsAndPartners />
 
-        {/* SECTION 6: ĐÁNH GIÁ ĐỐI TÁC + GIẢI THƯỞNG (Nền #1E293B) */}
+        {/* SECTION 7: ĐÁNH GIÁ ĐỐI TÁC + GIẢI THƯỞNG */}
         <TestimonialsAndAwards />
       </main>
 
@@ -72,7 +76,7 @@ export default function ConstructionHomePage() {
         onSubmitSuccess={(msg) => showToast(msg)}
       />
 
-      {/* Sticky Floating CTA Button (FB Ads Lead-Gen Optimization) */}
+      {/* Sticky Floating CTA Button */}
       <div className="fixed bottom-6 right-6 z-40">
         <Button
           onClick={() => setIsContactOpen(true)}
@@ -83,7 +87,7 @@ export default function ConstructionHomePage() {
         </Button>
       </div>
 
-      {/* SECTION 7: CTA CUỐI + FOOTER */}
+      {/* SECTION 8: CTA CUỐI + FOOTER */}
       <Footer onOpenConsultation={() => setIsContactOpen(true)} />
     </div>
   );

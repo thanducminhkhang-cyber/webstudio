@@ -220,8 +220,12 @@ export default function Navbar({ onOpenConsultation }: NavbarProps) {
             </AnimatePresence>
           </div>
 
+          <a href="#timeline" className="py-1.5 text-[#94A3B8] hover:text-white transition-colors">
+            Quy Trình
+          </a>
+
           <a href="#stats-partners" className="py-1.5 text-[#94A3B8] hover:text-white transition-colors">
-            Số Liệu & Đối Tác
+            Số Liệu & Bản Đồ
           </a>
 
           <a href="#testimonials-awards" className="py-1.5 text-[#94A3B8] hover:text-white transition-colors">
@@ -229,9 +233,8 @@ export default function Navbar({ onOpenConsultation }: NavbarProps) {
           </a>
         </nav>
 
-        {/* Header Right Actions: Click-to-call Phone + Unified CTA */}
+        {/* Header Right Actions */}
         <div className="flex items-center gap-3">
-          {/* Click-to-call Phone / Zalo */}
           <a
             href="tel:0988999888"
             className="flex items-center gap-2 border border-[#334155] bg-[#1E293B] hover:border-[#3B82F6] px-3.5 py-2 rounded-xl text-xs font-bold text-white transition-colors"
@@ -276,7 +279,8 @@ export default function Navbar({ onOpenConsultation }: NavbarProps) {
               <a href="#about" onClick={() => setIsMobileOpen(false)} className="font-heading font-bold text-lg uppercase tracking-wider text-white">Giới Thiệu</a>
               <a href="#projects" onClick={() => setIsMobileOpen(false)} className="font-heading font-bold text-lg uppercase tracking-wider text-white">Dự Án Biểu Tượng</a>
               <a href="#services" onClick={() => setIsMobileOpen(false)} className="font-heading font-bold text-lg uppercase tracking-wider text-white">Dịch Vụ Thi Công</a>
-              <a href="#stats-partners" onClick={() => setIsMobileOpen(false)} className="font-heading font-bold text-lg uppercase tracking-wider text-white">Số Liệu & Đối Tác</a>
+              <a href="#timeline" onClick={() => setIsMobileOpen(false)} className="font-heading font-bold text-lg uppercase tracking-wider text-white">Quy Trình Thi Công</a>
+              <a href="#stats-partners" onClick={() => setIsMobileOpen(false)} className="font-heading font-bold text-lg uppercase tracking-wider text-white">Số Liệu & Bản Đồ</a>
               <a href="#testimonials-awards" onClick={() => setIsMobileOpen(false)} className="font-heading font-bold text-lg uppercase tracking-wider text-white">Đánh Giá & Giải Thưởng</a>
             </nav>
 
