@@ -25,7 +25,7 @@ export default function Footer({ onOpenConsultation }: FooterProps) {
             onClick={onOpenConsultation}
             className="bg-[#D4A017] hover:bg-[#B8890F] text-[#0F172A] font-extrabold rounded-xl text-sm tracking-wider uppercase px-10 py-4 h-auto border-none transition-colors"
           >
-            ĐĂNG KÝ TƯ VẤN DỰ ÁN EPC <ArrowRight className="ml-2 h-5 w-5 inline" />
+            NHẬN BÁO GIÁ MIỄN PHÍ <ArrowRight className="ml-2 h-5 w-5 inline" />
           </Button>
         </div>
       </div>
@@ -65,7 +65,8 @@ export default function Footer({ onOpenConsultation }: FooterProps) {
               placeholder="Email công ty..."
               className="bg-[#1E293B] border border-[#334155] rounded-xl px-3 py-2 text-xs focus:outline-none focus:border-[#3B82F6] flex-1 text-white placeholder:text-[#64748B]"
             />
-            <button className="bg-[#3B82F6] text-white font-bold text-xs px-4 py-2 rounded-xl hover:bg-[#2563EB] transition-colors">
+            {/* Footer newsletter submit button in gold #D4A017 with text #0F172A */}
+            <button className="bg-[#D4A017] text-[#0F172A] font-extrabold text-xs px-4 py-2 rounded-xl hover:bg-[#B8890F] transition-colors">
               Đăng Ký
             </button>
           </div>

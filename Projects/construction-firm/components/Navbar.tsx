@@ -12,6 +12,7 @@ import {
   Cpu,
   FileText,
   Building2,
+  PhoneCall,
 } from "lucide-react";
 import { Button } from "@wsos/ui/components/button";
 import { MEGA_PROJECTS } from "./ProjectShowcase";
@@ -97,7 +98,7 @@ export default function Navbar({ onOpenConsultation }: NavbarProps) {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between gap-4">
         {/* Brand Logo */}
-        <Link href="/" className="flex items-center gap-3 group mr-6 lg:mr-10 shrink-0">
+        <Link href="/" className="flex items-center gap-3 group mr-4 lg:mr-8 shrink-0">
           <div className="h-10 w-10 rounded-xl bg-[#D4A017] text-[#0F172A] flex items-center justify-center font-heading font-extrabold text-2xl shadow-md group-hover:bg-[#B8890F] transition-colors">
             V
           </div>
@@ -113,10 +114,7 @@ export default function Navbar({ onOpenConsultation }: NavbarProps) {
 
         {/* Desktop Nav Items */}
         <nav className="hidden lg:flex items-center gap-6 xl:gap-8 text-xs font-bold uppercase tracking-[0.1em] relative">
-          <a
-            href="#about"
-            className="py-1.5 text-[#94A3B8] hover:text-white transition-colors"
-          >
+          <a href="#about" className="py-1.5 text-[#94A3B8] hover:text-white transition-colors">
             Giới Thiệu
           </a>
 
@@ -126,10 +124,7 @@ export default function Navbar({ onOpenConsultation }: NavbarProps) {
             onMouseEnter={() => handleMouseEnterDropdown("projects")}
             onMouseLeave={handleMouseLeaveDropdown}
           >
-            <a
-              href="#projects"
-              className="flex items-center gap-1.5 text-[#94A3B8] hover:text-white transition-colors"
-            >
+            <a href="#projects" className="flex items-center gap-1.5 text-[#94A3B8] hover:text-white transition-colors">
               <span>Dự Án</span>
               <ChevronDown className={`h-3.5 w-3.5 transition-transform ${activeDropdown === "projects" ? "rotate-180" : ""}`} />
             </a>
@@ -182,10 +177,7 @@ export default function Navbar({ onOpenConsultation }: NavbarProps) {
             onMouseEnter={() => handleMouseEnterDropdown("services")}
             onMouseLeave={handleMouseLeaveDropdown}
           >
-            <a
-              href="#services"
-              className="flex items-center gap-1.5 text-[#94A3B8] hover:text-white transition-colors"
-            >
+            <a href="#services" className="flex items-center gap-1.5 text-[#94A3B8] hover:text-white transition-colors">
               <span>Dịch Vụ</span>
               <ChevronDown className={`h-3.5 w-3.5 transition-transform ${activeDropdown === "services" ? "rotate-180" : ""}`} />
             </a>
@@ -228,35 +220,31 @@ export default function Navbar({ onOpenConsultation }: NavbarProps) {
             </AnimatePresence>
           </div>
 
-          <a
-            href="#stats-partners"
-            className="py-1.5 text-[#94A3B8] hover:text-white transition-colors"
-          >
+          <a href="#stats-partners" className="py-1.5 text-[#94A3B8] hover:text-white transition-colors">
             Số Liệu & Đối Tác
           </a>
 
-          <a
-            href="#testimonials-awards"
-            className="py-1.5 text-[#94A3B8] hover:text-white transition-colors"
-          >
+          <a href="#testimonials-awards" className="py-1.5 text-[#94A3B8] hover:text-white transition-colors">
             Đánh Giá & Giải Thưởng
-          </a>
-
-          <a
-            href="#contact"
-            className="py-1.5 text-[#94A3B8] hover:text-white transition-colors"
-          >
-            Liên Hệ
           </a>
         </nav>
 
-        {/* Header Right Action: CTA Button */}
+        {/* Header Right Actions: Click-to-call Phone + Unified CTA */}
         <div className="flex items-center gap-3">
+          {/* Click-to-call Phone / Zalo */}
+          <a
+            href="tel:0988999888"
+            className="flex items-center gap-2 border border-[#334155] bg-[#1E293B] hover:border-[#3B82F6] px-3.5 py-2 rounded-xl text-xs font-bold text-white transition-colors"
+          >
+            <PhoneCall className="h-4 w-4 text-[#3B82F6] shrink-0" />
+            <span className="hidden sm:inline font-mono">0988.999.888</span>
+          </a>
+
           <Button
             onClick={onOpenConsultation}
             className="hidden sm:inline-flex bg-[#D4A017] hover:bg-[#B8890F] text-[#0F172A] font-extrabold rounded-xl text-xs tracking-wider uppercase px-5 py-2.5 shadow-md border-none transition-colors"
           >
-            Liên Hệ Báo Giá Dự Án
+            NHẬN BÁO GIÁ MIỄN PHÍ
           </Button>
 
           {/* Mobile Hamburger Icon */}
@@ -266,21 +254,9 @@ export default function Navbar({ onOpenConsultation }: NavbarProps) {
             aria-label="Toggle Mobile Navigation"
           >
             <div className="w-6 h-5 relative flex flex-col justify-between">
-              <span
-                className={`w-full h-0.5 bg-white rounded-full transition-transform duration-300 origin-left ${
-                  isMobileOpen ? "rotate-45 translate-x-1 -translate-y-0.5" : ""
-                }`}
-              />
-              <span
-                className={`w-full h-0.5 bg-white rounded-full transition-opacity duration-300 ${
-                  isMobileOpen ? "opacity-0" : "opacity-100"
-                }`}
-              />
-              <span
-                className={`w-full h-0.5 bg-white rounded-full transition-transform duration-300 origin-left ${
-                  isMobileOpen ? "-rotate-45 translate-x-1 translate-y-0.5" : ""
-                }`}
-              />
+              <span className={`w-full h-0.5 bg-white rounded-full transition-transform duration-300 origin-left ${isMobileOpen ? "rotate-45 translate-x-1 -translate-y-0.5" : ""}`} />
+              <span className={`w-full h-0.5 bg-white rounded-full transition-opacity duration-300 ${isMobileOpen ? "opacity-0" : "opacity-100"}`} />
+              <span className={`w-full h-0.5 bg-white rounded-full transition-transform duration-300 origin-left ${isMobileOpen ? "-rotate-45 translate-x-1 translate-y-0.5" : ""}`} />
             </div>
           </button>
         </div>
@@ -302,10 +278,15 @@ export default function Navbar({ onOpenConsultation }: NavbarProps) {
               <a href="#services" onClick={() => setIsMobileOpen(false)} className="font-heading font-bold text-lg uppercase tracking-wider text-white">Dịch Vụ Thi Công</a>
               <a href="#stats-partners" onClick={() => setIsMobileOpen(false)} className="font-heading font-bold text-lg uppercase tracking-wider text-white">Số Liệu & Đối Tác</a>
               <a href="#testimonials-awards" onClick={() => setIsMobileOpen(false)} className="font-heading font-bold text-lg uppercase tracking-wider text-white">Đánh Giá & Giải Thưởng</a>
-              <a href="#contact" onClick={() => setIsMobileOpen(false)} className="font-heading font-bold text-lg uppercase tracking-wider text-white">Liên Hệ</a>
             </nav>
 
-            <div className="space-y-4 pt-6 border-t border-[#334155]">
+            <div className="space-y-3 pt-6 border-t border-[#334155]">
+              <a
+                href="tel:0988999888"
+                className="w-full flex items-center justify-center gap-2 bg-[#1E293B] border border-[#334155] text-white font-bold rounded-xl py-3 text-sm font-mono"
+              >
+                <PhoneCall className="h-4 w-4 text-[#3B82F6]" /> Hotline: 0988.999.888
+              </a>
               <Button
                 onClick={() => {
                   setIsMobileOpen(false);
@@ -313,7 +294,7 @@ export default function Navbar({ onOpenConsultation }: NavbarProps) {
                 }}
                 className="w-full bg-[#D4A017] hover:bg-[#B8890F] text-[#0F172A] font-extrabold rounded-xl text-xs tracking-wider uppercase py-4 border-none"
               >
-                Yêu Cầu Tư Vấn Dự Án
+                NHẬN BÁO GIÁ MIỄN PHÍ
               </Button>
             </div>
           </motion.div>

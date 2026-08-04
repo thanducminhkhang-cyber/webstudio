@@ -33,7 +33,7 @@ export const MEGA_PROJECTS: ProjectItem[] = [
     year: "2024 - 2026",
     scale: "Sức chứa 120,000 hành khách/ngày",
     client: "Ban Quản Lý Đường Sắt Đô Thị",
-    image: "https://images.unsplash.com/photo-1541888946425-d0fbb186a5b7?q=80&w=1200&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=1200&auto=format&fit=crop",
     description: "Tổ hợp nhà ga đường sắt đô thị ngầm 4 tầng kết hợp trung tâm thương mại cao 68 tầng. Ứng dụng công nghệ đào hầm TBM đường kính 12.5m.",
     specs: [
       { label: "Tổng diện tích sàn", value: "240,000 m²" },
@@ -51,7 +51,7 @@ export const MEGA_PROJECTS: ProjectItem[] = [
     year: "2023 - 2025",
     scale: "Diện tích 120 Hecta",
     client: "Samsung Electronics Corp",
-    image: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=1200&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?q=80&w=1200&auto=format&fit=crop",
     description: "Tổ hợp nhà máy sản xuất linh kiện bán dẫn và phòng sạch Class 100 khép kín. Đạt tiêu chuẩn khắt khe về chống rung vi mô 0.01 micron.",
     specs: [
       { label: "Diện tích nhà xưởng", value: "350,000 m²" },
@@ -111,7 +111,7 @@ export default function ProjectShowcase({ onOpenConsultation }: ProjectShowcaseP
       : MEGA_PROJECTS.filter((p) => p.category === selectedCategory);
 
   return (
-    <section id="projects" className="py-24 px-4 sm:px-6 bg-[#1E293B] text-white border-t border-[#334155]">
+    <section id="projects" className="py-24 px-4 sm:px-6 bg-[#0F172A] text-white border-t border-[#334155]">
       <div className="max-w-7xl mx-auto space-y-12">
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-[#334155] pb-8">
@@ -133,7 +133,7 @@ export default function ProjectShowcase({ onOpenConsultation }: ProjectShowcaseP
                 className={`rounded-xl text-xs font-bold px-4 py-2 transition-colors ${
                   selectedCategory === cat
                     ? "bg-[#D4A017] text-[#0F172A] font-extrabold shadow-md"
-                    : "bg-[#0F172A] border border-[#334155] text-[#94A3B8] hover:text-white"
+                    : "bg-[#1E293B] border border-[#334155] text-[#94A3B8] hover:text-white"
                 }`}
               >
                 {cat}
@@ -151,7 +151,7 @@ export default function ProjectShowcase({ onOpenConsultation }: ProjectShowcaseP
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: idx * 0.1 }}
-              className="rounded-2xl overflow-hidden shadow-xl bg-[#0F172A] border border-[#334155] hover:border-[#3B82F6] transition-all duration-300 group cursor-pointer"
+              className="rounded-2xl overflow-hidden shadow-xl bg-[#1E293B] border border-[#334155] hover:border-[#3B82F6] transition-all duration-300 group cursor-pointer"
               onClick={() => setActiveProject(prj)}
             >
               {/* Photo Container */}
@@ -163,7 +163,7 @@ export default function ProjectShowcase({ onOpenConsultation }: ProjectShowcaseP
                   sizes="(max-width: 768px) 100vw, 50vw"
                   className="object-cover group-hover:scale-105 transition-transform duration-500 ease-out filter contrast-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0F172A] via-transparent to-transparent opacity-80" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#1E293B] via-transparent to-transparent opacity-80" />
 
                 <span className="absolute top-4 left-4 bg-[#0F172A]/90 text-[#3B82F6] border border-[#334155] text-[10px] uppercase font-mono font-bold tracking-widest px-3 py-1 rounded-lg backdrop-blur-md">
                   {prj.category} • {prj.code}
@@ -178,7 +178,7 @@ export default function ProjectShowcase({ onOpenConsultation }: ProjectShowcaseP
               <div className="p-6 sm:p-8 space-y-3">
                 <div className="flex justify-between items-baseline text-xs">
                   <span className="font-bold text-[#94A3B8]">{prj.location}</span>
-                  <span className="font-mono font-bold text-[#D4A017] bg-[#1E293B] px-2.5 py-1 rounded-md border border-[#334155]">
+                  <span className="font-mono font-bold text-[#D4A017] bg-[#0F172A] px-2.5 py-1 rounded-md border border-[#334155]">
                     {prj.value}
                   </span>
                 </div>
@@ -200,14 +200,13 @@ export default function ProjectShowcase({ onOpenConsultation }: ProjectShowcaseP
           ))}
         </div>
 
-        {/* CTA Button */}
+        {/* Unified CTA Button */}
         <div className="text-center pt-4">
           <Button
             onClick={onOpenConsultation}
-            variant="outline"
-            className="border border-[#334155] bg-[#0F172A] text-white hover:bg-[#0F172A]/80 font-bold rounded-xl text-xs tracking-wider uppercase px-8 py-3.5 h-auto transition-colors"
+            className="bg-[#D4A017] hover:bg-[#B8890F] text-[#0F172A] font-extrabold rounded-xl text-xs tracking-wider uppercase px-8 py-4 h-auto transition-colors"
           >
-            XEM TOÀN BỘ 450+ SIÊU DỰ ÁN EPC <ArrowRight className="ml-2 h-4 w-4 inline text-[#D4A017]" />
+            NHẬN BÁO GIÁ MIỄN PHÍ <ArrowRight className="ml-2 h-4 w-4 inline text-[#0F172A]" />
           </Button>
         </div>
       </div>

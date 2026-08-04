@@ -16,9 +16,7 @@ export default function ContactModal({ isOpen, onClose, onSubmitSuccess }: Conta
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
-    email: "",
-    projectType: "General Contracting EPC",
-    budget: "$10M - $50M USD",
+    projectType: "Hạ tầng / Đường sắt đô thị",
     message: "",
   });
 
@@ -26,112 +24,86 @@ export default function ContactModal({ isOpen, onClose, onSubmitSuccess }: Conta
     e.preventDefault();
     if (!formData.name || !formData.phone) return;
     onClose();
-    onSubmitSuccess("🎉 Đã gửi yêu cầu tư vấn dự án thành công! Ban Quản Lý Tổng Thầu Vanguard Construct sẽ liên hệ với bạn trong vòng 12h làm việc.");
+    onSubmitSuccess("🎉 Đã nhận thông tin đăng ký! Kỹ sư trưởng Vanguard Construct sẽ liên hệ báo giá tư vấn trong vòng 24h.");
     setFormData({
       name: "",
       phone: "",
-      email: "",
-      projectType: "General Contracting EPC",
-      budget: "$10M - $50M USD",
+      projectType: "Hạ tầng / Đường sắt đô thị",
       message: "",
     });
   };
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-lg bg-[#0B0F19] text-white rounded-3xl p-6 border border-white/20 shadow-2xl">
-        <DialogHeader className="border-b border-white/10 pb-4">
-          <span className="text-[11px] font-mono font-bold text-[#F4B942] uppercase tracking-widest block">
-            VANGUARD CONSTRUCT CONSULTATION
+      <DialogContent className="max-w-md bg-[#0F172A] text-white rounded-2xl p-6 border border-[#334155] shadow-2xl">
+        <DialogHeader className="border-b border-[#334155] pb-4">
+          <span className="text-[11px] font-mono font-bold text-[#D4A017] uppercase tracking-widest block">
+            VANGUARD CONSTRUCT LEAD CONSULTATION
           </span>
           <DialogTitle className="font-heading font-extrabold text-2xl uppercase text-white mt-1">
-            Đăng Ký Tư Vấn & Báo Giá Dự Án
+            Nhận Báo Giá Miễn Phí
           </DialogTitle>
         </DialogHeader>
 
         <form onSubmit={handleSubmit} className="space-y-4 pt-3">
+          {/* Field 1: Họ và Tên */}
           <div className="space-y-1.5">
-            <Label className="text-xs font-bold text-slate-300">Họ và Tên *</Label>
+            <Label className="text-xs font-bold text-white">Họ và Tên *</Label>
             <Input
               required
               placeholder="Ví dụ: Nguyễn Văn Hùng"
               value={formData.name}
               onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-              className="text-xs bg-white/5 border-white/10 text-white rounded-xl"
+              className="text-xs bg-[#1E293B] border-[#334155] text-white rounded-xl focus:border-[#3B82F6]"
             />
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
-            <div className="space-y-1.5">
-              <Label className="text-xs font-bold text-slate-300">Số Điện Thoại *</Label>
-              <Input
-                required
-                placeholder="0901234567"
-                value={formData.phone}
-                onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                className="text-xs bg-white/5 border-white/10 text-white font-mono rounded-xl"
-              />
-            </div>
-            <div className="space-y-1.5">
-              <Label className="text-xs font-bold text-slate-300">Email Công Ty</Label>
-              <Input
-                type="email"
-                placeholder="hung.nguyen@corp.com"
-                value={formData.email}
-                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                className="text-xs bg-white/5 border-white/10 text-white rounded-xl"
-              />
-            </div>
-          </div>
-
-          <div className="grid grid-cols-2 gap-4">
-            <div className="space-y-1.5">
-              <Label className="text-xs font-bold text-slate-300">Loại Hình Dự Án</Label>
-              <select
-                value={formData.projectType}
-                onChange={(e) => setFormData({ ...formData, projectType: e.target.value })}
-                className="w-full h-10 px-3 rounded-xl bg-[#151C28] border border-white/10 text-xs font-semibold text-white"
-              >
-                <option value="General Contracting EPC">General Contracting EPC</option>
-                <option value="Industrial Mega Plant">Industrial Mega Plant (Nhà máy bán dẫn)</option>
-                <option value="Skyscraper Office">Skyscraper Financial Tower</option>
-                <option value="Civil Infrastructure">Infrastructure & Bridges</option>
-                <option value="Clean Energy">Offshore Wind / Clean Energy</option>
-              </select>
-            </div>
-
-            <div className="space-y-1.5">
-              <Label className="text-xs font-bold text-slate-[#F4B942]">Ngân Sách Dự Kiến</Label>
-              <select
-                value={formData.budget}
-                onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
-                className="w-full h-10 px-3 rounded-xl bg-[#151C28] border border-white/10 text-xs font-semibold text-white"
-              >
-                <option value="<$10M USD">{"< $10M USD"}</option>
-                <option value="$10M - $50M USD">$10M - $50M USD</option>
-                <option value="$50M - $200M USD">$50M - $200M USD</option>
-                <option value=">$200M USD">{"> $200M USD (Siêu dự án)"}</option>
-              </select>
-            </div>
-          </div>
-
+          {/* Field 2: Số Điện Thoại */}
           <div className="space-y-1.5">
-            <Label className="text-xs font-bold text-slate-300">Mô Tả Sơ Bộ Yêu Cầu</Label>
+            <Label className="text-xs font-bold text-white">Số Điện Thoại *</Label>
+            <Input
+              required
+              placeholder="0901234567"
+              value={formData.phone}
+              onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+              className="text-xs bg-[#1E293B] border-[#334155] text-white font-mono rounded-xl focus:border-[#3B82F6]"
+            />
+          </div>
+
+          {/* Field 3: Loại Công Trình Dropdown */}
+          <div className="space-y-1.5">
+            <Label className="text-xs font-bold text-white">Loại Công Trình</Label>
+            <select
+              value={formData.projectType}
+              onChange={(e) => setFormData({ ...formData, projectType: e.target.value })}
+              className="w-full h-10 px-3 rounded-xl bg-[#1E293B] border border-[#334155] text-xs font-semibold text-white focus:outline-none focus:border-[#3B82F6]"
+            >
+              <option value="Hạ tầng / Đường sắt đô thị">Hạ tầng / Đường sắt đô thị</option>
+              <option value="Nhà máy / Khu công nghiệp">Nhà máy / Khu công nghiệp</option>
+              <option value="Tòa tháp cao ốc / Thương mại">Tòa tháp cao ốc / Thương mại</option>
+              <option value="Năng lượng tái tạo">Năng lượng tái tạo</option>
+              <option value="Khác">Khác</option>
+            </select>
+          </div>
+
+          {/* Field 4: Ghi Chú / Nhu Cầu */}
+          <div className="space-y-1.5">
+            <Label className="text-xs font-bold text-white">Ghi Chú / Nhu Cầu</Label>
             <textarea
               rows={3}
-              placeholder="Yêu cầu diện tích sàn, địa điểm thi công, mốc thời gian hoàn thành mong muốn..."
+              placeholder="Mô tả sơ bộ về diện tích, địa điểm hoặc thời gian hoàn thành mong muốn..."
               value={formData.message}
               onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-              className="w-full p-3 rounded-xl bg-white/5 border border-white/10 text-xs text-white focus:outline-none focus:border-[#F4B942]"
+              className="w-full p-3 rounded-xl bg-[#1E293B] border border-[#334155] text-xs text-white placeholder:text-[#64748B] focus:outline-none focus:border-[#3B82F6]"
             />
           </div>
 
-          <DialogFooter className="pt-4 border-t border-white/10 flex justify-end gap-2">
-            <Button type="button" variant="outline" onClick={onClose} className="rounded-xl text-xs font-bold border-white/20 text-white">
+          <DialogFooter className="pt-4 border-t border-[#334155] flex justify-end gap-2">
+            <Button type="button" variant="outline" onClick={onClose} className="rounded-xl text-xs font-bold border-[#334155] bg-[#1E293B] text-white">
               Hủy
             </Button>
-            <Button type="submit" className="rounded-xl bg-[#F4B942] text-[#0B0F19] hover:bg-[#e0a430] font-extrabold text-xs">
-              Gửi Đăng Ký Tư Vấn (EPC Project)
+            <Button type="submit" className="rounded-xl bg-[#D4A017] text-[#0F172A] hover:bg-[#B8890F] font-extrabold text-xs uppercase tracking-wider">
+              NHẬN BÁO GIÁ MIỄN PHÍ
             </Button>
           </DialogFooter>
         </form>

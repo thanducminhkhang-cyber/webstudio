@@ -3,7 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { ArrowRight, HardHat, ShieldCheck, Globe, Award } from "lucide-react";
+import { ArrowRight, HardHat, ShieldCheck, Globe, Award, Zap, Compass, UserCheck } from "lucide-react";
 import { Button } from "@wsos/ui/components/button";
 
 interface HeroSectionProps {
@@ -14,7 +14,7 @@ interface HeroSectionProps {
 export default function HeroSection({ onStartProject, onWatchPortfolio }: HeroSectionProps) {
   return (
     <section className="relative min-h-screen w-full overflow-hidden flex items-end pt-32 pb-16 bg-[#0F172A] text-white">
-      {/* Industrial Construction Background Image (Cool Tones) */}
+      {/* Industrial Construction Background Image */}
       <div className="absolute inset-0 w-full h-full">
         <Image
           src="https://images.unsplash.com/photo-1541888946425-d0fbb186a5b7?q=80&w=1800&auto=format&fit=crop"
@@ -75,12 +75,11 @@ export default function HeroSection({ onStartProject, onWatchPortfolio }: HeroSe
           transition={{ duration: 0.5, delay: 0.3 }}
           className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2"
         >
-          {/* Main Gold CTA */}
           <Button
             onClick={onStartProject}
             className="bg-[#D4A017] hover:bg-[#B8890F] text-[#0F172A] font-extrabold rounded-xl text-sm tracking-wider uppercase px-8 py-4 h-auto border-none transition-colors"
           >
-            START YOUR PROJECT <ArrowRight className="ml-2 h-4 w-4 inline" />
+            NHẬN BÁO GIÁ MIỄN PHÍ <ArrowRight className="ml-2 h-4 w-4 inline text-[#0F172A]" />
           </Button>
 
           <Button
@@ -92,12 +91,35 @@ export default function HeroSection({ onStartProject, onWatchPortfolio }: HeroSe
           </Button>
         </motion.div>
 
+        {/* Quick Commitment Ribbon (Lead-Gen Boost: 3 horizontal icons) */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.35 }}
+          className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4 max-w-3xl border-t border-[#334155]"
+        >
+          <div className="flex items-center gap-3 bg-[#1E293B]/80 border border-[#334155] p-3 rounded-xl backdrop-blur-md">
+            <Zap className="h-5 w-5 text-[#D4A017] shrink-0" />
+            <span className="text-xs font-bold text-white">Báo giá trong 24h</span>
+          </div>
+
+          <div className="flex items-center gap-3 bg-[#1E293B]/80 border border-[#334155] p-3 rounded-xl backdrop-blur-md">
+            <Compass className="h-5 w-5 text-[#3B82F6] shrink-0" />
+            <span className="text-xs font-bold text-white">Khảo sát miễn phí</span>
+          </div>
+
+          <div className="flex items-center gap-3 bg-[#1E293B]/80 border border-[#334155] p-3 rounded-xl backdrop-blur-md">
+            <UserCheck className="h-5 w-5 text-[#F97316] shrink-0" />
+            <span className="text-xs font-bold text-white">Tư vấn 1:1 Kỹ sư trưởng</span>
+          </div>
+        </motion.div>
+
         {/* Statistics Bar (Static display, text-3xl / 36px) */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.4 }}
-          className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-10 border-t border-[#334155]"
+          className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-8 border-t border-[#334155]"
         >
           <div className="flex items-center gap-3">
             <div className="h-10 w-10 rounded-xl bg-[#1E293B] border border-[#334155] flex items-center justify-center text-[#3B82F6] shrink-0">

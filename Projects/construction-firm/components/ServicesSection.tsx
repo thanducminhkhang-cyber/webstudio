@@ -8,7 +8,7 @@ export default function ServicesSection() {
   const services = [
     {
       icon: HardHat,
-      accentColor: "#3B82F6", // steel blue
+      accentColor: "#3B82F6",
       title: "General Construction EPC",
       subtitle: "Tổng Thầu Thi Công Hạ Tầng & Cao ốc",
       description: "Quản lý trọn gói từ san lấp mặt bằng, móng cọc siêu sâu đến cất nóc công trình cao tầng. Đảm bảo tiến độ bàn giao chính xác từng ngày.",
@@ -16,7 +16,7 @@ export default function ServicesSection() {
     },
     {
       icon: Compass,
-      accentColor: "#D4A017", // gold
+      accentColor: "#D4A017",
       title: "Architecture & BIM 5D",
       subtitle: "Thiết Kế Số Hóa & Mô Phỏng Kết Cấu",
       description: "Ứng dụng mô hình BIM 5D lập tiến độ và ngân sách thời gian thực. Phát hiện xung đột kết cấu trước khi thi công thực địa.",
@@ -24,7 +24,7 @@ export default function ServicesSection() {
     },
     {
       icon: Layers,
-      accentColor: "#F97316", // safety orange
+      accentColor: "#F97316",
       title: "Interior Architectural Finishing",
       subtitle: "Hoàn Thiện Nội Thất & Đô Thị",
       description: "Thi công hoàn thiện nội ngoại thất cao cấp cho các khách sạn 5 sao, trung tâm thương mại và trụ sở tập đoàn đa quốc gia.",
@@ -57,22 +57,22 @@ export default function ServicesSection() {
   ];
 
   return (
-    <section id="services" className="py-24 px-4 sm:px-6 bg-[#F8F9FA] text-[#1E293B]">
+    <section id="services" className="py-24 px-4 sm:px-6 bg-[#1E293B] text-white border-t border-[#334155]">
       <div className="max-w-7xl mx-auto space-y-16">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto space-y-3">
           <span className="text-[11px] font-extrabold text-[#3B82F6] uppercase tracking-[0.25em] font-mono">
             CORE ENGINEERING SERVICES
           </span>
-          <h2 className="font-heading text-3xl sm:text-5xl font-extrabold uppercase tracking-tight leading-tight text-[#1E293B]">
+          <h2 className="font-heading text-3xl sm:text-5xl font-extrabold uppercase tracking-tight leading-tight text-white">
             Lĩnh Vực Dịch Vụ & Năng Lực Kỹ Thuật
           </h2>
-          <p className="text-sm sm:text-base text-[#475569] leading-relaxed">
+          <p className="text-sm sm:text-base text-[#94A3B8] leading-relaxed">
             Cung cấp giải pháp tổng thể trọn gói từ tư vấn thiết kế số hóa BIM đến trực tiếp thi công hạ tầng siêu trọng theo chuẩn an toàn quốc tế.
           </p>
         </div>
 
-        {/* Services Grid (White cards on #F8F9FA light bg for rest/contrast) */}
+        {/* Services Grid (Unified dark navy cards on #1E293B bg) */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((svc, idx) => {
             const Icon = svc.icon;
@@ -83,35 +83,35 @@ export default function ServicesSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: idx * 0.08 }}
-                className="bg-white rounded-2xl p-8 border border-[#E2E8F0] shadow-sm hover:shadow-md hover:border-[#CBD5E1] transition-all duration-300 flex flex-col justify-between group"
+                className="bg-[#0F172A] rounded-2xl p-8 border border-[#334155] shadow-lg hover:border-[#3B82F6] transition-all duration-300 flex flex-col justify-between group"
               >
                 <div className="space-y-4">
                   {/* Icon Box */}
                   <div
                     className="h-12 w-12 rounded-xl flex items-center justify-center transition-transform group-hover:scale-105"
-                    style={{ backgroundColor: `${svc.accentColor}15`, color: svc.accentColor }}
+                    style={{ backgroundColor: `${svc.accentColor}20`, color: svc.accentColor }}
                   >
                     <Icon className="h-6 w-6" />
                   </div>
 
                   <div>
-                    <h3 className="font-heading font-extrabold text-xl uppercase tracking-tight text-[#1E293B]">
+                    <h3 className="font-heading font-extrabold text-xl uppercase tracking-tight text-white">
                       {svc.title}
                     </h3>
-                    <p className="text-xs font-semibold text-[#64748B] mt-0.5">
+                    <p className="text-xs font-semibold text-[#94A3B8] mt-0.5">
                       {svc.subtitle}
                     </p>
                   </div>
 
-                  <p className="text-xs sm:text-sm text-[#475569] leading-relaxed">
+                  <p className="text-xs sm:text-sm text-[#94A3B8] leading-relaxed">
                     {svc.description}
                   </p>
 
-                  <ul className="space-y-2 pt-2 border-t border-[#F1F5F9]">
+                  <ul className="space-y-2 pt-2 border-t border-[#334155]">
                     {svc.points.map((pt, i) => (
-                      <li key={i} className="flex items-center gap-2 text-xs font-medium text-[#334155]">
+                      <li key={i} className="flex items-center gap-2 text-xs font-medium text-[#94A3B8]">
                         <CheckCircle className="h-3.5 w-3.5 text-[#3B82F6] shrink-0" />
-                        <span>{pt}</span>
+                        <span className="text-white">{pt}</span>
                       </li>
                     ))}
                   </ul>
