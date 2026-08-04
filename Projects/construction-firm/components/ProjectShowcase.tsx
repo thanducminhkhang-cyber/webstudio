@@ -33,7 +33,7 @@ export const MEGA_PROJECTS: ProjectItem[] = [
     year: "2024 - 2026",
     scale: "Sức chứa 120,000 hành khách/ngày",
     client: "Ban Quản Lý Đường Sắt Đô Thị",
-    image: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=1200&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1578575437130-527eed3abbec?q=80&w=1200&auto=format&fit=crop",
     description: "Tổ hợp nhà ga đường sắt đô thị ngầm 4 tầng kết hợp trung tâm thương mại cao 68 tầng. Ứng dụng công nghệ đào hầm TBM đường kính 12.5m.",
     specs: [
       { label: "Tổng diện tích sàn", value: "240,000 m²" },
@@ -51,7 +51,7 @@ export const MEGA_PROJECTS: ProjectItem[] = [
     year: "2023 - 2025",
     scale: "Diện tích 120 Hecta",
     client: "Samsung Electronics Corp",
-    image: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?q=80&w=1200&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=1200&auto=format&fit=crop",
     description: "Tổ hợp nhà máy sản xuất linh kiện bán dẫn và phòng sạch Class 100 khép kín. Đạt tiêu chuẩn khắt khe về chống rung vi mô 0.01 micron.",
     specs: [
       { label: "Diện tích nhà xưởng", value: "350,000 m²" },
@@ -204,7 +204,7 @@ export default function ProjectShowcase({ onOpenConsultation }: ProjectShowcaseP
         <div className="text-center pt-4">
           <Button
             onClick={onOpenConsultation}
-            className="bg-[#D4A017] hover:bg-[#B8890F] text-[#0F172A] font-extrabold rounded-xl text-xs tracking-wider uppercase px-8 py-4 h-auto transition-colors"
+            className="bg-[#D4A017] hover:bg-[#B8890F] text-[#0F172A] font-extrabold rounded-xl text-xs tracking-wider uppercase px-8 py-4 h-auto transition-colors border-none"
           >
             NHẬN BÁO GIÁ MIỄN PHÍ <ArrowRight className="ml-2 h-4 w-4 inline text-[#0F172A]" />
           </Button>

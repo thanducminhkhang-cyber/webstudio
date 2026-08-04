@@ -8,7 +8,6 @@ export default function ServicesSection() {
   const services = [
     {
       icon: HardHat,
-      accentColor: "#3B82F6",
       title: "General Construction EPC",
       subtitle: "Tổng Thầu Thi Công Hạ Tầng & Cao ốc",
       description: "Quản lý trọn gói từ san lấp mặt bằng, móng cọc siêu sâu đến cất nóc công trình cao tầng. Đảm bảo tiến độ bàn giao chính xác từng ngày.",
@@ -16,7 +15,6 @@ export default function ServicesSection() {
     },
     {
       icon: Compass,
-      accentColor: "#D4A017",
       title: "Architecture & BIM 5D",
       subtitle: "Thiết Kế Số Hóa & Mô Phỏng Kết Cấu",
       description: "Ứng dụng mô hình BIM 5D lập tiến độ và ngân sách thời gian thực. Phát hiện xung đột kết cấu trước khi thi công thực địa.",
@@ -24,7 +22,6 @@ export default function ServicesSection() {
     },
     {
       icon: Layers,
-      accentColor: "#F97316",
       title: "Interior Architectural Finishing",
       subtitle: "Hoàn Thiện Nội Thất & Đô Thị",
       description: "Thi công hoàn thiện nội ngoại thất cao cấp cho các khách sạn 5 sao, trung tâm thương mại và trụ sở tập đoàn đa quốc gia.",
@@ -32,7 +29,6 @@ export default function ServicesSection() {
     },
     {
       icon: Cpu,
-      accentColor: "#3B82F6",
       title: "MEP & High-Tech Engineering",
       subtitle: "Hệ Thống Cơ Điện Lạnh & BMS Trung Tâm",
       description: "Thi công giải pháp MEP phức hợp: HVAC trung tâm, hệ thống PCCC tự động, điện nhẹ thông minh và quản lý tòa nhà BMS.",
@@ -40,7 +36,6 @@ export default function ServicesSection() {
     },
     {
       icon: FileText,
-      accentColor: "#F97316",
       title: "Engineering Consulting",
       subtitle: "Tư Vấn Thẩm Tra Kết Cấu Siêu Trọng",
       description: "Cung cấp dịch vụ kiểm định chất lượng công trình, thẩm tra thiết kế kỹ thuật móng sâu và tư vấn giải pháp gia cường kết cấu.",
@@ -48,7 +43,6 @@ export default function ServicesSection() {
     },
     {
       icon: Building2,
-      accentColor: "#D4A017",
       title: "Project Management",
       subtitle: "Quản Lý Dự Án Theo Chuẩn PMI",
       description: "Đội ngũ Giám đốc Dự án đạt chứng chỉ PMI quốc tế, trực tiếp điều phối nguồn lực, quản trị rủi ro HSE và kiểm soát chi phí tối ưu.",
@@ -72,7 +66,7 @@ export default function ServicesSection() {
           </p>
         </div>
 
-        {/* Services Grid (Unified dark navy cards on #1E293B bg) */}
+        {/* Services Grid (Navy nhạt #1E293B bg, cards #0F172A, gold #D4A017 icons) */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((svc, idx) => {
             const Icon = svc.icon;
@@ -83,14 +77,11 @@ export default function ServicesSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: idx * 0.08 }}
-                className="bg-[#0F172A] rounded-2xl p-8 border border-[#334155] shadow-lg hover:border-[#3B82F6] transition-all duration-300 flex flex-col justify-between group"
+                className="bg-[#0F172A] rounded-2xl p-8 border border-[#334155] shadow-lg hover:border-[#D4A017] transition-all duration-300 flex flex-col justify-between group"
               >
                 <div className="space-y-4">
-                  {/* Icon Box */}
-                  <div
-                    className="h-12 w-12 rounded-xl flex items-center justify-center transition-transform group-hover:scale-105"
-                    style={{ backgroundColor: `${svc.accentColor}20`, color: svc.accentColor }}
-                  >
+                  {/* Icon Box highlighted in Gold #D4A017 */}
+                  <div className="h-12 w-12 rounded-xl bg-[#D4A017]/15 text-[#D4A017] flex items-center justify-center transition-transform group-hover:scale-110">
                     <Icon className="h-6 w-6" />
                   </div>
 
@@ -110,7 +101,7 @@ export default function ServicesSection() {
                   <ul className="space-y-2 pt-2 border-t border-[#334155]">
                     {svc.points.map((pt, i) => (
                       <li key={i} className="flex items-center gap-2 text-xs font-medium text-[#94A3B8]">
-                        <CheckCircle className="h-3.5 w-3.5 text-[#3B82F6] shrink-0" />
+                        <CheckCircle className="h-3.5 w-3.5 text-[#D4A017] shrink-0" />
                         <span className="text-white">{pt}</span>
                       </li>
                     ))}
