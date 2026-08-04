@@ -4,19 +4,17 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { DollarSign, Building, Users, Globe } from "lucide-react";
 
-interface MapPin {
+interface CountryPartner {
   id: string;
-  name: string;
-  partner: string;
-  projects: string;
-  cx: number;
-  cy: number;
-  r: number;
-  delay: string;
+  flag: string;
+  country: string;
+  role: string;
+  partners: string;
+  details: string;
 }
 
 export default function StatsAndPartners() {
-  const [activePin, setActivePin] = useState<MapPin | null>(null);
+  const [activeCountry, setActiveCountry] = useState<CountryPartner | null>(null);
 
   const stats = [
     {
@@ -49,56 +47,46 @@ export default function StatsAndPartners() {
     },
   ];
 
-  const mapPins: MapPin[] = [
+  const countryPartners: CountryPartner[] = [
     {
       id: "vn",
-      name: "Việt Nam",
-      partner: "Vanguard Headquarter",
-      projects: "Trụ sở chính & 180+ Siêu dự án EPC",
-      cx: 800,
-      cy: 265,
-      r: 8,
-      delay: "0s",
+      flag: "🇻🇳",
+      country: "Việt Nam",
+      role: "Trụ sở chính Vanguard",
+      partners: "Vanguard Headquarter & 180+ Siêu dự án EPC",
+      details: "Tập đoàn tổng thầu thi công hạ tầng & cao ốc biểu tượng",
     },
     {
       id: "kr",
-      name: "Hàn Quốc",
-      partner: "Samsung & Hyundai E&C",
-      projects: "24 Dự án Nhà máy Bán dẫn & Hạ tầng",
-      cx: 845,
-      cy: 200,
-      r: 5,
-      delay: "0.3s",
+      flag: "🇰🇷",
+      country: "Hàn Quốc",
+      role: "Đối tác Tập đoàn",
+      partners: "Samsung Electronics, Hyundai E&C",
+      details: "Thi công 24 dự án nhà máy bán dẫn & hạ tầng cao cấp",
     },
     {
       id: "us",
-      name: "Hoa Kỳ (USA)",
-      partner: "GE, Boeing & Bechtel",
-      projects: "15 Dự án Năng lượng & Kỹ thuật siêu trọng",
-      cx: 230,
-      cy: 190,
-      r: 5,
-      delay: "0.6s",
+      flag: "🇺🇸",
+      country: "Mỹ (USA)",
+      role: "Đối tác Tập đoàn",
+      partners: "General Electric, Boeing, Bechtel Global",
+      details: "Tư vấn & thi công 15 dự án năng lượng & kỹ thuật siêu trọng",
     },
     {
       id: "jp",
-      name: "Nhật Bản",
-      partner: "Mitsubishi Heavy Industries",
-      projects: "12 Dự án Hầm ngầm & Đô thị thông minh",
-      cx: 875,
-      cy: 195,
-      r: 5,
-      delay: "0.9s",
+      flag: "🇯🇵",
+      country: "Nhật Bản",
+      role: "Đối tác Tập đoàn",
+      partners: "Mitsubishi Heavy Industries",
+      details: "Chuyển giao công nghệ 12 dự án hầm ngầm & đô thị thông minh",
     },
     {
       id: "se",
-      name: "Thụy Điển",
-      partner: "Skanska Group",
-      projects: "8 Dự án Xanh chuẩn LEED Gold",
-      cx: 530,
-      cy: 125,
-      r: 5,
-      delay: "1.2s",
+      flag: "🇸🇪",
+      country: "Thụy Điển",
+      role: "Đối tác Tập đoàn",
+      partners: "Skanska Group",
+      details: "Hợp tác thi công 8 dự án xanh chuẩn LEED Gold quốc tế",
     },
   ];
 
@@ -115,35 +103,17 @@ export default function StatsAndPartners() {
 
   return (
     <section id="stats-partners" className="py-24 px-4 sm:px-6 bg-[#1E293B] text-white border-t border-[#334155]">
-      {/* CSS Pulse Animation Keyframes */}
-      <style jsx global>{`
-        @keyframes pulse-ring {
-          0% {
-            transform: scale(1);
-            opacity: 0.7;
-          }
-          100% {
-            transform: scale(2.8);
-            opacity: 0;
-          }
-        }
-        .animate-map-pulse {
-          animation: pulse-ring 2.5s ease-out infinite;
-          transform-origin: center;
-        }
-      `}</style>
-
       <div className="max-w-7xl mx-auto space-y-16">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto space-y-3">
           <span className="text-[11px] font-extrabold text-[#3B82F6] uppercase tracking-[0.25em] font-mono">
-            TRACK RECORD & GLOBAL NETWORK
+            TRACK RECORD & GLOBAL PARTNERS
           </span>
           <h2 className="font-heading text-3xl sm:text-5xl font-extrabold uppercase tracking-tight leading-tight text-white">
-            Số Liệu Năng Lực & Bản Đồ Dự Án Toàn Cầu
+            Số Liệu Năng Lực & Quốc Gia Đối Tác
           </h2>
           <p className="text-sm sm:text-base text-[#94A3B8] leading-relaxed">
-            Minh chứng năng lực thực tế qua mạng lưới dự án hạ tầng tỷ đô phủ sóng trên 18 quốc gia và vùng lãnh thổ.
+            Minh chứng năng lực thực tế qua mạng lưới hợp tác chiến lược với các tập đoàn hàng đầu thế giới.
           </p>
         </div>
 
@@ -182,134 +152,79 @@ export default function StatsAndPartners() {
           })}
         </div>
 
-        {/* 2. GLOBAL PROJECT MAP (PART 1 SVG MAP & PULSE DOTS) */}
-        <div className="pt-6 space-y-6">
+        {/* 2. DẢI QUỐC KỲ ĐỐI TÁC CHIẾN LƯỢC (PILL / BADGE LAYOUT) */}
+        <div className="pt-6 space-y-8">
           <div className="text-center space-y-1">
             <h3 className="font-heading font-extrabold text-xl uppercase tracking-wider text-white">
-              Bản Đồ Phân Bố Dự Án Toàn Cầu
+              Quốc Gia & Đối Tác Chiến Lược Toàn Cầu
             </h3>
             <p className="text-xs text-[#94A3B8]">
-              Chạm hoặc di chuột vào các vị trí chấm vàng để xem chi tiết dự án & đối tác
+              Di chuột hoặc chạm vào từng quốc kỳ để xem chi tiết đối tác & dự án tiêu biểu
             </p>
           </div>
 
-          {/* SVG Map Container */}
-          <div className="relative w-full max-w-[1000px] mx-auto h-[280px] sm:h-[420px] bg-[#0F172A] rounded-2xl border border-[#334155] p-4 overflow-hidden flex items-center justify-center shadow-2xl">
-            <svg
-              viewBox="0 0 1000 500"
-              className="w-full h-full object-contain"
-              preserveAspectRatio="xMidYMid meet"
-            >
-              {/* World Map Continent Outlines (SVG Paths) */}
-              <g fill="#1E293B" stroke="#334155" strokeWidth="0.75" className="transition-colors duration-200">
-                {/* North America */}
-                <path d="M120,80 L280,60 L380,120 L300,220 L240,240 L180,180 L100,140 Z M220,240 L280,260 L240,320 L190,260 Z" />
-                {/* South America */}
-                <path d="M280,300 L360,280 L400,340 L340,460 L280,420 L260,340 Z" />
-                {/* Europe */}
-                <path d="M460,80 L580,70 L620,130 L550,170 L480,150 L450,110 Z" />
-                {/* Africa */}
-                <path d="M460,180 L580,170 L620,240 L580,360 L500,380 L440,260 Z" />
-                {/* Asia / Eurasia */}
-                <path d="M600,60 L920,50 L950,160 L880,260 L780,280 L680,220 L600,160 Z" />
-                {/* Australia & Oceania */}
-                <path d="M800,330 L920,320 L940,400 L840,420 L780,370 Z" />
-              </g>
+          {/* Flexbox Row of Country Flag Pills */}
+          <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 max-w-4xl mx-auto relative">
+            {countryPartners.map((item, idx) => (
+              <motion.div
+                key={item.id}
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: idx * 0.1 }}
+                onMouseEnter={() => setActiveCountry(item)}
+                onMouseLeave={() => setActiveCountry(null)}
+                onClick={() => setActiveCountry(activeCountry?.id === item.id ? null : item)}
+                className={`relative cursor-pointer flex items-center gap-2.5 bg-[#0F172A] border ${
+                  activeCountry?.id === item.id ? "border-[#D4A017] bg-[#0F172A]" : "border-[#334155]"
+                } hover:border-[#D4A017] rounded-full px-5 py-2.5 transition-all duration-200 shadow-md group`}
+              >
+                {/* Flag Emoji Icon (24px size) */}
+                <span className="text-2xl leading-none shrink-0 group-hover:scale-110 transition-transform">
+                  {item.flag}
+                </span>
 
-              {/* Pulse Dots & Pins */}
-              {mapPins.map((pin) => {
-                const isHovered = activePin?.id === pin.id;
-                return (
-                  <g
-                    key={pin.id}
-                    className="cursor-pointer group"
-                    onMouseEnter={() => setActivePin(pin)}
-                    onMouseLeave={() => setActivePin(null)}
-                    onClick={() => setActivePin(activePin?.id === pin.id ? null : pin)}
-                  >
-                    {/* Outer Animated Pulse Circle */}
-                    <circle
-                      cx={pin.cx}
-                      cy={pin.cy}
-                      r={pin.r * 2.2}
-                      fill="none"
-                      stroke="#D4A017"
-                      strokeWidth="1.5"
-                      className="animate-map-pulse opacity-60"
-                      style={{ animationDelay: pin.delay }}
-                    />
+                {/* Country Name */}
+                <span className="font-heading font-semibold text-sm text-white group-hover:text-[#D4A017] transition-colors">
+                  {item.country}
+                </span>
 
-                    {/* Outer Glow Ring */}
-                    <circle
-                      cx={pin.cx}
-                      cy={pin.cy}
-                      r={pin.r + 3}
-                      fill="rgba(212, 160, 23, 0.25)"
-                      stroke="rgba(255, 255, 255, 0.4)"
-                      strokeWidth="1"
-                    />
+                {/* Role badge */}
+                <span className="text-[10px] font-mono text-[#94A3B8] bg-[#1E293B] px-2 py-0.5 rounded-full border border-[#334155]">
+                  {item.role}
+                </span>
 
-                    {/* Main Solid Gold Dot */}
-                    <circle
-                      cx={pin.cx}
-                      cy={pin.cy}
-                      r={pin.r}
-                      fill="#D4A017"
-                      className="transition-transform duration-200 group-hover:scale-125"
-                    />
-
-                    {/* Dot Label (Country code) */}
-                    <text
-                      x={pin.cx}
-                      y={pin.cy + pin.r + 14}
-                      textAnchor="middle"
-                      fill="#FFFFFF"
-                      fontSize="10"
-                      fontWeight="bold"
-                      fontFamily="sans-serif"
-                      className="pointer-events-none drop-shadow-md uppercase tracking-wider"
+                {/* Hover / Tap Tooltip Box */}
+                <AnimatePresence>
+                  {activeCountry?.id === item.id && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 8, scale: 0.95 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      exit={{ opacity: 0, y: 8, scale: 0.95 }}
+                      transition={{ duration: 0.2 }}
+                      className="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 w-72 p-3.5 rounded-xl bg-[#0F172A] border border-[#D4A017] shadow-2xl z-40 text-white space-y-1 text-left pointer-events-none"
                     >
-                      {pin.name}
-                    </text>
-                  </g>
-                );
-              })}
-            </svg>
-
-            {/* Interactive Tooltip Display (Desktop Hover / Mobile Tap) */}
-            <AnimatePresence>
-              {activePin && (
-                <motion.div
-                  initial={{ opacity: 0, y: 8, scale: 0.95 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  exit={{ opacity: 0, y: 8, scale: 0.95 }}
-                  transition={{ duration: 0.2 }}
-                  className="absolute z-30 p-3.5 rounded-xl bg-[#1E293B] border border-[#D4A017] shadow-2xl text-white pointer-events-none max-w-xs space-y-1"
-                  style={{
-                    left: `${(activePin.cx / 1000) * 100}%`,
-                    top: `${(activePin.cy / 500) * 100 - 18}%`,
-                    transform: "translate(-50%, -100%)",
-                  }}
-                >
-                  <div className="flex items-center justify-between gap-2 border-b border-[#334155] pb-1.5">
-                    <span className="font-heading font-extrabold text-xs text-white uppercase tracking-wider">
-                      📍 {activePin.name}
-                    </span>
-                    <span className="text-[9px] font-mono font-bold text-[#D4A017] uppercase bg-[#0F172A] px-2 py-0.5 rounded border border-[#334155]">
-                      Active
-                    </span>
-                  </div>
-                  <p className="text-xs font-bold text-white leading-tight">
-                    {activePin.partner}
-                  </p>
-                  <p className="text-[11px] text-[#94A3B8] leading-snug">
-                    {activePin.projects}
-                  </p>
-                  {/* Tooltip Arrow */}
-                  <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-t-[6px] border-t-[#D4A017]" />
-                </motion.div>
-              )}
-            </AnimatePresence>
+                      <div className="flex items-center justify-between border-b border-[#334155] pb-1.5">
+                        <span className="font-heading font-extrabold text-xs text-[#D4A017] uppercase tracking-wider">
+                          {item.flag} {item.country}
+                        </span>
+                        <span className="text-[9px] font-mono font-bold text-[#3B82F6] uppercase">
+                          Đối Tác Chính
+                        </span>
+                      </div>
+                      <p className="text-xs font-bold text-white pt-0.5">
+                        {item.partners}
+                      </p>
+                      <p className="text-[11px] text-[#94A3B8] leading-snug">
+                        {item.details}
+                      </p>
+                      {/* Tooltip Down Arrow */}
+                      <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-t-[6px] border-t-[#D4A017]" />
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.div>
+            ))}
           </div>
         </div>
 
