@@ -112,7 +112,7 @@
 
   <main>
     <!-- ========================================================================== -->
-    <!-- HERO SECTION (DARK ROASTED COFFEE ACCENT SECTION 1/2)                     -->
+    <!-- HERO SECTION (DARK ROASTED COFFEE ACCENT WITH FLOATING STEAM FX)           -->
     <!-- ========================================================================== -->
     <section id="hero-section" class="relative min-h-[92vh] flex items-center justify-center pt-28 pb-24 bg-[#2B1810] text-white overflow-hidden">
       <!-- Particle Background Canvas -->
@@ -170,20 +170,33 @@
 
           </div>
 
-          <!-- Hero Drink Display (Clean Rounded Corner Frame) -->
+          <!-- Hero Drink Display (Floating Steam / Bubble Particles Overlay) -->
           <div class="lg:col-span-5 flex justify-center relative">
             <div class="relative w-full max-w-md aspect-square flex items-center justify-center">
               
               <!-- Subtle Ambient Glow -->
               <div class="absolute inset-4 rounded-full bg-[#D9713C]/20 blur-2xl animate-pulse-subtle pointer-events-none"></div>
 
-              <!-- Main Hero Drink Image with Uniform Rounded Corners -->
-              <div class="relative w-4/5 h-4/5 overflow-hidden shadow-2xl animate-float-natural rounded-3xl border-4 border-white/15">
-                <img id="hero-floating-drink" src="assets/images/hero-featured-drink.jpg" alt="Trà Đào Cam Sả" class="w-full h-full object-cover cursor-pointer hover:scale-105 transition-transform duration-700" />
+              <!-- Animated Floating Steam / Vapor Waves -->
+              <div class="absolute -top-6 inset-x-0 flex justify-center gap-8 pointer-events-none z-20">
+                <svg class="w-5 h-12 text-[#FDF6ED] opacity-30 animate-steam-1" viewBox="0 0 24 48" fill="none">
+                  <path d="M12 48C12 48 4 36 4 24C4 12 20 12 20 0" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+                </svg>
+                <svg class="w-6 h-14 text-[#D9713C] opacity-35 animate-steam-2" viewBox="0 0 24 48" fill="none">
+                  <path d="M12 48C12 48 20 36 20 24C20 12 4 12 4 0" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+                </svg>
+                <svg class="w-5 h-12 text-[#FDF6ED] opacity-30 animate-steam-3" viewBox="0 0 24 48" fill="none">
+                  <path d="M12 48C12 48 4 36 4 24C4 12 20 12 20 0" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+                </svg>
+              </div>
+
+              <!-- Main Hero Drink Image with Color Grading -->
+              <div class="relative w-4/5 h-4/5 overflow-hidden shadow-2xl animate-float-natural rounded-3xl border-4 border-white/15 img-depth-overlay">
+                <img id="hero-floating-drink" src="assets/images/hero-featured-drink.jpg" alt="Trà Đào Cam Sả" class="w-full h-full object-cover cursor-pointer drink-photo-graded" />
               </div>
 
               <!-- Clean Badge Top Right -->
-              <div class="absolute top-2 right-2 bg-white/95 backdrop-blur-md px-4 py-2 rounded-2xl text-[#3D2B1F] flex items-center gap-2.5 shadow-lg border border-white/40">
+              <div class="absolute top-2 right-2 z-30 bg-white/95 backdrop-blur-md px-4 py-2 rounded-2xl text-[#3D2B1F] flex items-center gap-2.5 shadow-lg border border-white/40">
                 <span class="w-2.5 h-2.5 rounded-full bg-[#D9713C]"></span>
                 <div>
                   <span class="block text-xs font-bold text-[#3D2B1F]">Trà Đào Cam Sả</span>
@@ -198,7 +211,7 @@
       </div>
     </section>
 
-    <!-- Wave Section Divider (Preserved Clean Smooth Wave) -->
+    <!-- Wave Section Divider -->
     <div class="w-full overflow-hidden leading-none bg-[#2B1810] -mt-1">
       <svg class="relative block w-full h-12 text-[#FDF6ED]" viewBox="0 0 1200 120" preserveAspectRatio="none">
         <path d="M0,0 C150,90 350,-40 500,65 C650,170 900,10 1200,45 L1200,120 L0,120 Z" fill="currentColor"></path>
@@ -206,7 +219,7 @@
     </div>
 
     <!-- ========================================================================== -->
-    <!-- CATEGORY HIGHLIGHTS (UNIFORM ROUNDED RECTANGLE CARDS - NO BLOBS)           -->
+    <!-- CATEGORY HIGHLIGHTS (COLOR GRADED PHOTOS & DEPTH GRADIENT)                 -->
     <!-- ========================================================================== -->
     <section id="category-section" class="py-20 bg-[#FDF6ED] relative">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -218,13 +231,13 @@
           <p class="text-[#8B7355] text-base">Hương vị tươi mát thanh lịch bùng nổ năng lượng mỗi ngày</p>
         </div>
 
-        <!-- Clean Bento Grid with Uniform Rounded Rectangles -->
+        <!-- Clean Bento Grid with Color Graded Photos -->
         <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-stretch">
           
-          <!-- Card 1: TRÀ TRÁI CÂY (Span 7, Uniform Rounded 3XL) -->
+          <!-- Card 1: TRÀ TRÁI CÂY -->
           <div class="md:col-span-7 bg-[#F5EBDD] rounded-3xl p-8 relative overflow-hidden group border border-[#E8DCC8] warm-shadow-hover min-h-[300px] flex flex-col justify-between">
             <div class="absolute inset-0 bg-gradient-to-r from-[#2B1810]/75 via-[#2B1810]/40 to-transparent z-10"></div>
-            <img src="assets/images/tra-dao-cam-sa.jpg" alt="Trà Trái Cây" class="absolute right-0 top-0 h-full w-2/3 object-cover group-hover:scale-105 transition-transform duration-500" />
+            <img src="assets/images/tra-dao-cam-sa.jpg" alt="Trà Trái Cây" class="absolute right-0 top-0 h-full w-2/3 object-cover drink-photo-graded" />
             
             <div class="relative z-20">
               <span class="inline-block text-xs font-bold uppercase tracking-wider text-white bg-[#D9713C] px-3.5 py-1 rounded-full shadow-sm">FRESH & LIGHT</span>
@@ -239,10 +252,10 @@
             </div>
           </div>
 
-          <!-- Card 2: TRÀ SỮA (Span 5, Uniform Rounded 3XL) -->
+          <!-- Card 2: TRÀ SỮA -->
           <div class="md:col-span-5 bg-[#F5EBDD] rounded-3xl p-8 relative overflow-hidden group border border-[#E8DCC8] warm-shadow-hover min-h-[300px] flex flex-col justify-between">
             <div class="absolute inset-0 bg-gradient-to-r from-[#2B1810]/75 via-[#2B1810]/40 to-transparent z-10"></div>
-            <img src="assets/images/tra-sua-tran-chau-duong-den.jpg" alt="Trà Sữa" class="absolute right-0 top-0 h-full w-2/3 object-cover group-hover:scale-105 transition-transform duration-500" />
+            <img src="assets/images/tra-sua-tran-chau-duong-den.jpg" alt="Trà Sữa" class="absolute right-0 top-0 h-full w-2/3 object-cover drink-photo-graded" />
             
             <div class="relative z-20">
               <span class="inline-block text-xs font-bold uppercase tracking-wider text-white bg-[#7A8B5C] px-3.5 py-1 rounded-full shadow-sm">SWEET & CREAMY</span>
@@ -257,10 +270,10 @@
             </div>
           </div>
 
-          <!-- Card 3: CÀ PHÊ VIỆT (Span 5, Uniform Rounded 3XL) -->
+          <!-- Card 3: CÀ PHÊ VIỆT -->
           <div class="md:col-span-5 bg-[#F5EBDD] rounded-3xl p-8 relative overflow-hidden group border border-[#E8DCC8] warm-shadow-hover min-h-[300px] flex flex-col justify-between">
             <div class="absolute inset-0 bg-gradient-to-r from-[#2B1810]/75 via-[#2B1810]/40 to-transparent z-10"></div>
-            <img src="assets/images/ca-phe-sua-da.jpg" alt="Cà Phê" class="absolute right-0 top-0 h-full w-2/3 object-cover group-hover:scale-105 transition-transform duration-500" />
+            <img src="assets/images/ca-phe-sua-da.jpg" alt="Cà Phê" class="absolute right-0 top-0 h-full w-2/3 object-cover drink-photo-graded" />
             
             <div class="relative z-20">
               <span class="inline-block text-xs font-bold uppercase tracking-wider text-white bg-[#D9713C] px-3.5 py-1 rounded-full shadow-sm">BOLD & STRONG</span>
@@ -275,10 +288,10 @@
             </div>
           </div>
 
-          <!-- Card 4: NƯỚC ÉP & SINH TỐ (Span 7, Uniform Rounded 3XL) -->
+          <!-- Card 4: NƯỚC ÉP & SINH TỐ -->
           <div class="md:col-span-7 bg-[#F5EBDD] rounded-3xl p-8 relative overflow-hidden group border border-[#E8DCC8] warm-shadow-hover min-h-[300px] flex flex-col justify-between">
             <div class="absolute inset-0 bg-gradient-to-r from-[#2B1810]/75 via-[#2B1810]/40 to-transparent z-10"></div>
-            <img src="assets/images/sinh-to-xoai-dua.jpg" alt="Nước Ép & Sinh Tố" class="absolute right-0 top-0 h-full w-2/3 object-cover group-hover:scale-105 transition-transform duration-500" />
+            <img src="assets/images/sinh-to-xoai-dua.jpg" alt="Nước Ép & Sinh Tố" class="absolute right-0 top-0 h-full w-2/3 object-cover drink-photo-graded" />
             
             <div class="relative z-20">
               <span class="inline-block text-xs font-bold uppercase tracking-wider text-white bg-[#7A8B5C] px-3.5 py-1 rounded-full shadow-sm">PURE VITAMIN</span>
@@ -298,7 +311,7 @@
     </section>
 
     <!-- ========================================================================== -->
-    <!-- PRODUCT MENU SECTION (UNIFORM ROUNDED PRODUCT CARDS)                       -->
+    <!-- PRODUCT MENU SECTION                                                       -->
     <!-- ========================================================================== -->
     <section id="menu-section" class="py-24 bg-white relative">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -322,7 +335,7 @@
           </div>
         </div>
 
-        <!-- Products Grid (Rendered by main.js with clean uniform rounded cards) -->
+        <!-- Products Grid (Rendered by main.js with color graded photos) -->
         <div id="products-grid-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 transition-opacity duration-300">
           <!-- Dynamically inserted -->
         </div>
@@ -331,7 +344,7 @@
     </section>
 
     <!-- ========================================================================== -->
-    <!-- WHY CHOOSE US (UNIFORM ROUNDED FEATURE CARDS)                              -->
+    <!-- WHY CHOOSE US (CUSTOM DRINK ICONS & BOLD DARK STATS ACCENT BOX)            -->
     <!-- ========================================================================== -->
     <section id="why-us-section" class="py-24 bg-[#F5EBDD] relative overflow-hidden">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -343,12 +356,12 @@
           <p class="text-[#8B7355] text-base">Cam kết chất lượng chuẩn gu — Tươi ngon, Giao nhanh & Đóng gói chỉn chu</p>
         </div>
 
-        <!-- 4 Feature Cards with Uniform Rounded Corners -->
+        <!-- 4 Feature Cards with Custom Beverage & Delivery Icons -->
         <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-16">
           
           <div class="bg-white p-6 rounded-3xl border border-[#E8DCC8] warm-shadow-hover">
             <div class="w-12 h-12 rounded-2xl bg-[#D9713C]/15 text-[#D9713C] flex items-center justify-center mb-5">
-              <i data-lucide="leaf" class="w-6 h-6"></i>
+              <i data-lucide="citrus" class="w-6 h-6"></i>
             </div>
             <h3 class="font-display font-bold text-base text-[#3D2B1F] mb-2">100% Trái Cây Tươi</h3>
             <p class="text-xs text-[#8B7355] leading-relaxed">Nguyên liệu chọn lọc tự nhiên mỗi sáng, không dùng hương liệu hóa học.</p>
@@ -356,7 +369,7 @@
 
           <div class="bg-white p-6 rounded-3xl border border-[#E8DCC8] warm-shadow-hover">
             <div class="w-12 h-12 rounded-2xl bg-[#7A8B5C]/15 text-[#7A8B5C] flex items-center justify-center mb-5">
-              <i data-lucide="zap" class="w-6 h-6"></i>
+              <i data-lucide="bike" class="w-6 h-6"></i>
             </div>
             <h3 class="font-display font-bold text-base text-[#3D2B1F] mb-2">Giao Nhanh 15 Phút</h3>
             <p class="text-xs text-[#8B7355] leading-relaxed">Đội ngũ shipper riêng bảo quản đá lạnh giữ trọn hương vị tươi mát tận tay.</p>
@@ -364,7 +377,7 @@
 
           <div class="bg-white p-6 rounded-3xl border border-[#E8DCC8] warm-shadow-hover">
             <div class="w-12 h-12 rounded-2xl bg-[#D9713C]/15 text-[#D9713C] flex items-center justify-center mb-5">
-              <i data-lucide="sparkles" class="w-6 h-6"></i>
+              <i data-lucide="sprout" class="w-6 h-6"></i>
             </div>
             <h3 class="font-display font-bold text-base text-[#3D2B1F] mb-2">Bao Bì Bio Eco</h3>
             <p class="text-xs text-[#8B7355] leading-relaxed">Ly nhựa phân hủy sinh học eco-friendly in họa tiết tối giản thanh lịch.</p>
@@ -372,7 +385,7 @@
 
           <div class="bg-white p-6 rounded-3xl border border-[#E8DCC8] warm-shadow-hover">
             <div class="w-12 h-12 rounded-2xl bg-[#7A8B5C]/15 text-[#7A8B5C] flex items-center justify-center mb-5">
-              <i data-lucide="refresh-cw" class="w-6 h-6"></i>
+              <i data-lucide="shield-check" class="w-6 h-6"></i>
             </div>
             <h3 class="font-display font-bold text-base text-[#3D2B1F] mb-2">Đổi Trả Miễn Phí</h3>
             <p class="text-xs text-[#8B7355] leading-relaxed">Đổi ly mới 100% nếu không hài lòng về độ ngọt, đá hoặc đóng gói bị tràn.</p>
@@ -380,26 +393,33 @@
 
         </div>
 
-        <!-- Counter Stats Box -->
-        <div class="bg-white rounded-3xl p-8 sm:p-12 border border-[#E8DCC8] warm-shadow grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
-          <div>
-            <span class="counter-val font-display font-extrabold text-3xl sm:text-4xl text-[#D9713C] block mb-1" data-target="50000" data-suffix="+">0</span>
-            <span class="text-xs font-semibold text-[#8B7355] uppercase tracking-wider">Ly Đã Phục Vụ</span>
-          </div>
+        <!-- BOLD STATS ACCENT BOX (Deep Roasted Coffee Brown Background + Brand Tagline) -->
+        <div class="bg-[#2B1810] text-white rounded-3xl p-8 sm:p-14 border border-white/10 shadow-2xl">
+          
+          <p class="text-center font-display font-extrabold text-xl sm:text-2xl text-[#D4C3AC] uppercase tracking-wider mb-10">
+            "KHÔNG CHỈ LÀ ĐỒ UỐNG — ĐÓ LÀ PHONG CÁCH SỐNG GEN Z"
+          </p>
 
-          <div>
-            <span class="counter-val font-display font-extrabold text-3xl sm:text-4xl text-[#7A8B5C] block mb-1" data-target="99.4" data-suffix="%">0</span>
-            <span class="text-xs font-semibold text-[#8B7355] uppercase tracking-wider">Đánh Giá 5 Sao</span>
-          </div>
+          <div class="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center divide-y lg:divide-y-0 lg:divide-x divide-white/10">
+            <div class="pt-4 lg:pt-0">
+              <span class="counter-val font-display font-extrabold text-5xl sm:text-6xl text-[#D9713C] block mb-2" data-target="50000" data-suffix="+">0</span>
+              <span class="text-xs font-bold text-[#D4C3AC] uppercase tracking-wider">Ly Đã Phục Vụ</span>
+            </div>
 
-          <div>
-            <span class="counter-val font-display font-extrabold text-3xl sm:text-4xl text-[#D9713C] block mb-1" data-target="35" data-suffix="+">0</span>
-            <span class="text-xs font-semibold text-[#8B7355] uppercase tracking-wider">Chi Nhánh Toàn Quốc</span>
-          </div>
+            <div class="pt-4 lg:pt-0">
+              <span class="counter-val font-display font-extrabold text-5xl sm:text-6xl text-[#7A8B5C] block mb-2" data-target="99.4" data-suffix="%">0</span>
+              <span class="text-xs font-bold text-[#D4C3AC] uppercase tracking-wider">Đánh Giá 5 Sao</span>
+            </div>
 
-          <div>
-            <span class="counter-val font-display font-extrabold text-3xl sm:text-4xl text-[#3D2B1F] block mb-1" data-target="15" data-suffix=" min">0</span>
-            <span class="text-xs font-semibold text-[#8B7355] uppercase tracking-wider">Giao Hàng Trung Bình</span>
+            <div class="pt-4 lg:pt-0">
+              <span class="counter-val font-display font-extrabold text-5xl sm:text-6xl text-[#D9713C] block mb-2" data-target="35" data-suffix="+">0</span>
+              <span class="text-xs font-bold text-[#D4C3AC] uppercase tracking-wider">Chi Nhánh Toàn Quốc</span>
+            </div>
+
+            <div class="pt-4 lg:pt-0">
+              <span class="counter-val font-display font-extrabold text-5xl sm:text-6xl text-white block mb-2" data-target="15" data-suffix=" min">0</span>
+              <span class="text-xs font-bold text-[#D4C3AC] uppercase tracking-wider">Giao Hàng Trung Bình</span>
+            </div>
           </div>
         </div>
 
@@ -407,7 +427,7 @@
     </section>
 
     <!-- ========================================================================== -->
-    <!-- TESTIMONIALS REVIEWS (DISPLAYING 3 CARDS ON DESKTOP)                       -->
+    <!-- TESTIMONIALS REVIEWS                                                       -->
     <!-- ========================================================================== -->
     <section id="reviews-section" class="py-24 bg-[#FDF6ED] relative">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -431,7 +451,7 @@
           </div>
         </div>
 
-        <!-- Slider Container with Multi-card Desktop View -->
+        <!-- Slider Container -->
         <div class="overflow-hidden w-full">
           <div id="testimonial-track" class="flex gap-6 transition-transform duration-500 ease-out w-full">
             
@@ -511,7 +531,7 @@
     </section>
 
     <!-- ========================================================================== -->
-    <!-- NEWSLETTER / SPECIAL OFFER BANNER (CLEAN ROUNDED 3XL BANNER - NO BLOBS)    -->
+    <!-- NEWSLETTER / SPECIAL OFFER BANNER                                          -->
     <!-- ========================================================================== -->
     <section class="py-20 bg-[#FDF6ED] relative">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -750,7 +770,7 @@
 
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 items-center">
         <div class="rounded-2xl overflow-hidden bg-[#F5EBDD] aspect-square flex items-center justify-center">
-          <img id="qv-img" src="" alt="" class="w-full h-full object-cover" />
+          <img id="qv-img" src="" alt="" class="w-full h-full object-cover drink-photo-graded" />
         </div>
         <div>
           <span class="text-[10px] font-bold text-[#D9713C] uppercase tracking-wider px-2.5 py-1 rounded-full bg-[#D9713C]/10 border border-[#D9713C]/20 inline-block mb-3">Tươi Ngon</span>

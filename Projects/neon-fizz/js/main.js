@@ -1,5 +1,5 @@
 /* ==========================================================================
-   NEON FIZZ — CLEAN UNIFORM ROUNDED MAIN JAVASCRIPT
+   NEON FIZZ — ENHANCED WOW MICRO-INTERACTION MAIN JAVASCRIPT
    ========================================================================== */
 
 // Category Slug -> Accented Vietnamese Label Mapper
@@ -148,7 +148,7 @@ function initHeroParallax() {
 }
 
 /* -------------------------------------------------------------------------- */
-/* 5. Render Product Grid with Clean Uniform Rounded Cards                     */
+/* 5. Render Product Grid with Color Grading & Depth Overlays                 */
 /* -------------------------------------------------------------------------- */
 function renderProductsGrid(categoryFilter = 'all') {
   const container = document.getElementById('products-grid-container');
@@ -165,7 +165,7 @@ function renderProductsGrid(categoryFilter = 'all') {
       const categoryName = CATEGORY_LABEL_MAP[p.category] || p.category.toUpperCase();
 
       const badgeHTML = p.badge ? `
-        <span class="absolute top-3 left-3 text-[11px] font-bold px-3 py-1 rounded-full ${p.badge === 'Mới' ? 'bg-[#7A8B5C] text-white' : 'bg-[#D9713C] text-white'} shadow-sm">
+        <span class="absolute top-3 left-3 z-10 text-[11px] font-bold px-3 py-1 rounded-full ${p.badge === 'Mới' ? 'bg-[#7A8B5C] text-white' : 'bg-[#D9713C] text-white'} shadow-sm">
           ${p.badge}
         </span>
       ` : '';
@@ -173,11 +173,11 @@ function renderProductsGrid(categoryFilter = 'all') {
       return `
         <div class="product-card group bg-white rounded-2xl p-4 flex flex-col justify-between border border-[#E8DCC8] warm-shadow-hover">
           <div>
-            <!-- Image Container with Clean Rounded Corner Crop -->
-            <div class="relative overflow-hidden mb-4 bg-[#F5EBDD] aspect-square flex items-center justify-center rounded-xl">
-              <img src="${p.img}" alt="${p.name}" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+            <!-- Image Container with Depth Gradient & Graded Photo -->
+            <div class="relative overflow-hidden mb-4 bg-[#F5EBDD] aspect-square flex items-center justify-center rounded-xl img-depth-overlay">
+              <img src="${p.img}" alt="${p.name}" class="w-full h-full object-cover drink-photo-graded group-hover:scale-106" loading="lazy" />
               ${badgeHTML}
-              <button onclick="openQuickView('${p.id}')" class="absolute bottom-3 right-3 bg-white/90 hover:bg-[#D9713C] text-[#3D2B1F] hover:text-white p-2.5 rounded-full shadow-md backdrop-blur-md transition-colors opacity-0 group-hover:opacity-100" title="Xem nhanh">
+              <button onclick="openQuickView('${p.id}')" class="absolute bottom-3 right-3 z-10 bg-white/90 hover:bg-[#D9713C] text-[#3D2B1F] hover:text-white p-2.5 rounded-full shadow-md backdrop-blur-md transition-colors opacity-0 group-hover:opacity-100" title="Xem nhanh">
                 <i data-lucide="eye" class="w-4 h-4"></i>
               </button>
             </div>
@@ -201,7 +201,7 @@ function renderProductsGrid(categoryFilter = 'all') {
               <span class="font-display font-extrabold text-base text-[#D9713C]">${formatVND(p.price)}</span>
               <span class="text-xs text-[#8B7355] line-through ml-1.5">${formatVND(p.originalPrice)}</span>
             </div>
-            <button onclick="window.cartManager.addItem('${p.id}', this)" class="bg-[#D9713C] hover:bg-[#C25B28] text-white p-2.5 rounded-full flex items-center justify-center transition-all shadow-sm active:scale-95 hover:scale-105" title="Thêm vào giỏ">
+            <button onclick="window.cartManager.addItem('${p.id}', this)" class="bg-[#D9713C] hover:bg-[#C25B28] text-white p-2.5 rounded-full flex items-center justify-center transition-all shadow-sm active:scale-90 hover:scale-105" title="Thêm vào giỏ">
               <i data-lucide="plus" class="w-4 h-4"></i>
             </button>
           </div>
@@ -230,7 +230,7 @@ function initCategoryTabs() {
 }
 
 /* -------------------------------------------------------------------------- */
-/* 6. Stats Counter Animation                                                */
+/* 6. Stats Counter Animation (Dark Roasted Coffee Background Section)         */
 /* -------------------------------------------------------------------------- */
 function initStatsCounter() {
   const statsElements = document.querySelectorAll('.counter-val');
@@ -262,13 +262,13 @@ function initStatsCounter() {
         obs.unobserve(el);
       }
     });
-  }, { threshold: 0.4 });
+  }, { threshold: 0.3 });
 
   statsElements.forEach(el => observer.observe(el));
 }
 
 /* -------------------------------------------------------------------------- */
-/* 7. Testimonials Slider (Multi-card Grid on Desktop)                        */
+/* 7. Testimonials Slider                                                     */
 /* -------------------------------------------------------------------------- */
 function initTestimonialsSlider() {
   const track = document.getElementById('testimonial-track');
