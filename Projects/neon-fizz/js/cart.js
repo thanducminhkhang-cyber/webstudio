@@ -1,104 +1,104 @@
 /* ==========================================================================
-   NEON FIZZ — FRESH NEON CART LOGIC
+   NEON FIZZ — FRESH NEON CART LOGIC & PRODUCTS DATA
    ========================================================================== */
 
-// --- Products Data (Minimal clean badges: "Bán chạy" & "Mới") ---
+// --- Products Data (Vietnamese Menu) ---
 const PRODUCTS_DATA = [
   {
     id: 'p1',
-    name: 'Pink Velvet Dragon Tea',
+    name: 'Trà Đào Cam Sả',
     category: 'tra-trai-cay',
-    price: 49000,
-    originalPrice: 59000,
+    price: 45000,
+    originalPrice: 55000,
     rating: 4.9,
     reviews: 128,
-    badge: 'Bán chạy', // Only 2-3 featured items have badges
-    desc: 'Trà ô long thanh mát kết hợp dừa nướng, thanh long đỏ tươi & thạch dừa giòn.',
-    img: 'assets/images/cat_fruit_tea.jpg'
+    badge: null,
+    desc: 'Trà ô long thanh mát kết hợp đào ngâm, cam tươi và sả thơm dịu.',
+    img: 'assets/images/tra-dao-cam-sa.jpg'
   },
   {
     id: 'p2',
-    name: 'Electric Cyan Galaxy Soda',
-    category: 'soda',
-    price: 45000,
-    originalPrice: 52000,
-    rating: 5.0,
+    name: 'Trà Vải Hoa Hồng',
+    category: 'tra-trai-cay',
+    price: 42000,
+    originalPrice: 50000,
+    rating: 4.8,
     reviews: 94,
     badge: 'Mới',
-    desc: 'Soda hoa đậu biếc chanh tươi, hạt popping kiwi nổ bùng sảng khoái.',
-    img: 'assets/images/cat_neon_soda.jpg'
+    desc: 'Trà vải thiều ngọt thanh, thoảng hương hoa hồng nhẹ nhàng, giải nhiệt tức thì.',
+    img: 'assets/images/tra-vai-hoa-hong.jpg'
   },
   {
     id: 'p3',
-    name: 'Tiger Brown Sugar Boba',
+    name: 'Trà Sữa Trân Châu Đường Đen',
     category: 'tra-sua',
-    price: 55000,
-    originalPrice: 65000,
-    rating: 4.8,
+    price: 49000,
+    originalPrice: 59000,
+    rating: 4.9,
     reviews: 210,
     badge: 'Bán chạy',
-    desc: 'Sữa tươi Dalat Milk ngậy béo hòa quyện đường đen Okinawa & trân châu dẻo.',
-    img: 'assets/images/cat_boba_milk.jpg'
+    desc: 'Trà sữa béo thơm, trân châu đường đen dẻo mềm, phủ lớp caramel đường đen sánh mịn.',
+    img: 'assets/images/tra-sua-tran-chau-duong-den.jpg'
   },
   {
     id: 'p4',
-    name: 'Lime Glow Matcha Cloud',
+    name: 'Trà Sữa Matcha Kem Trứng',
     category: 'tra-sua',
     price: 52000,
     originalPrice: 60000,
     rating: 4.7,
     reviews: 86,
-    badge: null, // No badge
-    desc: 'Matcha Uji Nhật Bản đậm đà phủ lớp macchiato kem phô mai ngậy thanh.',
-    img: 'assets/images/cat_fresh_juice.jpg'
+    badge: null,
+    desc: 'Matcha Nhật nguyên chất kết hợp lớp kem trứng béo ngậy phủ mặt.',
+    img: 'assets/images/tra-sua-matcha-kem-trung.jpg'
   },
   {
     id: 'p5',
-    name: 'Midnight Berry Fizz',
-    category: 'soda',
-    price: 48000,
-    originalPrice: 55000,
+    name: 'Cà Phê Sữa Đá',
+    category: 'ca-phe',
+    price: 29000,
+    originalPrice: 35000,
     rating: 4.9,
     reviews: 154,
     badge: null,
-    desc: 'Sữa chua lên men mát lạnh hòa cùng việt quất tươi & soda sảng khoái.',
-    img: 'assets/images/cat_neon_soda.jpg'
+    desc: 'Cà phê phin truyền thống pha cùng sữa đặc, đậm đà đúng chuẩn cà phê Việt.',
+    img: 'assets/images/ca-phe-sua-da.jpg'
   },
   {
     id: 'p6',
-    name: 'Solar Citrus Passion Juice',
-    category: 'nuoc-ep',
-    price: 42000,
-    originalPrice: 50000,
+    name: 'Bạc Xỉu Đá',
+    category: 'ca-phe',
+    price: 32000,
+    originalPrice: 38000,
     rating: 4.8,
     reviews: 73,
     badge: null,
-    desc: 'Nước ép cam vàng, chanh dây & xoài chín tươi 100% nguyên chất tự nhiên.',
-    img: 'assets/images/cat_fresh_juice.jpg'
+    desc: 'Cà phê sữa nhẹ nhàng, nhiều sữa ít cà phê, phù hợp người mới uống cà phê.',
+    img: 'assets/images/bac-xiu-da.jpg'
   },
   {
     id: 'p7',
-    name: 'Cyber Mango Coconut Shake',
-    category: 'nuoc-ep',
-    price: 55000,
-    originalPrice: 62000,
-    rating: 4.9,
+    name: 'Nước Ép Cam Vàng',
+    category: 'nuoc-ep-sinh-to',
+    price: 39000,
+    originalPrice: 45000,
+    rating: 4.8,
     reviews: 112,
     badge: null,
-    desc: 'Sinh tố xoài Cát Chu dầm cốt dừa nướng Bến Tre thơm béo cuốn vị.',
-    img: 'assets/images/hero_drink.jpg'
+    desc: 'Cam vàng ép nguyên chất 100%, giàu vitamin C, không đường thêm.',
+    img: 'assets/images/nuoc-ep-cam-vang.jpg'
   },
   {
     id: 'p8',
-    name: 'Acid Lemon Sparkling Tea',
-    category: 'tra-trai-cay',
-    price: 39000,
-    originalPrice: 45000,
-    rating: 4.6,
+    name: 'Sinh Tố Xoài Dừa',
+    category: 'nuoc-ep-sinh-to',
+    price: 45000,
+    originalPrice: 52000,
+    rating: 4.7,
     reviews: 67,
     badge: null,
-    desc: 'Trà nhài ướp lạnh lắc chanh vàng ngâm mật ong và đá tuyết giải nhiệt.',
-    img: 'assets/images/cat_fruit_tea.jpg'
+    desc: 'Xoài chín mọng xay cùng nước cốt dừa béo thơm, mát lạnh sảng khoái.',
+    img: 'assets/images/sinh-to-xoai-dua.jpg'
   }
 ];
 
@@ -106,7 +106,7 @@ const PRODUCTS_DATA = [
 class CartManager {
   constructor() {
     this.items = JSON.parse(localStorage.getItem('neon_fizz_cart')) || [
-      { id: 'p1', name: 'Pink Velvet Dragon Tea', price: 49000, qty: 2, img: 'assets/images/cat_fruit_tea.jpg' }
+      { id: 'p1', name: 'Trà Đào Cam Sả', price: 45000, qty: 2, img: 'assets/images/tra-dao-cam-sa.jpg' }
     ];
     this.appliedDiscount = 0;
     this.promoCode = '';
