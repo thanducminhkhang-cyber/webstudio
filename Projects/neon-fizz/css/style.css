@@ -1,5 +1,5 @@
 /* ==========================================================================
-   NEON FIZZ — WARM ORGANIC & BLOB STYLESHEET
+   NEON FIZZ — WARM ORGANIC COFFEE STYLESHEET (UNIFORM ROUNDED CORNERS)
    Style guide: Warm Cream (#FDF6ED), Terracotta (#D9713C), Olive Green (#7A8B5C), Coffee (#3D2B1F)
    Typography: Space Grotesk (Display) & Inter (Body)
    ========================================================================== */
@@ -84,20 +84,21 @@ h1, h2, h3, h4, h5, h6, .font-display {
   color: var(--olive-secondary);
 }
 
+/* --- Buttons --- */
 .btn-terracotta {
   background-color: var(--terracotta-primary);
   color: #FFFFFF;
-  border-radius: 28px 12px 28px 14px;
+  border-radius: 9999px;
   transition: var(--transition-bounce);
 }
 
 .btn-terracotta:hover {
   background-color: var(--terracotta-hover);
-  transform: translateY(-3px) scale(1.02);
+  transform: translateY(-2px) scale(1.02);
   box-shadow: 0 10px 24px rgba(217, 113, 60, 0.3);
 }
 
-/* --- Warm Organic Shadows --- */
+/* --- Warm Shadows --- */
 .warm-shadow {
   box-shadow: var(--shadow-warm);
 }
@@ -107,67 +108,51 @@ h1, h2, h3, h4, h5, h6, .font-display {
 }
 
 .warm-shadow-hover:hover {
-  transform: translateY(-5px);
+  transform: translateY(-4px);
   box-shadow: var(--shadow-warm-hover);
   border-color: #D4C3AC !important;
 }
 
-/* --- Organic Blob Shapes --- */
-.blob-shape-1 {
-  border-radius: 58% 42% 65% 35% / 45% 55% 45% 55%;
+/* --- Uniform Clean Rounded Utility Classes (Replacing Blobs) --- */
+.rounded-card-warm {
+  border-radius: 24px;
 }
 
-.blob-shape-2 {
-  border-radius: 40% 60% 30% 70% / 60% 40% 70% 30%;
+.rounded-card-lg {
+  border-radius: 28px;
 }
 
-.blob-shape-3 {
-  border-radius: 65% 35% 50% 50% / 35% 65% 50% 50%;
+.rounded-banner-warm {
+  border-radius: 32px;
 }
 
-.blob-shape-4 {
-  border-radius: 35% 65% 60% 40% / 55% 45% 55% 45%;
+.rounded-img-warm {
+  border-radius: 18px;
 }
 
-.blob-card-product {
-  border-radius: 32px 14px 28px 10px;
+.rounded-icon-warm {
+  border-radius: 16px;
 }
 
-.blob-img-product {
-  border-radius: 24px 10px 20px 8px;
-}
-
-.blob-icon-1 {
-  border-radius: 45% 55% 60% 40% / 50% 40% 60% 50%;
-}
-.blob-icon-2 {
-  border-radius: 60% 40% 45% 55% / 40% 60% 50% 50%;
-}
-.blob-icon-3 {
-  border-radius: 50% 50% 35% 65% / 55% 45% 55% 45%;
-}
-.blob-icon-4 {
-  border-radius: 40% 60% 55% 45% / 45% 55% 40% 60%;
-}
-
-/* --- Blob Pulse Keyframe --- */
-@keyframes blobPulse {
+/* --- Natural Float & Pulse --- */
+@keyframes pulseSubtle {
   0%, 100% {
-    transform: scale(1) rotate(0deg);
+    transform: scale(1);
+    opacity: 0.2;
   }
   50% {
-    transform: scale(1.05) rotate(3deg);
+    transform: scale(1.06);
+    opacity: 0.35;
   }
 }
 
-.animate-blob-pulse {
-  animation: blobPulse 7s ease-in-out infinite;
+.animate-pulse-subtle {
+  animation: pulseSubtle 6s ease-in-out infinite;
 }
 
-/* --- Natural Float --- */
 @keyframes floatNatural {
   0% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
+  50% { transform: translateY(-8px); }
   100% { transform: translateY(0px); }
 }
 
@@ -177,7 +162,7 @@ h1, h2, h3, h4, h5, h6, .font-display {
 
 /* --- Glassmorphism Light Warm --- */
 .glass-nav-warm {
-  background: rgba(253, 246, 237, 0.9);
+  background: rgba(253, 246, 237, 0.92);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--border-warm);
@@ -205,7 +190,7 @@ h1, h2, h3, h4, h5, h6, .font-display {
   pointer-events: auto;
   min-width: 280px;
   padding: 0.9rem 1.25rem;
-  border-radius: 20px 8px 18px 6px;
+  border-radius: 16px;
   background: #FFFFFF;
   border: 1px solid var(--border-warm);
   color: var(--text-dark);
@@ -230,12 +215,12 @@ h1, h2, h3, h4, h5, h6, .font-display {
   to { opacity: 0; transform: translateY(20px) scale(0.95); }
 }
 
-/* --- Filter Tab Active Blob --- */
+/* --- Filter Tab Clean Active --- */
 .tab-btn {
   background: #FFFFFF;
   color: var(--text-muted);
   border: 1px solid var(--border-warm);
-  border-radius: 20px 8px 18px 8px;
+  border-radius: 9999px;
   transition: var(--transition-bounce);
 }
 
@@ -243,7 +228,7 @@ h1, h2, h3, h4, h5, h6, .font-display {
   color: #FFFFFF;
   border-color: var(--terracotta-primary);
   background-color: var(--terracotta-primary);
-  transform: scale(1.04);
+  transform: scale(1.03);
   box-shadow: 0 4px 16px rgba(217, 113, 60, 0.25);
 }
 

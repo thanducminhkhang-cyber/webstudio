@@ -1,8 +1,8 @@
 /* ==========================================================================
-   NEON FIZZ — WARM ORGANIC & BLOB MAIN JAVASCRIPT
+   NEON FIZZ — CLEAN UNIFORM ROUNDED MAIN JAVASCRIPT
    ========================================================================== */
 
-// Category Slug -> Accented Vietnamese Label Mapper (FIXED UNACCENTED / HYPHEN BUG)
+// Category Slug -> Accented Vietnamese Label Mapper
 const CATEGORY_LABEL_MAP = {
   'tra-trai-cay': 'TRÀ TRÁI CÂY',
   'tra-sua': 'TRÀ SỮA',
@@ -148,7 +148,7 @@ function initHeroParallax() {
 }
 
 /* -------------------------------------------------------------------------- */
-/* 5. Render Product Grid & Organic Blob Cards                                 */
+/* 5. Render Product Grid with Clean Uniform Rounded Cards                     */
 /* -------------------------------------------------------------------------- */
 function renderProductsGrid(categoryFilter = 'all') {
   const container = document.getElementById('products-grid-container');
@@ -162,10 +162,8 @@ function renderProductsGrid(categoryFilter = 'all') {
 
   setTimeout(() => {
     container.innerHTML = filtered.map(p => {
-      // Corrected Vietnamese Accented Category Tag Name
       const categoryName = CATEGORY_LABEL_MAP[p.category] || p.category.toUpperCase();
 
-      // Badge HTML (Terracotta or Olive)
       const badgeHTML = p.badge ? `
         <span class="absolute top-3 left-3 text-[11px] font-bold px-3 py-1 rounded-full ${p.badge === 'Mới' ? 'bg-[#7A8B5C] text-white' : 'bg-[#D9713C] text-white'} shadow-sm">
           ${p.badge}
@@ -173,10 +171,10 @@ function renderProductsGrid(categoryFilter = 'all') {
       ` : '';
 
       return `
-        <div class="product-card group bg-white rounded-[28px] p-4 flex flex-col justify-between border border-[#E8DCC8] warm-shadow-hover" style="border-radius: 32px 14px 28px 10px;">
+        <div class="product-card group bg-white rounded-2xl p-4 flex flex-col justify-between border border-[#E8DCC8] warm-shadow-hover">
           <div>
-            <!-- Image Container with Organic Asymmetric Crop -->
-            <div class="relative overflow-hidden mb-4 bg-[#F5EBDD] aspect-square flex items-center justify-center" style="border-radius: 24px 10px 20px 8px;">
+            <!-- Image Container with Clean Rounded Corner Crop -->
+            <div class="relative overflow-hidden mb-4 bg-[#F5EBDD] aspect-square flex items-center justify-center rounded-xl">
               <img src="${p.img}" alt="${p.name}" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500" loading="lazy" />
               ${badgeHTML}
               <button onclick="openQuickView('${p.id}')" class="absolute bottom-3 right-3 bg-white/90 hover:bg-[#D9713C] text-[#3D2B1F] hover:text-white p-2.5 rounded-full shadow-md backdrop-blur-md transition-colors opacity-0 group-hover:opacity-100" title="Xem nhanh">
@@ -184,7 +182,7 @@ function renderProductsGrid(categoryFilter = 'all') {
               </button>
             </div>
 
-            <!-- Title & Properly Accented Category Tag -->
+            <!-- Title & Accented Category Tag -->
             <div class="flex items-center justify-between gap-2 mb-1.5">
               <span class="text-xs text-[#8B7355] flex items-center gap-1">
                 <i data-lucide="star" class="w-3.5 h-3.5 fill-[#D9713C] text-[#D9713C]"></i>
@@ -270,7 +268,7 @@ function initStatsCounter() {
 }
 
 /* -------------------------------------------------------------------------- */
-/* 7. Testimonials Slider                                                    */
+/* 7. Testimonials Slider (Multi-card Grid on Desktop)                        */
 /* -------------------------------------------------------------------------- */
 function initTestimonialsSlider() {
   const track = document.getElementById('testimonial-track');
@@ -284,24 +282,27 @@ function initTestimonialsSlider() {
   const total = cards.length;
 
   const updateSlide = () => {
-    const width = cards[0].offsetWidth + 24;
-    track.style.transform = `translateX(-${currentIndex * width}px)`;
+    if (cards.length === 0) return;
+    const cardWidth = cards[0].getBoundingClientRect().width;
+    const gap = 24;
+    track.style.transform = `translateX(-${currentIndex * (cardWidth + gap)}px)`;
   };
 
   nextBtn.addEventListener('click', () => {
-    currentIndex = (currentIndex + 1) % total;
+    const visibleCount = window.innerWidth >= 1024 ? 3 : (window.innerWidth >= 768 ? 2 : 1);
+    const maxIndex = Math.max(0, total - visibleCount);
+    currentIndex = currentIndex >= maxIndex ? 0 : currentIndex + 1;
     updateSlide();
   });
 
   prevBtn.addEventListener('click', () => {
-    currentIndex = (currentIndex - 1 + total) % total;
+    const visibleCount = window.innerWidth >= 1024 ? 3 : (window.innerWidth >= 768 ? 2 : 1);
+    const maxIndex = Math.max(0, total - visibleCount);
+    currentIndex = currentIndex <= 0 ? maxIndex : currentIndex - 1;
     updateSlide();
   });
 
-  setInterval(() => {
-    currentIndex = (currentIndex + 1) % total;
-    updateSlide();
-  }, 5000);
+  window.addEventListener('resize', updateSlide);
 }
 
 /* -------------------------------------------------------------------------- */
