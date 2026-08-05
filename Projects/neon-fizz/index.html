@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>NEON FIZZ — Nước Uống Trendy Cho Gen Z</title>
-  <meta name="description" content="Thương hiệu nước uống Gen Z cực bốc — Trà trái cây, Trà sữa, Soda Galaxy & Nước ép với phong cách Neon Cyberpunk hiện đại." />
+  <title>NEON FIZZ — Nước Uống Fresh Neon Cho Gen Z</title>
+  <meta name="description" content="Thương hiệu nước uống Gen Z tươi mát — Trà trái cây, Trà sữa, Soda Galaxy & Nước ép với phong cách Fresh Neon hiện đại." />
   
   <!-- Open Graph Meta Tags -->
-  <meta property="og:title" content="NEON FIZZ — Nước Uống Trendy Cho Gen Z" />
-  <meta property="og:description" content="Trải nghiệm hương vị bùng nổ cùng NEON FIZZ. Giao nhanh 15 phút!" />
+  <meta property="og:title" content="NEON FIZZ — Nước Uống Fresh Neon Cho Gen Z" />
+  <meta property="og:description" content="Trải nghiệm hương vị tươi mát bùng nổ cùng NEON FIZZ. Giao nhanh 15 phút!" />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="assets/images/hero_drink.jpg" />
 
@@ -30,11 +30,12 @@
       theme: {
         extend: {
           colors: {
-            'neon-pink': '#FF2E93',
-            'neon-cyan': '#00F0FF',
-            'neon-lime': '#D4FF00',
-            'bg-dark': '#0A0A0F',
-            'bg-card': '#15151F',
+            'mint': '#00D9A3',
+            'mint-dark': '#00B88A',
+            'pink-accent': '#FF3E8E',
+            'bg-light': '#FAFAF9',
+            'bg-alt': '#F5F5F3',
+            'text-dark': '#1A1A1F',
           },
           fontFamily: {
             display: ['Space Grotesk', 'sans-serif'],
@@ -45,44 +46,41 @@
     }
   </script>
 </head>
-<body class="bg-[#0A0A0F] text-[#F5F5F7] font-body selection:bg-[#FF2E93] selection:text-white">
+<body class="bg-[#FAFAF9] text-[#1A1A1F] font-body selection:bg-[#00D9A3] selection:text-white">
 
   <!-- ========================================================================== -->
-  <!-- HEADER & NAVIGATION                                                        -->
+  <!-- HEADER & NAVIGATION (Glassmorphism Light)                                  -->
   <!-- ========================================================================== -->
-  <header id="navbar" class="fixed top-0 left-0 right-0 z-50 glass-nav transition-all duration-300">
+  <header id="navbar" class="fixed top-0 left-0 right-0 z-50 glass-nav-light transition-all duration-300">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
       
       <!-- Brand Logo -->
       <a href="#" class="flex items-center gap-2.5 group">
-        <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-[#FF2E93] to-[#00F0FF] flex items-center justify-center shadow-lg shadow-[#FF2E93]/30 group-hover:scale-105 transition-transform">
+        <div class="w-10 h-10 rounded-2xl bg-[#00D9A3] flex items-center justify-center shadow-md shadow-[#00D9A3]/20 group-hover:scale-105 transition-transform">
           <i data-lucide="droplet" class="w-5 h-5 text-white fill-white"></i>
         </div>
-        <span class="font-display font-extrabold text-2xl tracking-wider text-white">
-          NEON<span class="gradient-text-pink-cyan">FIZZ</span>
+        <span class="font-display font-extrabold text-2xl tracking-wider text-[#1A1A1F]">
+          NEON<span class="text-[#00D9A3]">FIZZ</span>
         </span>
       </a>
 
       <!-- Desktop Nav Links -->
-      <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-[#9A9AB0]">
-        <a href="#hero-section" class="hover:text-[#00F0FF] transition-colors">Trang chủ</a>
-        <a href="#category-section" class="hover:text-[#00F0FF] transition-colors">Danh mục</a>
-        <a href="#menu-section" class="hover:text-[#00F0FF] transition-colors">Menu hot</a>
-        <a href="#why-us-section" class="hover:text-[#00F0FF] transition-colors">Về chúng tôi</a>
-        <a href="#reviews-section" class="hover:text-[#00F0FF] transition-colors">Đánh giá</a>
+      <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-[#6B6B75]">
+        <a href="#hero-section" class="hover:text-[#00D9A3] transition-colors">Trang chủ</a>
+        <a href="#category-section" class="hover:text-[#00D9A3] transition-colors">Danh mục</a>
+        <a href="#menu-section" class="hover:text-[#00D9A3] transition-colors">Menu hot</a>
+        <a href="#why-us-section" class="hover:text-[#00D9A3] transition-colors">Về chúng tôi</a>
+        <a href="#reviews-section" class="hover:text-[#00D9A3] transition-colors">Đánh giá</a>
       </nav>
 
-      <!-- Cart Button & Mobile Menu Trigger -->
+      <!-- Cart Button & Mobile Trigger -->
       <div class="flex items-center gap-4">
-        <!-- Cart Icon Button -->
-        <button id="cart-btn-trigger" onclick="toggleCartDrawer()" class="relative p-3 rounded-2xl bg-[#15151F] border border-white/10 hover:border-[#FF2E93] text-white hover:text-[#FF2E93] transition-all hover:shadow-[0_0_20px_rgba(255,46,147,0.3)]">
+        <button id="cart-btn-trigger" onclick="toggleCartDrawer()" class="relative p-3 rounded-2xl bg-white border border-[#E5E5E5] text-[#1A1A1F] hover:border-[#00D9A3] hover:text-[#00D9A3] transition-all shadow-sm">
           <i data-lucide="shopping-bag" class="w-5 h-5"></i>
-          <!-- Badge -->
-          <span class="cart-badge absolute -top-1.5 -right-1.5 w-5 h-5 rounded-full bg-[#FF2E93] text-white text-[11px] font-bold flex items-center justify-center shadow-md border border-[#0A0A0F]">0</span>
+          <span class="cart-badge absolute -top-1.5 -right-1.5 w-5 h-5 rounded-full bg-[#FF3E8E] text-white text-[11px] font-bold flex items-center justify-center shadow-sm">0</span>
         </button>
 
-        <!-- Mobile Hamburger Button -->
-        <button id="mobile-menu-btn" class="md:hidden p-3 rounded-2xl bg-[#15151F] border border-white/10 text-white hover:text-[#00F0FF]">
+        <button id="mobile-menu-btn" class="md:hidden p-3 rounded-2xl bg-white border border-[#E5E5E5] text-[#1A1A1F] hover:text-[#00D9A3]">
           <i data-lucide="menu" class="w-6 h-6"></i>
         </button>
       </div>
@@ -90,37 +88,33 @@
     </div>
   </header>
 
-  <!-- Mobile Full-Screen Overlay Navigation -->
-  <div id="mobile-menu-overlay" class="fixed inset-0 z-50 bg-[#0A0A0F]/95 backdrop-blur-2xl transform translate-x-full transition-transform duration-300 md:hidden flex flex-col justify-between p-8">
-    <div class="flex items-center justify-between border-b border-white/10 pb-6">
-      <span class="font-display font-bold text-xl text-white">NEON FIZZ</span>
-      <button id="mobile-menu-close" class="p-2 text-white/70 hover:text-white">
+  <!-- Mobile Full-Screen Navigation -->
+  <div id="mobile-menu-overlay" class="fixed inset-0 z-50 bg-[#FAFAF9]/98 backdrop-blur-2xl transform translate-x-full transition-transform duration-300 md:hidden flex flex-col justify-between p-8">
+    <div class="flex items-center justify-between border-b border-[#E5E5E5] pb-6">
+      <span class="font-display font-bold text-xl text-[#1A1A1F]">NEON FIZZ</span>
+      <button id="mobile-menu-close" class="p-2 text-[#6B6B75] hover:text-[#1A1A1F]">
         <i data-lucide="x" class="w-7 h-7"></i>
       </button>
     </div>
     <nav class="flex flex-col gap-6 text-xl font-display font-semibold">
-      <a href="#hero-section" class="mobile-nav-link text-white hover:text-[#FF2E93]">Trang chủ</a>
-      <a href="#category-section" class="mobile-nav-link text-white hover:text-[#00F0FF]">Danh mục nổi bật</a>
-      <a href="#menu-section" class="mobile-nav-link text-white hover:text-[#D4FF00]">Menu đồ uống</a>
-      <a href="#why-us-section" class="mobile-nav-link text-white hover:text-[#FF2E93]">Vì sao chọn chúng tôi</a>
-      <a href="#reviews-section" class="mobile-nav-link text-white hover:text-[#00F0FF]">Đánh giá từ Gen Z</a>
+      <a href="#hero-section" class="mobile-nav-link text-[#1A1A1F] hover:text-[#00D9A3]">Trang chủ</a>
+      <a href="#category-section" class="mobile-nav-link text-[#1A1A1F] hover:text-[#00D9A3]">Danh mục nổi bật</a>
+      <a href="#menu-section" class="mobile-nav-link text-[#1A1A1F] hover:text-[#00D9A3]">Menu đồ uống</a>
+      <a href="#why-us-section" class="mobile-nav-link text-[#1A1A1F] hover:text-[#00D9A3]">Vì sao chọn chúng tôi</a>
+      <a href="#reviews-section" class="mobile-nav-link text-[#1A1A1F] hover:text-[#00D9A3]">Đánh giá Gen Z</a>
     </nav>
-    <div class="pt-6 border-t border-white/10 text-xs text-[#9A9AB0]">
-      <p>© 2026 NEON FIZZ Inc. All rights reserved.</p>
+    <div class="pt-6 border-t border-[#E5E5E5] text-xs text-[#6B6B75]">
+      <p>© 2026 NEON FIZZ Inc. Fresh Neon Style.</p>
     </div>
   </div>
 
   <main>
     <!-- ========================================================================== -->
-    <!-- HERO SECTION                                                               -->
+    <!-- HERO SECTION (DARK ACCENT SECTION 1/2)                                      -->
     <!-- ========================================================================== -->
-    <section id="hero-section" class="relative min-h-screen flex items-center justify-center pt-24 pb-16 overflow-hidden">
-      <!-- Particle Background Canvas -->
+    <section id="hero-section" class="relative min-h-[90vh] flex items-center justify-center pt-28 pb-20 bg-[#0F0F14] text-white overflow-hidden">
+      <!-- Particle Background Canvas (Minimal 4 particles) -->
       <canvas id="particle-canvas" class="absolute inset-0 w-full h-full pointer-events-none z-0"></canvas>
-
-      <!-- Glow Orbs in Background -->
-      <div class="absolute top-1/4 left-10 w-96 h-96 bg-[#FF2E93]/20 rounded-full blur-[120px] pointer-events-none animate-pulse-glow"></div>
-      <div class="absolute bottom-10 right-10 w-[30rem] h-[30rem] bg-[#00F0FF]/20 rounded-full blur-[140px] pointer-events-none animate-pulse-glow" style="animation-delay: 2s;"></div>
 
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
@@ -128,32 +122,31 @@
           <!-- Hero Text Content -->
           <div class="lg:col-span-7 text-center lg:text-left">
             
-            <!-- Trending Tag Badge -->
-            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-panel border-[#00F0FF]/30 text-[#00F0FF] text-xs font-bold uppercase tracking-wider mb-6 glow-cyan">
-              <span class="w-2 h-2 rounded-full bg-[#00F0FF] animate-ping"></span>
-              Đồ Uống Viral Hot TikTok 2026
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 border border-white/15 text-[#00D9A3] text-xs font-bold uppercase tracking-wider mb-6 backdrop-blur-md">
+              <span class="w-2 h-2 rounded-full bg-[#00D9A3]"></span>
+              Đồ Uống Fresh Neon Trend 2026
             </div>
 
-            <!-- Main Headline -->
+            <!-- H1 Headline: Gradient ONLY on "BỨT PHÁ", solid white rest -->
             <h1 class="font-display font-extrabold text-4xl sm:text-6xl lg:text-7xl leading-[1.1] mb-6">
-              VỊ NGON <span class="gradient-text-pink-cyan">BỨT PHÁ</span><br />
-              TOẢ SÁNG <span class="gradient-text-cyan-lime">PHONG CÁCH</span>
+              VỊ NGON <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#00D9A3] to-[#FF3E8E]">BỨT PHÁ</span><br />
+              TOẢ SÁNG PHONG CÁCH
             </h1>
 
             <p class="text-[#9A9AB0] text-base sm:text-lg max-w-xl mx-auto lg:mx-0 mb-8 font-normal leading-relaxed">
-              Trà trái cây tươi 100%, boba đường đen dẻo thơm & soda galaxy bùng nổ năng lượng. Thiết kế ly phong cách Neon Cyberpunk cực cool cho Gen Z.
+              Trà trái cây tươi 100%, boba đường đen thơm dẻo & soda trái cây bùng nổ năng lượng tươi mát mỗi ngày.
             </p>
 
-            <!-- Action Buttons -->
+            <!-- Action Buttons: Flat Mint Button -->
             <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
-              <a href="#menu-section" class="w-full sm:w-auto px-8 py-4 rounded-2xl font-display font-bold text-base gradient-btn shadow-lg shadow-[#FF2E93]/30 flex items-center justify-center gap-2">
+              <a href="#menu-section" class="w-full sm:w-auto px-8 py-4 rounded-2xl font-display font-bold text-base bg-[#00D9A3] hover:bg-[#00B88A] text-white transition-all shadow-lg shadow-[#00D9A3]/25 flex items-center justify-center gap-2">
                 <span>ĐẶT NGAY BÂY GIỜ</span>
                 <i data-lucide="arrow-right" class="w-5 h-5"></i>
               </a>
 
-              <a href="#category-section" class="w-full sm:w-auto px-8 py-4 rounded-2xl font-display font-bold text-base glass-panel border border-white/10 hover:border-[#00F0FF] text-white hover:text-[#00F0FF] transition-all flex items-center justify-center gap-2">
+              <a href="#category-section" class="w-full sm:w-auto px-8 py-4 rounded-2xl font-display font-bold text-base bg-white/10 hover:bg-white/20 border border-white/15 text-white transition-all backdrop-blur-md flex items-center justify-center gap-2">
                 <span>Khám phá Menu</span>
-                <i data-lucide="sparkles" class="w-5 h-5 text-[#D4FF00]"></i>
+                <i data-lucide="sparkles" class="w-5 h-5 text-[#00D9A3]"></i>
               </a>
             </div>
 
@@ -161,50 +154,36 @@
             <div class="mt-12 pt-8 border-t border-white/10 grid grid-cols-3 gap-4 text-center lg:text-left">
               <div>
                 <span class="block font-display font-bold text-xl text-white">100% Fresh</span>
-                <span class="text-xs text-[#9A9AB0]">Trái cây tươi trong ngày</span>
+                <span class="text-xs text-[#9A9AB0]">Trái cây tươi tự nhiên</span>
               </div>
               <div>
-                <span class="block font-display font-bold text-xl text-[#00F0FF]">15 Mins</span>
+                <span class="block font-display font-bold text-xl text-[#00D9A3]">15 Mins</span>
                 <span class="text-xs text-[#9A9AB0]">Giao hàng siêu tốc</span>
               </div>
               <div>
-                <span class="block font-display font-bold text-xl text-[#D4FF00]">4.9★</span>
+                <span class="block font-display font-bold text-xl text-[#FF3E8E]">4.9★</span>
                 <span class="text-xs text-[#9A9AB0]">Hơn 50,000+ review</span>
               </div>
             </div>
 
           </div>
 
-          <!-- Hero Floating Drink Display -->
+          <!-- Hero Floating Drink Display (Soft Drop Shadow, Clean Badge) -->
           <div class="lg:col-span-5 flex justify-center relative">
             <div class="relative w-full max-w-md aspect-square flex items-center justify-center">
               
-              <!-- Neon Halo Ring -->
-              <div class="absolute inset-0 rounded-full border-2 border-dashed border-[#FF2E93]/40 animate-spin" style="animation-duration: 25s;"></div>
-              <div class="absolute inset-4 rounded-full border border-[#00F0FF]/30"></div>
+              <!-- Subtle Ring -->
+              <div class="absolute inset-4 rounded-full border border-white/10"></div>
 
-              <!-- Main Floating Drink Image -->
-              <img id="hero-floating-drink" src="assets/images/hero_drink.jpg" alt="Neon Fizz Signature Drink" class="w-4/5 h-4/5 object-contain rounded-3xl drop-shadow-[0_20px_50px_rgba(255,46,147,0.4)] animate-float cursor-pointer" />
+              <!-- Main Floating Drink Image (Natural Soft Shadow, NO Neon Outline) -->
+              <img id="hero-floating-drink" src="assets/images/hero_drink.jpg" alt="Neon Fizz Signature Drink" class="w-4/5 h-4/5 object-contain rounded-3xl drop-shadow-[0_25px_35px_rgba(0,0,0,0.5)] animate-float-natural cursor-pointer" />
 
-              <!-- Floating Tag Card Top Right -->
-              <div class="absolute top-4 -right-2 glass-panel p-3 rounded-2xl border-[#D4FF00]/40 flex items-center gap-3 shadow-xl backdrop-blur-md animate-bounce" style="animation-duration: 4s;">
-                <div class="w-8 h-8 rounded-xl bg-[#D4FF00]/20 text-[#D4FF00] flex items-center justify-center font-bold text-sm">
-                  🔥
-                </div>
+              <!-- 1 Clean Fixed Badge Top Right (Glass White Panel, Small Dark Text) -->
+              <div class="absolute top-4 right-2 bg-white/90 backdrop-blur-md px-3.5 py-2 rounded-2xl border border-white/30 flex items-center gap-2.5 shadow-lg">
+                <span class="w-2 h-2 rounded-full bg-[#00D9A3]"></span>
                 <div>
-                  <span class="block text-xs font-bold text-white">Top 1 Trending</span>
-                  <span class="text-[10px] text-[#9A9AB0]">Pink Dragon Tea</span>
-                </div>
-              </div>
-
-              <!-- Floating Tag Card Bottom Left -->
-              <div class="absolute bottom-6 -left-4 glass-panel p-3 rounded-2xl border-[#00F0FF]/40 flex items-center gap-3 shadow-xl backdrop-blur-md">
-                <div class="w-8 h-8 rounded-xl bg-[#00F0FF]/20 text-[#00F0FF] flex items-center justify-center">
-                  <i data-lucide="zap" class="w-4 h-4"></i>
-                </div>
-                <div>
-                  <span class="block text-xs font-bold text-white">Freeship Đơn Đun</span>
-                  <span class="text-[10px] text-[#00F0FF]">Mã: NEON30</span>
+                  <span class="block text-xs font-bold text-[#1A1A1F]">Pink Dragon Tea</span>
+                  <span class="text-[10px] text-[#6B6B75]">Top 1 Bán Chạy</span>
                 </div>
               </div>
 
@@ -216,88 +195,88 @@
     </section>
 
     <!-- ========================================================================== -->
-    <!-- CATEGORY HIGHLIGHTS (Bento-Grid)                                           -->
+    <!-- CATEGORY HIGHLIGHTS (LIGHT SECTION)                                        -->
     <!-- ========================================================================== -->
-    <section id="category-section" class="py-24 relative">
+    <section id="category-section" class="py-24 bg-[#FAFAF9] relative">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <div class="text-center max-w-2xl mx-auto mb-16">
-          <h2 class="font-display font-extrabold text-3xl sm:text-5xl mb-4">
-            DANH MỤC <span class="gradient-text-pink-cyan">NỔI BẬT</span>
+          <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-[#1A1A1F] mb-3">
+            DANH MỤC <span class="text-[#00D9A3]">NỔI BẬT</span>
           </h2>
-          <p class="text-[#9A9AB0] text-base">Chọn ngay hương vị hợp gu để bùng nổ phong cách năng lượng hôm nay</p>
+          <p class="text-[#6B6B75] text-base">Hương vị tươi mát thanh lịch bùng nổ năng lượng mỗi ngày</p>
         </div>
 
-        <!-- Bento Grid Layout -->
+        <!-- Bento Grid Layout (Clean White Cards, Soft Shadows) -->
         <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
           
-          <!-- Card 1: Trà Trái Cây (Large Span 7) -->
-          <div class="md:col-span-7 glass-panel rounded-3xl p-8 relative overflow-hidden group hover-glow-pink transition-all duration-300 min-h-[280px] flex flex-col justify-between">
-            <div class="absolute inset-0 bg-gradient-to-r from-[#0A0A0F] via-[#0A0A0F]/80 to-transparent z-10"></div>
-            <img src="assets/images/cat_fruit_tea.jpg" alt="Trà Trái Cây" class="absolute right-0 top-0 h-full w-2/3 object-cover opacity-60 group-hover:scale-105 transition-transform duration-500" />
+          <!-- Card 1: Trà Trái Cây -->
+          <div class="md:col-span-7 bg-white rounded-3xl p-8 relative overflow-hidden group border border-[#E5E5E5] soft-shadow-hover min-h-[280px] flex flex-col justify-between">
+            <div class="absolute inset-0 bg-gradient-to-r from-black/60 via-black/30 to-transparent z-10"></div>
+            <img src="assets/images/cat_fruit_tea.jpg" alt="Trà Trái Cây" class="absolute right-0 top-0 h-full w-2/3 object-cover group-hover:scale-105 transition-transform duration-500" />
             
             <div class="relative z-20">
-              <span class="text-xs font-bold uppercase tracking-wider text-[#FF2E93] bg-[#FF2E93]/10 px-3 py-1 rounded-full border border-[#FF2E93]/30">Fresh & Light</span>
-              <h3 class="font-display font-extrabold text-2xl sm:text-3xl text-white mt-4 mb-2">TRÀ TRÁI CÂY NEON</h3>
-              <p class="text-sm text-[#9A9AB0] max-w-sm mb-6">Trà ô long đậm vị kết hợp xoài, đào, thanh long đỏ tươi 100% mát lạnh giải nhiệt.</p>
+              <span class="text-xs font-bold uppercase tracking-wider text-[#00D9A3] bg-white/90 backdrop-blur-md px-3 py-1 rounded-full border border-white/20">Fresh & Light</span>
+              <h3 class="font-display font-extrabold text-2xl sm:text-3xl text-white mt-4 mb-2">TRÀ TRÁI CÂY tươi</h3>
+              <p class="text-sm text-white/90 max-w-sm mb-6">Trà ô long thanh mát kết hợp xoài, đào, thanh long đỏ tươi 100%.</p>
             </div>
 
             <div class="relative z-20">
-              <a href="#menu-section" onclick="filterCategory('tra-trai-cay')" class="inline-flex items-center gap-2 text-sm font-bold text-[#FF2E93] group-hover:text-white transition-colors">
+              <a href="#menu-section" onclick="filterCategory('tra-trai-cay')" class="inline-flex items-center gap-2 text-sm font-bold text-white hover:text-[#00D9A3] transition-colors">
                 Xem 12+ món <i data-lucide="arrow-right" class="w-4 h-4"></i>
               </a>
             </div>
           </div>
 
-          <!-- Card 2: Trà Sữa Cyber (Span 5) -->
-          <div class="md:col-span-5 glass-panel rounded-3xl p-8 relative overflow-hidden group hover-glow-lime transition-all duration-300 min-h-[280px] flex flex-col justify-between">
-            <div class="absolute inset-0 bg-gradient-to-r from-[#0A0A0F] via-[#0A0A0F]/75 to-transparent z-10"></div>
-            <img src="assets/images/cat_boba_milk.jpg" alt="Trà Sữa" class="absolute right-0 top-0 h-full w-2/3 object-cover opacity-60 group-hover:scale-105 transition-transform duration-500" />
+          <!-- Card 2: Trà Sữa -->
+          <div class="md:col-span-5 bg-white rounded-3xl p-8 relative overflow-hidden group border border-[#E5E5E5] soft-shadow-hover min-h-[280px] flex flex-col justify-between">
+            <div class="absolute inset-0 bg-gradient-to-r from-black/60 via-black/30 to-transparent z-10"></div>
+            <img src="assets/images/cat_boba_milk.jpg" alt="Trà Sữa" class="absolute right-0 top-0 h-full w-2/3 object-cover group-hover:scale-105 transition-transform duration-500" />
             
             <div class="relative z-20">
-              <span class="text-xs font-bold uppercase tracking-wider text-[#D4FF00] bg-[#D4FF00]/10 px-3 py-1 rounded-full border border-[#D4FF00]/30">Sweet & Creamy</span>
+              <span class="text-xs font-bold uppercase tracking-wider text-[#00D9A3] bg-white/90 backdrop-blur-md px-3 py-1 rounded-full border border-white/20">Sweet & Creamy</span>
               <h3 class="font-display font-extrabold text-2xl sm:text-3xl text-white mt-4 mb-2">TRÀ SỮA CYBER</h3>
-              <p class="text-sm text-[#9A9AB0] max-w-xs mb-6">Trân châu đường đen Okinawa dẻo thơm & macchiato phô mai béo ngậy.</p>
+              <p class="text-sm text-white/90 max-w-xs mb-6">Trân châu đường đen Okinawa dẻo thơm & macchiato phô mai ngậy thanh.</p>
             </div>
 
             <div class="relative z-20">
-              <a href="#menu-section" onclick="filterCategory('tra-sua')" class="inline-flex items-center gap-2 text-sm font-bold text-[#D4FF00] group-hover:text-white transition-colors">
+              <a href="#menu-section" onclick="filterCategory('tra-sua')" class="inline-flex items-center gap-2 text-sm font-bold text-white hover:text-[#00D9A3] transition-colors">
                 Xem 15+ món <i data-lucide="arrow-right" class="w-4 h-4"></i>
               </a>
             </div>
           </div>
 
-          <!-- Card 3: Soda Galaxy (Span 5) -->
-          <div class="md:col-span-5 glass-panel rounded-3xl p-8 relative overflow-hidden group hover-glow-cyan transition-all duration-300 min-h-[280px] flex flex-col justify-between">
-            <div class="absolute inset-0 bg-gradient-to-r from-[#0A0A0F] via-[#0A0A0F]/75 to-transparent z-10"></div>
-            <img src="assets/images/cat_neon_soda.jpg" alt="Soda Galaxy" class="absolute right-0 top-0 h-full w-2/3 object-cover opacity-60 group-hover:scale-105 transition-transform duration-500" />
+          <!-- Card 3: Soda Galaxy -->
+          <div class="md:col-span-5 bg-white rounded-3xl p-8 relative overflow-hidden group border border-[#E5E5E5] soft-shadow-hover min-h-[280px] flex flex-col justify-between">
+            <div class="absolute inset-0 bg-gradient-to-r from-black/60 via-black/30 to-transparent z-10"></div>
+            <img src="assets/images/cat_neon_soda.jpg" alt="Soda Galaxy" class="absolute right-0 top-0 h-full w-2/3 object-cover group-hover:scale-105 transition-transform duration-500" />
             
             <div class="relative z-20">
-              <span class="text-xs font-bold uppercase tracking-wider text-[#00F0FF] bg-[#00F0FF]/10 px-3 py-1 rounded-full border border-[#00F0FF]/30">Fizzy & Cool</span>
+              <span class="text-xs font-bold uppercase tracking-wider text-[#00D9A3] bg-white/90 backdrop-blur-md px-3 py-1 rounded-full border border-white/20">Fizzy & Cool</span>
               <h3 class="font-display font-extrabold text-2xl sm:text-3xl text-white mt-4 mb-2">SODA GALAXY</h3>
-              <p class="text-sm text-[#9A9AB0] max-w-xs mb-6">Soda đổi màu cực ảo với popping popping bùng nổ sảng khoái tức thì.</p>
+              <p class="text-sm text-white/90 max-w-xs mb-6">Soda đổi màu kết hợp popping popping bùng nổ sảng khoái tức thì.</p>
             </div>
 
             <div class="relative z-20">
-              <a href="#menu-section" onclick="filterCategory('soda')" class="inline-flex items-center gap-2 text-sm font-bold text-[#00F0FF] group-hover:text-white transition-colors">
+              <a href="#menu-section" onclick="filterCategory('soda')" class="inline-flex items-center gap-2 text-sm font-bold text-white hover:text-[#00D9A3] transition-colors">
                 Xem 8+ món <i data-lucide="arrow-right" class="w-4 h-4"></i>
               </a>
             </div>
           </div>
 
-          <!-- Card 4: Nước Ép Fresh Energy (Span 7) -->
-          <div class="md:col-span-7 glass-panel rounded-3xl p-8 relative overflow-hidden group hover-glow-pink transition-all duration-300 min-h-[280px] flex flex-col justify-between">
-            <div class="absolute inset-0 bg-gradient-to-r from-[#0A0A0F] via-[#0A0A0F]/80 to-transparent z-10"></div>
-            <img src="assets/images/cat_fresh_juice.jpg" alt="Nước Ép" class="absolute right-0 top-0 h-full w-2/3 object-cover opacity-60 group-hover:scale-105 transition-transform duration-500" />
+          <!-- Card 4: Nước Ép Fresh Energy -->
+          <div class="md:col-span-7 bg-white rounded-3xl p-8 relative overflow-hidden group border border-[#E5E5E5] soft-shadow-hover min-h-[280px] flex flex-col justify-between">
+            <div class="absolute inset-0 bg-gradient-to-r from-black/60 via-black/30 to-transparent z-10"></div>
+            <img src="assets/images/cat_fresh_juice.jpg" alt="Nước Ép" class="absolute right-0 top-0 h-full w-2/3 object-cover group-hover:scale-105 transition-transform duration-500" />
             
             <div class="relative z-20">
-              <span class="text-xs font-bold uppercase tracking-wider text-[#FF2E93] bg-[#FF2E93]/10 px-3 py-1 rounded-full border border-[#FF2E93]/30">Pure Vitamin</span>
+              <span class="text-xs font-bold uppercase tracking-wider text-[#00D9A3] bg-white/90 backdrop-blur-md px-3 py-1 rounded-full border border-white/20">Pure Vitamin</span>
               <h3 class="font-display font-extrabold text-2xl sm:text-3xl text-white mt-4 mb-2">NƯỚC ÉP FRESH ENERGY</h3>
-              <p class="text-sm text-[#9A9AB0] max-w-sm mb-6">Nước ép cam vàng, passionfruit & xoài chín nguyên chất giàu Vitamin C.</p>
+              <p class="text-sm text-white/90 max-w-sm mb-6">Nước ép cam vàng, chanh dây & xoài chín nguyên chất giàu Vitamin C.</p>
             </div>
 
             <div class="relative z-20">
-              <a href="#menu-section" onclick="filterCategory('nuoc-ep')" class="inline-flex items-center gap-2 text-sm font-bold text-[#FF2E93] group-hover:text-white transition-colors">
+              <a href="#menu-section" onclick="filterCategory('nuoc-ep')" class="inline-flex items-center gap-2 text-sm font-bold text-white hover:text-[#00D9A3] transition-colors">
                 Xem 10+ món <i data-lucide="arrow-right" class="w-4 h-4"></i>
               </a>
             </div>
@@ -308,108 +287,108 @@
     </section>
 
     <!-- ========================================================================== -->
-    <!-- PRODUCT MENU SECTION                                                       -->
+    <!-- PRODUCT MENU SECTION (LIGHT SECTION)                                       -->
     <!-- ========================================================================== -->
-    <section id="menu-section" class="py-24 bg-[#0D0D14] relative">
+    <section id="menu-section" class="py-24 bg-white relative">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <!-- Section Header -->
         <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
           <div>
-            <h2 class="font-display font-extrabold text-3xl sm:text-5xl mb-3">
-              MENU <span class="gradient-text-pink-cyan">ĐỒ UỐNG HOT</span>
+            <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-[#1A1A1F] mb-3">
+              MENU <span class="text-[#00D9A3]">ĐỒ UỐNG HOT</span>
             </h2>
-            <p class="text-[#9A9AB0] text-base">Thưởng thức trọn vẹn vị ngon đẳng cấp Neon Fizz</p>
+            <p class="text-[#6B6B75] text-base">Thưởng thức hương vị tươi mát chuẩn vị Neon Fizz</p>
           </div>
 
           <!-- Category Filter Tabs -->
           <div class="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none">
-            <button data-category="all" class="tab-btn active px-5 py-2.5 rounded-2xl text-xs font-bold uppercase tracking-wider border border-white/10 whitespace-nowrap transition-all">Tất cả</button>
-            <button data-category="tra-trai-cay" class="tab-btn px-5 py-2.5 rounded-2xl text-xs font-bold uppercase tracking-wider border border-white/10 whitespace-nowrap text-[#9A9AB0] hover:text-white transition-all">Trà trái cây</button>
-            <button data-category="tra-sua" class="tab-btn px-5 py-2.5 rounded-2xl text-xs font-bold uppercase tracking-wider border border-white/10 whitespace-nowrap text-[#9A9AB0] hover:text-white transition-all">Trà sữa</button>
-            <button data-category="soda" class="tab-btn px-5 py-2.5 rounded-2xl text-xs font-bold uppercase tracking-wider border border-white/10 whitespace-nowrap text-[#9A9AB0] hover:text-white transition-all">Soda</button>
-            <button data-category="nuoc-ep" class="tab-btn px-5 py-2.5 rounded-2xl text-xs font-bold uppercase tracking-wider border border-white/10 whitespace-nowrap text-[#9A9AB0] hover:text-white transition-all">Nước ép</button>
+            <button data-category="all" class="tab-btn active px-5 py-2.5 rounded-2xl text-xs font-bold uppercase tracking-wider border border-[#E5E5E5] whitespace-nowrap">Tất cả</button>
+            <button data-category="tra-trai-cay" class="tab-btn px-5 py-2.5 rounded-2xl text-xs font-bold uppercase tracking-wider border border-[#E5E5E5] whitespace-nowrap">Trà trái cây</button>
+            <button data-category="tra-sua" class="tab-btn px-5 py-2.5 rounded-2xl text-xs font-bold uppercase tracking-wider border border-[#E5E5E5] whitespace-nowrap">Trà sữa</button>
+            <button data-category="soda" class="tab-btn px-5 py-2.5 rounded-2xl text-xs font-bold uppercase tracking-wider border border-[#E5E5E5] whitespace-nowrap">Soda</button>
+            <button data-category="nuoc-ep" class="tab-btn px-5 py-2.5 rounded-2xl text-xs font-bold uppercase tracking-wider border border-[#E5E5E5] whitespace-nowrap">Nước ép</button>
           </div>
         </div>
 
-        <!-- Products Grid (Dynamically Rendered by JS) -->
+        <!-- Products Grid (Dynamically Rendered by main.js) -->
         <div id="products-grid-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 transition-opacity duration-300">
-          <!-- JS Inserted Content -->
+          <!-- Rendered dynamically -->
         </div>
 
       </div>
     </section>
 
     <!-- ========================================================================== -->
-    <!-- WHY CHOOSE US (USP & COUNTER STATS)                                        -->
+    <!-- WHY CHOOSE US (LIGHT SECTION & CONSISTENT ICONS)                           -->
     <!-- ========================================================================== -->
-    <section id="why-us-section" class="py-24 relative overflow-hidden">
+    <section id="why-us-section" class="py-24 bg-[#F5F5F3] relative overflow-hidden">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <div class="text-center max-w-2xl mx-auto mb-16">
-          <h2 class="font-display font-extrabold text-3xl sm:text-5xl mb-4">
-            VÌ SAO CHỌN <span class="gradient-text-cyan-lime">NEON FIZZ</span>
+          <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-[#1A1A1F] mb-3">
+            VÌ SAO CHỌN <span class="text-[#00D9A3]">NEON FIZZ</span>
           </h2>
-          <p class="text-[#9A9AB0] text-base">Cam kết chất lượng chuẩn gu trẻ — Nhanh, Đẹp, Ngon & Độc bản</p>
+          <p class="text-[#6B6B75] text-base">Cam kết chất lượng chuẩn gu — Tươi ngon, Giao nhanh & Đóng gói chỉn chu</p>
         </div>
 
-        <!-- 4 USP Cards -->
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-20">
+        <!-- 4 Feature Cards (Consistent Mint Icon Bg) -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-16">
           
-          <div class="glass-panel p-6 rounded-3xl border-white/5 hover:border-[#FF2E93] hover-glow-pink transition-all">
-            <div class="w-14 h-14 rounded-2xl bg-[#FF2E93]/20 text-[#FF2E93] flex items-center justify-center mb-6">
-              <i data-lucide="leaf" class="w-7 h-7"></i>
+          <div class="bg-white p-6 rounded-3xl border border-[#E5E5E5] soft-shadow-hover">
+            <div class="w-12 h-12 rounded-2xl bg-[#00D9A3]/10 text-[#00D9A3] flex items-center justify-center mb-5">
+              <i data-lucide="leaf" class="w-6 h-6"></i>
             </div>
-            <h3 class="font-display font-bold text-lg text-white mb-2">100% Trái Cây Tươi</h3>
-            <p class="text-xs text-[#9A9AB0] leading-relaxed">Nguyên liệu chọn lọc tự nhiên mỗi sáng, không dùng hương liệu hóa học tổng hợp.</p>
+            <h3 class="font-display font-bold text-base text-[#1A1A1F] mb-2">100% Trái Cây Tươi</h3>
+            <p class="text-xs text-[#6B6B75] leading-relaxed">Nguyên liệu chọn lọc tự nhiên mỗi sáng, không dùng hương liệu hóa học.</p>
           </div>
 
-          <div class="glass-panel p-6 rounded-3xl border-white/5 hover:border-[#00F0FF] hover-glow-cyan transition-all">
-            <div class="w-14 h-14 rounded-2xl bg-[#00F0FF]/20 text-[#00F0FF] flex items-center justify-center mb-6">
-              <i data-lucide="zap" class="w-7 h-7"></i>
+          <div class="bg-white p-6 rounded-3xl border border-[#E5E5E5] soft-shadow-hover">
+            <div class="w-12 h-12 rounded-2xl bg-[#00D9A3]/10 text-[#00D9A3] flex items-center justify-center mb-5">
+              <i data-lucide="zap" class="w-6 h-6"></i>
             </div>
-            <h3 class="font-display font-bold text-lg text-white mb-2">Giao Nhanh 15 Phút</h3>
-            <p class="text-xs text-[#9A9AB0] leading-relaxed">Đội ngũ shipper riêng bảo quản đá lạnh giữ trọn hương vị tươi mát tận tay.</p>
+            <h3 class="font-display font-bold text-base text-[#1A1A1F] mb-2">Giao Nhanh 15 Phút</h3>
+            <p class="text-xs text-[#6B6B75] leading-relaxed">Đội ngũ shipper riêng bảo quản đá lạnh giữ trọn hương vị tươi mát tận tay.</p>
           </div>
 
-          <div class="glass-panel p-6 rounded-3xl border-white/5 hover:border-[#D4FF00] hover-glow-lime transition-all">
-            <div class="w-14 h-14 rounded-2xl bg-[#D4FF00]/20 text-[#D4FF00] flex items-center justify-center mb-6">
-              <i data-lucide="sparkles" class="w-7 h-7"></i>
+          <div class="bg-white p-6 rounded-3xl border border-[#E5E5E5] soft-shadow-hover">
+            <div class="w-12 h-12 rounded-2xl bg-[#00D9A3]/10 text-[#00D9A3] flex items-center justify-center mb-5">
+              <i data-lucide="sparkles" class="w-6 h-6"></i>
             </div>
-            <h3 class="font-display font-bold text-lg text-white mb-2">Bao Bì Bio-Glow Eco</h3>
-            <p class="text-xs text-[#9A9AB0] leading-relaxed">Ly nhựa phân hủy sinh học eco-friendly in hiệu ứng Neon phản quang cực ảo.</p>
+            <h3 class="font-display font-bold text-base text-[#1A1A1F] mb-2">Bao Bì Bio Eco</h3>
+            <p class="text-xs text-[#6B6B75] leading-relaxed">Ly nhựa phân hủy sinh học eco-friendly in họa tiết tối giản thanh lịch.</p>
           </div>
 
-          <div class="glass-panel p-6 rounded-3xl border-white/5 hover:border-[#FF2E93] hover-glow-pink transition-all">
-            <div class="w-14 h-14 rounded-2xl bg-[#FF2E93]/20 text-[#FF2E93] flex items-center justify-center mb-6">
-              <i data-lucide="refresh-cw" class="w-7 h-7"></i>
+          <div class="bg-white p-6 rounded-3xl border border-[#E5E5E5] soft-shadow-hover">
+            <div class="w-12 h-12 rounded-2xl bg-[#00D9A3]/10 text-[#00D9A3] flex items-center justify-center mb-5">
+              <i data-lucide="refresh-cw" class="w-6 h-6"></i>
             </div>
-            <h3 class="font-display font-bold text-lg text-white mb-2">Đổi Trả Miễn Phí</h3>
-            <p class="text-xs text-[#9A9AB0] leading-relaxed">Đổi ly mới 100% nếu không hài lòng về độ ngọt, đá hoặc đóng gói bị tràn.</p>
+            <h3 class="font-display font-bold text-base text-[#1A1A1F] mb-2">Đổi Trả Miễn Phí</h3>
+            <p class="text-xs text-[#6B6B75] leading-relaxed">Đổi ly mới 100% nếu không hài lòng về độ ngọt, đá hoặc đóng gói bị tràn.</p>
           </div>
 
         </div>
 
-        <!-- Counter Stats Grid -->
-        <div class="glass-panel rounded-3xl p-8 sm:p-12 border-[#00F0FF]/30 glow-cyan grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+        <!-- Counter Stats Box (White background, Subtle Border, NO Neon Glow) -->
+        <div class="bg-white rounded-3xl p-8 sm:p-12 border border-[#E5E5E5] soft-shadow grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
           <div>
-            <span class="counter-val font-display font-extrabold text-3xl sm:text-5xl text-[#FF2E93] block mb-1" data-target="50000" data-suffix="+">0</span>
-            <span class="text-xs font-semibold text-[#9A9AB0] uppercase tracking-wider">Ly Đã Bán Out</span>
+            <span class="counter-val font-display font-extrabold text-3xl sm:text-4xl text-[#00D9A3] block mb-1" data-target="50000" data-suffix="+">0</span>
+            <span class="text-xs font-semibold text-[#6B6B75] uppercase tracking-wider">Ly Đã Phục Vụ</span>
           </div>
 
           <div>
-            <span class="counter-val font-display font-extrabold text-3xl sm:text-5xl text-[#00F0FF] block mb-1" data-target="99.4" data-suffix="%">0</span>
-            <span class="text-xs font-semibold text-[#9A9AB0] uppercase tracking-wider">Đánh Giá 5 Sao</span>
+            <span class="counter-val font-display font-extrabold text-3xl sm:text-4xl text-[#00D9A3] block mb-1" data-target="99.4" data-suffix="%">0</span>
+            <span class="text-xs font-semibold text-[#6B6B75] uppercase tracking-wider">Đánh Giá 5 Sao</span>
           </div>
 
           <div>
-            <span class="counter-val font-display font-extrabold text-3xl sm:text-5xl text-[#D4FF00] block mb-1" data-target="35" data-suffix="+">0</span>
-            <span class="text-xs font-semibold text-[#9A9AB0] uppercase tracking-wider">Chi Nhánh Toàn Quốc</span>
+            <span class="counter-val font-display font-extrabold text-3xl sm:text-4xl text-[#FF3E8E] block mb-1" data-target="35" data-suffix="+">0</span>
+            <span class="text-xs font-semibold text-[#6B6B75] uppercase tracking-wider">Chi Nhánh Toàn Quốc</span>
           </div>
 
           <div>
-            <span class="counter-val font-display font-extrabold text-3xl sm:text-5xl text-white block mb-1" data-target="15" data-suffix=" min">0</span>
-            <span class="text-xs font-semibold text-[#9A9AB0] uppercase tracking-wider">Thời Gian Giao Trung Bình</span>
+            <span class="counter-val font-display font-extrabold text-3xl sm:text-4xl text-[#1A1A1F] block mb-1" data-target="15" data-suffix=" min">0</span>
+            <span class="text-xs font-semibold text-[#6B6B75] uppercase tracking-wider">Giao Hàng Trung Bình</span>
           </div>
         </div>
 
@@ -417,26 +396,26 @@
     </section>
 
     <!-- ========================================================================== -->
-    <!-- TESTIMONIALS REVIEWS                                                      -->
+    <!-- TESTIMONIALS REVIEWS (LIGHT SECTION)                                       -->
     <!-- ========================================================================== -->
-    <section id="reviews-section" class="py-24 bg-[#0D0D14] relative">
+    <section id="reviews-section" class="py-24 bg-white relative">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-12 gap-6">
           <div>
-            <h2 class="font-display font-extrabold text-3xl sm:text-5xl mb-3">
-              GEN Z NÓI GÌ VỀ <span class="gradient-text-pink-cyan">NEON FIZZ</span>
+            <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-[#1A1A1F] mb-3">
+              ĐÁNH GIÁ TỪ <span class="text-[#00D9A3]">KHÁCH HÀNG</span>
             </h2>
-            <p class="text-[#9A9AB0] text-base">Hơn 50,000+ bạn trẻ đã check-in & review cực cháy trên TikTok</p>
+            <p class="text-[#6B6B75] text-base">Hơn 50,000+ bạn trẻ đã thưởng thức & yêu thích Neon Fizz</p>
           </div>
 
           <!-- Controls -->
           <div class="flex items-center gap-3">
-            <button id="testi-prev" class="w-12 h-12 rounded-2xl glass-panel border-white/10 hover:border-[#FF2E93] text-white flex items-center justify-center transition-all hover:scale-105 active:scale-95">
-              <i data-lucide="chevron-left" class="w-6 h-6"></i>
+            <button id="testi-prev" class="w-11 h-11 rounded-2xl bg-white border border-[#E5E5E5] text-[#1A1A1F] hover:border-[#00D9A3] hover:text-[#00D9A3] flex items-center justify-center transition-all shadow-sm">
+              <i data-lucide="chevron-left" class="w-5 h-5"></i>
             </button>
-            <button id="testi-next" class="w-12 h-12 rounded-2xl glass-panel border-white/10 hover:border-[#00F0FF] text-white flex items-center justify-center transition-all hover:scale-105 active:scale-95">
-              <i data-lucide="chevron-right" class="w-6 h-6"></i>
+            <button id="testi-next" class="w-11 h-11 rounded-2xl bg-white border border-[#E5E5E5] text-[#1A1A1F] hover:border-[#00D9A3] hover:text-[#00D9A3] flex items-center justify-center transition-all shadow-sm">
+              <i data-lucide="chevron-right" class="w-5 h-5"></i>
             </button>
           </div>
         </div>
@@ -446,70 +425,70 @@
           <div id="testimonial-track" class="flex gap-6 transition-transform duration-500 ease-out">
             
             <!-- Review 1 -->
-            <div class="w-full md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] shrink-0 glass-panel rounded-3xl p-6 border-white/5 flex flex-col justify-between">
+            <div class="w-full md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] shrink-0 bg-[#F5F5F3] rounded-3xl p-6 border border-[#E5E5E5] flex flex-col justify-between">
               <div>
-                <div class="flex items-center gap-1 text-[#D4FF00] mb-4">
+                <div class="flex items-center gap-1 text-[#FF3E8E] mb-3">
                   <i data-lucide="star" class="w-4 h-4 fill-current"></i>
                   <i data-lucide="star" class="w-4 h-4 fill-current"></i>
                   <i data-lucide="star" class="w-4 h-4 fill-current"></i>
                   <i data-lucide="star" class="w-4 h-4 fill-current"></i>
                   <i data-lucide="star" class="w-4 h-4 fill-current"></i>
                 </div>
-                <p class="text-sm text-[#F5F5F7] italic mb-6">"Trà Pink Dragon tea ngon xỉu luôn mn ơi! Ly nước thiết kế neon xinh đỉnh chóp mang đi học ai cũng hỏi mua ở đâu luôn ý 🔥."</p>
+                <p class="text-xs text-[#1A1A1F] italic mb-6">"Trà Pink Dragon tea thanh mát ngon xỉu luôn mn ơi! Vừa chụp ảnh xinh vừa uống ngon giải nhiệt nữa."</p>
               </div>
-              <div class="flex items-center gap-3 pt-4 border-t border-white/5">
-                <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-[#FF2E93] to-[#00F0FF] font-bold text-white flex items-center justify-center text-sm">
+              <div class="flex items-center gap-3 pt-4 border-t border-[#E5E5E5]">
+                <div class="w-9 h-9 rounded-full bg-[#00D9A3] font-bold text-white flex items-center justify-center text-xs">
                   MH
                 </div>
                 <div>
-                  <h4 class="font-display font-bold text-sm text-white">Minh Hoàng</h4>
-                  <span class="text-xs text-[#00F0FF]">@viral_tea_genz</span>
+                  <h4 class="font-display font-bold text-xs text-[#1A1A1F]">Minh Hoàng</h4>
+                  <span class="text-[11px] text-[#6B6B75]">@viral_tea_genz</span>
                 </div>
               </div>
             </div>
 
             <!-- Review 2 -->
-            <div class="w-full md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] shrink-0 glass-panel rounded-3xl p-6 border-white/5 flex flex-col justify-between">
+            <div class="w-full md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] shrink-0 bg-[#F5F5F3] rounded-3xl p-6 border border-[#E5E5E5] flex flex-col justify-between">
               <div>
-                <div class="flex items-center gap-1 text-[#D4FF00] mb-4">
+                <div class="flex items-center gap-1 text-[#FF3E8E] mb-3">
                   <i data-lucide="star" class="w-4 h-4 fill-current"></i>
                   <i data-lucide="star" class="w-4 h-4 fill-current"></i>
                   <i data-lucide="star" class="w-4 h-4 fill-current"></i>
                   <i data-lucide="star" class="w-4 h-4 fill-current"></i>
                   <i data-lucide="star" class="w-4 h-4 fill-current"></i>
                 </div>
-                <p class="text-sm text-[#F5F5F7] italic mb-6">"Giao hàng đúng 12 phút đá còn nguyên tuyết! Soda galaxy đổi màu chụp ảnh sống ảo triệu view luôn."</p>
+                <p class="text-xs text-[#1A1A1F] italic mb-6">"Giao hàng đúng 12 phút đá còn nguyên tuyết! Soda chanh hoa đậu biếc đổi màu cực xinh."</p>
               </div>
-              <div class="flex items-center gap-3 pt-4 border-t border-white/5">
-                <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-[#00F0FF] to-[#D4FF00] font-bold text-black flex items-center justify-center text-sm">
+              <div class="flex items-center gap-3 pt-4 border-t border-[#E5E5E5]">
+                <div class="w-9 h-9 rounded-full bg-[#FF3E8E] font-bold text-white flex items-center justify-center text-xs">
                   AN
                 </div>
                 <div>
-                  <h4 class="font-display font-bold text-sm text-white">Bảo Anh</h4>
-                  <span class="text-xs text-[#D4FF00]">@cyber_girl_9x</span>
+                  <h4 class="font-display font-bold text-xs text-[#1A1A1F]">Bảo Anh</h4>
+                  <span class="text-[11px] text-[#6B6B75]">@cyber_girl_9x</span>
                 </div>
               </div>
             </div>
 
             <!-- Review 3 -->
-            <div class="w-full md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] shrink-0 glass-panel rounded-3xl p-6 border-white/5 flex flex-col justify-between">
+            <div class="w-full md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] shrink-0 bg-[#F5F5F3] rounded-3xl p-6 border border-[#E5E5E5] flex flex-col justify-between">
               <div>
-                <div class="flex items-center gap-1 text-[#D4FF00] mb-4">
+                <div class="flex items-center gap-1 text-[#FF3E8E] mb-3">
                   <i data-lucide="star" class="w-4 h-4 fill-current"></i>
                   <i data-lucide="star" class="w-4 h-4 fill-current"></i>
                   <i data-lucide="star" class="w-4 h-4 fill-current"></i>
                   <i data-lucide="star" class="w-4 h-4 fill-current"></i>
                   <i data-lucide="star" class="w-4 h-4 fill-current"></i>
                 </div>
-                <p class="text-sm text-[#F5F5F7] italic mb-6">"Trà sữa Tiger đường đen trân châu dẻo dai béo ngậy chuẩn gu mình! Đã add mã NEON30 giảm được tới 30%."</p>
+                <p class="text-xs text-[#1A1A1F] italic mb-6">"Trà sữa Tiger đường đen trân châu dẻo dai béo ngậy chuẩn gu! Nhập mã NEON30 giảm được 30% luôn."</p>
               </div>
-              <div class="flex items-center gap-3 pt-4 border-t border-white/5">
-                <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-[#FF2E93] to-[#D4FF00] font-bold text-white flex items-center justify-center text-sm">
+              <div class="flex items-center gap-3 pt-4 border-t border-[#E5E5E5]">
+                <div class="w-9 h-9 rounded-full bg-[#1A1A1F] font-bold text-white flex items-center justify-center text-xs">
                   KV
                 </div>
                 <div>
-                  <h4 class="font-display font-bold text-sm text-white">Khánh Vũ</h4>
-                  <span class="text-xs text-[#FF2E93]">@boba_lover_tt</span>
+                  <h4 class="font-display font-bold text-xs text-[#1A1A1F]">Khánh Vũ</h4>
+                  <span class="text-[11px] text-[#6B6B75]">@boba_lover_tt</span>
                 </div>
               </div>
             </div>
@@ -521,26 +500,26 @@
     </section>
 
     <!-- ========================================================================== -->
-    <!-- NEWSLETTER / SPECIAL OFFER BANNER                                         -->
+    <!-- NEWSLETTER / SPECIAL OFFER (DARK ACCENT SECTION 2/2)                       -->
     <!-- ========================================================================== -->
-    <section class="py-20 relative">
+    <section class="py-20 bg-[#FAFAF9] relative">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="glass-panel rounded-3xl p-8 sm:p-14 border-[#FF2E93]/40 glow-pink relative overflow-hidden bg-gradient-to-r from-[#15151F] via-[#1F1428] to-[#15151F]">
+        <div class="bg-[#0F0F14] text-white rounded-3xl p-8 sm:p-14 relative overflow-hidden shadow-xl">
           
           <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
             <div class="lg:col-span-7">
-              <span class="px-3 py-1 rounded-full bg-[#FF2E93]/20 text-[#FF2E93] border border-[#FF2E93]/40 text-xs font-bold uppercase tracking-wider mb-4 inline-block">Flash Offer Giảm 30%</span>
-              <h2 class="font-display font-extrabold text-3xl sm:text-5xl text-white mb-4">
-                NHẬN NGAY MÃ VOUCHER <span class="gradient-text-pink-lime">NEON30</span>
+              <span class="px-3 py-1 rounded-full bg-white/10 text-[#00D9A3] border border-white/15 text-xs font-bold uppercase tracking-wider mb-4 inline-block">Ưu đãi đặc biệt</span>
+              <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-white mb-3">
+                NHẬN MÃ GIẢM GIÁ <span class="text-[#00D9A3]">NEON30</span>
               </h2>
-              <p class="text-sm sm:text-base text-[#9A9AB0]">Nhập email của bạn để nhận mã giảm giá 30% cho đơn hàng đầu tiên & cập nhật vị đồ uống mới nhất!</p>
+              <p class="text-sm text-[#9A9AB0]">Nhập email để nhận mã ưu đãi giảm 30% cho đơn hàng đầu tiên của bạn!</p>
             </div>
 
             <div class="lg:col-span-5">
               <form id="newsletter-form" class="flex flex-col sm:flex-row gap-3">
-                <input type="email" placeholder="Nhập địa chỉ email của bạn..." required class="w-full px-5 py-4 rounded-2xl bg-[#0A0A0F] border border-white/10 text-white placeholder-[#9A9AB0] focus:outline-none focus:border-[#FF2E93] text-sm" />
-                <button type="submit" class="gradient-btn px-8 py-4 rounded-2xl font-display font-bold text-sm shrink-0 shadow-lg">
-                  Đăng ký ngay
+                <input type="email" placeholder="Nhập địa chỉ email..." required class="w-full px-5 py-3.5 rounded-2xl bg-white/10 border border-white/15 text-white placeholder-[#9A9AB0] focus:outline-none focus:border-[#00D9A3] text-xs" />
+                <button type="submit" class="bg-[#00D9A3] hover:bg-[#00B88A] text-white px-7 py-3.5 rounded-2xl font-display font-bold text-xs shrink-0 transition-colors shadow-md">
+                  Nhận ưu đãi
                 </button>
               </form>
             </div>
@@ -552,29 +531,29 @@
   </main>
 
   <!-- ========================================================================== -->
-  <!-- FOOTER                                                                     -->
+  <!-- FOOTER (DARK SECTION)                                                     -->
   <!-- ========================================================================== -->
-  <footer class="bg-[#07070B] border-t border-white/5 pt-16 pb-12">
+  <footer class="bg-[#0F0F14] text-white border-t border-white/10 pt-16 pb-12">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
         
         <!-- Col 1: Brand Info -->
         <div>
           <a href="#" class="flex items-center gap-2.5 mb-4">
-            <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-[#FF2E93] to-[#00F0FF] flex items-center justify-center">
+            <div class="w-9 h-9 rounded-xl bg-[#00D9A3] flex items-center justify-center">
               <i data-lucide="droplet" class="w-4 h-4 text-white fill-white"></i>
             </div>
-            <span class="font-display font-extrabold text-xl text-white">NEON<span class="gradient-text-pink-cyan">FIZZ</span></span>
+            <span class="font-display font-extrabold text-xl text-white">NEON<span class="text-[#00D9A3]">FIZZ</span></span>
           </a>
-          <p class="text-xs text-[#9A9AB0] leading-relaxed mb-6">Thương hiệu nước uống Gen Z hàng đầu Việt Nam. Bùng nổ hương vị tươi mát & phong cách Neon độc bản.</p>
+          <p class="text-xs text-[#9A9AB0] leading-relaxed mb-6">Thương hiệu nước uống Gen Z hàng đầu. Hương vị tươi mát & phong cách Fresh Neon thanh lịch.</p>
           <div class="flex items-center gap-3">
-            <a href="#" class="w-9 h-9 rounded-xl bg-[#15151F] text-white hover:text-[#FF2E93] hover:border-[#FF2E93] border border-white/10 flex items-center justify-center transition-colors">
+            <a href="#" class="w-9 h-9 rounded-xl bg-white/10 text-white hover:text-[#00D9A3] border border-white/10 flex items-center justify-center transition-colors">
               <i data-lucide="facebook" class="w-4 h-4"></i>
             </a>
-            <a href="#" class="w-9 h-9 rounded-xl bg-[#15151F] text-white hover:text-[#00F0FF] hover:border-[#00F0FF] border border-white/10 flex items-center justify-center transition-colors">
+            <a href="#" class="w-9 h-9 rounded-xl bg-white/10 text-white hover:text-[#00D9A3] border border-white/10 flex items-center justify-center transition-colors">
               <i data-lucide="instagram" class="w-4 h-4"></i>
             </a>
-            <a href="#" class="w-9 h-9 rounded-xl bg-[#15151F] text-white hover:text-[#D4FF00] hover:border-[#D4FF00] border border-white/10 flex items-center justify-center transition-colors">
+            <a href="#" class="w-9 h-9 rounded-xl bg-white/10 text-white hover:text-[#00D9A3] border border-white/10 flex items-center justify-center transition-colors">
               <i data-lucide="video" class="w-4 h-4"></i>
             </a>
           </div>
@@ -582,7 +561,7 @@
 
         <!-- Col 2: Quick Links -->
         <div>
-          <h4 class="font-display font-bold text-sm text-white uppercase tracking-wider mb-4">Liên kết nhanh</h4>
+          <h4 class="font-display font-bold text-xs text-white uppercase tracking-wider mb-4">Liên kết nhanh</h4>
           <ul class="space-y-2.5 text-xs text-[#9A9AB0]">
             <li><a href="#hero-section" class="hover:text-white transition-colors">Trang chủ</a></li>
             <li><a href="#category-section" class="hover:text-white transition-colors">Danh mục sản phẩm</a></li>
@@ -594,100 +573,97 @@
 
         <!-- Col 3: Contact Info -->
         <div>
-          <h4 class="font-display font-bold text-sm text-white uppercase tracking-wider mb-4">Thông tin liên hệ</h4>
+          <h4 class="font-display font-bold text-xs text-white uppercase tracking-wider mb-4">Thông tin liên hệ</h4>
           <ul class="space-y-3 text-xs text-[#9A9AB0]">
             <li class="flex items-start gap-2.5">
-              <i data-lucide="map-pin" class="w-4 h-4 text-[#FF2E93] shrink-0 mt-0.5"></i>
-              <span>123 Đường Nguyen Hue, Quận 1, TP. Hồ Chí Minh</span>
+              <i data-lucide="map-pin" class="w-4 h-4 text-[#00D9A3] shrink-0 mt-0.5"></i>
+              <span>123 Nguyễn Huệ, Quận 1, TP. Hồ Chí Minh</span>
             </li>
             <li class="flex items-center gap-2.5">
-              <i data-lucide="phone" class="w-4 h-4 text-[#00F0FF] shrink-0"></i>
+              <i data-lucide="phone" class="w-4 h-4 text-[#00D9A3] shrink-0"></i>
               <span>1900 - 888 - FIZZ (08:00 - 22:30)</span>
             </li>
             <li class="flex items-center gap-2.5">
-              <i data-lucide="mail" class="w-4 h-4 text-[#D4FF00] shrink-0"></i>
+              <i data-lucide="mail" class="w-4 h-4 text-[#00D9A3] shrink-0"></i>
               <span>hello@neonfizz.vn</span>
             </li>
           </ul>
         </div>
 
-        <!-- Col 4: Opening Hours & Delivery -->
+        <!-- Col 4: Opening Hours -->
         <div>
-          <h4 class="font-display font-bold text-sm text-white uppercase tracking-wider mb-4">Giờ mở cửa</h4>
+          <h4 class="font-display font-bold text-xs text-white uppercase tracking-wider mb-4">Giờ phục vụ</h4>
           <p class="text-xs text-[#9A9AB0] mb-3">Phục vụ trực tiếp & giao hàng online:</p>
-          <div class="p-3 rounded-2xl bg-[#15151F] border border-white/5 text-xs text-white font-medium space-y-1">
-            <div class="flex justify-between"><span>Thứ 2 - Thứ 6:</span> <span class="text-[#00F0FF]">07:30 - 23:00</span></div>
-            <div class="flex justify-between"><span>Thứ 7 - Chủ nhật:</span> <span class="text-[#FF2E93]">07:30 - 23:30</span></div>
+          <div class="p-3.5 rounded-2xl bg-white/5 border border-white/10 text-xs text-white space-y-1.5">
+            <div class="flex justify-between"><span>Thứ 2 - Thứ 6:</span> <span class="text-[#00D9A3]">07:30 - 23:00</span></div>
+            <div class="flex justify-between"><span>Thứ 7 - Chủ nhật:</span> <span class="text-[#FF3E8E]">07:30 - 23:30</span></div>
           </div>
         </div>
 
       </div>
 
-      <div class="pt-8 border-t border-white/5 text-center text-xs text-[#9A9AB0]">
-        <p>© 2026 NEON FIZZ. Tất cả quyền được bảo lưu. Thiết kế phong cách Neon Cyberpunk Gen Z.</p>
+      <div class="pt-8 border-t border-white/10 text-center text-xs text-[#9A9AB0]">
+        <p>© 2026 NEON FIZZ. Tất cả quyền được bảo lưu. Phong cách Fresh Neon Gen Z.</p>
       </div>
     </div>
   </footer>
 
   <!-- ========================================================================== -->
-  <!-- SLIDE-OUT CART DRAWER                                                      -->
+  <!-- SLIDE-OUT CART DRAWER (LIGHT THEME)                                        -->
   <!-- ========================================================================== -->
-  <div id="cart-overlay" onclick="toggleCartDrawer()" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 hidden transition-opacity"></div>
+  <div id="cart-overlay" onclick="toggleCartDrawer()" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 hidden transition-opacity"></div>
   
-  <div id="cart-drawer" class="fixed top-0 right-0 bottom-0 w-full sm:w-[420px] bg-[#12121A] border-l border-white/10 z-50 transform translate-x-full transition-transform duration-300 flex flex-col justify-between">
+  <div id="cart-drawer" class="fixed top-0 right-0 bottom-0 w-full sm:w-[400px] bg-white border-l border-[#E5E5E5] z-50 transform translate-x-full transition-transform duration-300 flex flex-col justify-between shadow-2xl">
     
     <!-- Drawer Header -->
-    <div class="p-6 border-b border-white/10 flex items-center justify-between">
+    <div class="p-6 border-b border-[#E5E5E5] flex items-center justify-between">
       <div class="flex items-center gap-2">
-        <i data-lucide="shopping-bag" class="w-5 h-5 text-[#FF2E93]"></i>
-        <h3 class="font-display font-bold text-lg text-white">Giỏ hàng của bạn</h3>
+        <i data-lucide="shopping-bag" class="w-5 h-5 text-[#00D9A3]"></i>
+        <h3 class="font-display font-bold text-base text-[#1A1A1F]">Giỏ hàng của bạn</h3>
       </div>
-      <button onclick="toggleCartDrawer()" class="p-2 text-[#9A9AB0] hover:text-white transition-colors">
-        <i data-lucide="x" class="w-6 h-6"></i>
+      <button onclick="toggleCartDrawer()" class="p-2 text-[#6B6B75] hover:text-[#1A1A1F] transition-colors">
+        <i data-lucide="x" class="w-5 h-5"></i>
       </button>
     </div>
 
-    <!-- Cart Items List Container -->
-    <div id="cart-items-container" class="flex-1 overflow-y-auto p-6 space-y-4">
+    <!-- Items List Container -->
+    <div id="cart-items-container" class="flex-1 overflow-y-auto p-6 space-y-3">
       <!-- Dynamic Content -->
     </div>
 
     <!-- Empty State -->
     <div id="cart-empty-state" class="hidden flex-1 flex flex-col items-center justify-center p-6 text-center">
-      <div class="w-16 h-16 rounded-full bg-white/5 flex items-center justify-center mb-4 text-[#9A9AB0]">
-        <i data-lucide="shopping-cart" class="w-8 h-8"></i>
+      <div class="w-14 h-14 rounded-full bg-[#F5F5F3] flex items-center justify-center mb-3 text-[#6B6B75]">
+        <i data-lucide="shopping-cart" class="w-7 h-7"></i>
       </div>
-      <h4 class="font-display font-bold text-white mb-1">Giỏ hàng đang trống</h4>
-      <p class="text-xs text-[#9A9AB0] mb-6">Hãy thêm những ly nước thơm ngon từ menu vào giỏ nhé!</p>
-      <button onclick="toggleCartDrawer()" class="gradient-btn px-6 py-3 rounded-2xl text-xs font-bold">Xem Menu Ngay</button>
+      <h4 class="font-display font-bold text-[#1A1A1F] text-sm mb-1">Giỏ hàng đang trống</h4>
+      <p class="text-xs text-[#6B6B75] mb-5">Thêm ngay những ly nước tươi mát vào giỏ hàng nhé!</p>
+      <button onclick="toggleCartDrawer()" class="btn-mint px-6 py-2.5 rounded-xl text-xs font-bold">Xem Menu Ngay</button>
     </div>
 
-    <!-- Drawer Footer Summary -->
-    <div id="cart-footer-summary" class="p-6 border-t border-white/10 bg-[#0D0D14] space-y-4">
-      <!-- Promo Code Input -->
+    <!-- Summary & Checkout Footer -->
+    <div id="cart-footer-summary" class="p-6 border-t border-[#E5E5E5] bg-[#FAFAF9] space-y-4">
       <div class="flex gap-2">
-        <input id="cart-promo-input" type="text" placeholder="Nhập mã giảm giá (ví dụ: NEON30)..." class="flex-1 px-4 py-2.5 rounded-xl bg-[#15151F] border border-white/10 text-xs text-white uppercase placeholder:normal-case placeholder-[#9A9AB0] focus:outline-none focus:border-[#00F0FF]" />
-        <button id="apply-promo-btn" class="px-4 py-2.5 rounded-xl bg-[#00F0FF]/20 text-[#00F0FF] hover:bg-[#00F0FF] hover:text-black font-bold text-xs transition-colors">Áp dụng</button>
+        <input id="cart-promo-input" type="text" placeholder="Nhập mã giảm giá (ví dụ: NEON30)..." class="flex-1 px-3.5 py-2.5 rounded-xl bg-white border border-[#E5E5E5] text-xs text-[#1A1A1F] uppercase placeholder:normal-case placeholder-[#6B6B75] focus:outline-none focus:border-[#00D9A3]" />
+        <button id="apply-promo-btn" class="px-4 py-2.5 rounded-xl bg-[#00D9A3]/10 text-[#00D9A3] hover:bg-[#00D9A3] hover:text-white font-bold text-xs transition-colors">Áp dụng</button>
       </div>
 
-      <!-- Price Breakdown -->
       <div class="space-y-2 text-xs">
-        <div class="flex justify-between text-[#9A9AB0]">
+        <div class="flex justify-between text-[#6B6B75]">
           <span>Tạm tính:</span>
-          <span id="cart-subtotal-val" class="font-semibold text-white">0₫</span>
+          <span id="cart-subtotal-val" class="font-semibold text-[#1A1A1F]">0₫</span>
         </div>
-        <div class="flex justify-between text-[#D4FF00] hidden">
+        <div class="flex justify-between text-[#00D9A3] hidden">
           <span>Giảm giá (Mã KM):</span>
           <span id="cart-discount-val" class="font-semibold">-0₫</span>
         </div>
-        <div class="flex justify-between text-base font-display font-bold text-white pt-2 border-t border-white/10">
+        <div class="flex justify-between text-base font-display font-bold text-[#1A1A1F] pt-2 border-t border-[#E5E5E5]">
           <span>Tổng tiền:</span>
-          <span id="cart-total-val" class="text-[#00F0FF]">0₫</span>
+          <span id="cart-total-val" class="text-[#00D9A3]">0₫</span>
         </div>
       </div>
 
-      <!-- Checkout CTA -->
-      <button id="cart-checkout-btn" class="w-full py-4 rounded-2xl gradient-btn font-display font-bold text-sm shadow-lg shadow-[#FF2E93]/30">
+      <button id="cart-checkout-btn" class="w-full py-3.5 rounded-xl btn-mint font-display font-bold text-xs shadow-md">
         TIẾN HÀNH THANH TOÁN
       </button>
     </div>
@@ -695,64 +671,56 @@
   </div>
 
   <!-- ========================================================================== -->
-  <!-- CHECKOUT MODAL FORM                                                        -->
+  <!-- CHECKOUT MODAL FORM (LIGHT THEME)                                          -->
   <!-- ========================================================================== -->
-  <div id="checkout-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4 hidden">
-    <div class="glass-panel w-full max-w-lg rounded-3xl p-6 sm:p-8 border-[#00F0FF]/40 relative max-h-[90vh] overflow-y-auto">
+  <div id="checkout-modal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 hidden">
+    <div class="bg-white w-full max-w-lg rounded-3xl p-6 sm:p-8 border border-[#E5E5E5] relative max-h-[90vh] overflow-y-auto shadow-2xl">
       
-      <button onclick="closeCheckoutModal()" class="absolute top-6 right-6 text-[#9A9AB0] hover:text-white">
-        <i data-lucide="x" class="w-6 h-6"></i>
+      <button onclick="closeCheckoutModal()" class="absolute top-6 right-6 text-[#6B6B75] hover:text-[#1A1A1F]">
+        <i data-lucide="x" class="w-5 h-5"></i>
       </button>
 
-      <h3 class="font-display font-bold text-2xl text-white mb-2">XÁC NHẬN ĐẶT HÀNG</h3>
-      <p class="text-xs text-[#9A9AB0] mb-6">Vui lòng điền thông tin để nhân viên Neon Fizz giao hàng nhanh nhất.</p>
+      <h3 class="font-display font-bold text-xl text-[#1A1A1F] mb-1">XÁC NHẬN ĐẶT HÀNG</h3>
+      <p class="text-xs text-[#6B6B75] mb-6">Điền thông tin giao hàng để Neon Fizz giao tận tay trong 15 phút.</p>
 
       <form id="checkout-form" class="space-y-4">
         <div>
-          <label class="block text-xs font-semibold text-white mb-1">Họ và tên *</label>
-          <input type="text" required placeholder="Nguyễn Văn A" class="w-full px-4 py-3 rounded-xl bg-[#0A0A0F] border border-white/10 text-white text-xs focus:outline-none focus:border-[#00F0FF]" />
+          <label class="block text-xs font-semibold text-[#1A1A1F] mb-1">Họ và tên *</label>
+          <input type="text" required placeholder="Nguyễn Văn A" class="w-full px-4 py-2.5 rounded-xl bg-[#FAFAF9] border border-[#E5E5E5] text-[#1A1A1F] text-xs focus:outline-none focus:border-[#00D9A3]" />
         </div>
 
         <div>
-          <label class="block text-xs font-semibold text-white mb-1">Số điện thoại giao hàng *</label>
-          <input type="tel" required placeholder="0987654321" class="w-full px-4 py-3 rounded-xl bg-[#0A0A0F] border border-white/10 text-white text-xs focus:outline-none focus:border-[#00F0FF]" />
+          <label class="block text-xs font-semibold text-[#1A1A1F] mb-1">Số điện thoại *</label>
+          <input type="tel" required placeholder="0987654321" class="w-full px-4 py-2.5 rounded-xl bg-[#FAFAF9] border border-[#E5E5E5] text-[#1A1A1F] text-xs focus:outline-none focus:border-[#00D9A3]" />
         </div>
 
         <div>
-          <label class="block text-xs font-semibold text-white mb-1">Địa chỉ nhận hàng *</label>
-          <textarea required rows="2" placeholder="Số nhà, tên đường, Phường/Xã, Quận/Huyện..." class="w-full px-4 py-3 rounded-xl bg-[#0A0A0F] border border-white/10 text-white text-xs focus:outline-none focus:border-[#00F0FF]"></textarea>
+          <label class="block text-xs font-semibold text-[#1A1A1F] mb-1">Địa chỉ giao hàng *</label>
+          <textarea required rows="2" placeholder="Số nhà, tên đường, Phường/Xã..." class="w-full px-4 py-2.5 rounded-xl bg-[#FAFAF9] border border-[#E5E5E5] text-[#1A1A1F] text-xs focus:outline-none focus:border-[#00D9A3]"></textarea>
         </div>
 
-        <!-- Order Summary Preview inside modal -->
-        <div class="p-4 rounded-2xl bg-[#0A0A0F] border border-white/5 space-y-2">
-          <span class="text-xs font-bold text-[#9A9AB0] block uppercase tracking-wider mb-1">Đơn hàng của bạn</span>
+        <div class="p-4 rounded-2xl bg-[#F5F5F3] border border-[#E5E5E5] space-y-2">
+          <span class="text-xs font-bold text-[#6B6B75] block uppercase tracking-wider mb-1">Tóm tắt đơn hàng</span>
           <div id="checkout-order-summary"></div>
-          <div class="flex justify-between text-xs font-bold text-white pt-2 border-t border-white/10">
+          <div class="flex justify-between text-xs font-bold text-[#1A1A1F] pt-2 border-t border-[#E5E5E5]">
             <span>Tổng cộng:</span>
-            <span id="checkout-total-val" class="text-[#00F0FF]">0₫</span>
+            <span id="checkout-total-val" class="text-[#00D9A3]">0₫</span>
           </div>
         </div>
 
-        <!-- Payment Method -->
         <div>
-          <label class="block text-xs font-semibold text-white mb-2">Phương thức thanh toán</label>
+          <label class="block text-xs font-semibold text-[#1A1A1F] mb-2">Phương thức thanh toán</label>
           <div class="grid grid-cols-2 gap-3 text-xs">
-            <div>
-              <input type="radio" id="pay-cod" name="payment" value="cod" checked class="hidden" />
-              <label for="pay-cod" class="block p-3 rounded-xl border border-white/10 bg-[#0A0A0F] text-center text-white cursor-pointer hover:border-white/30">
-                Thanh toán COD
-              </label>
-            </div>
-            <div>
-              <input type="radio" id="pay-momo" name="payment" value="momo" class="hidden" />
-              <label for="pay-momo" class="block p-3 rounded-xl border border-white/10 bg-[#0A0A0F] text-center text-white cursor-pointer hover:border-white/30">
-                Ví MoMo / VietQR
-              </label>
-            </div>
+            <label class="flex items-center justify-center p-3 rounded-xl border border-[#E5E5E5] bg-[#FAFAF9] text-[#1A1A1F] font-medium cursor-pointer hover:border-[#00D9A3]">
+              <input type="radio" name="payment" value="cod" checked class="mr-2 accent-[#00D9A3]" /> COD
+            </label>
+            <label class="flex items-center justify-center p-3 rounded-xl border border-[#E5E5E5] bg-[#FAFAF9] text-[#1A1A1F] font-medium cursor-pointer hover:border-[#00D9A3]">
+              <input type="radio" name="payment" value="momo" class="mr-2 accent-[#00D9A3]" /> MoMo / VietQR
+            </label>
           </div>
         </div>
 
-        <button id="checkout-submit-btn" type="submit" class="w-full py-4 rounded-2xl gradient-btn font-display font-bold text-sm mt-4 shadow-lg shadow-[#00F0FF]/30">
+        <button id="checkout-submit-btn" type="submit" class="w-full py-3.5 rounded-xl btn-mint font-display font-bold text-xs mt-2 shadow-md">
           XÁC NHẬN ĐẶT HÀNG
         </button>
       </form>
@@ -761,24 +729,24 @@
   </div>
 
   <!-- ========================================================================== -->
-  <!-- QUICK VIEW PRODUCT MODAL                                                   -->
+  <!-- QUICK VIEW PRODUCT MODAL (LIGHT THEME)                                     -->
   <!-- ========================================================================== -->
-  <div id="quickview-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4 hidden">
-    <div class="glass-panel w-full max-w-2xl rounded-3xl p-6 sm:p-8 border-[#FF2E93]/40 relative">
-      <button onclick="closeQuickView()" class="absolute top-6 right-6 text-[#9A9AB0] hover:text-white z-10">
-        <i data-lucide="x" class="w-6 h-6"></i>
+  <div id="quickview-modal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 hidden">
+    <div class="bg-white w-full max-w-2xl rounded-3xl p-6 sm:p-8 border border-[#E5E5E5] relative shadow-2xl">
+      <button onclick="closeQuickView()" class="absolute top-6 right-6 text-[#6B6B75] hover:text-[#1A1A1F] z-10">
+        <i data-lucide="x" class="w-5 h-5"></i>
       </button>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 items-center">
-        <div class="rounded-2xl overflow-hidden bg-[#0A0A0F]">
-          <img id="qv-img" src="" alt="" class="w-full h-64 object-cover" />
+        <div class="rounded-2xl overflow-hidden bg-[#F5F5F3] aspect-square flex items-center justify-center">
+          <img id="qv-img" src="" alt="" class="w-full h-full object-cover" />
         </div>
         <div>
-          <span class="text-[10px] font-bold text-[#FF2E93] uppercase tracking-wider px-2.5 py-1 rounded-full bg-[#FF2E93]/10 border border-[#FF2E93]/30 inline-block mb-3">Bestseller</span>
-          <h3 id="qv-name" class="font-display font-bold text-2xl text-white mb-2"></h3>
-          <p id="qv-desc" class="text-xs text-[#9A9AB0] leading-relaxed mb-4"></p>
-          <div class="font-display font-extrabold text-2xl text-[#00F0FF] mb-6" id="qv-price"></div>
-          <button id="qv-add-btn" class="w-full py-3.5 rounded-2xl gradient-btn font-display font-bold text-xs flex items-center justify-center gap-2">
+          <span class="text-[10px] font-bold text-[#00D9A3] uppercase tracking-wider px-2.5 py-1 rounded-full bg-[#00D9A3]/10 border border-[#00D9A3]/20 inline-block mb-3">Tươi Ngon</span>
+          <h3 id="qv-name" class="font-display font-bold text-xl text-[#1A1A1F] mb-2"></h3>
+          <p id="qv-desc" class="text-xs text-[#6B6B75] leading-relaxed mb-4"></p>
+          <div class="font-display font-extrabold text-xl text-[#00D9A3] mb-6" id="qv-price"></div>
+          <button id="qv-add-btn" class="w-full py-3 rounded-xl btn-mint font-display font-bold text-xs flex items-center justify-center gap-2">
             <i data-lucide="shopping-bag" class="w-4 h-4"></i>
             <span>Thêm vào giỏ ngay</span>
           </button>
@@ -787,13 +755,10 @@
     </div>
   </div>
 
-  <!-- Global Toast Notification Container -->
+  <!-- Global Toast & Confetti Canvas -->
   <div id="toast-container"></div>
-
-  <!-- Confetti Canvas -->
   <canvas id="confetti-canvas"></canvas>
 
-  <!-- Drawer Toggle Script Helper -->
   <script>
     function toggleCartDrawer() {
       const drawer = document.getElementById('cart-drawer');
@@ -813,7 +778,6 @@
     }
   </script>
 
-  <!-- External JavaScript Files -->
   <script src="js/cart.js"></script>
   <script src="js/main.js"></script>
 </body>

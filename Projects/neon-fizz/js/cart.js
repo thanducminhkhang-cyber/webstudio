@@ -1,8 +1,8 @@
 /* ==========================================================================
-   NEON FIZZ — CART & INTERACTIVE SHOPPING LOGIC
+   NEON FIZZ — FRESH NEON CART LOGIC
    ========================================================================== */
 
-// --- Initial Mock Products Data ---
+// --- Products Data (Minimal clean badges: "Bán chạy" & "Mới") ---
 const PRODUCTS_DATA = [
   {
     id: 'p1',
@@ -12,9 +12,8 @@ const PRODUCTS_DATA = [
     originalPrice: 59000,
     rating: 4.9,
     reviews: 128,
-    tag: 'BEST SELLER',
-    tagColor: 'pink',
-    desc: 'Trà ô long kết hợp dừa nướng, thanh long đỏ tươi & thạch dừa giòn sần sật.',
+    badge: 'Bán chạy', // Only 2-3 featured items have badges
+    desc: 'Trà ô long thanh mát kết hợp dừa nướng, thanh long đỏ tươi & thạch dừa giòn.',
     img: 'assets/images/cat_fruit_tea.jpg'
   },
   {
@@ -25,9 +24,8 @@ const PRODUCTS_DATA = [
     originalPrice: 52000,
     rating: 5.0,
     reviews: 94,
-    tag: 'NEW VIRAL',
-    tagColor: 'cyan',
-    desc: 'Soda hoa đậu biếc kết hợp chanh tươi, popping popping kiwi nổ bùng vị giác.',
+    badge: 'Mới',
+    desc: 'Soda hoa đậu biếc chanh tươi, hạt popping kiwi nổ bùng sảng khoái.',
     img: 'assets/images/cat_neon_soda.jpg'
   },
   {
@@ -38,9 +36,8 @@ const PRODUCTS_DATA = [
     originalPrice: 65000,
     rating: 4.8,
     reviews: 210,
-    tag: 'MUST TRY',
-    tagColor: 'yellow',
-    desc: 'Sữa tươi kem béo Dalat Milk hòa quyện đường đen Okinawa & trân châu dẻo dai.',
+    badge: 'Bán chạy',
+    desc: 'Sữa tươi Dalat Milk ngậy béo hòa quyện đường đen Okinawa & trân châu dẻo.',
     img: 'assets/images/cat_boba_milk.jpg'
   },
   {
@@ -51,9 +48,8 @@ const PRODUCTS_DATA = [
     originalPrice: 60000,
     rating: 4.7,
     reviews: 86,
-    tag: 'TRENDY',
-    tagColor: 'lime',
-    desc: 'Matcha Uji Nhật Bản đậm đà phủ lớp macchiato kem phô mai chanh dây béo ngậy.',
+    badge: null, // No badge
+    desc: 'Matcha Uji Nhật Bản đậm đà phủ lớp macchiato kem phô mai ngậy thanh.',
     img: 'assets/images/cat_fresh_juice.jpg'
   },
   {
@@ -64,9 +60,8 @@ const PRODUCTS_DATA = [
     originalPrice: 55000,
     rating: 4.9,
     reviews: 154,
-    tag: 'HOT',
-    tagColor: 'pink',
-    desc: 'Sữa chua lên men mát lạnh hòa cùng việt quất tươi & soda carbonated bùng nổ.',
+    badge: null,
+    desc: 'Sữa chua lên men mát lạnh hòa cùng việt quất tươi & soda sảng khoái.',
     img: 'assets/images/cat_neon_soda.jpg'
   },
   {
@@ -77,9 +72,8 @@ const PRODUCTS_DATA = [
     originalPrice: 50000,
     rating: 4.8,
     reviews: 73,
-    tag: 'HEALTHY',
-    tagColor: 'lime',
-    desc: 'Nước ép cam vàng, chanh dây & xoài chín tươi 100% không thêm đường hóa học.',
+    badge: null,
+    desc: 'Nước ép cam vàng, chanh dây & xoài chín tươi 100% nguyên chất tự nhiên.',
     img: 'assets/images/cat_fresh_juice.jpg'
   },
   {
@@ -90,9 +84,8 @@ const PRODUCTS_DATA = [
     originalPrice: 62000,
     rating: 4.9,
     reviews: 112,
-    tag: 'LIMITED',
-    tagColor: 'cyan',
-    desc: 'Sinh tố xoài Cát Chu dầm cốt dừa nướng Bến Tre thơm béo ngậy cực cuốn.',
+    badge: null,
+    desc: 'Sinh tố xoài Cát Chu dầm cốt dừa nướng Bến Tre thơm béo cuốn vị.',
     img: 'assets/images/hero_drink.jpg'
   },
   {
@@ -103,9 +96,8 @@ const PRODUCTS_DATA = [
     originalPrice: 45000,
     rating: 4.6,
     reviews: 67,
-    tag: 'REFRESH',
-    tagColor: 'yellow',
-    desc: 'Trà nhài ướp lạnh lắc cùng chanh vàng ngâm mật ong và đá tuyết sảng khoái.',
+    badge: null,
+    desc: 'Trà nhài ướp lạnh lắc chanh vàng ngâm mật ong và đá tuyết giải nhiệt.',
     img: 'assets/images/cat_fruit_tea.jpg'
   }
 ];
@@ -114,10 +106,9 @@ const PRODUCTS_DATA = [
 class CartManager {
   constructor() {
     this.items = JSON.parse(localStorage.getItem('neon_fizz_cart')) || [
-      // Preset initial demo item
       { id: 'p1', name: 'Pink Velvet Dragon Tea', price: 49000, qty: 2, img: 'assets/images/cat_fruit_tea.jpg' }
     ];
-    this.appliedDiscount = 0; // percentage e.g. 0.3 for 30%
+    this.appliedDiscount = 0;
     this.promoCode = '';
     this.initUI();
   }
@@ -153,11 +144,10 @@ class CartManager {
 
     this.save();
 
-    // Trigger Fly-to-Cart Animation
     if (triggerElement) {
       this.animateFlyToCart(triggerElement, product.img);
     } else {
-      showToast(`Đã thêm "${product.name}" vào giỏ hàng!`, 'pink');
+      showToast(`Đã thêm "${product.name}" vào giỏ hàng!`, 'mint');
     }
   }
 
@@ -178,7 +168,7 @@ class CartManager {
     this.items = this.items.filter(i => i.id !== id);
     this.save();
     if (item) {
-      showToast(`Đã xóa "${item.name}" khỏi giỏ hàng`, 'cyan');
+      showToast(`Đã xóa "${item.name}" khỏi giỏ hàng`, 'pink');
     }
   }
 
@@ -235,24 +225,23 @@ class CartManager {
     if (footer) footer.classList.remove('hidden');
 
     container.innerHTML = this.items.map(item => `
-      <div class="flex items-center gap-4 p-3 rounded-2xl bg-[#1A1A28] border border-white/5 hover:border-[#FF2E93]/30 transition-all">
-        <img src="${item.img}" alt="${item.name}" class="w-16 h-16 rounded-xl object-cover border border-white/10" />
+      <div class="flex items-center gap-4 p-3 rounded-2xl bg-[#F5F5F3] border border-[#E5E5E5] hover:border-[#00D9A3] transition-all">
+        <img src="${item.img}" alt="${item.name}" class="w-14 h-14 rounded-xl object-cover border border-[#E5E5E5]" />
         <div class="flex-1 min-w-0">
-          <h4 class="font-display font-semibold text-white text-sm truncate">${item.name}</h4>
-          <p class="text-[#00F0FF] font-bold text-sm mt-0.5">${formatVND(item.price)}</p>
-          <div class="flex items-center gap-2 mt-2">
-            <button onclick="cartManager.updateQty('${item.id}', -1)" class="w-6 h-6 rounded-lg bg-white/10 text-white flex items-center justify-center hover:bg-[#FF2E93] transition-colors text-xs">-</button>
-            <span class="text-xs font-bold text-white px-1">${item.qty}</span>
-            <button onclick="cartManager.updateQty('${item.id}', 1)" class="w-6 h-6 rounded-lg bg-white/10 text-white flex items-center justify-center hover:bg-[#00F0FF] hover:text-black transition-colors text-xs">+</button>
+          <h4 class="font-display font-semibold text-[#1A1A1F] text-sm truncate">${item.name}</h4>
+          <p class="text-[#00D9A3] font-bold text-sm mt-0.5">${formatVND(item.price)}</p>
+          <div class="flex items-center gap-2 mt-1.5">
+            <button onclick="cartManager.updateQty('${item.id}', -1)" class="w-6 h-6 rounded-lg bg-white border border-[#E5E5E5] text-[#1A1A1F] flex items-center justify-center hover:bg-[#FF3E8E] hover:text-white transition-colors text-xs font-bold">-</button>
+            <span class="text-xs font-bold text-[#1A1A1F] px-1">${item.qty}</span>
+            <button onclick="cartManager.updateQty('${item.id}', 1)" class="w-6 h-6 rounded-lg bg-white border border-[#E5E5E5] text-[#1A1A1F] flex items-center justify-center hover:bg-[#00D9A3] hover:text-white transition-colors text-xs font-bold">+</button>
           </div>
         </div>
-        <button onclick="cartManager.removeItem('${item.id}')" class="text-[#9A9AB0] hover:text-[#FF2E93] p-1 transition-colors" title="Xóa">
+        <button onclick="cartManager.removeItem('${item.id}')" class="text-[#6B6B75] hover:text-[#FF3E8E] p-1 transition-colors" title="Xóa">
           <i data-lucide="trash-2" class="w-4 h-4"></i>
         </button>
       </div>
     `).join('');
 
-    // Update totals
     const subtotalEl = document.getElementById('cart-subtotal-val');
     const discountEl = document.getElementById('cart-discount-val');
     const totalEl = document.getElementById('cart-total-val');
@@ -276,19 +265,13 @@ class CartManager {
   applyPromoCode(code) {
     const cleanCode = code.trim().toUpperCase();
     if (cleanCode === 'NEON30' || cleanCode === 'GENZ30') {
-      this.appliedDiscount = 0.3; // 30% off
+      this.appliedDiscount = 0.3;
       this.promoCode = cleanCode;
       this.save();
-      showToast('Áp dụng mã giảm giá 30% thành công! 🔥', 'lime');
-      return true;
-    } else if (cleanCode === 'NEON10') {
-      this.appliedDiscount = 0.1;
-      this.promoCode = cleanCode;
-      this.save();
-      showToast('Áp dụng mã giảm 10k thành công!', 'cyan');
+      showToast('Áp dụng mã giảm giá 30% thành công! 🎉', 'mint');
       return true;
     } else {
-      showToast('Mã giảm giá không hợp lệ hoặc đã hết hạn!', 'pink');
+      showToast('Mã giảm giá không hợp lệ!', 'pink');
       return false;
     }
   }
@@ -296,7 +279,7 @@ class CartManager {
   animateFlyToCart(triggerBtn, imageSrc) {
     const cartIcon = document.getElementById('cart-btn-trigger');
     if (!cartIcon || !triggerBtn) {
-      showToast('Đã thêm sản phẩm vào giỏ hàng!', 'pink');
+      showToast('Đã thêm sản phẩm vào giỏ hàng!', 'mint');
       return;
     }
 
@@ -306,19 +289,18 @@ class CartManager {
     const imgClone = document.createElement('img');
     imgClone.src = imageSrc;
     imgClone.className = 'flying-product-thumbnail';
-    imgClone.style.left = `${btnRect.left + btnRect.width / 2 - 30}px`;
-    imgClone.style.top = `${btnRect.top + btnRect.height / 2 - 30}px`;
+    imgClone.style.left = `${btnRect.left + btnRect.width / 2 - 27}px`;
+    imgClone.style.top = `${btnRect.top + btnRect.height / 2 - 27}px`;
 
     document.body.appendChild(imgClone);
 
-    const targetX = cartRect.left + cartRect.width / 2 - 30;
-    const targetY = cartRect.top + cartRect.height / 2 - 30;
+    const targetX = cartRect.left + cartRect.width / 2 - 27;
+    const targetY = cartRect.top + cartRect.height / 2 - 27;
 
-    // Use Web Animations API / GSAP logic
     imgClone.animate([
       { transform: 'scale(1) rotate(0deg)', opacity: 1 },
-      { transform: `translate(${(targetX - (btnRect.left + btnRect.width/2 - 30)) * 0.5}px, ${(targetY - (btnRect.top + btnRect.height/2 - 30)) - 80}px) scale(1.2) rotate(180deg)`, opacity: 0.9 },
-      { transform: `translate(${targetX - (btnRect.left + btnRect.width/2 - 30)}px, ${targetY - (btnRect.top + btnRect.height/2 - 30)}px) scale(0.2) rotate(360deg)`, opacity: 0 }
+      { transform: `translate(${(targetX - (btnRect.left + btnRect.width/2 - 27)) * 0.5}px, ${(targetY - (btnRect.top + btnRect.height/2 - 27)) - 60}px) scale(1.1) rotate(180deg)`, opacity: 0.9 },
+      { transform: `translate(${targetX - (btnRect.left + btnRect.width/2 - 27)}px, ${targetY - (btnRect.top + btnRect.height/2 - 27)}px) scale(0.2) rotate(360deg)`, opacity: 0 }
     ], {
       duration: 750,
       easing: 'cubic-bezier(0.2, 0.8, 0.2, 1)',
@@ -326,12 +308,11 @@ class CartManager {
     }).onfinish = () => {
       imgClone.remove();
       this.updateCartBadge();
-      showToast('Đã thêm vào giỏ hàng! 🍹', 'pink');
+      showToast('Đã thêm vào giỏ hàng! 🍹', 'mint');
     };
   }
 
   setupEventListeners() {
-    // Promo code form
     const promoBtn = document.getElementById('apply-promo-btn');
     const promoInput = document.getElementById('cart-promo-input');
 
@@ -343,7 +324,6 @@ class CartManager {
       });
     }
 
-    // Checkout button inside drawer
     const checkoutBtn = document.getElementById('cart-checkout-btn');
     if (checkoutBtn) {
       checkoutBtn.addEventListener('click', () => {
@@ -357,24 +337,22 @@ class CartManager {
   }
 }
 
-// Global Currency Formatter
 function formatVND(amount) {
   return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(amount);
 }
 
-// Global Toast System
-function showToast(message, color = 'pink') {
+function showToast(message, color = 'mint') {
   const container = document.getElementById('toast-container');
   if (!container) return;
 
   const toast = document.createElement('div');
-  const borderColor = color === 'cyan' ? '#00F0FF' : color === 'lime' ? '#D4FF00' : '#FF2E93';
+  const dotColor = color === 'pink' ? '#FF3E8E' : '#00D9A3';
   
   toast.className = 'toast';
-  toast.style.borderColor = borderColor;
+  toast.style.borderColor = color === 'pink' ? '#FF3E8E' : '#00D9A3';
   toast.innerHTML = `
-    <div class="w-3 h-3 rounded-full animate-ping" style="background-color: ${borderColor}"></div>
-    <span class="text-sm font-medium text-white">${message}</span>
+    <div class="w-2.5 h-2.5 rounded-full" style="background-color: ${dotColor}"></div>
+    <span class="text-xs font-semibold text-[#1A1A1F]">${message}</span>
   `;
 
   container.appendChild(toast);
@@ -382,13 +360,10 @@ function showToast(message, color = 'pink') {
   setTimeout(() => {
     toast.classList.add('toast-exit');
     toast.addEventListener('animationend', () => toast.remove());
-  }, 3000);
+  }, 2800);
 }
 
-// Initialize Global Instance
 const cartManager = new CartManager();
-
-// Export globals
 window.cartManager = cartManager;
 window.showToast = showToast;
 window.formatVND = formatVND;
