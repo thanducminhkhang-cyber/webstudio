@@ -1,6 +1,14 @@
 /* ==========================================================================
-   NEON FIZZ — FRESH NEON MAIN JAVASCRIPT
+   NEON FIZZ — WARM ORGANIC & BLOB MAIN JAVASCRIPT
    ========================================================================== */
+
+// Category Slug -> Accented Vietnamese Label Mapper (FIXED UNACCENTED / HYPHEN BUG)
+const CATEGORY_LABEL_MAP = {
+  'tra-trai-cay': 'TRÀ TRÁI CÂY',
+  'tra-sua': 'TRÀ SỮA',
+  'ca-phe': 'CÀ PHÊ',
+  'nuoc-ep-sinh-to': 'NƯỚC ÉP & SINH TỐ'
+};
 
 document.addEventListener('DOMContentLoaded', () => {
   initNavbarScroll();
@@ -63,7 +71,7 @@ function initMobileMenu() {
 }
 
 /* -------------------------------------------------------------------------- */
-/* 3. Subtle Hero Particle Canvas (Minimal 4 Particles)                      */
+/* 3. Subtle Warm Particle Canvas                                             */
 /* -------------------------------------------------------------------------- */
 function initParticleCanvas() {
   const canvas = document.getElementById('particle-canvas');
@@ -79,17 +87,16 @@ function initParticleCanvas() {
   });
 
   const particles = [];
-  const colors = ['rgba(0, 217, 163, ', 'rgba(255, 62, 142, '];
+  const colors = ['rgba(217, 113, 60, ', 'rgba(122, 139, 92, '];
 
-  // Minimal 5 particles for clean subtle vibe
   for (let i = 0; i < 5; i++) {
     particles.push({
       x: Math.random() * width,
       y: Math.random() * height,
       radius: Math.random() * 3 + 1.5,
       color: colors[i % 2],
-      alpha: Math.random() * 0.35 + 0.15,
-      speedY: Math.random() * 0.3 + 0.1,
+      alpha: Math.random() * 0.3 + 0.15,
+      speedY: Math.random() * 0.25 + 0.1,
       speedX: (Math.random() - 0.5) * 0.2
     });
   }
@@ -141,7 +148,7 @@ function initHeroParallax() {
 }
 
 /* -------------------------------------------------------------------------- */
-/* 5. Render Product Grid & Filter Logic                                       */
+/* 5. Render Product Grid & Organic Blob Cards                                 */
 /* -------------------------------------------------------------------------- */
 function renderProductsGrid(categoryFilter = 'all') {
   const container = document.getElementById('products-grid-container');
@@ -155,45 +162,48 @@ function renderProductsGrid(categoryFilter = 'all') {
 
   setTimeout(() => {
     container.innerHTML = filtered.map(p => {
-      // Badge rendering logic: only if p.badge exists ("Bán chạy" or "Mới")
+      // Corrected Vietnamese Accented Category Tag Name
+      const categoryName = CATEGORY_LABEL_MAP[p.category] || p.category.toUpperCase();
+
+      // Badge HTML (Terracotta or Olive)
       const badgeHTML = p.badge ? `
-        <span class="absolute top-3 left-3 text-[11px] font-bold px-2.5 py-1 rounded-full bg-[#00D9A3] text-white shadow-sm">
+        <span class="absolute top-3 left-3 text-[11px] font-bold px-3 py-1 rounded-full ${p.badge === 'Mới' ? 'bg-[#7A8B5C] text-white' : 'bg-[#D9713C] text-white'} shadow-sm">
           ${p.badge}
         </span>
       ` : '';
 
       return `
-        <div class="product-card group bg-white rounded-2xl p-4 flex flex-col justify-between border border-[#E5E5E5] soft-shadow-hover">
+        <div class="product-card group bg-white rounded-[28px] p-4 flex flex-col justify-between border border-[#E8DCC8] warm-shadow-hover" style="border-radius: 32px 14px 28px 10px;">
           <div>
-            <!-- Image Container -->
-            <div class="relative overflow-hidden rounded-xl mb-4 bg-[#F5F5F3] aspect-square flex items-center justify-center">
+            <!-- Image Container with Organic Asymmetric Crop -->
+            <div class="relative overflow-hidden mb-4 bg-[#F5EBDD] aspect-square flex items-center justify-center" style="border-radius: 24px 10px 20px 8px;">
               <img src="${p.img}" alt="${p.name}" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500" loading="lazy" />
               ${badgeHTML}
-              <button onclick="openQuickView('${p.id}')" class="absolute bottom-3 right-3 bg-white/90 hover:bg-[#00D9A3] text-[#1A1A1F] hover:text-white p-2 rounded-full shadow-md backdrop-blur-md transition-colors opacity-0 group-hover:opacity-100" title="Xem nhanh">
+              <button onclick="openQuickView('${p.id}')" class="absolute bottom-3 right-3 bg-white/90 hover:bg-[#D9713C] text-[#3D2B1F] hover:text-white p-2.5 rounded-full shadow-md backdrop-blur-md transition-colors opacity-0 group-hover:opacity-100" title="Xem nhanh">
                 <i data-lucide="eye" class="w-4 h-4"></i>
               </button>
             </div>
 
-            <!-- Title & Rating -->
+            <!-- Title & Properly Accented Category Tag -->
             <div class="flex items-center justify-between gap-2 mb-1.5">
-              <span class="text-xs text-[#6B6B75] flex items-center gap-1">
-                <i data-lucide="star" class="w-3.5 h-3.5 fill-[#FF3E8E] text-[#FF3E8E]"></i>
-                <strong class="text-[#1A1A1F]">${p.rating}</strong> (${p.reviews})
+              <span class="text-xs text-[#8B7355] flex items-center gap-1">
+                <i data-lucide="star" class="w-3.5 h-3.5 fill-[#D9713C] text-[#D9713C]"></i>
+                <strong class="text-[#3D2B1F]">${p.rating}</strong> (${p.reviews})
               </span>
-              <span class="text-[10px] uppercase font-bold tracking-wider text-[#6B6B75]">${p.category.replace('-', ' ')}</span>
+              <span class="text-[10px] font-bold tracking-wider text-[#8B7355] uppercase">${categoryName}</span>
             </div>
             
-            <h3 class="font-display font-bold text-base text-[#1A1A1F] mb-1.5 group-hover:text-[#00D9A3] transition-colors leading-snug">${p.name}</h3>
-            <p class="text-xs text-[#6B6B75] line-clamp-2 mb-4">${p.desc}</p>
+            <h3 class="font-display font-bold text-base text-[#3D2B1F] mb-1.5 group-hover:text-[#D9713C] transition-colors leading-snug">${p.name}</h3>
+            <p class="text-xs text-[#8B7355] line-clamp-2 mb-4">${p.desc}</p>
           </div>
 
           <!-- Price & Add Button -->
-          <div class="pt-3 border-t border-[#F0F0F0] flex items-center justify-between">
+          <div class="pt-3 border-t border-[#E8DCC8] flex items-center justify-between">
             <div>
-              <span class="font-display font-extrabold text-base text-[#00D9A3]">${formatVND(p.price)}</span>
-              <span class="text-xs text-[#6B6B75] line-through ml-1.5">${formatVND(p.originalPrice)}</span>
+              <span class="font-display font-extrabold text-base text-[#D9713C]">${formatVND(p.price)}</span>
+              <span class="text-xs text-[#8B7355] line-through ml-1.5">${formatVND(p.originalPrice)}</span>
             </div>
-            <button onclick="window.cartManager.addItem('${p.id}', this)" class="bg-[#00D9A3] hover:bg-[#00B88A] text-white p-2.5 rounded-xl flex items-center justify-center transition-all shadow-sm active:scale-95" title="Thêm vào giỏ">
+            <button onclick="window.cartManager.addItem('${p.id}', this)" class="bg-[#D9713C] hover:bg-[#C25B28] text-white p-2.5 rounded-full flex items-center justify-center transition-all shadow-sm active:scale-95 hover:scale-105" title="Thêm vào giỏ">
               <i data-lucide="plus" class="w-4 h-4"></i>
             </button>
           </div>
@@ -337,7 +347,7 @@ function triggerConfetti() {
   canvas.height = window.innerHeight;
 
   const pieces = [];
-  const colors = ['#00D9A3', '#FF3E8E', '#3B82F6', '#FFFFFF'];
+  const colors = ['#D9713C', '#7A8B5C', '#E8DCC8', '#FFFFFF'];
 
   for (let i = 0; i < 80; i++) {
     pieces.push({
@@ -425,9 +435,9 @@ function initCheckoutModalLogic() {
     
     if (summaryContainer) {
       summaryContainer.innerHTML = items.map(item => `
-        <div class="flex justify-between text-xs py-1 border-b border-[#F0F0F0]">
-          <span class="text-[#1A1A1F]">${item.name} x${item.qty}</span>
-          <span class="text-[#00D9A3] font-semibold">${formatVND(item.price * item.qty)}</span>
+        <div class="flex justify-between text-xs py-1.5 border-b border-[#E8DCC8]">
+          <span class="text-[#3D2B1F] font-medium">${item.name} x${item.qty}</span>
+          <span class="text-[#D9713C] font-semibold">${formatVND(item.price * item.qty)}</span>
         </div>
       `).join('');
     }
@@ -454,7 +464,7 @@ function initCheckoutModalLogic() {
 
       const submitBtn = document.getElementById('checkout-submit-btn');
       submitBtn.disabled = true;
-      submitBtn.innerHTML = `<span class="animate-spin inline-block w-4 h-4 border-2 border-white border-t-transparent rounded-full mr-2"></span> Đang xử lý đơn...`;
+      submitBtn.innerHTML = `<span class="animate-spin inline-block w-4 h-4 border-2 border-white border-t-transparent rounded-full mr-2"></span> Đang xử lý...`;
 
       setTimeout(() => {
         submitBtn.disabled = false;

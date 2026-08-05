@@ -1,5 +1,5 @@
 /* ==========================================================================
-   NEON FIZZ — FRESH NEON CART LOGIC & PRODUCTS DATA
+   NEON FIZZ — WARM ORGANIC CART LOGIC & PRODUCTS DATA
    ========================================================================== */
 
 // --- Products Data (Vietnamese Menu) ---
@@ -225,18 +225,18 @@ class CartManager {
     if (footer) footer.classList.remove('hidden');
 
     container.innerHTML = this.items.map(item => `
-      <div class="flex items-center gap-4 p-3 rounded-2xl bg-[#F5F5F3] border border-[#E5E5E5] hover:border-[#00D9A3] transition-all">
-        <img src="${item.img}" alt="${item.name}" class="w-14 h-14 rounded-xl object-cover border border-[#E5E5E5]" />
+      <div class="flex items-center gap-4 p-3 rounded-2xl bg-[#F5EBDD] border border-[#E8DCC8] hover:border-[#D9713C] transition-all">
+        <img src="${item.img}" alt="${item.name}" class="w-14 h-14 rounded-xl object-cover border border-[#E8DCC8]" />
         <div class="flex-1 min-w-0">
-          <h4 class="font-display font-semibold text-[#1A1A1F] text-sm truncate">${item.name}</h4>
-          <p class="text-[#00D9A3] font-bold text-sm mt-0.5">${formatVND(item.price)}</p>
+          <h4 class="font-display font-semibold text-[#3D2B1F] text-sm truncate">${item.name}</h4>
+          <p class="text-[#D9713C] font-bold text-sm mt-0.5">${formatVND(item.price)}</p>
           <div class="flex items-center gap-2 mt-1.5">
-            <button onclick="cartManager.updateQty('${item.id}', -1)" class="w-6 h-6 rounded-lg bg-white border border-[#E5E5E5] text-[#1A1A1F] flex items-center justify-center hover:bg-[#FF3E8E] hover:text-white transition-colors text-xs font-bold">-</button>
-            <span class="text-xs font-bold text-[#1A1A1F] px-1">${item.qty}</span>
-            <button onclick="cartManager.updateQty('${item.id}', 1)" class="w-6 h-6 rounded-lg bg-white border border-[#E5E5E5] text-[#1A1A1F] flex items-center justify-center hover:bg-[#00D9A3] hover:text-white transition-colors text-xs font-bold">+</button>
+            <button onclick="cartManager.updateQty('${item.id}', -1)" class="w-6 h-6 rounded-lg bg-white border border-[#E8DCC8] text-[#3D2B1F] flex items-center justify-center hover:bg-[#7A8B5C] hover:text-white transition-colors text-xs font-bold">-</button>
+            <span class="text-xs font-bold text-[#3D2B1F] px-1">${item.qty}</span>
+            <button onclick="cartManager.updateQty('${item.id}', 1)" class="w-6 h-6 rounded-lg bg-white border border-[#E8DCC8] text-[#3D2B1F] flex items-center justify-center hover:bg-[#D9713C] hover:text-white transition-colors text-xs font-bold">+</button>
           </div>
         </div>
-        <button onclick="cartManager.removeItem('${item.id}')" class="text-[#6B6B75] hover:text-[#FF3E8E] p-1 transition-colors" title="Xóa">
+        <button onclick="cartManager.removeItem('${item.id}')" class="text-[#8B7355] hover:text-[#D9713C] p-1 transition-colors" title="Xóa">
           <i data-lucide="trash-2" class="w-4 h-4"></i>
         </button>
       </div>
@@ -346,13 +346,13 @@ function showToast(message, color = 'mint') {
   if (!container) return;
 
   const toast = document.createElement('div');
-  const dotColor = color === 'pink' ? '#FF3E8E' : '#00D9A3';
+  const dotColor = color === 'pink' ? '#7A8B5C' : '#D9713C';
   
   toast.className = 'toast';
-  toast.style.borderColor = color === 'pink' ? '#FF3E8E' : '#00D9A3';
+  toast.style.borderColor = dotColor;
   toast.innerHTML = `
     <div class="w-2.5 h-2.5 rounded-full" style="background-color: ${dotColor}"></div>
-    <span class="text-xs font-semibold text-[#1A1A1F]">${message}</span>
+    <span class="text-xs font-semibold text-[#3D2B1F]">${message}</span>
   `;
 
   container.appendChild(toast);
