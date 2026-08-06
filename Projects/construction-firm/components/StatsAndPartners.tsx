@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { DollarSign, Building, Users, Globe, ShieldCheck, CheckCircle2 } from "lucide-react";
+import CountUp from "./CountUp";
 
 interface CountryPartner {
   id: string;
@@ -102,7 +103,7 @@ export default function StatsAndPartners() {
   ];
 
   return (
-    <section id="stats-partners" className="py-24 px-4 sm:px-6 bg-[#1E293B] text-white border-t border-[#334155]">
+    <section id="stats-partners" className="py-24 px-4 sm:px-6 bg-[#060810] text-white border-t border-[#334155]">
       <div className="max-w-7xl mx-auto space-y-16">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto space-y-3">
@@ -117,7 +118,7 @@ export default function StatsAndPartners() {
           </p>
         </div>
 
-        {/* 1. Static Stats Grid (36px-40px, NO Animation) */}
+        {/* 1. Animated Stats Grid with Cyan Glow on Numbers */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {stats.map((item, idx) => {
             const Icon = item.icon;
@@ -128,7 +129,7 @@ export default function StatsAndPartners() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
-                className="bg-[#0F172A] rounded-2xl p-6 border border-[#334155] space-y-3 relative overflow-hidden"
+                className="bg-[#0A0E1A] rounded-2xl p-6 border border-[#334155] space-y-3 relative overflow-hidden"
               >
                 <div className="flex items-center justify-between">
                   <div className="h-10 w-10 rounded-xl bg-[#1E293B] border border-[#334155] flex items-center justify-center text-white">
@@ -138,7 +139,7 @@ export default function StatsAndPartners() {
 
                 <div>
                   <h3 className="font-heading font-extrabold text-[36px] sm:text-[40px] leading-none tracking-tight text-white">
-                    {item.value}
+                    <CountUp value={item.value} glowOnComplete={true} />
                   </h3>
                   <p className="text-xs font-bold uppercase tracking-wider text-white mt-2">
                     {item.label}
@@ -152,13 +153,13 @@ export default function StatsAndPartners() {
           })}
         </div>
 
-        {/* 2. THANH SO SÁNH NĂNG LỰC (PART 3 PROGRESS BARS BLOCK) */}
+        {/* 2. THANH SO SÁNH NĂNG LỰC (PART 3 PROGRESS BARS BLOCK WITH CYAN GRADIENT) */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="bg-[#0F172A] border border-[#334155] rounded-2xl p-6 sm:p-8 space-y-6 max-w-4xl mx-auto shadow-xl"
+          className="bg-[#0A0E1A] border border-[#334155] rounded-2xl p-6 sm:p-8 space-y-6 max-w-4xl mx-auto shadow-xl"
         >
           <div className="flex items-center justify-between border-b border-[#334155] pb-4">
             <div className="flex items-center gap-2">
@@ -167,7 +168,7 @@ export default function StatsAndPartners() {
                 Chỉ Số Thi Công & Cam Kết Kỹ Thuật
               </h3>
             </div>
-            <span className="text-[10px] font-mono font-bold text-[#3B82F6] uppercase bg-[#1E293B] px-3 py-1 rounded-full border border-[#334155]">
+            <span className="text-[10px] font-mono font-bold text-[#00E5FF] uppercase bg-[#1E293B] px-3 py-1 rounded-full border border-[#334155]">
               Audited 2026
             </span>
           </div>
@@ -180,7 +181,9 @@ export default function StatsAndPartners() {
                   <CheckCircle2 className="h-4 w-4 text-[#D4A017]" />
                   Tiến độ hoàn thành trung bình dự án: 96% đúng hạn hoặc sớm hơn
                 </span>
-                <span className="font-mono text-sm text-[#D4A017] font-extrabold">96%</span>
+                <span className="font-mono text-sm text-[#00E5FF] font-extrabold">
+                  <CountUp value="96%" glowOnComplete={true} />
+                </span>
               </div>
               <div className="w-full bg-[#334155] h-3 rounded-full overflow-hidden p-0.5">
                 <motion.div
@@ -188,7 +191,10 @@ export default function StatsAndPartners() {
                   whileInView={{ width: "96%" }}
                   viewport={{ once: true }}
                   transition={{ duration: 1.5, ease: "easeOut" }}
-                  className="bg-[#D4A017] h-full rounded-full shadow-md"
+                  className="h-full rounded-full shadow-md"
+                  style={{
+                    background: "linear-gradient(90deg, var(--color-accent-cyan-dim), var(--color-accent-cyan))",
+                  }}
                 />
               </div>
             </div>
@@ -200,7 +206,9 @@ export default function StatsAndPartners() {
                   <ShieldCheck className="h-4 w-4 text-[#3B82F6]" />
                   Tỷ lệ an toàn lao động: 99.9% Zero-Accident
                 </span>
-                <span className="font-mono text-sm text-[#3B82F6] font-extrabold">99.9%</span>
+                <span className="font-mono text-sm text-[#00E5FF] font-extrabold">
+                  <CountUp value="99.9%" glowOnComplete={true} />
+                </span>
               </div>
               <div className="w-full bg-[#334155] h-3 rounded-full overflow-hidden p-0.5">
                 <motion.div
@@ -208,7 +216,10 @@ export default function StatsAndPartners() {
                   whileInView={{ width: "99.9%" }}
                   viewport={{ once: true }}
                   transition={{ duration: 1.5, ease: "easeOut" }}
-                  className="bg-[#3B82F6] h-full rounded-full shadow-md"
+                  className="h-full rounded-full shadow-md"
+                  style={{
+                    background: "linear-gradient(90deg, var(--color-accent-cyan-dim), var(--color-accent-cyan))",
+                  }}
                 />
               </div>
             </div>
@@ -238,8 +249,8 @@ export default function StatsAndPartners() {
                 onMouseEnter={() => setActiveCountry(item)}
                 onMouseLeave={() => setActiveCountry(null)}
                 onClick={() => setActiveCountry(activeCountry?.id === item.id ? null : item)}
-                className={`relative cursor-pointer flex items-center gap-2.5 bg-[#0F172A] border ${
-                  activeCountry?.id === item.id ? "border-[#D4A017] bg-[#0F172A]" : "border-[#334155]"
+                className={`relative cursor-pointer flex items-center gap-2.5 bg-[#0A0E1A] border ${
+                  activeCountry?.id === item.id ? "border-[#D4A017] bg-[#0A0E1A]" : "border-[#334155]"
                 } hover:border-[#D4A017] rounded-full px-5 py-2.5 transition-all duration-200 shadow-md group`}
               >
                 {/* Flag Icon */}
@@ -263,7 +274,7 @@ export default function StatsAndPartners() {
                       animate={{ opacity: 1, y: 0, scale: 1 }}
                       exit={{ opacity: 0, y: 8, scale: 0.95 }}
                       transition={{ duration: 0.2 }}
-                      className="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 w-72 p-3.5 rounded-xl bg-[#0F172A] border border-[#D4A017] shadow-2xl z-40 text-white space-y-1 text-left pointer-events-none"
+                      className="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 w-72 p-3.5 rounded-xl bg-[#0A0E1A] border border-[#D4A017] shadow-2xl z-40 text-white space-y-1 text-left pointer-events-none"
                     >
                       <div className="flex items-center justify-between border-b border-[#334155] pb-1.5">
                         <span className="font-heading font-extrabold text-xs text-[#D4A017] uppercase tracking-wider flex items-center gap-2">
@@ -298,7 +309,7 @@ export default function StatsAndPartners() {
             {clients.map((c, i) => (
               <div
                 key={i}
-                className="bg-[#0F172A] border border-[#334155] rounded-xl p-4 flex items-center justify-center text-center hover:border-[#3B82F6] transition-colors"
+                className="bg-[#0A0E1A] border border-[#334155] rounded-xl p-4 flex items-center justify-center text-center hover:border-[#3B82F6] transition-colors"
               >
                 <span className="font-heading font-extrabold text-xs tracking-wider text-[#94A3B8] hover:text-white transition-colors">
                   {c}

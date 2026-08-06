@@ -142,7 +142,7 @@ export default function ProjectShowcase({ onOpenConsultation }: ProjectShowcaseP
           </div>
         </div>
 
-        {/* Project Cards Grid */}
+        {/* Project Cards Grid with Enhanced Hover Interactions */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {filteredProjects.map((prj, idx) => (
             <motion.div
@@ -151,7 +151,7 @@ export default function ProjectShowcase({ onOpenConsultation }: ProjectShowcaseP
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: idx * 0.1 }}
-              className="rounded-2xl overflow-hidden shadow-xl bg-[#1E293B] border border-[#334155] hover:border-[#3B82F6] transition-all duration-300 group cursor-pointer"
+              className="rounded-2xl overflow-hidden shadow-xl bg-[#1E293B] border border-[#334155] hover:border-[#3B82F6] hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 group cursor-pointer"
               onClick={() => setActiveProject(prj)}
             >
               {/* Photo Container */}
@@ -165,11 +165,23 @@ export default function ProjectShowcase({ onOpenConsultation }: ProjectShowcaseP
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#1E293B] via-transparent to-transparent opacity-80" />
 
+                {/* Dark Gradient Overlay on Hover revealing detail */}
+                <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_0%,rgba(6,8,16,0.85)_100%)] opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6 pointer-events-none">
+                  <div className="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 ease-out space-y-1">
+                    <span className="text-[10px] font-mono text-[#D4A017] uppercase font-bold tracking-wider block">
+                      QUY MÔ: {prj.scale}
+                    </span>
+                    <p className="text-xs text-white/90 font-medium">
+                      Thời gian: {prj.year} • Tiêu chuẩn: {prj.specs[2]?.value || "EPC International"}
+                    </p>
+                  </div>
+                </div>
+
                 <span className="absolute top-4 left-4 bg-[#0F172A]/90 text-[#3B82F6] border border-[#334155] text-[10px] uppercase font-mono font-bold tracking-widest px-3 py-1 rounded-lg backdrop-blur-md">
                   {prj.category} • {prj.code}
                 </span>
 
-                <div className="absolute bottom-4 right-4 p-2.5 rounded-xl bg-[#0F172A]/80 text-white backdrop-blur-md group-hover:bg-[#D4A017] group-hover:text-[#0F172A] transition-colors">
+                <div className="absolute bottom-4 right-4 p-2.5 rounded-xl bg-[#0F172A]/80 text-white backdrop-blur-md group-hover:bg-[#D4A017] group-hover:text-[#0F172A] transition-colors z-10">
                   <ArrowUpRight className="h-5 w-5" />
                 </div>
               </div>
@@ -204,7 +216,7 @@ export default function ProjectShowcase({ onOpenConsultation }: ProjectShowcaseP
         <div className="text-center pt-4">
           <Button
             onClick={onOpenConsultation}
-            className="bg-[#D4A017] hover:bg-[#B8890F] text-[#0F172A] font-extrabold rounded-xl text-xs tracking-wider uppercase px-8 py-4 h-auto transition-colors border-none"
+            className="btn-cta-gold bg-[#D4A017] hover:bg-[#B8890F] text-[#0F172A] font-extrabold rounded-xl text-xs tracking-wider uppercase px-8 py-4 h-auto border-none"
           >
             NHẬN BÁO GIÁ MIỄN PHÍ <ArrowRight className="ml-2 h-4 w-4 inline text-[#0F172A]" />
           </Button>

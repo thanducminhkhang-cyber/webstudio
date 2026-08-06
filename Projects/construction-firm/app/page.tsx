@@ -80,7 +80,7 @@ export default function ConstructionHomePage() {
       <div className="fixed bottom-6 right-6 z-40">
         <Button
           onClick={() => setIsContactOpen(true)}
-          className="bg-[#D4A017] hover:bg-[#B8890F] text-[#0F172A] font-extrabold rounded-full text-xs sm:text-sm tracking-wider uppercase px-5 py-3.5 shadow-[0_8px_30px_rgba(212,160,23,0.4)] border border-[#0F172A] flex items-center gap-2.5 transition-all hover:scale-105"
+          className="btn-cta-gold bg-[#D4A017] hover:bg-[#B8890F] text-[#0F172A] font-extrabold rounded-full text-xs sm:text-sm tracking-wider uppercase px-5 py-3.5 shadow-[0_8px_30px_rgba(212,160,23,0.4)] border border-[#0F172A] flex items-center gap-2.5 transition-all hover:scale-105"
         >
           <MessageSquareText className="h-4 w-4 shrink-0 text-[#0F172A]" />
           <span>NHẬN BÁO GIÁ MIỄN PHÍ</span>
