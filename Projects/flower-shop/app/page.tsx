@@ -953,7 +953,7 @@ export default function FlowerShop() {
 
               <Tabs defaultValue="love" className="w-full">
                 <div className="flex justify-center mb-8">
-                  <TabsList className="[--outer-r:9999px] [--pad:6px] bg-white border border-[#F0DCD8] p-[var(--pad)] rounded-[var(--outer-r)] overflow-hidden grid grid-cols-2 md:grid-cols-4 gap-1.5 h-auto">
+                  <TabsList className="[--outer-r:9999px] [--pad:6px] bg-white border border-[#F0DCD8] p-[var(--pad)] rounded-full rounded-[var(--outer-r)] overflow-hidden grid grid-cols-2 md:grid-cols-4 gap-1.5 h-auto group-data-[orientation=horizontal]/tabs:h-auto">
                     {OCCASIONS.map((o) => (
                       <TabsTrigger
                         key={o.key}
