@@ -76,7 +76,95 @@ const CATEGORY_LABELS: Record<Category, string> = {
   plant: "Cây & Hoa Chậu",
 };
 
-// Flower products
+// ============================================================================
+//  🌸 CẤU HÌNH ẢNH — SỬA TẤT CẢ ĐƯỜNG DẪN ẢNH TẠI ĐÂY (một chỗ duy nhất)
+//  • IMG.products[id][0] = ảnh CHÍNH của card; các phần tử sau = ảnh trong gallery.
+//  • Ghi chú mỗi dòng = loại hoa ĐÚNG cần khớp với tên sản phẩm khi bạn thay ảnh.
+//  • Đổi "mood" ảnh (filter / lớp phủ hồng) trong app/globals.css:
+//    biến --img-filter và --img-tint (không cần sửa file này).
+// ============================================================================
+const IMG = {
+  // Hero trang chủ — bó hồng phấn signature, tông hồng/pastel
+  hero: "https://images.unsplash.com/photo-1561181286-d3fee7d55364?q=80&w=800&auto=format&fit=crop",
+  // Ảnh "Về chúng tôi" — nghệ nhân / không gian studio đang cắm hoa
+  about: "https://images.unsplash.com/photo-1487070183336-b863922373d4?q=80&w=800&auto=format&fit=crop",
+
+  // Ảnh sản phẩm (khớp theo id). [0] = ảnh chính hiển thị trên card.
+  products: {
+    // f1 · Bó Hồng Unicorn Blush → CẦN: hồng Ohara phấn/kem (KHÔNG phải hồng nhuộm cầu vồng)
+    f1: [
+      "https://images.unsplash.com/photo-1561181286-d3fee7d55364?q=80&w=600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1490750967868-88aa4486c946?q=80&w=600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1519378058457-4c29a0a2efac?q=80&w=600&auto=format&fit=crop",
+    ],
+    // f2 · Tulip Amsterdam Vàng Nắng → CẦN: tulip vàng & cam
+    f2: [
+      "https://images.unsplash.com/photo-1518895949257-7621c3c786d7?q=80&w=600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1520763185298-1b434c919102?q=80&w=600&auto=format&fit=crop",
+    ],
+    // f3 · Giỏ Hoa Mẫu Đơn Peony Dream → CẦN: mẫu đơn (peony) hồng, đựng giỏ mây
+    f3: [
+      "https://images.unsplash.com/photo-1508610048659-a06b669e3321?q=80&w=600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1487070183336-b863922373d4?q=80&w=600&auto=format&fit=crop",
+    ],
+    // f4 · Hộp Hoa Hồng Đỏ Ruby Love → CẦN: hộp tròn hồng đỏ Ecuador
+    f4: [
+      "https://images.unsplash.com/photo-1526047932273-341f2a7631f9?q=80&w=600&auto=format&fit=crop",
+    ],
+    // f5 · Bó Hướng Dương Sunny Field → CẦN: hướng dương (sunflower)
+    f5: [
+      "https://images.unsplash.com/photo-1470509037663-253afd7f0f51?q=80&w=600&auto=format&fit=crop",
+    ],
+    // f6 · Cẩm Tú Cầu Xanh Provence → CẦN: cẩm tú cầu (hydrangea) xanh
+    f6: [
+      "https://images.unsplash.com/photo-1563241527-3004b7be0ffd?q=80&w=600&auto=format&fit=crop",
+    ],
+    // f7 · Kệ Hoa Khai Trương Thịnh Vượng → CẦN: kệ/lẵng hoa khai trương lớn nhiều tầng
+    f7: [
+      "https://images.unsplash.com/photo-1596438459194-f275f413d6ff?q=80&w=600&auto=format&fit=crop",
+    ],
+    // f8 · Hoa Cưới Cầm Tay Bride White → CẦN: bó hoa cưới cầm tay tông trắng
+    f8: [
+      "https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=600&auto=format&fit=crop",
+    ],
+    // f9 · Lan Hồ Điệp Chậu Sứ Ngọc → CẦN: chậu lan hồ điệp hồng
+    f9: [
+      "https://images.unsplash.com/photo-1591886960571-74d43a9d4166?q=80&w=600&auto=format&fit=crop",
+    ],
+    // f10 · Baby Trắng Mộng Mơ Cloud → CẦN: hoa baby (baby's breath) trắng
+    f10: [
+      "https://images.unsplash.com/photo-1464982326199-86f32f81b211?q=80&w=600&auto=format&fit=crop",
+    ],
+    // f11 · Giỏ Hoa Trái Cây Chúc Sức Khỏe → CẦN: giỏ phối hoa tươi + trái cây
+    f11: [
+      "https://images.unsplash.com/photo-1502977249166-824b3a8a4d6d?q=80&w=600&auto=format&fit=crop",
+    ],
+    // f12 · Chậu Sen Đá Mini Terrarium → CẦN: sen đá / terrarium trong bình thuỷ tinh
+    f12: [
+      "https://images.unsplash.com/photo-1485955900006-10f4d324d411?q=80&w=600&auto=format&fit=crop",
+    ],
+  } as Record<string, string[]>,
+
+  // Avatar khách hàng (mục đánh giá) — khớp thứ tự với REVIEWS bên dưới
+  reviews: [
+    "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=200&auto=format&fit=crop", // Nguyễn Lan Anh
+    "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=200&auto=format&fit=crop", // Trần Quốc Bảo
+    "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=200&auto=format&fit=crop", // Phạm Thu Hà
+    "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=200&auto=format&fit=crop", // Lê Minh Tuấn
+  ],
+
+  // Grid Instagram (6 ảnh vuông) — nên chọn ảnh hoa / không gian tiệm cùng tông hồng-pastel
+  instagram: [
+    "https://images.unsplash.com/photo-1561181286-d3fee7d55364?q=80&w=400&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1508610048659-a06b669e3321?q=80&w=400&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1518895949257-7621c3c786d7?q=80&w=400&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1526047932273-341f2a7631f9?q=80&w=400&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1470509037663-253afd7f0f51?q=80&w=400&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1464982326199-86f32f81b211?q=80&w=400&auto=format&fit=crop",
+  ],
+};
+
+// Flower products — dữ liệu sản phẩm; ảnh tham chiếu từ IMG.products (đồng bộ theo id)
 const PRODUCTS_DATA: Product[] = [
   {
     id: "f1",
@@ -88,12 +176,8 @@ const PRODUCTS_DATA: Product[] = [
     reviewsCount: 168,
     badge: "Bán Chạy",
     badgeType: "rose",
-    image: "https://images.unsplash.com/photo-1561181286-d3fee7d55364?q=80&w=600&auto=format&fit=crop",
-    galleryImages: [
-      "https://images.unsplash.com/photo-1561181286-d3fee7d55364?q=80&w=600&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1490750967868-88aa4486c946?q=80&w=600&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1519378058457-4c29a0a2efac?q=80&w=600&auto=format&fit=crop",
-    ],
+    image: IMG.products.f1[0],
+    galleryImages: IMG.products.f1,
     description:
       "Bó hồng phấn Ohara nhập khẩu kết hợp cẩm chướng và lá bạc hà, gói giấy kraft tông pastel — món quà lãng mạn cho một nửa yêu thương.",
     flowers: "20 hồng Ohara phấn, cẩm chướng kem, lá bạch đàn, baby trắng.",
@@ -110,11 +194,8 @@ const PRODUCTS_DATA: Product[] = [
     reviewsCount: 121,
     badge: "Mới Về",
     badgeType: "blush",
-    image: "https://images.unsplash.com/photo-1518895949257-7621c3c786d7?q=80&w=600&auto=format&fit=crop",
-    galleryImages: [
-      "https://images.unsplash.com/photo-1518895949257-7621c3c786d7?q=80&w=600&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1520763185298-1b434c919102?q=80&w=600&auto=format&fit=crop",
-    ],
+    image: IMG.products.f2[0],
+    galleryImages: IMG.products.f2,
     description:
       "Tulip Hà Lan tươi rói tông vàng nắng và cam san hô, bó tròn thanh lịch mang năng lượng rạng rỡ cho ngày mới.",
     flowers: "25 tulip Hà Lan vàng & cam, lá dương xỉ, ruban lụa.",
@@ -131,11 +212,8 @@ const PRODUCTS_DATA: Product[] = [
     reviewsCount: 204,
     badge: "Giảm 20%",
     badgeType: "leaf",
-    image: "https://images.unsplash.com/photo-1508610048659-a06b669e3321?q=80&w=600&auto=format&fit=crop",
-    galleryImages: [
-      "https://images.unsplash.com/photo-1508610048659-a06b669e3321?q=80&w=600&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1487070183336-b863922373d4?q=80&w=600&auto=format&fit=crop",
-    ],
+    image: IMG.products.f3[0],
+    galleryImages: IMG.products.f3,
     description:
       "Giỏ mây đan thủ công đầy ắp mẫu đơn hồng ngậm sương — tuyệt phẩm dành tặng mẹ, sếp hay dịp khai trương sang trọng.",
     flowers: "15 mẫu đơn hồng, hồng kem, cẩm tú cầu xanh, lá phong.",
@@ -151,10 +229,8 @@ const PRODUCTS_DATA: Product[] = [
     reviewsCount: 143,
     badge: "Tình Yêu",
     badgeType: "rose",
-    image: "https://images.unsplash.com/photo-1526047932273-341f2a7631f9?q=80&w=600&auto=format&fit=crop",
-    galleryImages: [
-      "https://images.unsplash.com/photo-1526047932273-341f2a7631f9?q=80&w=600&auto=format&fit=crop",
-    ],
+    image: IMG.products.f4[0],
+    galleryImages: IMG.products.f4,
     description:
       "Hộp tròn nhung đỏ xếp hồng Ecuador cao cấp theo dạng vòm — biểu tượng của tình yêu nồng cháy và lời tỏ tình khó quên.",
     flowers: "25 hồng đỏ Ecuador, lá bạc, nơ satin đỏ.",
@@ -171,10 +247,8 @@ const PRODUCTS_DATA: Product[] = [
     reviewsCount: 96,
     badge: "Giảm 19%",
     badgeType: "leaf",
-    image: "https://images.unsplash.com/photo-1470509037663-253afd7f0f51?q=80&w=600&auto=format&fit=crop",
-    galleryImages: [
-      "https://images.unsplash.com/photo-1470509037663-253afd7f0f51?q=80&w=600&auto=format&fit=crop",
-    ],
+    image: IMG.products.f5[0],
+    galleryImages: IMG.products.f5,
     description:
       "Hướng dương rực rỡ phối cúc mẫu đơn xanh — lời chúc thành công, may mắn ý nghĩa cho ngày tốt nghiệp hoặc thăng chức.",
     flowers: "7 hướng dương, cúc mẫu đơn, lá monstera.",
@@ -188,10 +262,8 @@ const PRODUCTS_DATA: Product[] = [
     price: 620000,
     rating: 4.8,
     reviewsCount: 88,
-    image: "https://images.unsplash.com/photo-1563241527-3004b7be0ffd?q=80&w=600&auto=format&fit=crop",
-    galleryImages: [
-      "https://images.unsplash.com/photo-1563241527-3004b7be0ffd?q=80&w=600&auto=format&fit=crop",
-    ],
+    image: IMG.products.f6[0],
+    galleryImages: IMG.products.f6,
     description:
       "Bó cẩm tú cầu xanh dịu như bầu trời Provence, gói vintage nhẹ nhàng — hoàn hảo cho không gian sống và quà tân gia.",
     flowers: "5 cẩm tú cầu xanh, hồng kem, lá oliu.",
@@ -208,10 +280,8 @@ const PRODUCTS_DATA: Product[] = [
     reviewsCount: 62,
     badge: "Sự Kiện",
     badgeType: "rose",
-    image: "https://images.unsplash.com/photo-1596438459194-f275f413d6ff?q=80&w=600&auto=format&fit=crop",
-    galleryImages: [
-      "https://images.unsplash.com/photo-1596438459194-f275f413d6ff?q=80&w=600&auto=format&fit=crop",
-    ],
+    image: IMG.products.f7[0],
+    galleryImages: IMG.products.f7,
     description:
       "Kệ hoa 2 tầng lay-ơn, hồng môn và lan hồ điệp rực rỡ — gửi lời chúc phát tài phát lộc cho lễ khai trương, khánh thành.",
     flowers: "Lan hồ điệp, hồng môn đỏ, lay-ơn, cúc mẫu đơn.",
@@ -227,10 +297,8 @@ const PRODUCTS_DATA: Product[] = [
     reviewsCount: 74,
     badge: "Cô Dâu",
     badgeType: "blush",
-    image: "https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=600&auto=format&fit=crop",
-    galleryImages: [
-      "https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=600&auto=format&fit=crop",
-    ],
+    image: IMG.products.f8[0],
+    galleryImages: IMG.products.f8,
     description:
       "Bó hoa cưới cầm tay tông trắng tinh khôi từ hồng David Austin và lan ly — tôn vẻ đẹp thanh khiết của cô dâu trong ngày trọng đại.",
     flowers: "Hồng David Austin trắng, lan ly, baby, lá dương xỉ mềm.",
@@ -247,10 +315,8 @@ const PRODUCTS_DATA: Product[] = [
     reviewsCount: 110,
     badge: "Sang Trọng",
     badgeType: "leaf",
-    image: "https://images.unsplash.com/photo-1591886960571-74d43a9d4166?q=80&w=600&auto=format&fit=crop",
-    galleryImages: [
-      "https://images.unsplash.com/photo-1591886960571-74d43a9d4166?q=80&w=600&auto=format&fit=crop",
-    ],
+    image: IMG.products.f9[0],
+    galleryImages: IMG.products.f9,
     description:
       "Chậu lan hồ điệp 5 cành hồng phấn trồng trong bình sứ men ngọc — quà biếu sang trọng, giữ vẻ đẹp bền bỉ suốt 2 tháng.",
     flowers: "5 cành lan hồ điệp hồng, rêu trang trí, chậu sứ men ngọc.",
@@ -264,10 +330,8 @@ const PRODUCTS_DATA: Product[] = [
     price: 350000,
     rating: 4.6,
     reviewsCount: 133,
-    image: "https://images.unsplash.com/photo-1464982326199-86f32f81b211?q=80&w=600&auto=format&fit=crop",
-    galleryImages: [
-      "https://images.unsplash.com/photo-1464982326199-86f32f81b211?q=80&w=600&auto=format&fit=crop",
-    ],
+    image: IMG.products.f10[0],
+    galleryImages: IMG.products.f10,
     description:
       "Bó baby trắng bồng bềnh như mây, nhẹ nhàng và tinh tế — món quà dễ thương cho lời chúc bình yên và sự trong sáng.",
     flowers: "Baby trắng nguyên bó, giấy gói pastel, ruban lụa.",
@@ -283,10 +347,8 @@ const PRODUCTS_DATA: Product[] = [
     reviewsCount: 57,
     badge: "Thăm Hỏi",
     badgeType: "leaf",
-    image: "https://images.unsplash.com/photo-1502977249166-824b3a8a4d6d?q=80&w=600&auto=format&fit=crop",
-    galleryImages: [
-      "https://images.unsplash.com/photo-1502977249166-824b3a8a4d6d?q=80&w=600&auto=format&fit=crop",
-    ],
+    image: IMG.products.f11[0],
+    galleryImages: IMG.products.f11,
     description:
       "Giỏ kết hợp hoa tươi và trái cây nhập khẩu theo mùa — lời thăm hỏi ân cần, chu đáo gửi tới người thân đang dưỡng bệnh.",
     flowers: "Hồng kem, cúc, trái cây theo mùa, giỏ mây.",
@@ -303,10 +365,8 @@ const PRODUCTS_DATA: Product[] = [
     reviewsCount: 95,
     badge: "Để Bàn",
     badgeType: "blush",
-    image: "https://images.unsplash.com/photo-1485955900006-10f4d324d411?q=80&w=600&auto=format&fit=crop",
-    galleryImages: [
-      "https://images.unsplash.com/photo-1485955900006-10f4d324d411?q=80&w=600&auto=format&fit=crop",
-    ],
+    image: IMG.products.f12[0],
+    galleryImages: IMG.products.f12,
     description:
       "Terrarium sen đá mini trong bình thủy tinh — món quà xanh nhỏ xinh cho góc làm việc, dễ chăm và trường tồn.",
     flowers: "Sen đá phối màu, sỏi trắng, bình thủy tinh geometric.",
@@ -319,7 +379,7 @@ const REVIEWS = [
   {
     name: "Nguyễn Lan Anh",
     role: "Khách hàng thân thiết",
-    avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=200&auto=format&fit=crop",
+    avatar: IMG.reviews[0],
     content:
       "Bó hồng phấn đẹp hơn cả hình, giao đúng giờ hẹn cho sinh nhật bạn gái. Người yêu mình thích mê, sẽ ủng hộ dài dài!",
     rating: 5,
@@ -327,7 +387,7 @@ const REVIEWS = [
   {
     name: "Trần Quốc Bảo",
     role: "Chủ doanh nghiệp",
-    avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=200&auto=format&fit=crop",
+    avatar: IMG.reviews[1],
     content:
       "Đặt kệ hoa khai trương cho cửa hàng mới, hoa tươi sang trọng, chữ thiệp gọn gàng. Rất chuyên nghiệp.",
     rating: 5,
@@ -335,7 +395,7 @@ const REVIEWS = [
   {
     name: "Phạm Thu Hà",
     role: "Cô dâu tháng 6",
-    avatar: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=200&auto=format&fit=crop",
+    avatar: IMG.reviews[2],
     content:
       "Hoa cưới cầm tay tông trắng đúng ý mình 100%. Ekip tư vấn nhiệt tình, giữ hoa tươi suốt buổi tiệc dài.",
     rating: 5,
@@ -343,21 +403,14 @@ const REVIEWS = [
   {
     name: "Lê Minh Tuấn",
     role: "Nhân viên văn phòng",
-    avatar: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=200&auto=format&fit=crop",
+    avatar: IMG.reviews[3],
     content:
       "Giao hoa tận nơi trong 2 tiếng thật sự cứu mình vào phút chót ngày 8/3. Cảm ơn MAISON FLEUR nhiều!",
     rating: 5,
   },
 ];
 
-const INSTAGRAM_PHOTOS = [
-  "https://images.unsplash.com/photo-1561181286-d3fee7d55364?q=80&w=400&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1508610048659-a06b669e3321?q=80&w=400&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1518895949257-7621c3c786d7?q=80&w=400&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1526047932273-341f2a7631f9?q=80&w=400&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1470509037663-253afd7f0f51?q=80&w=400&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1464982326199-86f32f81b211?q=80&w=400&auto=format&fit=crop",
-];
+const INSTAGRAM_PHOTOS = IMG.instagram;
 
 const OCCASIONS = [
   { key: "love", label: "💕 Tình Yêu", title: "Ngày Tình Nhân & Kỷ Niệm", desc: "Hồng đỏ, hộp hoa nhung và những lời tỏ tình ngọt ngào nhất." },
@@ -725,10 +778,10 @@ export default function FlowerShop() {
               <div className="lg:col-span-5 relative">
                 <BlurFade delay={0.3}>
                   <div className="relative mx-auto max-w-md">
-                    <div className="relative h-[380px] sm:h-[460px] w-full rounded-[45%_55%_60%_40%/50%_45%_55%_50%] overflow-hidden bg-[#F8EBE8] border border-[#F4C9D7]/60 shadow-2xl group">
+                    <div className="fleur-frame relative h-[380px] sm:h-[460px] w-full rounded-[45%_55%_60%_40%/50%_45%_55%_50%] overflow-hidden bg-[#F8EBE8] border border-[#F4C9D7]/60 shadow-2xl group">
                       <BorderBeam size={220} duration={12} delay={0} />
                       <Image
-                        src="https://images.unsplash.com/photo-1561181286-d3fee7d55364?q=80&w=800&auto=format&fit=crop"
+                        src={IMG.hero}
                         alt="Bó hoa MAISON FLEUR"
                         fill
                         priority
@@ -905,7 +958,7 @@ export default function FlowerShop() {
                   <TabsContent key={o.key} value={o.key}>
                     <Card className="bg-white border-[#F0DCD8] p-8 rounded-3xl shadow-sm">
                       <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
-                        <div className="md:col-span-5 relative h-64 rounded-2xl overflow-hidden">
+                        <div className="fleur-frame md:col-span-5 relative h-64 rounded-2xl overflow-hidden">
                           <Image src={PRODUCTS_DATA[idx * 3].image} alt={o.title} fill className="object-cover" />
                         </div>
                         <div className="md:col-span-7 space-y-4">
@@ -983,9 +1036,9 @@ export default function FlowerShop() {
               </div>
               <div className="grid grid-cols-3 md:grid-cols-6 gap-3">
                 {INSTAGRAM_PHOTOS.map((src, i) => (
-                  <div key={i} className="relative aspect-square rounded-2xl overflow-hidden group cursor-pointer">
+                  <div key={i} className="fleur-frame relative aspect-square rounded-2xl overflow-hidden group cursor-pointer shadow-sm">
                     <Image src={src} alt={`Instagram ${i + 1}`} fill className="object-cover group-hover:scale-110 transition-transform duration-500" />
-                    <div className="absolute inset-0 bg-[#C1436D]/0 group-hover:bg-[#C1436D]/40 transition-colors flex items-center justify-center">
+                    <div className="absolute inset-0 z-10 bg-[#C1436D]/0 group-hover:bg-[#C1436D]/40 transition-colors flex items-center justify-center">
                       <Camera className="h-6 w-6 text-white opacity-0 group-hover:opacity-100 transition-opacity" />
                     </div>
                   </div>
@@ -1073,7 +1126,7 @@ export default function FlowerShop() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
             {/* Gallery */}
             <div className="space-y-4">
-              <div className="relative aspect-square rounded-3xl overflow-hidden border border-[#F0DCD8] shadow-sm">
+              <div className="fleur-frame relative aspect-square rounded-3xl overflow-hidden border border-[#F0DCD8] shadow-sm">
                 <Image
                   src={selectedProduct.galleryImages[galleryIndex]}
                   alt={selectedProduct.name}
@@ -1081,7 +1134,7 @@ export default function FlowerShop() {
                   className="object-cover"
                 />
                 {selectedProduct.badge && (
-                  <Badge className={`absolute top-4 left-4 border-none font-bold text-xs px-3 py-1 rounded-full ${badgeClass(selectedProduct.badgeType)}`}>
+                  <Badge className={`absolute top-4 left-4 z-10 border-none font-bold text-xs px-3 py-1 rounded-full ${badgeClass(selectedProduct.badgeType)}`}>
                     {selectedProduct.badge}
                   </Badge>
                 )}
@@ -1092,7 +1145,7 @@ export default function FlowerShop() {
                     <button
                       key={i}
                       onClick={() => setGalleryIndex(i)}
-                      className={`relative h-20 w-20 rounded-xl overflow-hidden border-2 transition-all ${
+                      className={`fleur-frame relative h-20 w-20 rounded-xl overflow-hidden border-2 transition-all ${
                         galleryIndex === i ? "border-[#C1436D]" : "border-transparent opacity-70 hover:opacity-100"
                       }`}
                     >
@@ -1247,9 +1300,9 @@ export default function FlowerShop() {
           </section>
 
           <section className="py-16 px-4 sm:px-6 max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            <div className="relative h-80 rounded-3xl overflow-hidden shadow-lg">
+            <div className="fleur-frame relative h-80 rounded-3xl overflow-hidden shadow-lg">
               <Image
-                src="https://images.unsplash.com/photo-1487070183336-b863922373d4?q=80&w=800&auto=format&fit=crop"
+                src={IMG.about}
                 alt="Studio MAISON FLEUR"
                 fill
                 className="object-cover"
@@ -1500,12 +1553,12 @@ function ProductCard({
   return (
     <Card className="bg-white border-[#F0DCD8] hover:border-[#C1436D]/40 hover:-translate-y-1 hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col justify-between group rounded-2xl p-0">
       <div
-        className="relative aspect-square overflow-hidden bg-gradient-to-br from-[#FFF8F6] to-[#F4C9D7]/20 cursor-pointer"
+        className="fleur-frame relative aspect-square overflow-hidden bg-gradient-to-br from-[#FFF8F6] to-[#F4C9D7]/20 cursor-pointer"
         onClick={() => onOpen(product)}
       >
         <Image src={product.image} alt={product.name} fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
         {product.badge && (
-          <Badge className={`absolute top-3 left-3 border-none font-bold text-[10px] px-2.5 py-1 rounded-full ${badgeClass(product.badgeType)}`}>
+          <Badge className={`absolute top-3 left-3 z-10 border-none font-bold text-[10px] px-2.5 py-1 rounded-full ${badgeClass(product.badgeType)}`}>
             {product.badge}
           </Badge>
         )}
@@ -1514,7 +1567,7 @@ function ProductCard({
             e.stopPropagation();
             onWishlist(product.id);
           }}
-          className="absolute top-3 right-3 h-8 w-8 rounded-full bg-white/85 backdrop-blur-sm flex items-center justify-center hover:bg-white transition-colors"
+          className="absolute top-3 right-3 z-10 h-8 w-8 rounded-full bg-white/85 backdrop-blur-sm flex items-center justify-center hover:bg-white transition-colors"
         >
           <Heart className={`h-4 w-4 ${wished ? "fill-[#C1436D] text-[#C1436D]" : "text-[#8a6b73]"}`} />
         </button>

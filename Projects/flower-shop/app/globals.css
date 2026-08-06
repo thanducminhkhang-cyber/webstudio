@@ -57,11 +57,48 @@
     color: var(--foreground);
     font-family: var(--font-sans);
   }
-  .font-heading {
-    font-family: var(--font-serif);
-  }
-  .font-serif-italic {
-    font-family: var(--font-serif);
-    font-style: italic;
-  }
+}
+
+/* ---------------------------------------------------------------------------
+   HEADINGS TIẾNG VIỆT — chống cắt dấu (hỏi/sắc/ngã/mũ) trên font serif Playfair.
+   Đặt NGOÀI @layer để luôn thắng line-height mặc định mà Tailwind gắn kèm các
+   utility text-* (vd text-6xl có line-height:1 làm xén dấu ở đỉnh chữ).
+   Quy tắc: line-height >= 1.3 + padding-top ~0.15em cho khoảng thở phía trên.
+--------------------------------------------------------------------------- */
+.font-heading {
+  font-family: var(--font-serif);
+  line-height: 1.32;
+  padding-top: 0.15em;
+}
+.font-serif-italic {
+  font-family: var(--font-serif);
+  font-style: italic;
+  line-height: 1.32;
+  padding-top: 0.08em;
+}
+
+/* ---------------------------------------------------------------------------
+   KHUNG ẢNH ĐỒNG BỘ — hoà mood ảnh sản phẩm / Instagram / hero / about về cùng
+   một tông hồng-kem. Chỉnh 4 biến dưới đây để tinh chỉnh sau, không cần sửa JSX.
+--------------------------------------------------------------------------- */
+:root {
+  --img-filter: saturate(0.95) brightness(1.02) contrast(1.01);
+  --img-tint: rgba(244, 201, 215, 0.16); /* lớp phủ hồng-kem nhạt */
+  --img-radius: 1rem;
+  --img-shadow: 0 14px 34px -18px rgba(193, 67, 109, 0.4);
+}
+.fleur-frame {
+  position: relative;
+  overflow: hidden;
+}
+.fleur-frame img {
+  filter: var(--img-filter);
+}
+.fleur-frame::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: var(--img-tint);
+  pointer-events: none;
 }
