@@ -138,8 +138,8 @@ export default function StatsAndPartners() {
                 </div>
 
                 <div>
-                  <h3 className="font-heading font-extrabold text-[36px] sm:text-[40px] leading-none tracking-tight text-white">
-                    <CountUp value={item.value} glowOnComplete={true} />
+                  <h3 className="font-heading font-extrabold text-[36px] sm:text-[40px] leading-none tracking-tight text-[#D4A017]">
+                    <CountUp value={item.value} glowOnComplete={true} glowColor="gold" />
                   </h3>
                   <p className="text-xs font-bold uppercase tracking-wider text-white mt-2">
                     {item.label}

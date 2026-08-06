@@ -103,12 +103,19 @@ interface ProjectShowcaseProps {
 
 export default function ProjectShowcase({ onOpenConsultation }: ProjectShowcaseProps) {
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
+  const [searchQuery, setSearchQuery] = useState<string>("");
   const [activeProject, setActiveProject] = useState<ProjectItem | null>(null);
 
-  const filteredProjects =
-    selectedCategory === "All"
-      ? MEGA_PROJECTS
-      : MEGA_PROJECTS.filter((p) => p.category === selectedCategory);
+  const filteredProjects = MEGA_PROJECTS.filter((p) => {
+    const matchesCategory = selectedCategory === "All" || p.category === selectedCategory;
+    const matchesSearch =
+      searchQuery.trim() === "" ||
+      p.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      p.location.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      p.client.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      p.code.toLowerCase().includes(searchQuery.toLowerCase());
+    return matchesCategory && matchesSearch;
+  });
 
   return (
     <section id="projects" className="py-24 px-4 sm:px-6 bg-[#0F172A] text-white border-t border-[#334155]">
@@ -124,21 +131,41 @@ export default function ProjectShowcase({ onOpenConsultation }: ProjectShowcaseP
             </h2>
           </div>
 
-          {/* Filter Pills */}
-          <div className="flex flex-wrap items-center gap-2">
-            {["All", "Infrastructure", "Industrial", "Skyscraper", "Clean Energy"].map((cat) => (
-              <button
-                key={cat}
-                onClick={() => setSelectedCategory(cat)}
-                className={`rounded-xl text-xs font-bold px-4 py-2 transition-colors ${
-                  selectedCategory === cat
-                    ? "bg-[#D4A017] text-[#0F172A] font-extrabold shadow-md"
-                    : "bg-[#1E293B] border border-[#334155] text-[#94A3B8] hover:text-white"
-                }`}
-              >
-                {cat}
-              </button>
-            ))}
+          {/* Search Input & Filter Pills */}
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+            <div className="relative">
+              <input
+                type="text"
+                placeholder="Tìm dự án, địa điểm, chủ đầu tư..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full sm:w-64 px-4 py-2 rounded-xl bg-[#1E293B] border border-[#334155] text-xs text-white placeholder:text-[#94A3B8] focus:outline-none focus:border-[#3B82F6]"
+              />
+              {searchQuery && (
+                <button
+                  onClick={() => setSearchQuery("")}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-[#94A3B8] hover:text-white"
+                >
+                  ✕
+                </button>
+              )}
+            </div>
+
+            <div className="flex flex-wrap items-center gap-1.5">
+              {["All", "Infrastructure", "Industrial", "Skyscraper", "Clean Energy"].map((cat) => (
+                <button
+                  key={cat}
+                  onClick={() => setSelectedCategory(cat)}
+                  className={`rounded-xl text-xs font-bold px-3.5 py-2 transition-all ${
+                    selectedCategory === cat
+                      ? "bg-[#D4A017] text-[#0F172A] font-extrabold shadow-md"
+                      : "bg-[#1E293B] border border-[#334155] text-[#94A3B8] hover:text-white"
+                  }`}
+                >
+                  {cat}
+                </button>
+              ))}
+            </div>
           </div>
         </div>
 

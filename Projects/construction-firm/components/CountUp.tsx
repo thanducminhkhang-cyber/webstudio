@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, useMemo } from "react";
 import { useInView, useReducedMotion } from "framer-motion";
 
 interface CountUpProps {
@@ -8,6 +8,7 @@ interface CountUpProps {
   duration?: number;
   className?: string;
   glowOnComplete?: boolean;
+  glowColor?: "cyan" | "gold";
 }
 
 export default function CountUp({
@@ -15,20 +16,36 @@ export default function CountUp({
   duration = 1.8,
   className = "",
   glowOnComplete = false,
+  glowColor = "cyan",
 }: CountUpProps) {
   const ref = useRef<HTMLSpanElement>(null);
-  const isInView = useInView(ref, { once: true, margin: "-50px" });
+  const isInView = useInView(ref, { once: true, margin: "0px 0px -30px 0px" });
   const shouldReduceMotion = useReducedMotion();
 
-  const parsed = parseValue(value);
-  const [displayValue, setDisplayValue] = useState(
+  const parsed = useMemo(() => parseValue(value), [value]);
+
+  const [displayValue, setDisplayValue] = useState<string>(() =>
     shouldReduceMotion ? value : formatNumber(0, parsed)
   );
-  const [hasCompleted, setHasCompleted] = useState(shouldReduceMotion ? true : false);
+  const [hasCompleted, setHasCompleted] = useState<boolean>(
+    shouldReduceMotion ? true : false
+  );
+
+  // Fallback timer: guarantee final value is shown after 2.5s even if IntersectionObserver delays
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setHasCompleted(true);
+      setDisplayValue(value);
+    }, (duration + 0.8) * 1000);
+    return () => clearTimeout(timer);
+  }, [value, duration]);
 
   useEffect(() => {
     if (!isInView || shouldReduceMotion) {
-      if (shouldReduceMotion) setHasCompleted(true);
+      if (shouldReduceMotion) {
+        setHasCompleted(true);
+        setDisplayValue(value);
+      }
       return;
     }
 
@@ -59,18 +76,23 @@ export default function CountUp({
     };
   }, [isInView, duration, value, shouldReduceMotion, parsed]);
 
-  const glowStyle =
-    glowOnComplete && (isInView || hasCompleted)
+  const glowStyle = useMemo(() => {
+    if (!glowOnComplete || (!isInView && !hasCompleted)) return {};
+    return glowColor === "gold"
       ? {
           textShadow:
-            "0 0 12px rgba(0, 229, 255, 0.5), 0 0 24px rgba(0, 229, 255, 0.25)",
+            "0 0 12px rgba(212, 160, 23, 0.6), 0 0 24px rgba(212, 160, 23, 0.3)",
         }
-      : {};
+      : {
+          textShadow:
+            "0 0 12px rgba(0, 229, 255, 0.6), 0 0 24px rgba(0, 229, 255, 0.3)",
+        };
+  }, [glowOnComplete, isInView, hasCompleted, glowColor]);
 
   return (
     <span
       ref={ref}
-      className={`inline-block transition-all duration-500 ${className}`}
+      className={`inline-block transition-all duration-300 ${className}`}
       style={glowStyle}
     >
       {shouldReduceMotion ? value : displayValue}
@@ -87,6 +109,10 @@ interface ParsedNumber {
 }
 
 function parseValue(val: string): ParsedNumber {
+  if (!val) {
+    return { prefix: "", target: 0, decimals: 0, useDotSeparator: false, suffix: "" };
+  }
+
   const match = val.match(/^([^\d]*)([\d.,]+)(.*)$/);
   if (!match) {
     return { prefix: "", target: 0, decimals: 0, useDotSeparator: false, suffix: val };
@@ -132,3 +158,4 @@ function formatNumber(num: number, parsed: ParsedNumber): string {
 
   return `${parsed.prefix}${numFormatted}${parsed.suffix}`;
 }
+

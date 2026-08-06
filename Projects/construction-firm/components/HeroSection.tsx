@@ -217,8 +217,8 @@ export default function HeroSection({ onStartProject, onWatchPortfolio }: HeroSe
                   <Icon className={`h-5 w-5 ${st.iconColor}`} />
                 </div>
                 <div>
-                  <h3 className="font-heading font-extrabold text-[36px] leading-none text-white">
-                    <CountUp value={st.val} />
+                  <h3 className="font-heading font-extrabold text-[36px] leading-none text-[#D4A017]">
+                    <CountUp value={st.val} glowOnComplete={true} glowColor="gold" />
                   </h3>
                   <p className="text-[10px] text-[#94A3B8] font-mono uppercase font-bold tracking-wider mt-1">
                     {st.label}
