@@ -953,9 +953,13 @@ export default function FlowerShop() {
 
               <Tabs defaultValue="love" className="w-full">
                 <div className="flex justify-center mb-8">
-                  <TabsList className="bg-white border border-[#F0DCD8] p-1.5 rounded-full grid grid-cols-2 md:grid-cols-4 gap-1 h-auto">
+                  <TabsList className="[--outer-r:9999px] [--pad:6px] bg-white border border-[#F0DCD8] p-[var(--pad)] rounded-[var(--outer-r)] overflow-hidden grid grid-cols-2 md:grid-cols-4 gap-1.5 h-auto">
                     {OCCASIONS.map((o) => (
-                      <TabsTrigger key={o.key} value={o.key} className="rounded-full font-bold text-xs sm:text-sm px-4 py-2">
+                      <TabsTrigger
+                        key={o.key}
+                        value={o.key}
+                        className="border-0 h-full rounded-[calc(var(--outer-r)-var(--pad))] font-bold text-xs sm:text-sm px-4 py-2.5 transition-all data-[state=active]:bg-white data-[state=active]:text-[#C1436D] data-[state=active]:shadow-sm"
+                      >
                         {o.label}
                       </TabsTrigger>
                     ))}
