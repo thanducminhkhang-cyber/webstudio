@@ -89,6 +89,14 @@ const IMG = {
   // Ảnh "Về chúng tôi" — nghệ nhân / không gian studio đang cắm hoa
   about: "https://images.unsplash.com/photo-1487070183336-b863922373d4?q=80&w=800&auto=format&fit=crop",
 
+  // Ảnh mục "Hoa theo dịp" — MỖI DỊP MỘT ẢNH ĐÚNG CHỦ ĐỀ (đổi tại đây)
+  occasions: {
+    love: "https://images.unsplash.com/photo-1526047932273-341f2a7631f9?q=80&w=800&auto=format&fit=crop", // Tình Yêu → CẦN: hồng đỏ / hộp hoa nhung lãng mạn
+    birthday: "https://images.unsplash.com/photo-1519378058457-4c29a0a2efac?q=80&w=800&auto=format&fit=crop", // Sinh Nhật → CẦN: bó hoa rực rỡ nhiều màu
+    opening: "https://images.unsplash.com/photo-1596438459194-f275f413d6ff?q=80&w=800&auto=format&fit=crop", // Khai Trương → CẦN: kệ/lẵng hoa lớn
+    grief: "https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=800&auto=format&fit=crop", // Chia Buồn → CẦN: hoa trắng trang nghiêm
+  } as Record<string, string>,
+
   // Ảnh sản phẩm (khớp theo id). [0] = ảnh chính hiển thị trên card.
   products: {
     // f1 · Bó Hồng Unicorn Blush → CẦN: hồng Ohara phấn/kem (KHÔNG phải hồng nhuộm cầu vồng)
@@ -413,10 +421,10 @@ const REVIEWS = [
 const INSTAGRAM_PHOTOS = IMG.instagram;
 
 const OCCASIONS = [
-  { key: "love", label: "💕 Tình Yêu", title: "Ngày Tình Nhân & Kỷ Niệm", desc: "Hồng đỏ, hộp hoa nhung và những lời tỏ tình ngọt ngào nhất." },
-  { key: "birthday", label: "🎂 Sinh Nhật", title: "Chúc Mừng Sinh Nhật", desc: "Bó hoa rực rỡ cá tính, gói quà kèm bánh và bóng bay tuỳ chọn." },
-  { key: "opening", label: "🎊 Khai Trương", title: "Khai Trương · Sự Kiện", desc: "Kệ hoa hoành tráng gửi lời chúc phát tài, phát lộc, thịnh vượng." },
-  { key: "grief", label: "🕊️ Chia Buồn", title: "Hoa Chia Buồn", desc: "Vòng hoa và lẵng hoa trang nghiêm, gửi gắm sự tiếc thương chân thành." },
+  { key: "love", label: "💕 Tình Yêu", title: "Ngày Tình Nhân & Kỷ Niệm", desc: "Hồng đỏ, hộp hoa nhung và những lời tỏ tình ngọt ngào nhất.", img: IMG.occasions.love },
+  { key: "birthday", label: "🎂 Sinh Nhật", title: "Chúc Mừng Sinh Nhật", desc: "Bó hoa rực rỡ cá tính, gói quà kèm bánh và bóng bay tuỳ chọn.", img: IMG.occasions.birthday },
+  { key: "opening", label: "🎊 Khai Trương", title: "Khai Trương · Sự Kiện", desc: "Kệ hoa hoành tráng gửi lời chúc phát tài, phát lộc, thịnh vượng.", img: IMG.occasions.opening },
+  { key: "grief", label: "🕊️ Chia Buồn", title: "Hoa Chia Buồn", desc: "Vòng hoa và lẵng hoa trang nghiêm, gửi gắm sự tiếc thương chân thành.", img: IMG.occasions.grief },
 ];
 
 export default function FlowerShop() {
@@ -959,7 +967,7 @@ export default function FlowerShop() {
                     <Card className="bg-white border-[#F0DCD8] p-8 rounded-3xl shadow-sm">
                       <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
                         <div className="fleur-frame md:col-span-5 relative h-64 rounded-2xl overflow-hidden">
-                          <Image src={PRODUCTS_DATA[idx * 3].image} alt={o.title} fill className="object-cover" />
+                          <Image src={o.img} alt={o.title} fill className="object-cover" />
                         </div>
                         <div className="md:col-span-7 space-y-4">
                           <Badge className={badgeClass(idx % 2 === 0 ? "rose" : "leaf") + " font-bold"}>{o.label}</Badge>
