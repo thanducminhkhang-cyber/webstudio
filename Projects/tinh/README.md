@@ -1,4 +1,4 @@
-# TỊNH — Landing page nhà hàng fine-dining Việt
+# Thanh An — Landing page nhà hàng fine-dining Việt
 
 Landing page 1 trang cho nhà hàng thực đơn nếm (tasting menu) theo mùa. Next.js 16
 (App Router) + TypeScript + Tailwind v4. Không dùng thư viện UI dùng chung — bản sắc

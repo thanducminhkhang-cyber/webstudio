@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Cormorant, Be_Vietnam_Pro } from "next/font/google";
 import "./globals.css";
 
-// Display: Cormorant — wordmark & heading. Bao gồm subset vietnamese để "TỊNH", "Ị" render đúng.
+// Display: Cormorant — wordmark & heading. Kèm subset vietnamese cho dấu tiếng Việt.
 const cormorant = Cormorant({
   subsets: ["latin", "vietnamese"],
   variable: "--font-cormorant",
@@ -19,11 +19,11 @@ const beVietnam = Be_Vietnam_Pro({
 });
 
 export const metadata: Metadata = {
-  title: "TỊNH — Thực đơn nếm theo mùa",
+  title: "Thanh An — Thực đơn nếm theo mùa",
   description:
     "Nhà hàng fine-dining Việt. Mỗi tối một thực đơn nếm theo mùa. Đặt bàn trước.",
   openGraph: {
-    title: "TỊNH — Thực đơn nếm theo mùa",
+    title: "Thanh An — Thực đơn nếm theo mùa",
     description: "Mỗi tối một thực đơn nếm theo mùa của miền Bắc.",
     locale: "vi_VN",
     type: "website",

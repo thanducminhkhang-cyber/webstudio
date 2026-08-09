@@ -109,11 +109,11 @@ export default function Page() {
           <Reveal className="lg:col-span-6" delay={80}>
             {/* Chanel cut: bỏ eyebrow "Nhà hàng · Thực đơn nếm" — tagline dưới đã nói,
                 để wordmark rơi vào khoảng lặng cho cảm giác tĩnh & đắt tiền hơn. */}
-            <h1 className="font-display font-light leading-[0.92] text-eggshell text-[24vw] sm:text-[16vw] lg:text-[11rem]">
-              TỊNH
+            <h1 className="font-display font-light leading-[0.95] text-eggshell text-[15vw] sm:text-[11vw] lg:text-[7rem]">
+              Thanh An
             </h1>
             {/* Gạch chân wordmark bằng chính motif khảm vỏ trứng */}
-            <div className="mt-2 max-w-[16rem]">
+            <div className="mt-3 max-w-[22rem]">
               <EggshellInlay height={20} />
             </div>
             <p className="mt-8 text-base sm:text-lg text-muted font-light leading-relaxed max-w-md">
@@ -257,7 +257,7 @@ export default function Page() {
                 Sau nhiều năm qua những căn bếp lớn, anh trở về Hà Nội để nấu thứ bếp Việt mộc mạc mà
                 mình nhớ nhất — đúng mùa, và tĩnh.
               </p>
-              <p className="text-eggshell">Mỗi tối, TỊNH chỉ dọn một thực đơn, cho những người ngồi lại.</p>
+              <p className="text-eggshell">Mỗi tối, Thanh An chỉ dọn một thực đơn, cho những người ngồi lại.</p>
             </div>
           </Reveal>
         </div>
@@ -276,7 +276,7 @@ export default function Page() {
               Giữ chỗ cho buổi tối của bạn
             </h2>
             <p className="mt-6 text-muted font-light leading-relaxed max-w-xl">
-              TỊNH phục vụ theo lượt, mỗi tối một thực đơn nếm. Vui lòng đặt trước — chúng tôi sẽ gọi
+              Thanh An phục vụ theo lượt, mỗi tối một thực đơn nếm. Vui lòng đặt trước — chúng tôi sẽ gọi
               lại để xác nhận.
             </p>
           </Reveal>
@@ -360,7 +360,7 @@ export default function Page() {
       <footer className="bg-lacquer-2">
         <div className="mx-auto max-w-6xl px-6 sm:px-8 py-20 grid gap-12 sm:grid-cols-2 lg:grid-cols-4">
           <div>
-            <p className="font-display text-3xl text-eggshell leading-none">TỊNH</p>
+            <p className="font-display text-3xl text-eggshell leading-none">Thanh An</p>
             <p className="mt-4 text-sm text-muted font-light leading-relaxed">
               Thực đơn nếm theo mùa của miền Bắc.
             </p>
@@ -405,7 +405,7 @@ export default function Page() {
           </div>
         </div>
         <div className="mx-auto max-w-6xl px-6 sm:px-8 pb-10">
-          <p className="text-xs text-muted/70 tracking-wide">© 2026 TỊNH · Hà Nội</p>
+          <p className="text-xs text-muted/70 tracking-wide">© 2026 Thanh An · Hà Nội</p>
         </div>
       </footer>
 

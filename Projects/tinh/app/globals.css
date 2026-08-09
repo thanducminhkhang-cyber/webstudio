@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 /* ============================================================================
-   TỊNH — bảng màu sơn mài. CHỈ dùng đúng 6 token này, không chế thêm màu.
+   Thanh An — bảng màu sơn mài. CHỈ dùng đúng 6 token này, không chế thêm màu.
    ========================================================================== */
 @theme inline {
   --color-lacquer: #14100d; /* nền chính, đen sơn mài ấm */
