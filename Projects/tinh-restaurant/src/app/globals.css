@@ -1,0 +1,96 @@
+@import "tailwindcss";
+
+:root {
+  --lacquer: #14100D;
+  --lacquer-2: #1E1813;
+  --brass: #B98A45;
+  --son: #8E2C24;
+  --eggshell: #EDE6D8;
+  --muted: #9A9186;
+}
+
+@theme {
+  --color-lacquer: #14100D;
+  --color-lacquer-2: #1E1813;
+  --color-brass: #B98A45;
+  --color-son: #8E2C24;
+  --color-eggshell: #EDE6D8;
+  --color-muted: #9A9186;
+  
+  --font-serif: var(--font-cormorant), Cormorant, Georgia, serif;
+  --font-sans: var(--font-be-vietnam), "Be Vietnam Pro", system-ui, sans-serif;
+}
+
+/* Base setup */
+html {
+  scroll-behavior: smooth;
+  background-color: var(--lacquer);
+  color: var(--eggshell);
+  font-family: var(--font-be-vietnam), "Be Vietnam Pro", system-ui, sans-serif;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  background-color: var(--lacquer);
+  color: var(--eggshell);
+  overflow-x: hidden;
+}
+
+/* Custom Selection */
+::selection {
+  background-color: var(--brass);
+  color: var(--lacquer);
+}
+
+/* Focus Visible accessibility */
+:focus-visible {
+  outline: 2px solid var(--brass);
+  outline-offset: 4px;
+}
+
+/* Keyframe animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Respect prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  
+  .animate-fade-in,
+  .reveal-on-scroll {
+    animation: none !important;
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* Sharp focus edges & luxury custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--lacquer);
+}
+::-webkit-scrollbar-thumb {
+  background: #2a221b;
+  border-radius: 0px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--brass);
+}
