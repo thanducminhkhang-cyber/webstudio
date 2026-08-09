@@ -1,0 +1,182 @@
+@import "tailwindcss";
+
+/* ============================================================================
+   TỊNH — bảng màu sơn mài. CHỈ dùng đúng 6 token này, không chế thêm màu.
+   ========================================================================== */
+@theme inline {
+  --color-lacquer: #14100d; /* nền chính, đen sơn mài ấm */
+  --color-lacquer-2: #1e1813; /* nền section xen kẽ */
+  --color-brass: #b98a45; /* vàng đồng cũ — accent chính, chữ nhấn, đường kẻ */
+  --color-son: #8e2c24; /* đỏ son — CỰC dè, chỉ CTA hover / báo lỗi */
+  --color-eggshell: #ede6d8; /* vỏ trứng — chữ body trên nền tối */
+  --color-muted: #9a9186; /* chữ phụ, caption */
+
+  --font-display: var(--font-cormorant), "Be Vietnam Pro", Georgia, serif;
+  --font-body: var(--font-be-vietnam), system-ui, -apple-system, sans-serif;
+
+  --radius: 0px; /* fine dining = cạnh sắc */
+}
+
+@layer base {
+  html {
+    color-scheme: dark;
+    scroll-behavior: smooth;
+    background-color: var(--color-lacquer);
+  }
+  body {
+    background-color: var(--color-lacquer);
+    color: var(--color-eggshell);
+    font-family: var(--font-body);
+    font-weight: 300;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  ::selection {
+    background: var(--color-brass);
+    color: var(--color-lacquer);
+  }
+  /* Keyboard focus luôn nhìn thấy được */
+  :focus-visible {
+    outline: 2px solid var(--color-brass);
+    outline-offset: 3px;
+  }
+  .font-display {
+    font-family: var(--font-display);
+  }
+}
+
+/* ============================================================================
+   Reveal khi scroll — tôn trọng prefers-reduced-motion.
+   ========================================================================== */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity 1100ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 1100ms cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+/* ============================================================================
+   Placeholder ảnh (màu solid). Thay bằng <Image> khi có ảnh thật.
+   ========================================================================== */
+.photo-ph {
+  position: relative;
+  background-color: var(--color-lacquer-2);
+  border: 1px solid color-mix(in srgb, var(--color-brass) 26%, transparent);
+  overflow: hidden;
+}
+.photo-ph::after {
+  content: "";
+  position: absolute;
+  inset: 9px;
+  border: 1px solid color-mix(in srgb, var(--color-brass) 12%, transparent);
+  pointer-events: none;
+}
+.photo-ph .ph-label {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 1.25rem;
+  color: var(--color-muted);
+  font-size: 0.68rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  line-height: 1.7;
+}
+
+/* ============================================================================
+   Form đặt bàn.
+   ========================================================================== */
+.field-label {
+  display: block;
+  font-size: 0.68rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  margin-bottom: 0.6rem;
+}
+.field-input {
+  width: 100%;
+  background: var(--color-lacquer);
+  color: var(--color-eggshell);
+  border: 1px solid color-mix(in srgb, var(--color-brass) 30%, transparent);
+  border-radius: 0;
+  padding: 0.85rem 1rem;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 300;
+  transition: border-color 200ms ease;
+}
+.field-input::placeholder {
+  color: color-mix(in srgb, var(--color-muted) 75%, transparent);
+}
+.field-input:hover {
+  border-color: color-mix(in srgb, var(--color-brass) 55%, transparent);
+}
+.field-input:focus {
+  outline: none;
+  border-color: var(--color-brass);
+}
+.field-input[aria-invalid="true"] {
+  border-color: var(--color-son);
+}
+.field-error {
+  margin-top: 0.45rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.01em;
+  color: color-mix(in srgb, var(--color-son) 82%, var(--color-eggshell));
+}
+
+/* ============================================================================
+   Nút — cạnh sắc (radius 0). Đỏ son CHỈ xuất hiện khi hover.
+   ========================================================================== */
+.btn-brass {
+  display: inline-block;
+  border-radius: 0;
+  border: 1px solid var(--color-brass);
+  color: var(--color-brass);
+  background: transparent;
+  padding: 0.95rem 2.4rem;
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 400;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition:
+    background-color 260ms ease,
+    color 260ms ease,
+    border-color 260ms ease;
+}
+.btn-brass:hover {
+  background: var(--color-son);
+  border-color: var(--color-son);
+  color: var(--color-eggshell);
+}
+
+/* Nhãn nhỏ letterspaced dùng lặp ở đầu mỗi section */
+.eyebrow {
+  font-size: 0.7rem;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  color: var(--color-brass);
+}
