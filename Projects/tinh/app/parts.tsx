@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import React, { useEffect, useId, useRef, useState } from "react";
 
 /* ============================================================================
@@ -142,6 +143,40 @@ export function Photo({
   return (
     <div className={`photo-ph ${className}`.trim()} role="img" aria-label={label} style={style}>
       <span className="ph-label">{label}</span>
+    </div>
+  );
+}
+
+/* ============================================================================
+   Figure — ảnh thật (next/image), khung brass mảnh + tông tối hoà sơn mài.
+   Lazy-load mặc định; `alt` tiếng Việt bắt buộc. Đổi ảnh tại IMG trong page.tsx.
+   ========================================================================== */
+export function Figure({
+  src,
+  alt,
+  className = "",
+  style,
+  sizes = "(max-width: 768px) 100vw, 50vw",
+  priority = false,
+}: {
+  src: string;
+  alt: string;
+  className?: string;
+  style?: React.CSSProperties;
+  sizes?: string;
+  priority?: boolean;
+}) {
+  return (
+    <div className={`photo-ph ${className}`.trim()} style={style}>
+      <Image
+        src={src}
+        alt={alt}
+        fill
+        sizes={sizes}
+        priority={priority}
+        className="object-cover"
+        style={{ filter: "saturate(0.9) brightness(0.9)" }}
+      />
     </div>
   );
 }

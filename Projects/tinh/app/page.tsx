@@ -1,7 +1,21 @@
 "use client";
 
+import Image from "next/image";
 import React, { useState } from "react";
-import { EggshellInlay, Reveal, Photo } from "./parts";
+import { EggshellInlay, Reveal, Figure } from "./parts";
+
+/* ============================================================================
+   ẢNH — sửa TẤT CẢ đường dẫn ảnh tại đây. Hiện dùng ảnh minh hoạ (stock
+   Unsplash) tông tối hợp sơn mài; thay bằng ảnh thật của nhà hàng khi có.
+   ========================================================================== */
+const IMG = {
+  hero: "https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=1600&auto=format&fit=crop", // món ăn tối, cận cảnh — nền hero
+  table: "https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?q=80&w=1000&auto=format&fit=crop", // bàn ăn dưới ánh nến
+  dish: "https://images.unsplash.com/photo-1559339352-11d035aa65de?q=80&w=800&auto=format&fit=crop", // một món trong thực đơn
+  moody: "https://images.unsplash.com/photo-1592861956120-e524fc739696?q=80&w=800&auto=format&fit=crop", // không gian ấm trầm
+  wine: "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?q=80&w=1000&auto=format&fit=crop", // rượu vang ghép món
+  chef: "https://images.unsplash.com/photo-1577219491135-ce391730fb2c?q=80&w=800&auto=format&fit=crop", // chân dung bếp trưởng
+};
 
 /* Thực đơn nếm — bảy chương theo thứ tự phục vụ. Số La Mã ở đây mang thông tin
    thật (trình tự món), không phải trang trí. Tên món & nguyên liệu là placeholder. */
@@ -103,20 +117,45 @@ export default function Page() {
         </div>
       </header>
 
-      {/* ===================== 1 · HERO ===================== */}
+      {/* ===================== 1 · HERO (full-bleed) ===================== */}
       <section className="relative min-h-[100svh] flex items-center overflow-hidden">
-        <div className="mx-auto w-full max-w-6xl px-6 sm:px-8 py-28 grid gap-14 lg:grid-cols-12 lg:items-center">
-          <Reveal className="lg:col-span-6" delay={80}>
-            {/* Chanel cut: bỏ eyebrow "Nhà hàng · Thực đơn nếm" — tagline dưới đã nói,
-                để wordmark rơi vào khoảng lặng cho cảm giác tĩnh & đắt tiền hơn. */}
-            <h1 className="font-display font-light leading-[0.95] text-eggshell text-[15vw] sm:text-[11vw] lg:text-[7rem]">
+        {/* Ảnh món ăn full-bleed + lớp phủ sơn mài để chữ dễ đọc và giữ tông tối */}
+        <div className="absolute inset-0 -z-10">
+          <Image
+            src={IMG.hero}
+            alt="Món ăn tinh tế trong thực đơn nếm của Thanh An"
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover"
+            style={{ filter: "saturate(0.85) brightness(0.8)" }}
+          />
+          {/* phủ tối đều + đậm hơn phía trái nơi đặt chữ */}
+          <div className="absolute inset-0" style={{ background: "rgba(20,16,13,0.5)" }} />
+          <div
+            className="absolute inset-0"
+            style={{
+              background:
+                "linear-gradient(90deg, var(--color-lacquer) 0%, color-mix(in srgb, var(--color-lacquer) 74%, transparent) 44%, transparent 100%)",
+            }}
+          />
+          {/* nối mượt xuống section kế tiếp */}
+          <div
+            className="absolute inset-x-0 bottom-0 h-44"
+            style={{ background: "linear-gradient(180deg, transparent, var(--color-lacquer))" }}
+          />
+        </div>
+
+        <div className="mx-auto w-full max-w-6xl px-6 sm:px-8 py-28">
+          <Reveal className="max-w-2xl" delay={80}>
+            <h1 className="font-display font-light leading-[0.95] text-eggshell text-[16vw] sm:text-[12vw] lg:text-[8.5rem] drop-shadow-[0_2px_24px_rgba(0,0,0,0.5)]">
               Thanh An
             </h1>
             {/* Gạch chân wordmark bằng chính motif khảm vỏ trứng */}
-            <div className="mt-3 max-w-[22rem]">
+            <div className="mt-3 max-w-[24rem]">
               <EggshellInlay height={20} />
             </div>
-            <p className="mt-8 text-base sm:text-lg text-muted font-light leading-relaxed max-w-md">
+            <p className="mt-8 text-base sm:text-lg text-eggshell/80 font-light leading-relaxed max-w-md">
               Thực đơn nếm theo mùa · Hà Nội
             </p>
             <div className="mt-10">
@@ -125,21 +164,8 @@ export default function Page() {
               </a>
             </div>
           </Reveal>
-
-          <Reveal className="lg:col-span-6" delay={220}>
-            {/* Ảnh món cận cảnh — nhân vật chính. Placeholder solid, thay sau. */}
-            <Photo
-              label="Ảnh món chính, cận cảnh — thay sau"
-              className="w-full"
-              style={{ aspectRatio: "4 / 5" }}
-            />
-          </Reveal>
         </div>
       </section>
-
-      <div className="mx-auto max-w-6xl px-6 sm:px-8">
-        <EggshellInlay />
-      </div>
 
       {/* ===================== 2 · TRIẾT LÝ ===================== */}
       <section id="triet-ly" className="bg-lacquer">
@@ -219,16 +245,16 @@ export default function Page() {
           {/* Lưới không đều, im lặng — không caption, alt nằm ở role="img". */}
           <div className="grid grid-cols-1 sm:grid-cols-12 gap-5 sm:gap-6">
             <Reveal className="sm:col-span-7">
-              <Photo label="Bàn ăn dưới ánh nến" className="w-full" style={{ aspectRatio: "16 / 11" }} />
+              <Figure src={IMG.table} alt="Bàn ăn dưới ánh nến" className="w-full" style={{ aspectRatio: "16 / 11" }} sizes="(max-width: 768px) 100vw, 58vw" />
             </Reveal>
             <Reveal className="sm:col-span-5" delay={120}>
-              <Photo label="Chi tiết mặt sơn mài" className="w-full h-full" style={{ minHeight: "14rem" }} />
+              <Figure src={IMG.dish} alt="Một món trong thực đơn nếm theo mùa" className="w-full h-full" style={{ minHeight: "14rem" }} sizes="(max-width: 768px) 100vw, 42vw" />
             </Reveal>
             <Reveal className="sm:col-span-5" delay={80}>
-              <Photo label="Góc bếp mở" className="w-full h-full" style={{ minHeight: "14rem" }} />
+              <Figure src={IMG.moody} alt="Không gian ấm trầm dưới ánh đèn buổi tối" className="w-full h-full" style={{ minHeight: "14rem" }} sizes="(max-width: 768px) 100vw, 42vw" />
             </Reveal>
             <Reveal className="sm:col-span-7" delay={160}>
-              <Photo label="Ly rượu và bóng đổ" className="w-full" style={{ aspectRatio: "16 / 10" }} />
+              <Figure src={IMG.wine} alt="Ly rượu vang ghép món và bóng đổ trên bàn" className="w-full" style={{ aspectRatio: "16 / 10" }} sizes="(max-width: 768px) 100vw, 58vw" />
             </Reveal>
           </div>
         </div>
@@ -242,7 +268,7 @@ export default function Page() {
       <section id="bep-truong" className="bg-lacquer-2">
         <div className="mx-auto max-w-6xl px-6 sm:px-8 py-28 sm:py-36 grid gap-12 lg:grid-cols-12 lg:items-center">
           <Reveal className="lg:col-span-5">
-            <Photo label="Chân dung bếp trưởng" className="w-full" style={{ aspectRatio: "4 / 5" }} />
+            <Figure src={IMG.chef} alt="Chân dung bếp trưởng của Thanh An" className="w-full" style={{ aspectRatio: "4 / 5" }} sizes="(max-width: 1024px) 100vw, 42vw" />
           </Reveal>
           <Reveal className="lg:col-span-6 lg:col-start-7" delay={120}>
             <p className="eyebrow mb-8">Bếp trưởng</p>
