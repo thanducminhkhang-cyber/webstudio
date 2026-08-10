@@ -29,10 +29,6 @@
   </div>
 </div>
 
-<!-- ===== CURSOR ===== -->
-<div class="cursor" id="cursor"></div>
-<div class="cursor-dot" id="cursorDot"></div>
-
 <!-- ===== PROGRESS BAR ===== -->
 <div class="scroll-progress" id="progress"></div>
 
@@ -46,28 +42,35 @@
     <a href="#menu">Thực Đơn</a>
     <a href="#gallery">Không Gian</a>
     <a href="#reviews">Cảm Nhận</a>
-    <a href="#reserve" class="nav__cta">Đặt Bàn</a>
+    <a href="#reserve" class="nav__cta" data-magnetic>Đặt Bàn</a>
   </nav>
   <button class="nav__burger" id="burger" aria-label="Menu">
     <span></span><span></span><span></span>
   </button>
 </header>
 
+<!-- ===== SMOOTH SCROLL WRAPPER ===== -->
+<div id="smooth-content">
+
 <!-- ===== HERO ===== -->
 <section class="hero" id="home">
-  <div class="hero__bg" data-parallax></div>
+  <video class="hero__video" id="heroVideo" autoplay muted loop playsinline
+         preload="auto" poster="assets/hero-poster.jpg">
+    <source src="assets/hero.mp4" type="video/mp4" />
+  </video>
   <div class="hero__veil"></div>
+  <div class="hero__grain"></div>
   <div class="hero__content">
     <p class="hero__eyebrow reveal">✦ EST. 2014 · SÀI GÒN ✦</p>
-    <h1 class="hero__title">
+    <h1 class="hero__title" id="heroTitle">
       <span class="line"><span>Tinh Hoa</span></span>
       <span class="line"><span><em>Ẩm Thực</em> Việt</span></span>
     </h1>
     <p class="hero__sub reveal">Nơi mỗi món ăn là một tác phẩm, mỗi khoảnh khắc là một kỷ niệm.
       Trải nghiệm fine-dining giữa lòng thành phố.</p>
     <div class="hero__actions reveal">
-      <a href="#reserve" class="btn btn--gold" data-hover>Đặt Bàn Ngay</a>
-      <a href="#menu" class="btn btn--ghost" data-hover>Khám Phá Thực Đơn</a>
+      <a href="#reserve" class="btn btn--gold" data-magnetic><span>Đặt Bàn Ngay</span></a>
+      <a href="#menu" class="btn btn--ghost" data-magnetic><span>Khám Phá Thực Đơn</span></a>
     </div>
   </div>
   <a href="#story" class="hero__scroll" aria-label="Cuộn xuống">
@@ -91,10 +94,10 @@
 
 <!-- ===== STORY ===== -->
 <section class="story" id="story">
-  <div class="story__media reveal">
-    <div class="story__img story__img--1"></div>
-    <div class="story__img story__img--2"></div>
-    <div class="story__badge">
+  <div class="story__media">
+    <div class="story__img story__img--1 reveal-mask"></div>
+    <div class="story__img story__img--2 reveal-mask"></div>
+    <div class="story__badge reveal">
       <strong>10</strong><span>Năm<br>Đẳng cấp</span>
     </div>
   </div>
@@ -122,48 +125,48 @@
     <p class="section-head__sub reveal">Thực đơn thay đổi theo mùa để đảm bảo độ tươi ngon tuyệt đối.</p>
   </div>
   <div class="menu__grid">
-    <article class="dish reveal" data-hover>
-      <div class="dish__img" style="--img:url('https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80')"></div>
+    <article class="dish reveal">
+      <div class="dish__imgwrap reveal-mask"><div class="dish__img" style="--img:url('https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80')"></div></div>
       <div class="dish__body">
         <div class="dish__row"><h3>Gỏi Sen Tôm Càng</h3><span class="dish__price">185K</span></div>
         <p>Ngó sen giòn, tôm càng nướng, nước mắm chua ngọt thượng hạng.</p>
         <span class="dish__tag">Khai vị</span>
       </div>
     </article>
-    <article class="dish reveal" data-hover>
-      <div class="dish__img" style="--img:url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=800&q=80')"></div>
+    <article class="dish reveal">
+      <div class="dish__imgwrap reveal-mask"><div class="dish__img" style="--img:url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=800&q=80')"></div></div>
       <div class="dish__body">
         <div class="dish__row"><h3>Bò Wagyu Áp Chảo</h3><span class="dish__price">590K</span></div>
         <p>Thăn bò Wagyu A5, sốt tiêu xanh Phú Quốc, khoai môn nghiền.</p>
         <span class="dish__tag">Signature</span>
       </div>
     </article>
-    <article class="dish reveal" data-hover>
-      <div class="dish__img" style="--img:url('https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&w=800&q=80')"></div>
+    <article class="dish reveal">
+      <div class="dish__imgwrap reveal-mask"><div class="dish__img" style="--img:url('https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&w=800&q=80')"></div></div>
       <div class="dish__body">
         <div class="dish__row"><h3>Cá Chẽm Sốt Chanh Dây</h3><span class="dish__price">320K</span></div>
         <p>Phi lê cá chẽm nướng than, sốt chanh dây, rau củ theo mùa.</p>
         <span class="dish__tag">Món chính</span>
       </div>
     </article>
-    <article class="dish reveal" data-hover>
-      <div class="dish__img" style="--img:url('https://images.unsplash.com/photo-1565958011703-44f9829ba187?auto=format&fit=crop&w=800&q=80')"></div>
+    <article class="dish reveal">
+      <div class="dish__imgwrap reveal-mask"><div class="dish__img" style="--img:url('https://images.unsplash.com/photo-1565958011703-44f9829ba187?auto=format&fit=crop&w=800&q=80')"></div></div>
       <div class="dish__body">
         <div class="dish__row"><h3>Chè Sen Long Nhãn</h3><span class="dish__price">95K</span></div>
         <p>Hạt sen bùi, long nhãn ngọt thanh, phục vụ lạnh — tráng miệng.</p>
         <span class="dish__tag">Tráng miệng</span>
       </div>
     </article>
-    <article class="dish reveal" data-hover>
-      <div class="dish__img" style="--img:url('https://images.unsplash.com/photo-1600891964599-f61ba0e24092?auto=format&fit=crop&w=800&q=80')"></div>
+    <article class="dish reveal">
+      <div class="dish__imgwrap reveal-mask"><div class="dish__img" style="--img:url('https://images.unsplash.com/photo-1600891964599-f61ba0e24092?auto=format&fit=crop&w=800&q=80')"></div></div>
       <div class="dish__body">
         <div class="dish__row"><h3>Vịt Quay Sốt Cam</h3><span class="dish__price">420K</span></div>
         <p>Đùi vịt da giòn, sốt cam caramel, cải baby xào tỏi.</p>
         <span class="dish__tag">Món chính</span>
       </div>
     </article>
-    <article class="dish reveal" data-hover>
-      <div class="dish__img" style="--img:url('https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=800&q=80')"></div>
+    <article class="dish reveal">
+      <div class="dish__imgwrap reveal-mask"><div class="dish__img" style="--img:url('https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=800&q=80')"></div></div>
       <div class="dish__body">
         <div class="dish__row"><h3>Bánh Sô-cô-la Núi Lửa</h3><span class="dish__price">130K</span></div>
         <p>Sô-cô-la Bỉ tan chảy, kem vani, mứt dâu tằm nhà làm.</p>
@@ -173,9 +176,12 @@
   </div>
 </section>
 
-<!-- ===== PARALLAX QUOTE ===== -->
+<!-- ===== PARALLAX QUOTE (candle video) ===== -->
 <section class="feature" id="feature">
-  <div class="feature__bg" data-parallax></div>
+  <video class="feature__video" id="featureVideo" muted loop playsinline
+         preload="none" poster="assets/candles-poster.jpg">
+    <source src="assets/candles.mp4" type="video/mp4" />
+  </video>
   <div class="feature__veil"></div>
   <blockquote class="feature__quote reveal">
     <span class="feature__mark">“</span>
@@ -192,11 +198,11 @@
     <h2 class="reveal">Đắm Chìm Trong <em>Vẻ Đẹp</em></h2>
   </div>
   <div class="gallery__grid">
-    <figure class="g-item g-item--tall reveal" data-hover style="--img:url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80')"><figcaption>Khu vực chính</figcaption></figure>
-    <figure class="g-item reveal" data-hover style="--img:url('https://images.unsplash.com/photo-1592861956120-e524fc739696?auto=format&fit=crop&w=800&q=80')"><figcaption>Quầy bar</figcaption></figure>
-    <figure class="g-item reveal" data-hover style="--img:url('https://images.unsplash.com/photo-1600335895229-6e75511892c8?auto=format&fit=crop&w=800&q=80')"><figcaption>Phòng riêng VIP</figcaption></figure>
-    <figure class="g-item g-item--wide reveal" data-hover style="--img:url('https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=1000&q=80')"><figcaption>Ánh nến buổi tối</figcaption></figure>
-    <figure class="g-item reveal" data-hover style="--img:url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=800&q=80')"><figcaption>Sân vườn</figcaption></figure>
+    <figure class="g-item g-item--tall reveal-mask" style="--img:url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80')"><figcaption>Khu vực chính</figcaption></figure>
+    <figure class="g-item reveal-mask" style="--img:url('https://images.unsplash.com/photo-1592861956120-e524fc739696?auto=format&fit=crop&w=800&q=80')"><figcaption>Quầy bar</figcaption></figure>
+    <figure class="g-item reveal-mask" style="--img:url('https://images.unsplash.com/photo-1600335895229-6e75511892c8?auto=format&fit=crop&w=800&q=80')"><figcaption>Phòng riêng VIP</figcaption></figure>
+    <figure class="g-item g-item--wide reveal-mask" style="--img:url('https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=1000&q=80')"><figcaption>Ánh nến buổi tối</figcaption></figure>
+    <figure class="g-item reveal-mask" style="--img:url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=800&q=80')"><figcaption>Sân vườn</figcaption></figure>
   </div>
 </section>
 
@@ -263,7 +269,7 @@
         <textarea id="note" rows="2" placeholder=" "></textarea>
         <label for="note">Ghi chú (dịp đặc biệt, dị ứng...)</label>
       </div>
-      <button type="submit" class="btn btn--gold btn--full" data-hover>Gửi Yêu Cầu Đặt Bàn</button>
+      <button type="submit" class="btn btn--gold btn--full" data-magnetic><span>Gửi Yêu Cầu Đặt Bàn</span></button>
       <p class="reserve__ok" id="formOk">✓ Cảm ơn bạn! Chúng tôi sẽ gọi lại để xác nhận.</p>
     </form>
   </div>
@@ -276,9 +282,9 @@
       <h3>✦ Hương Sen</h3>
       <p>Tinh hoa ẩm thực Việt — nơi mỗi bữa ăn trở thành ký ức.</p>
       <div class="footer__social">
-        <a href="#" data-hover aria-label="Facebook">Facebook</a>
-        <a href="#" data-hover aria-label="Instagram">Instagram</a>
-        <a href="#" data-hover aria-label="TikTok">TikTok</a>
+        <a href="#" aria-label="Facebook">Facebook</a>
+        <a href="#" aria-label="Instagram">Instagram</a>
+        <a href="#" aria-label="TikTok">TikTok</a>
       </div>
     </div>
     <div class="footer__col">
@@ -297,9 +303,11 @@
   </div>
   <div class="footer__bottom">
     <span>© 2026 Hương Sen Restaurant. Thiết kế bởi WSOS Studio.</span>
-    <a href="#home" data-hover>Về đầu trang ↑</a>
+    <a href="#home">Về đầu trang ↑</a>
   </div>
 </footer>
+
+</div><!-- /#smooth-content -->
 
 <script src="assets/script.js"></script>
 </body>
