@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Hương Sen · Nhà Hàng Fine Dining</title>
+<meta name="description" content="Hương Sen — Nhà hàng fine-dining tinh hoa ẩm thực Việt. Không gian sang trọng, thực đơn theo mùa, trải nghiệm khó quên." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/style.css" />
+</head>
+<body>
+
+<!-- ===== PRELOADER ===== -->
+<div class="preloader" id="preloader">
+  <div class="preloader__inner">
+    <svg class="lotus" viewBox="0 0 100 100" aria-hidden="true">
+      <g fill="none" stroke="currentColor" stroke-width="1.4">
+        <path class="petal" d="M50 78 C40 60 40 40 50 20 C60 40 60 60 50 78 Z"/>
+        <path class="petal" d="M50 78 C34 66 26 48 26 30 C44 40 52 58 50 78 Z"/>
+        <path class="petal" d="M50 78 C66 66 74 48 74 30 C56 40 48 58 50 78 Z"/>
+        <path class="petal" d="M50 78 C22 74 10 60 6 44 C30 46 46 62 50 78 Z"/>
+        <path class="petal" d="M50 78 C78 74 90 60 94 44 C70 46 54 62 50 78 Z"/>
+      </g>
+    </svg>
+    <span class="preloader__word">HƯƠNG SEN</span>
+    <span class="preloader__count" id="count">0</span>
+  </div>
+</div>
+
+<!-- ===== CURSOR ===== -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-dot" id="cursorDot"></div>
+
+<!-- ===== PROGRESS BAR ===== -->
+<div class="scroll-progress" id="progress"></div>
+
+<!-- ===== NAV ===== -->
+<header class="nav" id="nav">
+  <a href="#home" class="nav__brand">
+    <span class="nav__mark">✦</span> Hương Sen
+  </a>
+  <nav class="nav__links" id="navLinks">
+    <a href="#story">Câu Chuyện</a>
+    <a href="#menu">Thực Đơn</a>
+    <a href="#gallery">Không Gian</a>
+    <a href="#reviews">Cảm Nhận</a>
+    <a href="#reserve" class="nav__cta">Đặt Bàn</a>
+  </nav>
+  <button class="nav__burger" id="burger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<!-- ===== HERO ===== -->
+<section class="hero" id="home">
+  <div class="hero__bg" data-parallax></div>
+  <div class="hero__veil"></div>
+  <div class="hero__content">
+    <p class="hero__eyebrow reveal">✦ EST. 2014 · SÀI GÒN ✦</p>
+    <h1 class="hero__title">
+      <span class="line"><span>Tinh Hoa</span></span>
+      <span class="line"><span><em>Ẩm Thực</em> Việt</span></span>
+    </h1>
+    <p class="hero__sub reveal">Nơi mỗi món ăn là một tác phẩm, mỗi khoảnh khắc là một kỷ niệm.
+      Trải nghiệm fine-dining giữa lòng thành phố.</p>
+    <div class="hero__actions reveal">
+      <a href="#reserve" class="btn btn--gold" data-hover>Đặt Bàn Ngay</a>
+      <a href="#menu" class="btn btn--ghost" data-hover>Khám Phá Thực Đơn</a>
+    </div>
+  </div>
+  <a href="#story" class="hero__scroll" aria-label="Cuộn xuống">
+    <span></span> Cuộn xuống
+  </a>
+</section>
+
+<!-- ===== MARQUEE ===== -->
+<div class="marquee">
+  <div class="marquee__track">
+    <span>Nguyên liệu theo mùa</span><i>✦</i>
+    <span>Đầu bếp 1 sao Michelin</span><i>✦</i>
+    <span>Không gian riêng tư</span><i>✦</i>
+    <span>Rượu vang tuyển chọn</span><i>✦</i>
+    <span>Nguyên liệu theo mùa</span><i>✦</i>
+    <span>Đầu bếp 1 sao Michelin</span><i>✦</i>
+    <span>Không gian riêng tư</span><i>✦</i>
+    <span>Rượu vang tuyển chọn</span><i>✦</i>
+  </div>
+</div>
+
+<!-- ===== STORY ===== -->
+<section class="story" id="story">
+  <div class="story__media reveal">
+    <div class="story__img story__img--1"></div>
+    <div class="story__img story__img--2"></div>
+    <div class="story__badge">
+      <strong>10</strong><span>Năm<br>Đẳng cấp</span>
+    </div>
+  </div>
+  <div class="story__text">
+    <p class="tag reveal">Câu Chuyện Của Chúng Tôi</p>
+    <h2 class="reveal">Hương vị được<br><em>chắt lọc</em> từ trái tim</h2>
+    <p class="reveal">Hương Sen ra đời từ niềm đam mê tôn vinh ẩm thực Việt Nam theo phong cách hiện đại.
+      Chúng tôi kết hợp kỹ thuật fine-dining phương Tây với hồn cốt nguyên liệu bản địa —
+      tạo nên những món ăn vừa quen thuộc, vừa đầy bất ngờ.</p>
+    <p class="reveal">Mỗi đĩa ăn là hành trình của người đầu bếp: từ khu vườn, ra chợ sớm,
+      đến bàn tiệc của bạn.</p>
+    <div class="story__stats">
+      <div class="stat reveal"><b data-count="120">0</b><span>Món đặc sắc</span></div>
+      <div class="stat reveal"><b data-count="45000">0</b><span>Khách hài lòng</span></div>
+      <div class="stat reveal"><b data-count="18">0</b><span>Giải thưởng</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== MENU ===== -->
+<section class="menu" id="menu">
+  <div class="section-head">
+    <p class="tag reveal">Thực Đơn Nổi Bật</p>
+    <h2 class="reveal">Những <em>Kiệt Tác</em> Của Bếp</h2>
+    <p class="section-head__sub reveal">Thực đơn thay đổi theo mùa để đảm bảo độ tươi ngon tuyệt đối.</p>
+  </div>
+  <div class="menu__grid">
+    <article class="dish reveal" data-hover>
+      <div class="dish__img" style="--img:url('https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80')"></div>
+      <div class="dish__body">
+        <div class="dish__row"><h3>Gỏi Sen Tôm Càng</h3><span class="dish__price">185K</span></div>
+        <p>Ngó sen giòn, tôm càng nướng, nước mắm chua ngọt thượng hạng.</p>
+        <span class="dish__tag">Khai vị</span>
+      </div>
+    </article>
+    <article class="dish reveal" data-hover>
+      <div class="dish__img" style="--img:url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=800&q=80')"></div>
+      <div class="dish__body">
+        <div class="dish__row"><h3>Bò Wagyu Áp Chảo</h3><span class="dish__price">590K</span></div>
+        <p>Thăn bò Wagyu A5, sốt tiêu xanh Phú Quốc, khoai môn nghiền.</p>
+        <span class="dish__tag">Signature</span>
+      </div>
+    </article>
+    <article class="dish reveal" data-hover>
+      <div class="dish__img" style="--img:url('https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&w=800&q=80')"></div>
+      <div class="dish__body">
+        <div class="dish__row"><h3>Cá Chẽm Sốt Chanh Dây</h3><span class="dish__price">320K</span></div>
+        <p>Phi lê cá chẽm nướng than, sốt chanh dây, rau củ theo mùa.</p>
+        <span class="dish__tag">Món chính</span>
+      </div>
+    </article>
+    <article class="dish reveal" data-hover>
+      <div class="dish__img" style="--img:url('https://images.unsplash.com/photo-1565958011703-44f9829ba187?auto=format&fit=crop&w=800&q=80')"></div>
+      <div class="dish__body">
+        <div class="dish__row"><h3>Chè Sen Long Nhãn</h3><span class="dish__price">95K</span></div>
+        <p>Hạt sen bùi, long nhãn ngọt thanh, phục vụ lạnh — tráng miệng.</p>
+        <span class="dish__tag">Tráng miệng</span>
+      </div>
+    </article>
+    <article class="dish reveal" data-hover>
+      <div class="dish__img" style="--img:url('https://images.unsplash.com/photo-1600891964599-f61ba0e24092?auto=format&fit=crop&w=800&q=80')"></div>
+      <div class="dish__body">
+        <div class="dish__row"><h3>Vịt Quay Sốt Cam</h3><span class="dish__price">420K</span></div>
+        <p>Đùi vịt da giòn, sốt cam caramel, cải baby xào tỏi.</p>
+        <span class="dish__tag">Món chính</span>
+      </div>
+    </article>
+    <article class="dish reveal" data-hover>
+      <div class="dish__img" style="--img:url('https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=800&q=80')"></div>
+      <div class="dish__body">
+        <div class="dish__row"><h3>Bánh Sô-cô-la Núi Lửa</h3><span class="dish__price">130K</span></div>
+        <p>Sô-cô-la Bỉ tan chảy, kem vani, mứt dâu tằm nhà làm.</p>
+        <span class="dish__tag">Tráng miệng</span>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ===== PARALLAX QUOTE ===== -->
+<section class="feature" id="feature">
+  <div class="feature__bg" data-parallax></div>
+  <div class="feature__veil"></div>
+  <blockquote class="feature__quote reveal">
+    <span class="feature__mark">“</span>
+    Nấu ăn là ngôn ngữ của tình yêu. Chúng tôi kể câu chuyện Việt Nam
+    qua từng hương vị.
+    <cite>— Bếp trưởng Nguyễn Hoàng Sơn</cite>
+  </blockquote>
+</section>
+
+<!-- ===== GALLERY ===== -->
+<section class="gallery" id="gallery">
+  <div class="section-head">
+    <p class="tag reveal">Không Gian</p>
+    <h2 class="reveal">Đắm Chìm Trong <em>Vẻ Đẹp</em></h2>
+  </div>
+  <div class="gallery__grid">
+    <figure class="g-item g-item--tall reveal" data-hover style="--img:url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80')"><figcaption>Khu vực chính</figcaption></figure>
+    <figure class="g-item reveal" data-hover style="--img:url('https://images.unsplash.com/photo-1592861956120-e524fc739696?auto=format&fit=crop&w=800&q=80')"><figcaption>Quầy bar</figcaption></figure>
+    <figure class="g-item reveal" data-hover style="--img:url('https://images.unsplash.com/photo-1600335895229-6e75511892c8?auto=format&fit=crop&w=800&q=80')"><figcaption>Phòng riêng VIP</figcaption></figure>
+    <figure class="g-item g-item--wide reveal" data-hover style="--img:url('https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=1000&q=80')"><figcaption>Ánh nến buổi tối</figcaption></figure>
+    <figure class="g-item reveal" data-hover style="--img:url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=800&q=80')"><figcaption>Sân vườn</figcaption></figure>
+  </div>
+</section>
+
+<!-- ===== REVIEWS ===== -->
+<section class="reviews" id="reviews">
+  <div class="section-head">
+    <p class="tag reveal">Cảm Nhận Thực Khách</p>
+    <h2 class="reveal">Được <em>Tin Yêu</em></h2>
+  </div>
+  <div class="reviews__grid">
+    <blockquote class="review reveal">
+      <div class="stars">★★★★★</div>
+      <p>“Không gian lãng mạn, món ăn đúng chuẩn nhà hàng cao cấp. Buổi kỷ niệm của vợ chồng tôi thật hoàn hảo.”</p>
+      <footer><b>Minh Anh</b><span>Khách hàng thân thiết</span></footer>
+    </blockquote>
+    <blockquote class="review reveal">
+      <div class="stars">★★★★★</div>
+      <p>“Bò Wagyu tan trong miệng, phục vụ tận tâm. Đáng từng đồng và sẽ quay lại nhiều lần nữa.”</p>
+      <footer><b>David Trần</b><span>Food blogger</span></footer>
+    </blockquote>
+    <blockquote class="review reveal">
+      <div class="stars">★★★★★</div>
+      <p>“Đặt tiệc công ty ở phòng VIP, mọi thứ chỉn chu tuyệt đối. Khách của tôi ai cũng trầm trồ.”</p>
+      <footer><b>Thu Hà</b><span>Giám đốc Marketing</span></footer>
+    </blockquote>
+  </div>
+</section>
+
+<!-- ===== RESERVE ===== -->
+<section class="reserve" id="reserve">
+  <div class="reserve__inner">
+    <div class="reserve__left reveal">
+      <p class="tag">Đặt Bàn</p>
+      <h2>Dành Riêng Một<br><em>Buổi Tối</em> Cho Bạn</h2>
+      <p class="reserve__lead">Để lại thông tin, đội ngũ của chúng tôi sẽ liên hệ xác nhận trong vòng 15 phút.</p>
+      <ul class="reserve__info">
+        <li><span>📍</span> 88 Lê Lợi, Quận 1, TP.HCM</li>
+        <li><span>🕑</span> 11:00 – 23:00 · Cả tuần</li>
+        <li><span>📞</span> 0900 123 456</li>
+      </ul>
+    </div>
+    <form class="reserve__form reveal" id="reserveForm" novalidate>
+      <div class="field">
+        <input type="text" id="name" required placeholder=" " />
+        <label for="name">Họ và tên</label>
+      </div>
+      <div class="field">
+        <input type="tel" id="phone" required placeholder=" " />
+        <label for="phone">Số điện thoại</label>
+      </div>
+      <div class="field field--half">
+        <input type="date" id="date" required />
+      </div>
+      <div class="field field--half">
+        <select id="guests" required>
+          <option value="">Số khách</option>
+          <option>1 – 2 khách</option>
+          <option>3 – 4 khách</option>
+          <option>5 – 8 khách</option>
+          <option>Trên 8 khách</option>
+        </select>
+      </div>
+      <div class="field">
+        <textarea id="note" rows="2" placeholder=" "></textarea>
+        <label for="note">Ghi chú (dịp đặc biệt, dị ứng...)</label>
+      </div>
+      <button type="submit" class="btn btn--gold btn--full" data-hover>Gửi Yêu Cầu Đặt Bàn</button>
+      <p class="reserve__ok" id="formOk">✓ Cảm ơn bạn! Chúng tôi sẽ gọi lại để xác nhận.</p>
+    </form>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <div class="footer__top">
+    <div class="footer__brand">
+      <h3>✦ Hương Sen</h3>
+      <p>Tinh hoa ẩm thực Việt — nơi mỗi bữa ăn trở thành ký ức.</p>
+      <div class="footer__social">
+        <a href="#" data-hover aria-label="Facebook">Facebook</a>
+        <a href="#" data-hover aria-label="Instagram">Instagram</a>
+        <a href="#" data-hover aria-label="TikTok">TikTok</a>
+      </div>
+    </div>
+    <div class="footer__col">
+      <h4>Khám phá</h4>
+      <a href="#story">Câu chuyện</a>
+      <a href="#menu">Thực đơn</a>
+      <a href="#gallery">Không gian</a>
+      <a href="#reserve">Đặt bàn</a>
+    </div>
+    <div class="footer__col">
+      <h4>Liên hệ</h4>
+      <p>88 Lê Lợi, Q.1, TP.HCM</p>
+      <p>0900 123 456</p>
+      <p>hello@huongsen.vn</p>
+    </div>
+  </div>
+  <div class="footer__bottom">
+    <span>© 2026 Hương Sen Restaurant. Thiết kế bởi WSOS Studio.</span>
+    <a href="#home" data-hover>Về đầu trang ↑</a>
+  </div>
+</footer>
+
+<script src="assets/script.js"></script>
+</body>
+</html>
