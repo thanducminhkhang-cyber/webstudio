@@ -128,6 +128,18 @@ if (canSmooth) {
   });
 }
 
+/* ===== HERO: play once, freeze, dissolve into artwork ===== */
+(function () {
+  const hv = document.getElementById('heroVideo');
+  const art = document.getElementById('heroArt');
+  if (!hv || !art) return;
+  hv.loop = false;
+  const toArt = () => art.classList.add('show');
+  hv.addEventListener('ended', toArt);
+  // safety: if the video can't autoplay/decode, still reveal artwork
+  hv.play && hv.play().catch(() => setTimeout(toArt, 1500));
+})();
+
 /* ===== LAZY-PLAY CANDLE VIDEO ===== */
 const fv = document.getElementById('featureVideo');
 if (fv) {
