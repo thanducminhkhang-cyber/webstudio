@@ -2,25 +2,24 @@
 
 import Image from "next/image";
 import React, { useState } from "react";
-import { EggshellInlay, Reveal, Figure } from "./parts";
+import { Seal, EggNum, Figure } from "./parts";
 
 /* ============================================================================
-   ẢNH — sửa TẤT CẢ đường dẫn ảnh tại đây. Hiện dùng ảnh minh hoạ (stock
-   Unsplash) tông tối hợp sơn mài; thay bằng ảnh thật của nhà hàng khi có.
+   ẢNH — ảnh minh hoạ tông tối-ấm (stock Unsplash), gom một chỗ để đổi.
+   TODO: ảnh thật do khách cung cấp — đặt vào /public/images và trỏ lại đây.
    ========================================================================== */
 const IMG = {
-  hero: "https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=1600&auto=format&fit=crop", // món ăn tối, cận cảnh — nền hero
-  table: "https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?q=80&w=1000&auto=format&fit=crop", // bàn ăn dưới ánh nến
-  dish: "https://images.unsplash.com/photo-1559339352-11d035aa65de?q=80&w=800&auto=format&fit=crop", // một món trong thực đơn
-  moody: "https://images.unsplash.com/photo-1592861956120-e524fc739696?q=80&w=800&auto=format&fit=crop", // không gian ấm trầm
-  wine: "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?q=80&w=1000&auto=format&fit=crop", // rượu vang ghép món
-  chef: "https://images.unsplash.com/photo-1577219491135-ce391730fb2c?q=80&w=800&auto=format&fit=crop", // chân dung bếp trưởng
+  hero: "https://images.unsplash.com/photo-1467003909585-2f8a72700288?q=80&w=1100&auto=format&fit=crop",
+  table: "https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?q=80&w=1200&auto=format&fit=crop",
+  lacquer: "https://images.unsplash.com/photo-1592861956120-e524fc739696?q=80&w=900&auto=format&fit=crop",
+  kitchen: "https://images.unsplash.com/photo-1559339352-11d035aa65de?q=80&w=900&auto=format&fit=crop",
+  wine: "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?q=80&w=1200&auto=format&fit=crop",
+  chef: "https://images.unsplash.com/photo-1577219491135-ce391730fb2c?q=80&w=1000&auto=format&fit=crop",
 };
 
-/* Thực đơn nếm — bảy chương theo thứ tự phục vụ. Số La Mã ở đây mang thông tin
-   thật (trình tự món), không phải trang trí. Tên món & nguyên liệu là placeholder. */
+/* Bảy chương — số La Mã mang thông tin (thứ tự phục vụ). */
 const COURSES = [
-  { no: "I", name: "Tĩnh Đầu", detail: "Củ quả muối theo mùa, giấm mơ, rau thơm vườn" },
+  { no: "I", name: "Tình Đầu", detail: "Củ quả muối theo mùa, giấm mơ, rau thơm vườn" },
   { no: "II", name: "Nước Trong", detail: "Canh rong biển, nghêu, rau răm" },
   { no: "III", name: "Vị Biển", detail: "Cá vược hấp, mỡ gà, hành hoa" },
   { no: "IV", name: "Hương Đồng", detail: "Lươn nướng lá lốt, riềng, mẻ" },
@@ -28,6 +27,8 @@ const COURSES = [
   { no: "VI", name: "Trọn", detail: "Vịt om sấu, khoai môn, hạt sen" },
   { no: "VII", name: "Ngọt Cuối", detail: "Chè hạt sen, long nhãn" },
 ];
+
+const TIME_SLOTS = ["18:00", "18:30", "19:00", "19:30", "20:00", "20:30", "21:00", "21:30", "22:00"];
 
 type FormState = {
   hoTen: string;
@@ -37,49 +38,39 @@ type FormState = {
   gio: string;
   ghiChu: string;
 };
-
 type FormErrors = Partial<Record<keyof FormState, string>>;
+const EMPTY: FormState = { hoTen: "", soDienThoai: "", soKhach: "", ngay: "", gio: "", ghiChu: "" };
 
-const EMPTY_FORM: FormState = {
-  hoTen: "",
-  soDienThoai: "",
-  soKhach: "",
-  ngay: "",
-  gio: "",
-  ghiChu: "",
+const formatVN = (iso: string) => {
+  const [y, m, d] = iso.split("-");
+  return d && m && y ? `${d}/${m}/${y}` : iso;
 };
 
 export default function Page() {
-  const [form, setForm] = useState<FormState>(EMPTY_FORM);
+  const [form, setForm] = useState<FormState>(EMPTY);
   const [errors, setErrors] = useState<FormErrors>({});
-  const [toast, setToast] = useState<string | null>(null);
+  const [done, setDone] = useState(false);
 
-  const setField = (key: keyof FormState, value: string) => {
-    setForm((prev) => ({ ...prev, [key]: value }));
-    setErrors((prev) => (prev[key] ? { ...prev, [key]: undefined } : prev));
+  const setField = (k: keyof FormState, v: string) => {
+    setForm((p) => ({ ...p, [k]: v }));
+    setErrors((p) => (p[k] ? { ...p, [k]: undefined } : p));
   };
 
-  const validate = (data: FormState): FormErrors => {
+  const validate = (d: FormState): FormErrors => {
     const e: FormErrors = {};
-    if (data.hoTen.trim().length < 2) e.hoTen = "Vui lòng nhập họ tên.";
-
-    const phone = data.soDienThoai.replace(/[\s.]/g, "");
-    if (!phone) e.soDienThoai = "Vui lòng nhập số điện thoại.";
-    else if (!/^(0|\+84)\d{8,10}$/.test(phone)) e.soDienThoai = "Số điện thoại chưa hợp lệ.";
-
-    const guests = Number(data.soKhach);
-    if (!data.soKhach) e.soKhach = "Vui lòng nhập số khách.";
-    else if (!Number.isInteger(guests) || guests < 1 || guests > 12)
-      e.soKhach = "Số khách từ 1 đến 12. Đoàn lớn hơn, xin gọi trực tiếp.";
-
-    if (!data.ngay) e.ngay = "Vui lòng chọn ngày.";
+    if (d.hoTen.trim().length < 2) e.hoTen = "Cho mình biết tên để tiện xưng hô nhé.";
+    const phone = d.soDienThoai.replace(/[\s.]/g, "");
+    if (!phone) e.soDienThoai = "Cho mình xin số điện thoại để gọi xác nhận nhé.";
+    else if (!/^(0|\+84)\d{8,10}$/.test(phone)) e.soDienThoai = "Số này chưa đúng, bạn xem lại giúp mình.";
+    if (!d.soKhach) e.soKhach = "Bạn đi mấy người để mình chuẩn bị chỗ?";
+    if (!d.ngay) e.ngay = "Bạn muốn ghé ngày nào?";
     else {
+      const sel = new Date(d.ngay + "T00:00:00");
       const today = new Date();
       today.setHours(0, 0, 0, 0);
-      if (new Date(data.ngay) < today) e.ngay = "Ngày đặt phải từ hôm nay trở đi.";
+      if (sel < today) e.ngay = "Ngày này đã qua rồi, chọn giúp mình ngày khác nhé.";
     }
-
-    if (!data.gio) e.gio = "Vui lòng chọn giờ.";
+    if (!d.gio) e.gio = "Chọn giúp mình một khung giờ nhé.";
     return e;
   };
 
@@ -87,367 +78,535 @@ export default function Page() {
     ev.preventDefault();
     const e = validate(form);
     setErrors(e);
-    if (Object.keys(e).length > 0) {
-      // Đưa con trỏ tới trường lỗi đầu tiên cho người dùng bàn phím.
-      const first = document.querySelector<HTMLElement>('[aria-invalid="true"]');
-      first?.focus();
+    if (Object.keys(e).length) {
+      document.querySelector<HTMLElement>('[aria-invalid="true"]')?.focus();
       return;
     }
-
-    // TODO: nối API đặt bàn ở đây — ví dụ: await fetch("/api/reservations", { method: "POST", body: JSON.stringify(form) })
-    // Hiện tại chỉ giả lập ghi nhận phía client.
-    setToast("Đã ghi nhận. Chúng tôi sẽ gọi lại để xác nhận bàn của bạn.");
-    setForm(EMPTY_FORM);
-    setErrors({});
-    window.clearTimeout((handleSubmit as unknown as { _t?: number })._t);
-    (handleSubmit as unknown as { _t?: number })._t = window.setTimeout(() => setToast(null), 5000);
+    // TODO: gửi payload đặt bàn tới API thật, ví dụ:
+    // await fetch("/api/reservations", { method: "POST", body: JSON.stringify(form) });
+    setDone(true);
   };
 
   return (
-    <div className="min-h-screen bg-lacquer text-eggshell">
-      {/* Header tối giản — chỉ một lối vào "Đặt bàn". Wordmark để dành cho hero. */}
-      <header className="absolute top-0 inset-x-0 z-20">
-        <div className="mx-auto max-w-6xl px-6 sm:px-8 h-20 flex items-center justify-end">
-          <a
-            href="#dat-ban"
-            className="text-[0.7rem] tracking-[0.28em] uppercase text-eggshell/80 hover:text-brass transition-colors"
-          >
+    <div className="bg-then text-trung">
+      {/* ---------- Header tối giản ---------- */}
+      <header className="absolute top-0 inset-x-0 z-40">
+        <div className="wrap flex items-center justify-between h-20">
+          <a href="#top" className="flex items-center gap-3">
+            <Seal size={30} />
+            <span className="eyebrow" style={{ color: "var(--color-trung)", letterSpacing: "0.28em" }}>
+              Thanh An
+            </span>
+          </a>
+          <a href="#dat-ban" className="eyebrow" style={{ color: "var(--color-khoi)" }}>
             Đặt bàn
           </a>
         </div>
       </header>
 
-      {/* ===================== 1 · HERO (full-bleed) ===================== */}
-      <section className="relative min-h-[100svh] flex items-center overflow-hidden">
-        {/* Ảnh món ăn full-bleed + lớp phủ sơn mài để chữ dễ đọc và giữ tông tối */}
-        <div className="absolute inset-0 -z-10">
-          <Image
-            src={IMG.hero}
-            alt="Món ăn tinh tế trong thực đơn nếm của Thanh An"
-            fill
-            priority
-            sizes="100vw"
-            className="object-cover"
-            style={{ filter: "saturate(0.85) brightness(0.8)" }}
-          />
-          {/* phủ tối đều + đậm hơn phía trái nơi đặt chữ */}
-          <div className="absolute inset-0" style={{ background: "rgba(20,16,13,0.5)" }} />
-          <div
-            className="absolute inset-0"
-            style={{
-              background:
-                "linear-gradient(90deg, var(--color-lacquer) 0%, color-mix(in srgb, var(--color-lacquer) 74%, transparent) 44%, transparent 100%)",
-            }}
-          />
-          {/* nối mượt xuống section kế tiếp */}
-          <div
-            className="absolute inset-x-0 bottom-0 h-44"
-            style={{ background: "linear-gradient(180deg, transparent, var(--color-lacquer))" }}
-          />
-        </div>
-
-        <div className="mx-auto w-full max-w-6xl px-6 sm:px-8 py-28">
-          <Reveal className="max-w-2xl" delay={80}>
-            <h1 className="font-display font-light leading-[0.95] text-eggshell text-[16vw] sm:text-[12vw] lg:text-[8.5rem] drop-shadow-[0_2px_24px_rgba(0,0,0,0.5)]">
-              Thanh An
-            </h1>
-            {/* Gạch chân wordmark bằng chính motif khảm vỏ trứng */}
-            <div className="mt-3 max-w-[24rem]">
-              <EggshellInlay height={20} />
-            </div>
-            <p className="mt-8 text-base sm:text-lg text-eggshell/80 font-light leading-relaxed max-w-md">
+      {/* ============================ 1 · HERO ============================ */}
+      <section id="top" className="relative overflow-hidden">
+        {/* ánh nến hắt lệch phải */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0"
+          style={{
+            background:
+              "radial-gradient(46% 40% at 78% 32%, rgba(198,161,91,0.14), transparent 68%)",
+          }}
+        />
+        <div className="wrap relative min-h-[100svh] grid items-center gap-12 py-28 lg:grid-cols-5">
+          {/* Trái 60% */}
+          <div className="lg:col-span-3">
+            <p data-hero-eyebrow className="eyebrow mb-7" style={{ transform: "translateY(14px)" }}>
               Thực đơn nếm theo mùa · Hà Nội
             </p>
-            <div className="mt-10">
-              <a href="#dat-ban" className="btn-brass">
-                Đặt bàn
+
+            <h1 className="relative h-display text-trung" style={{ fontSize: "clamp(64px, 9vw, 148px)", lineHeight: 1.03 }}>
+              <span className="hero-mask block">
+                <span data-hero-line className="block">
+                  Thanh
+                </span>
+              </span>
+              <span className="hero-mask block">
+                <span data-hero-line className="block italic" style={{ color: "var(--color-kim)" }}>
+                  An
+                </span>
+              </span>
+              {/* con triện lệch góc dưới-trái tên */}
+              <span data-hero-seal className="absolute -bottom-2 left-0 translate-y-full lg:translate-y-0 lg:-bottom-4">
+                <Seal size={58} />
+              </span>
+            </h1>
+
+            <p
+              data-hero-sub
+              className="mt-16 lg:mt-12 max-w-md text-khoi"
+              style={{ fontSize: "18px", lineHeight: 1.7, transform: "translateY(16px)" }}
+            >
+              Một bàn ăn tĩnh. Một thực đơn mỗi tối, đi theo mùa của miền Bắc — nấu vừa đủ để giữ lại vị thật.
+            </p>
+
+            <div data-hero-cta className="mt-10" style={{ transform: "translateY(16px)" }}>
+              <a href="#dat-ban" className="btn-outline">
+                <span>Đặt bàn</span>
               </a>
             </div>
-          </Reveal>
-        </div>
-      </section>
+          </div>
 
-      {/* ===================== 2 · TRIẾT LÝ ===================== */}
-      <section id="triet-ly" className="bg-lacquer">
-        <div className="mx-auto max-w-4xl px-6 sm:px-8 py-28 sm:py-40">
-          <Reveal>
-            <p className="eyebrow mb-10">Triết lý</p>
-            <p className="font-display font-light text-eggshell text-[2rem] sm:text-[2.75rem] lg:text-[3.25rem] leading-[1.4]">
-              Tĩnh không phải là im lặng. Là để nguyên liệu lên tiếng đúng lúc nó ngon nhất, rồi đứng
-              sang một bên. Chúng tôi chọn rau, cá, gia vị theo mùa của miền Bắc — nấu vừa đủ, bày vừa
-              đủ, và giữ lại phần lặng cho vị thật.
-            </p>
-          </Reveal>
-        </div>
-      </section>
-
-      <div className="mx-auto max-w-6xl px-6 sm:px-8">
-        <EggshellInlay />
-      </div>
-
-      {/* ===================== 3 · THỰC ĐƠN NẾM ===================== */}
-      <section id="thuc-don" className="bg-lacquer-2">
-        <div className="mx-auto max-w-4xl px-6 sm:px-8 py-28 sm:py-36">
-          <Reveal>
-            <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-16">
-              <h2 className="font-display font-light text-eggshell text-4xl sm:text-5xl">Thực đơn nếm</h2>
-              <p className="text-sm text-muted tracking-wide">Bảy chương · theo mùa</p>
-            </div>
-          </Reveal>
-
-          <ul>
-            {COURSES.map((c, i) => (
-              <li key={c.no}>
-                {i > 0 && (
-                  <div
-                    aria-hidden="true"
-                    className="h-px w-full"
-                    style={{
-                      background: "color-mix(in srgb, var(--color-brass) 22%, transparent)",
-                    }}
+          {/* Phải 40% — ảnh dọc */}
+          <div className="lg:col-span-2">
+            <div className="relative mx-auto max-w-sm lg:max-w-none">
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute -inset-8 -z-10"
+                style={{ background: "radial-gradient(55% 45% at 60% 35%, rgba(198,161,91,0.16), transparent 72%)" }}
+              />
+              <div className="relative overflow-hidden" style={{ aspectRatio: "3 / 4", borderRadius: "2px" }}>
+                {/* TODO: ảnh thật do khách cung cấp */}
+                <div data-hero-img-inner className="absolute inset-0">
+                  <Image
+                    src={IMG.hero}
+                    alt="Một món trong thực đơn nếm của Thanh An dưới ánh nến"
+                    fill
+                    priority
+                    sizes="(max-width: 1024px) 90vw, 40vw"
+                    className="object-cover"
+                    style={{ filter: "saturate(0.88) brightness(0.86)" }}
                   />
-                )}
-                <Reveal delay={Math.min(i, 4) * 60}>
-                  <div className="grid grid-cols-[3rem_1fr] sm:grid-cols-[5rem_1fr] gap-4 sm:gap-8 items-baseline py-8 sm:py-10">
-                    <span className="font-display text-brass text-2xl sm:text-3xl leading-none">{c.no}</span>
-                    <div>
-                      <h3 className="font-display font-normal text-eggshell text-2xl sm:text-3xl leading-tight">
-                        {c.name}
-                      </h3>
-                      <p className="mt-2 text-sm sm:text-base text-muted font-light">{c.detail}</p>
-                    </div>
-                  </div>
-                </Reveal>
-              </li>
-            ))}
-          </ul>
-
-          <Reveal>
-            <p className="mt-16 text-sm text-muted font-light leading-relaxed">
-              Thực đơn thay đổi theo mùa và theo chợ mỗi sáng.
-              <br className="hidden sm:block" />
-              <span className="text-eggshell">[Giá thực đơn]</span> mỗi khách · rượu ghép món tuỳ chọn.
-            </p>
-          </Reveal>
-        </div>
-      </section>
-
-      <div className="mx-auto max-w-6xl px-6 sm:px-8">
-        <EggshellInlay />
-      </div>
-
-      {/* ===================== 4 · KHÔNG GIAN ===================== */}
-      <section id="khong-gian" className="bg-lacquer">
-        <div className="mx-auto max-w-6xl px-6 sm:px-8 py-28 sm:py-36">
-          <Reveal>
-            <p className="eyebrow mb-14">Không gian</p>
-          </Reveal>
-          {/* Lưới không đều, im lặng — không caption, alt nằm ở role="img". */}
-          <div className="grid grid-cols-1 sm:grid-cols-12 gap-5 sm:gap-6">
-            <Reveal className="sm:col-span-7">
-              <Figure src={IMG.table} alt="Bàn ăn dưới ánh nến" className="w-full" style={{ aspectRatio: "16 / 11" }} sizes="(max-width: 768px) 100vw, 58vw" />
-            </Reveal>
-            <Reveal className="sm:col-span-5" delay={120}>
-              <Figure src={IMG.dish} alt="Một món trong thực đơn nếm theo mùa" className="w-full h-full" style={{ minHeight: "14rem" }} sizes="(max-width: 768px) 100vw, 42vw" />
-            </Reveal>
-            <Reveal className="sm:col-span-5" delay={80}>
-              <Figure src={IMG.moody} alt="Không gian ấm trầm dưới ánh đèn buổi tối" className="w-full h-full" style={{ minHeight: "14rem" }} sizes="(max-width: 768px) 100vw, 42vw" />
-            </Reveal>
-            <Reveal className="sm:col-span-7" delay={160}>
-              <Figure src={IMG.wine} alt="Ly rượu vang ghép món và bóng đổ trên bàn" className="w-full" style={{ aspectRatio: "16 / 10" }} sizes="(max-width: 768px) 100vw, 58vw" />
-            </Reveal>
+                </div>
+                <div
+                  aria-hidden="true"
+                  className="absolute inset-0"
+                  style={{ boxShadow: "inset 0 0 0 1px rgba(198,161,91,0.18)" }}
+                />
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      <div className="mx-auto max-w-6xl px-6 sm:px-8">
-        <EggshellInlay />
-      </div>
+      {/* ============================ 2 · TRIẾT LÝ ============================ */}
+      <section id="triet-ly" className="bg-then">
+        <div className="wrap py-28 sm:py-40">
+          <div className="lg:pl-[8.33%]">
+            <p data-reveal className="eyebrow mb-10">
+              Triết lý
+            </p>
+            <p
+              data-reveal
+              className="h-display text-trung max-w-4xl"
+              style={{ fontSize: "clamp(30px, 4vw, 52px)", lineHeight: 1.35, fontWeight: 340 }}
+            >
+              Tĩnh không phải là im lặng. Là để nguyên liệu lên tiếng đúng lúc nó{" "}
+              <em className="not-italic" style={{ color: "var(--color-son)" }}>
+                ngon nhất
+              </em>
+              , rồi đứng sang một bên. Chúng tôi chọn rau, cá, gia vị theo mùa của miền Bắc — nấu vừa đủ, bày vừa đủ,
+              và giữ lại phần lặng cho{" "}
+              <em className="not-italic" style={{ color: "var(--color-kim)" }}>
+                vị thật
+              </em>
+              .
+            </p>
+          </div>
+        </div>
+      </section>
 
-      {/* ===================== 5 · BẾP TRƯỞNG ===================== */}
-      <section id="bep-truong" className="bg-lacquer-2">
-        <div className="mx-auto max-w-6xl px-6 sm:px-8 py-28 sm:py-36 grid gap-12 lg:grid-cols-12 lg:items-center">
-          <Reveal className="lg:col-span-5">
-            <Figure src={IMG.chef} alt="Chân dung bếp trưởng của Thanh An" className="w-full" style={{ aspectRatio: "4 / 5" }} sizes="(max-width: 1024px) 100vw, 42vw" />
-          </Reveal>
-          <Reveal className="lg:col-span-6 lg:col-start-7" delay={120}>
-            <p className="eyebrow mb-8">Bếp trưởng</p>
-            <h2 className="font-display font-light text-eggshell text-4xl sm:text-5xl leading-tight">
+      {/* ============================ 3 · THỰC ĐƠN NẾM ============================ */}
+      <section id="thuc-don" className="bg-then-2">
+        <div className="wrap py-24 sm:py-32">
+          <div data-reveal className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-16">
+            <div>
+              <p className="eyebrow mb-4">Thực đơn</p>
+              <h2 className="h-display text-trung" style={{ fontSize: "clamp(34px, 4.5vw, 64px)" }}>
+                Thực đơn nếm
+              </h2>
+            </div>
+            <p className="text-khoi" style={{ fontSize: "14px", letterSpacing: "0.03em" }}>
+              Bảy chương · theo mùa
+            </p>
+          </div>
+
+          <div>
+            {COURSES.map((c, i) => (
+              <div key={c.no}>
+                {i > 0 && <hr className="hairline" />}
+                <div
+                  data-reveal
+                  className="menu-row grid grid-cols-[auto_1fr] sm:grid-cols-[auto_1fr_140px] items-center gap-5 sm:gap-10 px-2 sm:px-4 py-6 sm:py-7"
+                >
+                  <EggNum>{c.no}</EggNum>
+                  <div>
+                    <h3
+                      className="menu-name h-display text-trung"
+                      style={{ fontSize: "clamp(22px, 2.4vw, 30px)", lineHeight: 1.18 }}
+                    >
+                      {c.name}
+                    </h3>
+                    <p className="mt-1.5 text-khoi" style={{ fontSize: "15px" }}>
+                      {c.detail}
+                    </p>
+                  </div>
+                  <div className="hidden sm:block">
+                    <span className="block hairline w-full" />
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <p data-reveal className="mt-14 text-khoi max-w-xl" style={{ fontSize: "14px", lineHeight: 1.8 }}>
+            Thực đơn thay đổi theo mùa và theo chợ mỗi sáng.
+            <br />
+            <span className="text-trung">[Giá thực đơn]</span> mỗi khách · rượu ghép món tuỳ chọn.
+          </p>
+        </div>
+      </section>
+
+      {/* ============================ 4 · KHÔNG GIAN ============================ */}
+      <section id="khong-gian" className="bg-then">
+        <div className="wrap py-24 sm:py-32">
+          <p data-reveal className="eyebrow mb-12">
+            Không gian
+          </p>
+          {/* TODO: ảnh thật do khách cung cấp */}
+          <div className="grid grid-cols-2 md:grid-cols-6 gap-4 md:gap-5">
+            <div data-reveal className="col-span-2 md:col-span-4">
+              <Figure
+                src={IMG.table}
+                alt="Bàn ăn dưới ánh nến tại Thanh An"
+                caption="Bàn ăn dưới ánh nến"
+                parallax
+                sizes="(max-width: 768px) 100vw, 66vw"
+                style={{ aspectRatio: "16 / 10" }}
+                className="h-full"
+              />
+            </div>
+            <div data-reveal className="col-span-1 md:col-span-2">
+              <Figure
+                src={IMG.lacquer}
+                alt="Chi tiết mặt sơn mài trong không gian nhà hàng"
+                caption="Chi tiết mặt sơn mài"
+                parallax
+                sizes="(max-width: 768px) 50vw, 34vw"
+                style={{ aspectRatio: "3 / 4" }}
+                className="h-full"
+              />
+            </div>
+            <div data-reveal className="col-span-1 md:col-span-2">
+              <Figure
+                src={IMG.kitchen}
+                alt="Góc bếp mở nơi các món được hoàn thiện"
+                caption="Góc bếp mở"
+                parallax
+                sizes="(max-width: 768px) 50vw, 34vw"
+                style={{ aspectRatio: "3 / 4" }}
+                className="h-full"
+              />
+            </div>
+            <div data-reveal className="col-span-2 md:col-span-4">
+              <Figure
+                src={IMG.wine}
+                alt="Ly rượu vang và một nhành hồng đỏ trên bàn"
+                caption="Ly rượu & hồng đỏ"
+                parallax
+                sizes="(max-width: 768px) 100vw, 66vw"
+                style={{ aspectRatio: "16 / 10" }}
+                className="h-full"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ============================ 5 · BẾP TRƯỞNG ============================ */}
+      <section id="bep-truong" className="bg-then-2">
+        <div className="wrap py-24 sm:py-32 grid gap-12 lg:grid-cols-5 lg:items-center">
+          <div data-reveal className="lg:col-span-2">
+            {/* TODO: ảnh thật do khách cung cấp */}
+            <Figure
+              src={IMG.chef}
+              alt="Chân dung bếp trưởng của Thanh An trong ánh sáng trầm"
+              parallax
+              sizes="(max-width: 1024px) 100vw, 40vw"
+              style={{ aspectRatio: "4 / 5" }}
+            />
+          </div>
+          <div data-reveal className="lg:col-span-3 lg:pl-6">
+            <p className="eyebrow mb-6">Bếp trưởng</p>
+            <h2 className="h-display text-trung" style={{ fontSize: "clamp(30px, 3.6vw, 52px)" }}>
               [Tên bếp trưởng]
             </h2>
-            <div className="mt-8 space-y-5 text-muted font-light leading-relaxed max-w-md">
+            <div className="mt-8 space-y-5 text-khoi max-w-lg" style={{ fontSize: "17px", lineHeight: 1.8 }}>
+              <p>Lớn lên bên gian bếp củi của bà, [Tên] quen lắng nghe nguyên liệu trước khi chạm dao.</p>
               <p>
-                Lớn lên bên gian bếp củi của bà, [Tên] quen lắng nghe nguyên liệu trước khi chạm dao.
+                Sau nhiều năm qua những căn bếp lớn, anh trở về Hà Nội để nấu thứ bếp Việt mộc mạc mà mình nhớ nhất —
+                đúng mùa, và tĩnh.
               </p>
-              <p>
-                Sau nhiều năm qua những căn bếp lớn, anh trở về Hà Nội để nấu thứ bếp Việt mộc mạc mà
-                mình nhớ nhất — đúng mùa, và tĩnh.
-              </p>
-              <p className="text-eggshell">Mỗi tối, Thanh An chỉ dọn một thực đơn, cho những người ngồi lại.</p>
+              <p className="text-trung">Mỗi tối, Thanh An chỉ dọn một thực đơn, cho những người ngồi lại.</p>
             </div>
-          </Reveal>
+            <div className="mt-9 flex items-center gap-4">
+              <span
+                className="font-display italic"
+                style={{ fontSize: "30px", color: "var(--color-trung)", opacity: 0.9 }}
+              >
+                [Chữ ký]
+              </span>
+              <Seal size={40} />
+            </div>
+          </div>
         </div>
       </section>
 
-      <div className="mx-auto max-w-6xl px-6 sm:px-8">
-        <EggshellInlay />
-      </div>
-
-      {/* ===================== 6 · ĐẶT BÀN ===================== */}
-      <section id="dat-ban" className="bg-lacquer scroll-mt-24">
-        <div className="mx-auto max-w-4xl px-6 sm:px-8 py-28 sm:py-36">
-          <Reveal>
-            <p className="eyebrow mb-8">Đặt bàn</p>
-            <h2 className="font-display font-light text-eggshell text-4xl sm:text-5xl leading-tight">
+      {/* ============================ 6 · ĐẶT BÀN ============================ */}
+      <section id="dat-ban" className="bg-then scroll-mt-24">
+        <div className="wrap py-24 sm:py-32 grid gap-14 lg:grid-cols-5">
+          <div data-reveal className="lg:col-span-2">
+            <p className="eyebrow mb-6">Đặt bàn</p>
+            <h2 className="h-display text-trung" style={{ fontSize: "clamp(30px, 3.6vw, 52px)", lineHeight: 1.15 }}>
               Giữ chỗ cho buổi tối của bạn
             </h2>
-            <p className="mt-6 text-muted font-light leading-relaxed max-w-xl">
-              Thanh An phục vụ theo lượt, mỗi tối một thực đơn nếm. Vui lòng đặt trước — chúng tôi sẽ gọi
-              lại để xác nhận.
+            <p className="mt-6 text-khoi max-w-sm" style={{ fontSize: "16px", lineHeight: 1.8 }}>
+              Mỗi tối một thực đơn nếm, phục vụ theo lượt. Bạn để lại vài thông tin, chúng tôi sẽ gọi lại để xác nhận.
             </p>
-          </Reveal>
+            <div className="mt-10 pt-8" style={{ borderTop: "1px solid var(--hairline)" }}>
+              <p className="eyebrow mb-3" style={{ color: "var(--color-khoi)" }}>
+                Giờ mở cửa
+              </p>
+              <p className="text-trung" style={{ fontSize: "17px", lineHeight: 1.7 }}>
+                18:00 – 22:30
+                <br />
+                <span className="text-khoi">Thứ Ba – Chủ Nhật</span>
+              </p>
+            </div>
+          </div>
 
-          <Reveal delay={120}>
-            <form className="mt-14 grid gap-8 sm:grid-cols-2" onSubmit={handleSubmit} noValidate>
-              <Field
-                id="hoTen"
-                label="Họ tên"
-                value={form.hoTen}
-                error={errors.hoTen}
-                autoComplete="name"
-                onChange={(v) => setField("hoTen", v)}
-              />
-              <Field
-                id="soDienThoai"
-                label="Số điện thoại"
-                type="tel"
-                inputMode="tel"
-                value={form.soDienThoai}
-                error={errors.soDienThoai}
-                autoComplete="tel"
-                onChange={(v) => setField("soDienThoai", v)}
-              />
-              <Field
-                id="soKhach"
-                label="Số khách"
-                type="number"
-                min={1}
-                max={12}
-                value={form.soKhach}
-                error={errors.soKhach}
-                onChange={(v) => setField("soKhach", v)}
-              />
-              <Field
-                id="ngay"
-                label="Ngày"
-                type="date"
-                value={form.ngay}
-                error={errors.ngay}
-                onChange={(v) => setField("ngay", v)}
-              />
-              <Field
-                id="gio"
-                label="Giờ"
-                type="time"
-                value={form.gio}
-                error={errors.gio}
-                onChange={(v) => setField("gio", v)}
-              />
-              <div className="sm:col-span-1" />
-              <div className="sm:col-span-2">
-                <label htmlFor="ghiChu" className="field-label">
-                  Ghi chú <span className="normal-case tracking-normal text-muted/70">(dị ứng, dịp đặc biệt…)</span>
-                </label>
-                <textarea
-                  id="ghiChu"
-                  className="field-input"
-                  rows={3}
-                  value={form.ghiChu}
-                  onChange={(e) => setField("ghiChu", e.target.value)}
-                />
-              </div>
-
-              <div className="sm:col-span-2 flex flex-col sm:flex-row sm:items-center gap-6 pt-2">
-                <button type="submit" className="btn-brass">
-                  Xác nhận đặt bàn
+          <div data-reveal className="lg:col-span-3">
+            {done ? (
+              <div
+                className="flex flex-col items-start gap-5 p-9"
+                style={{ border: "1px solid var(--hairline)", background: "var(--color-then-2)" }}
+                role="status"
+              >
+                <Seal size={46} />
+                <p className="h-display text-trung" style={{ fontSize: "clamp(24px, 3vw, 34px)", lineHeight: 1.25 }}>
+                  Đã ghi nhận.
+                </p>
+                <p className="text-khoi" style={{ fontSize: "16px", lineHeight: 1.8 }}>
+                  Chúng tôi sẽ gọi lại để xác nhận bàn của bạn. Cảm ơn bạn đã chọn Thanh An cho buổi tối.
+                </p>
+                <button
+                  type="button"
+                  className="eyebrow"
+                  style={{ color: "var(--color-kim)" }}
+                  onClick={() => {
+                    setForm(EMPTY);
+                    setDone(false);
+                  }}
+                >
+                  Đặt thêm một bàn
                 </button>
-                <p className="text-sm text-muted font-light">Mở cửa 18:00 – 22:30 · Thứ Ba – Chủ Nhật</p>
               </div>
-            </form>
-          </Reveal>
+            ) : (
+              <form onSubmit={handleSubmit} noValidate className="grid gap-8 sm:grid-cols-2">
+                <Field
+                  id="hoTen"
+                  label="Họ tên"
+                  value={form.hoTen}
+                  error={errors.hoTen}
+                  autoComplete="name"
+                  placeholder="Nguyễn Văn A"
+                  onChange={(v) => setField("hoTen", v)}
+                />
+                <Field
+                  id="soDienThoai"
+                  label="Số điện thoại"
+                  type="tel"
+                  inputMode="tel"
+                  value={form.soDienThoai}
+                  error={errors.soDienThoai}
+                  autoComplete="tel"
+                  placeholder="09xx xxx xxx"
+                  onChange={(v) => setField("soDienThoai", v)}
+                />
+
+                {/* Số khách — select custom */}
+                <div className="field">
+                  <label htmlFor="soKhach" className="field-label">
+                    Số khách
+                  </label>
+                  <select
+                    id="soKhach"
+                    className="underline-input"
+                    value={form.soKhach}
+                    onChange={(e) => setField("soKhach", e.target.value)}
+                    aria-invalid={errors.soKhach ? "true" : undefined}
+                    aria-describedby={errors.soKhach ? "soKhach-err" : undefined}
+                    style={{ color: form.soKhach ? "var(--color-trung)" : "var(--color-khoi-2)" }}
+                  >
+                    <option value="" disabled>
+                      Mấy khách?
+                    </option>
+                    {[1, 2, 3, 4, 5, 6, 7, 8].map((n) => (
+                      <option key={n} value={String(n)}>
+                        {n} khách
+                      </option>
+                    ))}
+                  </select>
+                  {errors.soKhach && (
+                    <p id="soKhach-err" className="field-error" role="alert">
+                      {errors.soKhach}
+                    </p>
+                  )}
+                </div>
+
+                {/* Ngày — ẩn mm/dd/yyyy, overlay dd/mm/yyyy */}
+                <div className="field">
+                  <label htmlFor="ngay" className="field-label">
+                    Ngày
+                  </label>
+                  <div className="date-wrap">
+                    <input
+                      id="ngay"
+                      type="date"
+                      className="underline-input date-input"
+                      value={form.ngay}
+                      onChange={(e) => setField("ngay", e.target.value)}
+                      onClick={(e) => (e.currentTarget as HTMLInputElement).showPicker?.()}
+                      aria-invalid={errors.ngay ? "true" : undefined}
+                      aria-describedby={errors.ngay ? "ngay-err" : undefined}
+                    />
+                    <span className={`date-overlay ${form.ngay ? "filled" : ""}`}>
+                      {form.ngay ? formatVN(form.ngay) : "Chọn ngày"}
+                    </span>
+                  </div>
+                  {errors.ngay && (
+                    <p id="ngay-err" className="field-error" role="alert">
+                      {errors.ngay}
+                    </p>
+                  )}
+                </div>
+
+                {/* Giờ — dropdown khung giờ */}
+                <div className="field">
+                  <label htmlFor="gio" className="field-label">
+                    Giờ
+                  </label>
+                  <select
+                    id="gio"
+                    className="underline-input"
+                    value={form.gio}
+                    onChange={(e) => setField("gio", e.target.value)}
+                    aria-invalid={errors.gio ? "true" : undefined}
+                    aria-describedby={errors.gio ? "gio-err" : undefined}
+                    style={{ color: form.gio ? "var(--color-trung)" : "var(--color-khoi-2)" }}
+                  >
+                    <option value="" disabled>
+                      Chọn giờ
+                    </option>
+                    {TIME_SLOTS.map((t) => (
+                      <option key={t} value={t}>
+                        {t}
+                      </option>
+                    ))}
+                  </select>
+                  {errors.gio && (
+                    <p id="gio-err" className="field-error" role="alert">
+                      {errors.gio}
+                    </p>
+                  )}
+                </div>
+
+                <div className="sm:col-span-2 field">
+                  <label htmlFor="ghiChu" className="field-label">
+                    Ghi chú <span style={{ textTransform: "none", letterSpacing: 0 }}>(dị ứng, dịp đặc biệt…)</span>
+                  </label>
+                  <textarea
+                    id="ghiChu"
+                    rows={2}
+                    className="underline-input"
+                    style={{ resize: "none" }}
+                    value={form.ghiChu}
+                    onChange={(e) => setField("ghiChu", e.target.value)}
+                  />
+                </div>
+
+                <div className="sm:col-span-2 pt-2">
+                  <button type="submit" className="btn-son">
+                    Xác nhận đặt bàn
+                  </button>
+                </div>
+              </form>
+            )}
+          </div>
         </div>
       </section>
 
-      <div className="mx-auto max-w-6xl px-6 sm:px-8">
-        <EggshellInlay />
+      {/* ============================ 7 · FOOTER ============================ */}
+      <div className="wrap">
+        <hr className="hairline" />
       </div>
-
-      {/* ===================== 7 · FOOTER ===================== */}
-      <footer className="bg-lacquer-2">
-        <div className="mx-auto max-w-6xl px-6 sm:px-8 py-20 grid gap-12 sm:grid-cols-2 lg:grid-cols-4">
+      <footer className="bg-then-3">
+        <div className="wrap py-16 grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
           <div>
-            <p className="font-display text-3xl text-eggshell leading-none">Thanh An</p>
-            <p className="mt-4 text-sm text-muted font-light leading-relaxed">
+            <div className="flex items-center gap-3">
+              <Seal size={34} />
+              <span className="font-display text-trung" style={{ fontSize: "24px" }}>
+                Thanh An
+              </span>
+            </div>
+            <p className="mt-4 text-khoi" style={{ fontSize: "14px", lineHeight: 1.8 }}>
               Thực đơn nếm theo mùa của miền Bắc.
             </p>
           </div>
           <div>
-            <p className="field-label">Địa chỉ</p>
-            <p className="text-sm text-eggshell/90 font-light leading-relaxed">
+            <p className="eyebrow mb-3" style={{ color: "var(--color-khoi)" }}>
+              Địa chỉ
+            </p>
+            <p className="text-trung" style={{ fontSize: "15px", lineHeight: 1.8 }}>
               [Số nhà, tên đường]
               <br />
               [Phường / Quận], Hà Nội
             </p>
           </div>
           <div>
-            <p className="field-label">Giờ mở cửa</p>
-            <p className="text-sm text-eggshell/90 font-light leading-relaxed">
-              Thứ Ba – Chủ Nhật
-              <br />
-              18:00 – 22:30
+            <p className="eyebrow mb-3" style={{ color: "var(--color-khoi)" }}>
+              Giờ &amp; liên hệ
             </p>
-            <p className="mt-4 field-label">Điện thoại</p>
-            <p className="text-sm text-eggshell/90 font-light">[Số điện thoại]</p>
+            <p className="text-trung" style={{ fontSize: "15px", lineHeight: 1.8 }}>
+              18:00 – 22:30 · Thứ Ba – CN
+              <br />
+              [Số điện thoại]
+            </p>
           </div>
           <div>
-            <p className="field-label">Kết nối</p>
-            <ul className="space-y-2 text-sm">
-              <li>
-                <a href="#" className="text-eggshell/90 hover:text-brass transition-colors font-light">
-                  Instagram
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-eggshell/90 hover:text-brass transition-colors font-light">
-                  Facebook
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-eggshell/90 hover:text-brass transition-colors font-light">
-                  Xem bản đồ
-                </a>
-              </li>
+            <p className="eyebrow mb-3" style={{ color: "var(--color-khoi)" }}>
+              Kết nối
+            </p>
+            <ul className="space-y-2" style={{ fontSize: "15px" }}>
+              {["Instagram", "Facebook", "Xem bản đồ"].map((s) => (
+                <li key={s}>
+                  <a href="#" className="text-trung hover:text-kim transition-colors">
+                    {s}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
         </div>
-        <div className="mx-auto max-w-6xl px-6 sm:px-8 pb-10">
-          <p className="text-xs text-muted/70 tracking-wide">© 2026 Thanh An · Hà Nội</p>
+        <div className="wrap pb-12 flex items-center gap-3">
+          <Seal size={22} />
+          <p className="text-khoi" style={{ fontSize: "12px", letterSpacing: "0.04em" }}>
+            © 2026 Thanh An · Hà Nội
+          </p>
         </div>
       </footer>
-
-      {/* Toast giả lập — thay bằng phản hồi thật từ API sau. */}
-      <div aria-live="polite" className="fixed inset-x-0 bottom-0 z-50 flex justify-center pb-6 px-6 pointer-events-none">
-        {toast && (
-          <div className="pointer-events-auto max-w-md bg-lacquer-2 border border-brass px-6 py-4 text-sm text-eggshell font-light shadow-[0_0_0_1px_rgba(0,0,0,0.4)]">
-            {toast}
-          </div>
-        )}
-      </div>
     </div>
   );
 }
 
-/* ---- Trường nhập liệu dùng chung cho form đặt bàn ---- */
+/* ---- Trường nhập liệu underline dùng chung ---- */
 function Field({
   id,
   label,
@@ -457,8 +616,7 @@ function Field({
   type = "text",
   inputMode,
   autoComplete,
-  min,
-  max,
+  placeholder,
 }: {
   id: string;
   label: string;
@@ -468,12 +626,10 @@ function Field({
   type?: string;
   inputMode?: "text" | "tel" | "numeric";
   autoComplete?: string;
-  min?: number;
-  max?: number;
+  placeholder?: string;
 }) {
-  const errId = `${id}-error`;
   return (
-    <div>
+    <div className="field">
       <label htmlFor={id} className="field-label">
         {label}
       </label>
@@ -483,16 +639,15 @@ function Field({
         type={type}
         inputMode={inputMode}
         autoComplete={autoComplete}
-        min={min}
-        max={max}
+        placeholder={placeholder}
+        className="underline-input"
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        className="field-input"
         aria-invalid={error ? "true" : undefined}
-        aria-describedby={error ? errId : undefined}
+        aria-describedby={error ? `${id}-err` : undefined}
       />
       {error && (
-        <p id={errId} className="field-error" role="alert">
+        <p id={`${id}-err`} className="field-error" role="alert">
           {error}
         </p>
       )}

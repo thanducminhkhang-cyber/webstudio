@@ -1,46 +1,38 @@
 # Thanh An — Landing page nhà hàng fine-dining Việt
 
-Landing page 1 trang cho nhà hàng thực đơn nếm (tasting menu) theo mùa. Next.js 16
-(App Router) + TypeScript + Tailwind v4. Không dùng thư viện UI dùng chung — bản sắc
-thị giác riêng, lấy cảm hứng **sơn mài** (lacquer) với **khảm vỏ trứng** làm signature.
+Landing một trang cho nhà hàng thực đơn nếm theo mùa (ẩm thực miền Bắc, Hà Nội).
+Ngôn ngữ hình ảnh ground vào **sơn mài Việt**: nền *then* (đen ngả nâu), *son* (đỏ ta),
+*kim* (vàng thếp), *cẩn trứng* (vỏ trứng rạn), *con triện* đỏ.
+
+## Stack
+- Next.js 16 (App Router) + TypeScript + Tailwind v4
+- **GSAP + ScrollTrigger** (hero load-in, scroll reveal, parallax) + **Lenis** (smooth scroll)
+- Font `next/font`: **Fraunces** (display/heading) + **Be Vietnam Pro** (body/UI) — cả hai kèm subset `vietnamese`.
 
 ## Chạy
-
 Từ thư mục gốc monorepo `WebStudio`:
-
 ```bash
 corepack pnpm install
 corepack pnpm --filter tinh dev
 ```
-
-Mở http://localhost:3000 (hoặc PORT bạn đặt).
-
 Build: `corepack pnpm --filter tinh build`
 
 ## Kiến trúc
+- `app/globals.css` — 10 token màu sơn mài, cẩn trứng (nền số La Mã), grain overlay, form custom, hairline, trạng thái ẩn/hiện cho motion.
+- `app/layout.tsx` — font, `<noscript>` hiện lại nội dung khi không có JS, grain, `MotionProvider`.
+- `app/parts.tsx` — `MotionProvider` (Lenis + GSAP, tôn trọng `prefers-reduced-motion`, có failsafe để nội dung luôn hiện), `Seal` (con triện), `EggNum` (số La Mã trên cẩn trứng), `Figure` (ảnh + parallax).
+- `app/page.tsx` — 7 section: Hero · Triết lý · Thực đơn nếm (I–VII) · Không gian · Bếp trưởng · Đặt bàn · Footer.
 
-- `app/globals.css` — 6 token màu sơn mài (`--lacquer`, `--brass`, `--son`, `--eggshell`…),
-  `--radius: 0`, style form/nút/placeholder. Chỉ dùng đúng 6 màu này.
-- `app/layout.tsx` — font `Cormorant` (wordmark/heading) + `Be Vietnam Pro` (body),
-  đều kèm subset `vietnamese`.
-- `app/parts.tsx` — `EggshellInlay` (signature khảm vỏ trứng, SVG pattern),
-  `Reveal` (scroll reveal, tôn trọng `prefers-reduced-motion`), `Photo` (placeholder ảnh).
-- `app/page.tsx` — 7 section: Hero · Triết lý · Thực đơn nếm (I–VII) · Không gian ·
-  Bếp trưởng · Đặt bàn · Footer.
-
-## Cần thay (đều là PLACEHOLDER)
-
+## Placeholder cần thay (TODO)
 | Chỗ | Hiện tại | Thay bằng |
 |-----|----------|-----------|
-| Tên món / nguyên liệu | `COURSES` trong `app/page.tsx` | Thực đơn thật |
-| Giá | `[Giá thực đơn]` | Giá/khách thật |
-| Bếp trưởng | `[Tên bếp trưởng]`, `[Tên]` + 3 câu | Tên & tiểu sử thật |
-| Địa chỉ / SĐT | `[Số nhà…]`, `[Số điện thoại]` (footer + form) | Thông tin thật |
-| Thành phố | "Hà Nội" | Thành phố thật |
+| Ảnh | `IMG` trong `app/page.tsx` (ảnh minh hoạ Unsplash tông tối) | Ảnh thật; nên đặt `/public/images/*` |
+| Bếp trưởng | `[Tên bếp trưởng]`, `[Tên]`, `[Chữ ký]` | Tên & tiểu sử & chữ ký thật |
+| Giá | `[Giá thực đơn]` | Giá/khách |
+| Địa chỉ / SĐT | `[Số nhà…]`, `[Số điện thoại]` | Thông tin thật |
 | Mạng xã hội / bản đồ | `href="#"` | Link thật |
-| Ảnh | `<Photo>` (màu solid, có `alt` tiếng Việt) | `next/image` ảnh thật, `loading="lazy"` |
 
-## Nối API đặt bàn
-
-Form validate client-side + hiện toast "Đã ghi nhận" (giả lập). Chỗ nối API thật đã
-đánh dấu `// TODO` trong `handleSubmit` (`app/page.tsx`).
+## Ghi chú thiết kế
+- **Con triện** dùng ký tự **"An"** (Thanh An) thay cho "TỊNH/靜" trong brief gốc — vì tên hiển thị hiện là *Thanh An*, và tránh phải nhúng glyph CJK (dễ tofu).
+- Form đặt bàn: validate client-side, thông báo trong-giọng-thương-hiệu; **date** ẩn giao diện `mm/dd/yyyy` mặc định, overlay `dd/mm/yyyy`; **giờ / số khách** là select custom (không lộ `--:--`). Chỗ nối API thật: `// TODO` trong `handleSubmit`.
+- Ảnh: dùng ảnh minh hoạ remote qua `next/image` (đã cấu hình `remotePatterns`) vì môi trường không tải được file về `/public`. Đổi sang `/public/images` khi có ảnh thật.

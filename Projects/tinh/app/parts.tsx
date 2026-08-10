@@ -1,182 +1,244 @@
 "use client";
 
 import Image from "next/image";
-import React, { useEffect, useId, useRef, useState } from "react";
+import React, { useEffect } from "react";
 
 /* ============================================================================
-   SIGNATURE — motif khảm vỏ trứng (eggshell inlay).
-   Một hairline brass mảnh + các mảnh vỏ trứng li ti (SVG, không phải ảnh nặng).
-   CHỈ dùng ở divider giữa section và gạch chân wordmark — không bê đi nơi khác.
-
-   Các mảnh được sinh bằng LCG có seed cố định => server và client render
-   giống hệt nhau (không lệch hydration). Pattern userSpaceOnUse để mảnh vỏ
-   không bị kéo méo dù divider rộng bao nhiêu.
+   MotionProvider — Lenis smooth scroll + GSAP/ScrollTrigger.
+   • prefers-reduced-motion: không smooth-scroll, CSS đã hiện hết nội dung.
+   • JS lỗi / GSAP không tải được: revealAll() để nội dung luôn hiện.
+   • Chỉ animate transform/opacity.
    ========================================================================== */
-function makeTileShards() {
-  let s = 20240517;
-  const rnd = () => {
-    s = (s * 1664525 + 1013904223) >>> 0;
-    return s / 4294967296;
-  };
-  const W = 150;
-  const H = 24;
-  const CY = 12;
-  const n = 20;
-  const shards: { cx: number; cy: number; rot: number; op: number; pts: string }[] = [];
-  for (let i = 0; i < n; i++) {
-    const cx = rnd() * W;
-    const cy = CY + (rnd() - 0.5) * 11;
-    const size = 1.2 + rnd() * 3;
-    const rot = Math.round(rnd() * 90);
-    const op = +(0.4 + rnd() * 0.5).toFixed(2);
-    const pts = [
-      [-size * (0.6 + rnd() * 0.6), -size * (0.5 + rnd() * 0.5)],
-      [size * (0.5 + rnd() * 0.7), -size * (0.4 + rnd() * 0.6)],
-      [size * (0.6 + rnd() * 0.5), size * (0.5 + rnd() * 0.6)],
-      [-size * (0.5 + rnd() * 0.6), size * (0.4 + rnd() * 0.7)],
-    ]
-      .map(([x, y]) => `${x.toFixed(1)},${y.toFixed(1)}`)
-      .join(" ");
-    shards.push({ cx: +cx.toFixed(1), cy: +cy.toFixed(1), rot, op, pts });
-  }
-  return { W, H, shards };
-}
-const TILE = makeTileShards();
-
-export function EggshellInlay({
-  height = 24,
-  className = "",
-}: {
-  height?: number;
-  className?: string;
-}) {
-  const uid = useId().replace(/[:]/g, "");
-  const patId = `egg-${uid}`;
-  return (
-    <svg
-      className={className}
-      width="100%"
-      height={height}
-      aria-hidden="true"
-      focusable="false"
-      style={{ display: "block" }}
-    >
-      <defs>
-        <pattern id={patId} x="0" y="0" width={TILE.W} height={height} patternUnits="userSpaceOnUse">
-          {TILE.shards.map((sh, i) => (
-            <polygon
-              key={i}
-              points={sh.pts}
-              transform={`translate(${sh.cx} ${sh.cy}) rotate(${sh.rot})`}
-              fill="var(--color-eggshell)"
-              opacity={sh.op}
-            />
-          ))}
-        </pattern>
-      </defs>
-      {/* hairline brass */}
-      <rect x="0" y={height / 2 - 0.4} width="100%" height="0.8" fill="var(--color-brass)" opacity="0.5" />
-      {/* mảnh vỏ trứng khảm lên trên */}
-      <rect x="0" y="0" width="100%" height={height} fill={`url(#${patId})`} />
-    </svg>
-  );
-}
-
-/* ============================================================================
-   Reveal — fade/slide nhẹ khi vào khung nhìn. prefers-reduced-motion đã tắt
-   hiệu ứng ở globals.css (.reveal luôn hiện).
-   ========================================================================== */
-export function Reveal({
-  children,
-  className = "",
-  delay = 0,
-  as: Tag = "div",
-}: {
-  children: React.ReactNode;
-  className?: string;
-  delay?: number;
-  as?: React.ElementType;
-}) {
-  const ref = useRef<HTMLElement | null>(null);
-  const [shown, setShown] = useState(false);
-
+export function MotionProvider() {
   useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const io = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setShown(true);
-          io.disconnect();
+    let cancelled = false;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    let lenis: any = null;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    let gsapRef: any = null;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    let tickerFn: any = null;
+    let cleanupExtra: (() => void) | null = null;
+
+    const HERO_SEL =
+      "[data-hero-line],[data-hero-seal],[data-hero-img-inner],[data-hero-eyebrow],[data-hero-sub],[data-hero-cta]";
+
+    // Hiện phần tử bằng style trực tiếp (KHÔNG phụ thuộc rAF/GSAP).
+    const snap = (sel: string, inViewOnly = false) => {
+      document.querySelectorAll<HTMLElement>(sel).forEach((el) => {
+        if (inViewOnly) {
+          const r = el.getBoundingClientRect();
+          if (!(r.top < window.innerHeight * 0.95 && r.bottom > 0)) return;
         }
-      },
-      { threshold: 0.15, rootMargin: "0px 0px -8% 0px" }
-    );
-    io.observe(el);
-    return () => io.disconnect();
+        el.style.opacity = "1";
+        el.style.transform = "none";
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        (el as any).__rv = true;
+      });
+    };
+
+    // FAILSAFE: nếu animation không chạy được (rAF bị đóng băng / GSAP lỗi),
+    // vẫn hiện hero + nội dung đang trong khung nhìn sau 1.8s => "visible by default".
+    const failsafe = window.setTimeout(() => {
+      snap(HERO_SEL);
+      snap("[data-reveal]", true);
+    }, 1800);
+
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    (async () => {
+      if (reduce) return; // CSS @media đã hiện hết; giữ trang tĩnh.
+      try {
+        const [gsapMod, stMod, lenisMod] = await Promise.all([
+          import("gsap"),
+          import("gsap/ScrollTrigger"),
+          import("lenis"),
+        ]);
+        if (cancelled) return;
+
+        const gsap = gsapMod.default;
+        const ScrollTrigger = stMod.ScrollTrigger;
+        const Lenis = lenisMod.default;
+        gsap.registerPlugin(ScrollTrigger);
+        gsapRef = gsap;
+
+        // --- Lenis ---
+        lenis = new Lenis({ lerp: 0.08, smoothWheel: true });
+        lenis.on("scroll", ScrollTrigger.update);
+        tickerFn = (time: number) => lenis.raf(time * 1000);
+        gsap.ticker.add(tickerFn);
+        gsap.ticker.lagSmoothing(0);
+
+        // Anchor links -> cuộn mượt bằng Lenis
+        const onAnchor = (e: MouseEvent) => {
+          const a = (e.target as HTMLElement)?.closest?.('a[href^="#"]') as HTMLAnchorElement | null;
+          if (!a) return;
+          const id = a.getAttribute("href");
+          if (!id || id.length < 2) return;
+          const target = document.querySelector(id);
+          if (target) {
+            e.preventDefault();
+            lenis.scrollTo(target as HTMLElement, { offset: -12 });
+          }
+        };
+        document.addEventListener("click", onAnchor);
+
+        // --- HERO load-in (orchestrated ~1.2s) ---
+        const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+        tl.to("[data-hero-eyebrow]", { opacity: 1, y: 0, duration: 0.6 })
+          .to("[data-hero-line]", { yPercent: 0, duration: 1.05, stagger: 0.12 }, "-=0.15")
+          .to("[data-hero-sub]", { opacity: 1, y: 0, duration: 0.7 }, "-=0.55")
+          .to("[data-hero-cta]", { opacity: 1, y: 0, duration: 0.6 }, "-=0.5")
+          .to("[data-hero-seal]", { opacity: 1, scale: 1, duration: 0.8, ease: "back.out(1.5)" }, "-=0.65")
+          .to("[data-hero-img-inner]", { scale: 1, duration: 1.6, ease: "power2.out" }, 0);
+
+        // --- Scroll reveals: theo scroll thật (+ IO dự phòng) ---
+        const revealEl = (el: Element) => {
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          if ((el as any).__rv) return;
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          (el as any).__rv = true;
+          gsap.to(el, { opacity: 1, y: 0, duration: 0.9, ease: "power3.out", overwrite: true });
+        };
+        const checkReveals = () => {
+          const vh = window.innerHeight;
+          document.querySelectorAll<HTMLElement>("[data-reveal]").forEach((el) => {
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            if ((el as any).__rv) return;
+            const r = el.getBoundingClientRect();
+            if (r.top < vh * 0.88 && r.bottom > 0) revealEl(el);
+          });
+        };
+        checkReveals();
+        window.addEventListener("scroll", checkReveals, { passive: true });
+        window.addEventListener("resize", checkReveals);
+        lenis.on("scroll", checkReveals);
+
+        const io = new IntersectionObserver(
+          (entries) => entries.forEach((en) => en.isIntersecting && revealEl(en.target)),
+          { threshold: 0.12, rootMargin: "0px 0px -8% 0px" }
+        );
+        document.querySelectorAll("[data-reveal]").forEach((el) => io.observe(el));
+
+        // --- Parallax (giữ scale để không hở mép) ---
+        gsap.utils.toArray<HTMLElement>("[data-parallax]").forEach((el) => {
+          gsap.fromTo(
+            el,
+            { yPercent: 6, scale: 1.12 },
+            {
+              yPercent: -6,
+              scale: 1.12,
+              ease: "none",
+              scrollTrigger: { trigger: el, start: "top bottom", end: "bottom top", scrub: true },
+            }
+          );
+        });
+
+        ScrollTrigger.refresh();
+
+        cleanupExtra = () => {
+          document.removeEventListener("click", onAnchor);
+          window.removeEventListener("scroll", checkReveals);
+          window.removeEventListener("resize", checkReveals);
+          io.disconnect();
+          ScrollTrigger.getAll().forEach((t) => t.kill());
+        };
+      } catch {
+        snap(HERO_SEL);
+        snap("[data-reveal]");
+      }
+    })();
+
+    return () => {
+      cancelled = true;
+      window.clearTimeout(failsafe);
+      try {
+        if (gsapRef && tickerFn) gsapRef.ticker.remove(tickerFn);
+      } catch {}
+      try {
+        cleanupExtra?.();
+      } catch {}
+      try {
+        lenis?.destroy();
+      } catch {}
+    };
   }, []);
 
-  return (
-    <Tag
-      ref={ref}
-      className={`reveal ${shown ? "is-visible" : ""} ${className}`.trim()}
-      style={delay ? { transitionDelay: `${delay}ms` } : undefined}
-    >
-      {children}
-    </Tag>
-  );
+  return null;
 }
 
 /* ============================================================================
-   Photo — placeholder ảnh bằng màu solid, có alt tiếng Việt (role="img").
-   Khi có ảnh thật: thay bằng <Image ... alt={label} loading="lazy" />.
+   Seal — con dấu triện đỏ son (logomark). Ký tự "An" (Thanh An).
    ========================================================================== */
-export function Photo({
-  label,
+export function Seal({
+  size = 56,
   className = "",
-  style,
+  label = "Con dấu triện Thanh An",
 }: {
-  label: string;
+  size?: number;
   className?: string;
-  style?: React.CSSProperties;
+  label?: string;
 }) {
   return (
-    <div className={`photo-ph ${className}`.trim()} role="img" aria-label={label} style={style}>
-      <span className="ph-label">{label}</span>
-    </div>
+    <span
+      className={`seal ${className}`.trim()}
+      style={{ width: size, height: size, fontSize: Math.round(size * 0.4) }}
+      role="img"
+      aria-label={label}
+    >
+      <span style={{ fontStyle: "italic", fontWeight: 500, transform: "translateY(-1px)" }}>An</span>
+    </span>
   );
 }
 
 /* ============================================================================
-   Figure — ảnh thật (next/image), khung brass mảnh + tông tối hoà sơn mài.
-   Lazy-load mặc định; `alt` tiếng Việt bắt buộc. Đổi ảnh tại IMG trong page.tsx.
+   EggNum — số La Mã trên nền cẩn trứng (vỏ trứng rạn).
+   ========================================================================== */
+export function EggNum({ children }: { children: React.ReactNode }) {
+  return (
+    <span className="eggnum eggshell" aria-hidden="true">
+      <span className="eggnum-text">{children}</span>
+    </span>
+  );
+}
+
+/* ============================================================================
+   Figure — ảnh thật (next/image) trong khung; hỗ trợ parallax + caption.
+   Đổi ảnh tại IMG trong page.tsx. TODO: thay bằng ảnh thật của nhà hàng.
    ========================================================================== */
 export function Figure({
   src,
   alt,
+  caption,
   className = "",
   style,
   sizes = "(max-width: 768px) 100vw, 50vw",
   priority = false,
+  parallax = false,
 }: {
   src: string;
   alt: string;
+  caption?: string;
   className?: string;
   style?: React.CSSProperties;
   sizes?: string;
   priority?: boolean;
+  parallax?: boolean;
 }) {
   return (
-    <div className={`photo-ph ${className}`.trim()} style={style}>
-      <Image
-        src={src}
-        alt={alt}
-        fill
-        sizes={sizes}
-        priority={priority}
-        className="object-cover"
-        style={{ filter: "saturate(0.9) brightness(0.9)" }}
-      />
-    </div>
+    <figure className={`gfig ${className}`.trim()} style={style}>
+      <div className="absolute inset-0" data-parallax={parallax ? "" : undefined}>
+        <Image
+          src={src}
+          alt={alt}
+          fill
+          sizes={sizes}
+          priority={priority}
+          className="object-cover"
+          style={{ filter: "saturate(0.9) brightness(0.92)" }}
+        />
+      </div>
+      {caption ? <figcaption className="gcap">{caption}</figcaption> : null}
+    </figure>
   );
 }
