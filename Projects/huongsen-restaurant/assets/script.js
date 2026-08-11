@@ -143,9 +143,13 @@ if (canSmooth) {
 /* ===== LAZY-PLAY CANDLE VIDEO ===== */
 const fv = document.getElementById('featureVideo');
 if (fv) {
+  fv.loop = false;
+  let ended = false;
+  fv.addEventListener('ended', () => { ended = true; fv.pause(); });
   const vio = new IntersectionObserver((entries) => {
     entries.forEach(e => {
-      if (e.isIntersecting) { fv.play().catch(() => {}); }
+      if (ended) return;               // played once → stay frozen, never replay
+      if (e.isIntersecting) fv.play().catch(() => {});
       else fv.pause();
     });
   }, { threshold: 0.2 });
