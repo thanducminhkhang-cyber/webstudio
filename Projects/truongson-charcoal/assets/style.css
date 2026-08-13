@@ -9,7 +9,7 @@
   --ember:#ff5a1f;
   --ember-2:#ff8a3d;
   --line:rgba(255,90,31,.20);
-  --display:"Oswald",sans-serif;
+  --display:"Barlow Condensed",sans-serif;
   --sans:"Barlow",sans-serif;
   --ease:cubic-bezier(.22,1,.36,1);
 }
@@ -222,7 +222,12 @@ html.smooth-on #smooth-content{position:fixed;top:0;left:0;width:100%;will-chang
 .why__item{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:30px 26px;
   transition:transform .4s var(--ease),border-color .4s}
 .why__item:hover{transform:translateY(-6px);border-color:var(--ember)}
-.why__item span{font-size:2rem;display:block;margin-bottom:14px}
+.why__ico{width:52px;height:52px;border-radius:10px;display:grid;place-items:center;margin-bottom:18px;
+  background:linear-gradient(135deg,rgba(255,90,31,.16),rgba(255,90,31,.05));
+  border:1px solid var(--line);color:var(--ember-2);transition:background .4s,color .4s}
+.why__item:hover .why__ico{background:var(--ember);color:#0c0b0a}
+.why__ico svg{width:26px;height:26px;fill:none;stroke:currentColor;stroke-width:1.6;
+  stroke-linecap:round;stroke-linejoin:round}
 .why__item h3{font-family:var(--display);font-size:1.15rem;text-transform:uppercase;letter-spacing:.02em;margin-bottom:8px}
 .why__item p{color:var(--muted);font-size:.94rem}
 
