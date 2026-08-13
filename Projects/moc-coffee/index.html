@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Nhà Rang Mộc · Cà Phê Đặc Sản Rang Thủ Công</title>
+<meta name="description" content="Nhà Rang Mộc — cà phê đặc sản Việt Nam, tuyển hạt, rang mộc mỗi ngày và pha thủ công. Ghé quán hoặc mua cà phê hạt mang về." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Caveat:wght@500;600;700&family=Be+Vietnam+Pro:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/style.css" />
+</head>
+<body>
+<div class="grain" aria-hidden="true"></div>
+
+<!-- ===== PRELOADER ===== -->
+<div class="preloader" id="preloader">
+  <div class="pre__cup">
+    <svg viewBox="0 0 80 80" class="pre__svg">
+      <path class="pre__steam" d="M34 18 C30 12 38 10 34 4"/>
+      <path class="pre__steam" d="M46 18 C42 12 50 10 46 4"/>
+      <path class="pre__cup-p" d="M18 30 h40 v14 a20 20 0 0 1 -40 0 Z"/>
+      <path class="pre__cup-p" d="M58 32 h8 a6 6 0 0 1 0 12 h-6"/>
+      <path class="pre__cup-p" d="M14 60 h48"/>
+    </svg>
+  </div>
+  <span class="pre__word">NHÀ RANG MỘC</span>
+</div>
+
+<!-- ===== PROGRESS ===== -->
+<div class="progress" id="progress"></div>
+
+<!-- ===== ANNOUNCE ===== -->
+<div class="announce">☕ Rang mới mỗi ngày · Miễn phí giao nội thành cho đơn từ 300.000đ</div>
+
+<!-- ===== NAV ===== -->
+<header class="nav" id="nav">
+  <a href="#home" class="nav__brand">Nhà Rang <span>Mộc</span><small>est. 2019</small></a>
+  <nav class="nav__links" id="navLinks">
+    <a href="#story">Câu Chuyện</a>
+    <a href="#menu">Thực Đơn</a>
+    <a href="#beans">Cà Phê Hạt</a>
+    <a href="#space">Không Gian</a>
+    <a href="#visit" class="nav__cta">Ghé Quán</a>
+  </nav>
+  <button class="nav__burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+</header>
+
+<!-- ===== HERO ===== -->
+<section class="hero" id="home">
+  <div class="hero__left">
+    <p class="script hero__eyebrow reveal">rang mộc mỗi sáng</p>
+    <h1 class="hero__title reveal">Cà phê đặc sản,<br>pha bằng <em>cả tấm lòng.</em></h1>
+    <p class="hero__sub reveal">Từ những nông trại cà phê Việt Nam, chúng tôi tự tay tuyển hạt,
+      rang mộc mỗi ngày và pha thủ công — để mỗi tách là một câu chuyện thật.</p>
+    <div class="hero__actions reveal">
+      <a href="#menu" class="btn btn--fill">Xem Thực Đơn</a>
+      <a href="#visit" class="btn btn--line">Ghé Quán</a>
+    </div>
+    <div class="hero__chips reveal">
+      <span>◦ Cầu Đất — Lâm Đồng</span>
+      <span>◦ Arabica &amp; Robusta</span>
+      <span>◦ Rang thủ công</span>
+    </div>
+  </div>
+  <div class="hero__right reveal">
+    <div class="hero__photo"><img src="https://images.pexels.com/photos/32590864/pexels-photo-32590864.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Barista rót sữa tạo hình latte" /></div>
+    <div class="stamp" aria-hidden="true">
+      <svg viewBox="0 0 200 200">
+        <defs><path id="circ" d="M100,100 m-74,0 a74,74 0 1,1 148,0 a74,74 0 1,1 -148,0"/></defs>
+        <text><textPath href="#circ">· NHÀ RANG MỘC · CÀ PHÊ ĐẶC SẢN · RANG THỦ CÔNG </textPath></text>
+      </svg>
+      <span class="stamp__mid">✻</span>
+    </div>
+    <svg class="hero__bean" viewBox="0 0 60 40" aria-hidden="true"><ellipse cx="30" cy="20" rx="26" ry="15"/><path d="M30 6 C22 14 22 26 30 34"/></svg>
+  </div>
+</section>
+
+<!-- ===== TRUST STRIP ===== -->
+<section class="trust">
+  <div class="trust__item reveal"><svg viewBox="0 0 40 40"><ellipse cx="20" cy="20" rx="14" ry="9"/><path d="M20 9 C14 15 14 25 20 31"/></svg><b>Hạt đặc sản</b><span>Tuyển chọn từng lô</span></div>
+  <div class="trust__item reveal"><svg viewBox="0 0 40 40"><path d="M20 6 C17 14 10 16 10 24 a10 10 0 0 0 20 0 C30 19 25 18 25 12 C25 17 21 17 20 13 Z"/></svg><b>Rang mộc mỗi ngày</b><span>Mẻ nhỏ, canh lửa tay</span></div>
+  <div class="trust__item reveal"><svg viewBox="0 0 40 40"><path d="M12 22 h16 a10 10 0 0 1 -16 0Z"/><path d="M28 23 h4 a3 3 0 0 1 0 6h-3"/><path d="M18 15 c-3-3 3-4 0-8M24 15 c-3-3 3-4 0-8"/></svg><b>Pha thủ công</b><span>Từng tách một</span></div>
+  <div class="trust__item reveal"><svg viewBox="0 0 40 40"><circle cx="14" cy="28" r="5"/><circle cx="30" cy="28" r="5"/><path d="M14 28 l6-12h7l3 12M17 16h10"/></svg><b>Giao nhanh</b><span>Nội thành trong ngày</span></div>
+</section>
+
+<!-- ===== STORY ===== -->
+<section class="story" id="story">
+  <div class="story__media reveal">
+    <div class="story__photo"><img src="https://images.pexels.com/photos/35283349/pexels-photo-35283349.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Bàn tay cầm hạt cà phê vừa rang" /></div>
+    <div class="story__note script">rang mẻ nhỏ,<br>canh lửa bằng tay</div>
+  </div>
+  <div class="story__text">
+    <p class="label script reveal">câu chuyện của mộc</p>
+    <h2 class="reveal">Từ nông trại đến tách của bạn</h2>
+    <p class="reveal">Mộc bắt đầu từ một niềm tin giản dị: cà phê ngon không cần cầu kỳ, chỉ cần
+      tử tế với hạt. Chúng tôi về tận vườn ở Cầu Đất, Sơn La, Đắk Lắk để chọn những
+      lô hạt chín đều nhất.</p>
+    <p class="reveal">Mỗi sáng, hạt được rang thành mẻ nhỏ, canh lửa hoàn toàn bằng tay để giữ trọn
+      hương vị nguyên bản. Không hương liệu, không tẩm ướp — chỉ có cà phê thật.</p>
+    <a href="#beans" class="link-arrow reveal">Khám phá cà phê hạt →</a>
+  </div>
+</section>
+
+<!-- ===== MENU (drinks) ===== -->
+<section class="menu" id="menu">
+  <div class="head">
+    <p class="label script reveal">thực đơn</p>
+    <h2 class="reveal">Thức uống ký gửi cả tâm tình</h2>
+    <p class="head__sub reveal">Pha thủ công từ hạt rang mộc trong ngày.</p>
+  </div>
+  <div class="menu__grid">
+    <article class="drink reveal">
+      <div class="drink__img"><img src="https://images.pexels.com/photos/14630373/pexels-photo-14630373.jpeg?auto=compress&cs=tinysrgb&w=600" alt="" /></div>
+      <div class="drink__info"><div class="drink__top"><h3>Cà phê sữa đá</h3><span class="dot"></span><b>35k</b></div><p>Đậm đà, béo ngậy — chuẩn vị Việt.</p></div>
+    </article>
+    <article class="drink reveal">
+      <div class="drink__img"><img src="https://images.pexels.com/photos/34519662/pexels-photo-34519662.jpeg?auto=compress&cs=tinysrgb&w=600" alt="" /></div>
+      <div class="drink__info"><div class="drink__top"><h3>Bạc xỉu</h3><span class="dot"></span><b>39k</b></div><p>Nhẹ nhàng, nhiều sữa, ngọt dịu.</p></div>
+    </article>
+    <article class="drink reveal">
+      <div class="drink__img"><img src="https://images.pexels.com/photos/27126844/pexels-photo-27126844.jpeg?auto=compress&cs=tinysrgb&w=600" alt="" /></div>
+      <div class="drink__info"><div class="drink__top"><h3>Cold Brew</h3><span class="dot"></span><b>45k</b></div><p>Ủ lạnh 18 giờ, thanh mát, ít chua.</p></div>
+    </article>
+    <article class="drink reveal">
+      <div class="drink__img"><img src="https://images.pexels.com/photos/4869292/pexels-photo-4869292.jpeg?auto=compress&cs=tinysrgb&w=600" alt="" /></div>
+      <div class="drink__info"><div class="drink__top"><h3>Cà phê trứng</h3><span class="dot"></span><b>45k</b></div><p>Kem trứng bồng bềnh, ấm nóng.</p></div>
+    </article>
+    <article class="drink reveal">
+      <div class="drink__img"><img src="https://images.pexels.com/photos/4815956/pexels-photo-4815956.jpeg?auto=compress&cs=tinysrgb&w=600" alt="" /></div>
+      <div class="drink__info"><div class="drink__top"><h3>Espresso</h3><span class="dot"></span><b>30k</b></div><p>Nguyên bản, đậm, hậu vị socola.</p></div>
+    </article>
+    <article class="drink reveal">
+      <div class="drink__img"><img src="https://images.pexels.com/photos/27126844/pexels-photo-27126844.jpeg?auto=compress&cs=tinysrgb&w=600&h=600&fit=crop&dpr=1" alt="" /></div>
+      <div class="drink__info"><div class="drink__top"><h3>Cappuccino</h3><span class="dot"></span><b>42k</b></div><p>Bọt sữa mịn, cân bằng, thơm nhẹ.</p></div>
+    </article>
+  </div>
+</section>
+
+<!-- ===== CRAFT STEPS ===== -->
+<section class="craft">
+  <div class="head">
+    <p class="label script reveal">tỉ mỉ từng bước</p>
+    <h2 class="reveal">3 điều làm nên một tách Mộc</h2>
+  </div>
+  <div class="craft__grid">
+    <div class="cstep reveal"><span class="cstep__n">01</span><h3>Chọn hạt</h3><p>Tuyển từng lô từ các nông trại đối tác, chỉ lấy hạt chín đều.</p></div>
+    <div class="cstep reveal"><span class="cstep__n">02</span><h3>Rang mộc</h3><p>Rang mẻ nhỏ mỗi ngày, canh lửa bằng tay để giữ hương nguyên bản.</p></div>
+    <div class="cstep reveal"><span class="cstep__n">03</span><h3>Pha thủ công</h3><p>Barista pha từng tách bằng tay, cân đo tỉ lệ chuẩn xác.</p></div>
+  </div>
+</section>
+
+<!-- ===== BEANS (retail) ===== -->
+<section class="beans" id="beans">
+  <div class="head">
+    <p class="label script reveal">mang về nhà</p>
+    <h2 class="reveal">Cà phê hạt rang mộc</h2>
+    <p class="head__sub reveal">Đóng gói van một chiều, gói 250g — rang theo đơn.</p>
+  </div>
+  <div class="beans__grid">
+    <article class="bean-card reveal">
+      <div class="bean-card__img"><img src="https://images.pexels.com/photos/4815950/pexels-photo-4815950.jpeg?auto=compress&cs=tinysrgb&w=700" alt="" /></div>
+      <div class="bean-card__body">
+        <span class="roast">Rang nhạt</span>
+        <h3>Cầu Đất Honey</h3>
+        <p class="notes">Hương: hoa nhài · cam · mật ong</p>
+        <div class="bean-card__foot"><b>135.000đ</b><span>/ 250g</span></div>
+      </div>
+    </article>
+    <article class="bean-card reveal">
+      <div class="bean-card__img"><img src="https://images.pexels.com/photos/22938072/pexels-photo-22938072.jpeg?auto=compress&cs=tinysrgb&w=700" alt="" /></div>
+      <div class="bean-card__body">
+        <span class="roast">Rang vừa</span>
+        <h3>Sơn La Natural</h3>
+        <p class="notes">Hương: socola · hạt dẻ · mận chín</p>
+        <div class="bean-card__foot"><b>120.000đ</b><span>/ 250g</span></div>
+      </div>
+    </article>
+    <article class="bean-card reveal">
+      <div class="bean-card__img"><img src="https://images.pexels.com/photos/16682442/pexels-photo-16682442.jpeg?auto=compress&cs=tinysrgb&w=700" alt="" /></div>
+      <div class="bean-card__body">
+        <span class="roast">Rang đậm</span>
+        <h3>Robusta Honey</h3>
+        <p class="notes">Hương: caramel · đậm · hậu ngọt</p>
+        <div class="bean-card__foot"><b>98.000đ</b><span>/ 250g</span></div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ===== FEATURE QUOTE ===== -->
+<section class="quotev">
+  <svg class="quotev__cup" viewBox="0 0 120 90" aria-hidden="true">
+    <path class="s" d="M48 26 C42 16 56 14 48 4"/>
+    <path class="s" d="M62 26 C56 16 70 14 62 4"/>
+    <path class="s" d="M76 26 C70 16 84 14 76 4"/>
+    <path class="c" d="M26 40 h64 v18 a30 30 0 0 1 -64 0 Z"/>
+    <path class="c" d="M90 43 h12 a9 9 0 0 1 0 18 h-9"/>
+    <path class="c" d="M20 80 h76"/>
+  </svg>
+  <blockquote class="script reveal">"Một tách cà phê ngon<br>bắt đầu từ sự tử tế với hạt."</blockquote>
+  <p class="quotev__by reveal">— Mộc, người rang cà phê</p>
+</section>
+
+<!-- ===== SPACE / GALLERY ===== -->
+<section class="space" id="space">
+  <div class="head">
+    <p class="label script reveal">không gian</p>
+    <h2 class="reveal">Một góc chậm giữa phố</h2>
+  </div>
+  <div class="space__grid">
+    <figure class="sp sp--big reveal"><img src="https://images.pexels.com/photos/3968056/pexels-photo-3968056.jpeg?auto=compress&cs=tinysrgb&w=900" alt="" /></figure>
+    <figure class="sp reveal"><img src="https://images.pexels.com/photos/1855214/pexels-photo-1855214.jpeg?auto=compress&cs=tinysrgb&w=700" alt="" /></figure>
+    <figure class="sp reveal"><img src="https://images.pexels.com/photos/7601665/pexels-photo-7601665.jpeg?auto=compress&cs=tinysrgb&w=700" alt="" /></figure>
+    <figure class="sp reveal"><img src="https://images.pexels.com/photos/15860802/pexels-photo-15860802.jpeg?auto=compress&cs=tinysrgb&w=700" alt="" /></figure>
+    <figure class="sp reveal"><img src="https://images.pexels.com/photos/4916548/pexels-photo-4916548.jpeg?auto=compress&cs=tinysrgb&w=700" alt="" /></figure>
+  </div>
+</section>
+
+<!-- ===== VISIT ===== -->
+<section class="visit" id="visit">
+  <div class="visit__card">
+    <div class="visit__left reveal">
+      <p class="label script">ghé mộc</p>
+      <h2>Mời bạn một tách,<br>chậm lại một chút.</h2>
+      <ul class="visit__info">
+        <li><svg viewBox="0 0 24 24"><path d="M12 2c-4 0-7 3-7 7 0 5 7 13 7 13s7-8 7-13c0-4-3-7-7-7Z"/><circle cx="12" cy="9" r="2.5"/></svg> [Địa chỉ quán], TP.HCM</li>
+        <li><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg> 7:00 – 22:30 · Cả tuần</li>
+        <li><svg viewBox="0 0 24 24"><path d="M5 4h4l2 5-3 2c1 3 3 5 6 6l2-3 5 2v4c0 1-1 2-2 2A16 16 0 0 1 3 6c0-1 1-2 2-2Z"/></svg> [SĐT / Zalo đặt bàn]</li>
+      </ul>
+      <a href="#" class="btn btn--fill">Chỉ đường tới quán</a>
+    </div>
+    <form class="visit__form reveal" id="bookForm" novalidate>
+      <p class="visit__form-title">Đặt bàn / Đặt hàng nhanh</p>
+      <div class="f"><input type="text" id="name" required placeholder=" " /><label for="name">Tên của bạn *</label></div>
+      <div class="f"><input type="tel" id="phone" required placeholder=" " /><label for="phone">Số điện thoại *</label></div>
+      <div class="f"><select id="need"><option value="">Nhu cầu</option><option>Ghé quán / đặt bàn</option><option>Mua cà phê hạt</option><option>Đặt tiệc / số lượng lớn</option></select></div>
+      <div class="f"><textarea id="msg" rows="2" placeholder=" "></textarea><label for="msg">Lời nhắn</label></div>
+      <button type="submit" class="btn btn--fill btn--full">Gửi cho Mộc</button>
+      <p class="ok" id="ok">✓ Cảm ơn bạn! Mộc sẽ liên hệ lại ngay nhé.</p>
+    </form>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="foot">
+  <div class="foot__top">
+    <div class="foot__brand">
+      <h3>Nhà Rang Mộc</h3>
+      <p class="script">cà phê thật, tử tế với hạt</p>
+      <div class="foot__social"><a href="#">Facebook</a><a href="#">Instagram</a><a href="#">TikTok</a></div>
+    </div>
+    <div class="foot__col"><h4>Khám phá</h4><a href="#story">Câu chuyện</a><a href="#menu">Thực đơn</a><a href="#beans">Cà phê hạt</a><a href="#space">Không gian</a></div>
+    <div class="foot__col"><h4>Ghé quán</h4><p>[Địa chỉ], TP.HCM</p><p>7:00 – 22:30</p><p>[SĐT / Zalo]</p></div>
+  </div>
+  <div class="foot__bottom">
+    <span>© 2026 Nhà Rang Mộc. Thiết kế bởi WSOS Studio.</span>
+    <a href="#home">Lên đầu trang ↑</a>
+  </div>
+</footer>
+
+<script src="assets/script.js"></script>
+</body>
+</html>
