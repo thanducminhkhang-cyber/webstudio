@@ -179,3 +179,12 @@ form.addEventListener('submit', (e) => {
 });
 const dateEl = document.getElementById('date');
 if (dateEl) dateEl.min = new Date().toISOString().split('T')[0];
+
+/* ===== SCROLL TO TOP ===== */
+const fabTop = document.getElementById('fabTop');
+if (fabTop) {
+  fabTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+  const toggleTop = () => fabTop.classList.toggle('show', window.scrollY > 500);
+  window.addEventListener('scroll', toggleTop, { passive: true });
+  toggleTop();
+}

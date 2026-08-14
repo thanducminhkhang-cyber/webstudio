@@ -135,3 +135,12 @@ form.addEventListener('submit', (e) => {
     form.querySelector('button span').textContent = 'Gửi Yêu Cầu Báo Giá';
   }, 4800);
 });
+
+/* ===== SCROLL TO TOP ===== */
+const fabTop = document.getElementById('fabTop');
+if (fabTop) {
+  fabTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+  const toggleTop = () => fabTop.classList.toggle('show', window.scrollY > 500);
+  window.addEventListener('scroll', toggleTop, { passive: true });
+  toggleTop();
+}
